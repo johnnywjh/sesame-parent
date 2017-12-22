@@ -1,0 +1,8 @@
+{
+	"auth.h5": {
+		"public_token": "auth.h5",
+		"private_token": "com.sesame.h5",
+		"token_c": 5,
+		"desc": "H5客户端的动态口令配置内容"
+	}
+}

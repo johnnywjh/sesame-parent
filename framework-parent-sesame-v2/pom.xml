@@ -1,0 +1,257 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.8.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.sesame.framework</groupId>
+    <artifactId>framework-parent</artifactId>
+    <version>2.0.0-RELEASE</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}-${project.version}</name>
+
+    <!-- 项目集合-->
+    <modules>
+        <module>framework-core</module> <!--核心模块,其他模块大部分要依赖这个模块-->
+        <module>framework-mybatis</module><!--mybatis 模块-->
+        <module>framework-web</module><!--web 模块-->
+
+        <module>framework-cache</module><!--缓存接口的定义-->
+        <module>framework-cache-redis</module><!--缓存接口的实现-->
+
+        <module>framework-distributed-lock</module><!--分布式锁,和序列,建议使用下面两个-->
+        <module>framework-lock</module><!--分布式锁 -->
+        <module>framework-lock-serial</module><!--分布式序列,依赖 [ framework-lock ] -->
+
+        <module>framework-distributed-tx</module><!--分布式事物配置 -->
+
+        <module>framework-spring-boot</module><!--spring-boot 的一些集成 -->
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jdk.version>1.8</jdk.version>
+        <!--https://projects.spring.io/spring-cloud/-->
+        <spring.cloud.version>Dalston.SR4</spring.cloud.version>
+
+        <thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
+        <thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>
+
+        <slf4j.version>1.7.7</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
+
+        <war.path>../target</war.path>
+
+        <sesame.framework.version>2.0.0-RELEASE</sesame.framework.version>
+    </properties>
+
+    <!-- 环境配置 -->
+    <profiles>
+        <!-- 开发环境 -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault><!-- 默认激活 -->
+            </activation>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+        </profile>
+        <!-- 测试环境 -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileActive>test</profileActive>
+            </properties>
+        </profile>
+        <!-- 生产环境 -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+            </properties>
+        </profile>
+
+    </profiles>
+
+    <!-- maven 私服配置 -->
+    <repositories>
+        <repository>
+            <id>sesame</id>
+            <url>http://www.sesame.kim:8081/nexus/content/groups/public/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>sesame-release</id>
+            <url>http://www.sesame.kim:8081/nexus/content/repositories/sesame-release</url>
+        </repository>
+        <snapshotRepository>
+            <id>sesame-snapshot</id>
+            <url>http://www.sesame.kim:8081/nexus/content/repositories/sesame-snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- java伪静态 -->
+            <dependency>
+                <groupId>org.tuckey</groupId>
+                <artifactId>urlrewritefilter</artifactId>
+                <version>4.0.4</version>
+            </dependency>
+            <!-- 阿里数据池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.4.4</version>
+            </dependency>
+            <!-- 网络框架 -->
+            <dependency>
+                <groupId>com.github.kevinsawicki</groupId>
+                <artifactId>http-request</artifactId>
+                <version>6.0</version>
+            </dependency>
+
+            <!--framework.sesame start -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-core</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-mybatis</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-cache</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-cache-redis</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-distributed-lock</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-lock</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-lock-serial</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-spring-boot</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-spring-boot-cloud</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-spring-boot-starter</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-distributed-tx</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>framework-web</artifactId>
+                <version>${sesame.framework.version}</version>
+            </dependency>
+            <!--framework.sesame end -->
+
+            <!--spring cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+            <!-- maven-source-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 处理资源文件的编码 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+        <!-- 开启资源过滤 -->
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/java</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.js</include>
+                    <include>**/*.json</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+</project>
