@@ -1,7 +1,5 @@
 package com.sesame.framework.web.config;
 
-import java.util.List;
-
 import com.sesame.framework.entity.GPage;
 import lombok.Data;
 import org.springframework.beans.factory.InitializingBean;
