@@ -41,7 +41,7 @@ public class FileUploadUitls {
      */
     public static String uploadResSrc(String str, String projectName, String moduleName, String type) {
 
-        JSONObject json = upload(str, projectName, moduleName, str);
+        JSONObject json = upload(str, projectName, moduleName, type);
         json = json.getJSONObject("result");
         String src = json.get("service").toString() + json.get("path").toString();
 
