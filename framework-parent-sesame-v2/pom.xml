@@ -240,7 +240,10 @@
         <resources>
             <resource>
                 <directory>${project.basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
+                <includes>
+                    <include>**/spring.factories</include>
+                </includes>
+                <filtering>false</filtering>
             </resource>
             <resource>
                 <directory>${project.basedir}/src/main/java</directory>

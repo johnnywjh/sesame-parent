@@ -15,7 +15,7 @@ import com.sesame.framework.web.config.WebProperties;
 
 /**
  * 系统启动时执行
- *
+ * @ServletComponentScan(basePackageClasses = com.sesame.framework.web.init.SystemStart.class)
  * @author wangjianghai
  */
 @CommonsLog
