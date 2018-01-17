@@ -1,0 +1,10 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.sesame.framework.cache.redis.config.CacheProperties,\
+com.sesame.framework.cache.redis.config.RedisCacheAutoConfiguration
+
+
+
+
+
+
