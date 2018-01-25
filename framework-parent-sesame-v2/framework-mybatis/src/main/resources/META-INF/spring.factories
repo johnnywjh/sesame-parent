@@ -3,7 +3,7 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.sesame.framework.mybatis.config.DataSourcesConfig,\
 com.sesame.framework.mybatis.config.DBProperties,\
 com.sesame.framework.mybatis.config.DruidProperties,\
-com.sesame.framework.mybatis.config.MybatisConfig,\
-com.sesame.framework.mybatis.dao.BaseDao
+com.sesame.framework.mybatis.config.MybatisConfig
+# com.sesame.framework.mybatis.dao.BaseDao
 
 
