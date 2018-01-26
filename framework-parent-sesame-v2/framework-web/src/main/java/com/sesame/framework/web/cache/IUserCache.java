@@ -2,6 +2,8 @@ package com.sesame.framework.web.cache;
 
 import com.sesame.framework.web.entity.IUser;
 
+import java.util.List;
+
 /**
  * 用户缓存Cache接口
  *
@@ -18,5 +20,5 @@ public interface IUserCache {
 
      IUser getUserCache(String userNo);
 
-    Object getUserRole(String userNo);
+    List getUserRoles(String userNo);
 }

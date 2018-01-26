@@ -23,16 +23,17 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         // 多个拦截器组成一个拦截器链
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
+
+        // 初始化用户信息
         if (webProperties.isInterceptorUser()) {
             registry.addInterceptor(new UserInfoInterceptor()).addPathPatterns("/**");
         }
-
+        // 登录校验
         if (webProperties.isInterceptorLogin()) {
-            // 登录校验
             registry.addInterceptor(new WebUserInterceptor()).addPathPatterns("/**");
         }
+        // 公钥私钥 认证
         if (webProperties.isInterceptorAuth()) {
-            // 公钥私钥 认证
             registry.addInterceptor(new AuthTokenInterceptor()).addPathPatterns("/**");
         }
 

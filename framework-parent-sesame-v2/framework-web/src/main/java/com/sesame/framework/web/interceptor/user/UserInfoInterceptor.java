@@ -11,6 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 用户信息拦截和设置
@@ -38,14 +39,14 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         String userNo = userCache.getUserNo(sessionId); // 用户账号
 
         IUser user = null;
-        Object userRole = null;
+        List list_roles = null;
         if(StringUtil.isNotEmpty(userNo)){
             user = userCache.getUserCache(userNo);
-            userRole = userCache.getUserRole(userNo);
+            list_roles = userCache.getUserRoles(userNo);
         }
 
         UserContext.getUserContext().setUser(user);
-        UserContext.getUserContext().setUserRole(userRole);
+        UserContext.getUserContext().setUserRole(list_roles);
 
         return true;
     }

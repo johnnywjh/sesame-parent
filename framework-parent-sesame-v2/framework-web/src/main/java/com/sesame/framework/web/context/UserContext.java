@@ -2,6 +2,8 @@ package com.sesame.framework.web.context;
 
 import com.sesame.framework.web.entity.IUser;
 
+import java.util.List;
+
 /**
  * UserContext
  *
@@ -13,7 +15,7 @@ public class UserContext {
 
     private final static ThreadLocal<IUser> USER_THREAD_LOCAL = new ThreadLocal<>();
     private final static ThreadLocal<String> SESSIONID = new ThreadLocal<>();
-    private final static ThreadLocal<Object> USER_ROLE = new ThreadLocal<>();
+    private final static ThreadLocal<List> USER_ROLE = new ThreadLocal<>();
 
     //构造器私有化
     private UserContext() {
@@ -45,14 +47,14 @@ public class UserContext {
         SESSIONID.set(sessionId);
     }
     /*-------------------------------------------------------*/
-    public Object getUserRole(){
+    public List getUserRole(){
         return USER_ROLE.get();
     }
     public <T> T getUserRole(Class<T> objectType){
         return (T) USER_ROLE.get();
     }
-    public void setUserRole(Object userRole){
-        USER_ROLE.set(userRole);
+    public void setUserRole(List roles){
+        USER_ROLE.set(roles);
     }
 
 
