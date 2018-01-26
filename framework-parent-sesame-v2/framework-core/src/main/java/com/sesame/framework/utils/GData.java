@@ -14,9 +14,21 @@ public class GData {
      */
     public static interface SYS {
         /**
-         * 超级管理员角色id,一般情况是1
+         * 超级管理员用户账号
          */
-        static final String ADMIN_ROLEID = "1";
+        String SPUER_ADMIN_USER = "spuer_admin";
+        /**
+         * 超级管理员角色编号
+         */
+        String SPUER_ADMIN_ROLE = "spuer_admin";
+        /**
+         * 管理员用户账号
+         */
+        String ADMIN_USER = "admin";
+        /**
+         * 管理员角色编号
+         */
+        String ADMIN_ROLE = "admin";
     }
 
     /**
@@ -26,11 +38,11 @@ public class GData {
         /**
          * 登录
          */
-        static final String LOGIN = "sysuserkey";
+        String LOGIN = "sysuserkey";
         /**
          * 菜单
          */
-        static final String MENU = "menulistkey";
+        String MENU = "menulistkey";
     }
 
     /**
@@ -40,11 +52,11 @@ public class GData {
         /**
          * Y 是
          */
-        static final String YES = "Y";
+        String YES = "Y";
         /**
          * N 否
          */
-        static final String NO = "N";
+        String NO = "N";
     }
 
     /**
@@ -54,15 +66,15 @@ public class GData {
         /**
          * 1 男
          */
-        static final String MAN = "1";
+        String MAN = "1";
         /**
          * 2 女
          */
-        static final String WOMAN = "2";
+        String WOMAN = "2";
         /**
          * 3 未知
          */
-        static final String NONE = "3";
+        String NONE = "3";
     }
 
     /**
@@ -72,7 +84,7 @@ public class GData {
         /**
          * zuul 里的sessionid 的key
          */
-        static final String ZUUL_SESSION_ID = "zuulSessionId";
+        String ZUUL_SESSION_ID = "zuulSessionId";
     }
 
 }
