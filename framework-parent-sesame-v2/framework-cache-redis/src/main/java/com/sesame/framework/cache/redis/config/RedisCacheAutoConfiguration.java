@@ -38,7 +38,7 @@ public class RedisCacheAutoConfiguration {
         redisTemplate.setHashKeySerializer(genericJackson2JsonRedisSerializer);
         redisTemplate.setHashValueSerializer(genericJackson2JsonRedisSerializer);
         redisCacheStorage.setRedisTemplate(redisTemplate);
-        redisCacheStorage.setExpire(properties.getExpireAfter());
+        redisCacheStorage.setExpire(properties.getExpirationTime());
         return redisCacheStorage;
     }
 }
