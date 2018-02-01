@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.sesame.framework</groupId>
+    <groupId>kim.sesame.framework</groupId>
     <artifactId>framework-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>

@@ -1,8 +1,10 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.sesame.framework.locks.config.LockRegistryAutoConfiguration,\
-com.sesame.framework.locks.config.LockRegistryProperties,\
-com.sesame.framework.locks.jdbc.DefaultLockRepository
+kim.sesame.framework.locks.config.LockRegistryAutoConfiguration,\
+kim.sesame.framework.locks.config.LockRegistryProperties,\
+kim.sesame.framework.locks.jdbc.DefaultLockRepository,\
+kim.sesame.framework.serial.service.SerialNumberService,\
+kim.sesame.framework.serial.dao.SerialNumberRuleDao
 
 
 
