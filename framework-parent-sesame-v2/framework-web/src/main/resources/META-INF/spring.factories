@@ -4,5 +4,4 @@ com.sesame.framework.web.config.MyWebAppConfigurer,\
 com.sesame.framework.web.config.WebConfig,\
 com.sesame.framework.web.config.WebProperties,\
 com.sesame.framework.web.controller.PageController,\
-com.sesame.framework.web.core.CommonErrorPageRegistrar,\
-com.sesame.framework.web.tag.SesameDialect
+com.sesame.framework.web.core.CommonErrorPageRegistrar
