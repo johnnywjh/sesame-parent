@@ -29,6 +29,11 @@ public class GData {
          * 管理员角色编号
          */
         String ADMIN_ROLE = "admin";
+
+        /**
+         * 默认头像,好像有点丑
+         */
+        String DEFAULT_TX_IMG = "http://www.sesame.kim/images/default_tx.png";
     }
 
     /**
