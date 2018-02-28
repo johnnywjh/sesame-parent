@@ -1,5 +1,6 @@
 package kim.sesame.framework.web.context;
 
+import kim.sesame.framework.utils.Ipconfig;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.utils.StringUtil;
 import org.apache.log4j.Logger;
@@ -101,7 +102,9 @@ public class SpringContextUtil {
 
 	private static void printBase() {
 		Environment environment = getApplicationContext().getEnvironment();
-		String project_url = "http://localhost:" + environment.getProperty("server.port") + environment.getProperty("server.context-path");
+		String project_url = "http://127.0.0.1:" + environment.getProperty("server.port") + environment.getProperty("server.context-path");
+		println(project_url);
+		project_url = "http://"+Ipconfig.getInfo().getLocalip()+":" + environment.getProperty("server.port") + environment.getProperty("server.context-path");
 		println(project_url);
 		String profile = environment.getProperty("spring.profiles.active");
 		if (StringUtil.isNotEmpty(profile)) {
