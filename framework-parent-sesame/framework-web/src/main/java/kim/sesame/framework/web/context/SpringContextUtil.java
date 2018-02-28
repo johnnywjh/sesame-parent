@@ -107,7 +107,7 @@ public class SpringContextUtil {
 		if (StringUtil.isNotEmpty(profile)) {
 			println("当前激活的环境文件:" + profile);
 		}
-		println("当前项目资源路径:SpringContextUtil.getCurrentPath()="+getCurrentPath());
+		println("当前项目资源路径:SpringContextUtil.getCurrentPath() : "+getCurrentPath());
 		println("***************");
 	}
 
