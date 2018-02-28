@@ -1,6 +1,7 @@
 package kim.sesame.framework.web.config;
 
 import kim.sesame.framework.entity.GPage;
+import kim.sesame.framework.utils.StringUtil;
 import lombok.Data;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -43,12 +44,20 @@ public class WebProperties implements InitializingBean {
      */
     private String fileMapping = "";
 
+    /**
+     * 网页上icon 的图标地址
+     */
+    private String iconPath;
+
     private boolean interceptorUser = false;
     private boolean interceptorLogin = false;
     private boolean interceptorAuth = false;
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        if (StringUtil.isEmpty(this.iconPath)) {
+            this.iconPath = this.resource + "/istyle/ico/favicon.ico";
+        }
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
     }
 }

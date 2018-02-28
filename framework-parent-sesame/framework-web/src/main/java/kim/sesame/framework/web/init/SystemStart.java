@@ -55,10 +55,12 @@ public class SystemStart extends HttpServlet implements ServletContextListener {
         application.setAttribute("fileMapping", web.getFileMapping());
         application.setAttribute("defaultPageSize", web.getDefaultPageSize());
         application.setAttribute("pageReplace", web.getPageReplace());
+        application.setAttribute("iconPath", web.getIconPath());
 
         log.info("basePath : " + application.getAttribute("basePath"));
         log.info("resource : " + application.getAttribute("resource"));
         log.info("fileMapping : " + application.getAttribute("fileMapping"));
+        log.info("iconPath : " + application.getAttribute("iconPath"));
 
         log.info("************服务器启动执行方法结束***************");
         log.info("");
