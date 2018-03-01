@@ -1,4 +1,4 @@
-package kim.sesame.framework.plugin;
+package kim.sesame.plugins;
 
 
 import kim.sesame.framework.uitls.ZipCompressor;

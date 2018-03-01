@@ -32,7 +32,7 @@
 
         <module>framework-spring-boot</module><!--spring-boot 的一些集成 -->
 
-        <module>sesame-plugin</module> <!--自定义插件-->
+        <module>sesame-plugins</module> <!--自定义插件-->
     </modules>
 
     <properties>
@@ -51,6 +51,8 @@
         <war.path>../target</war.path>
 
         <sesame.framework.version>1.0.0</sesame.framework.version>
+        <sesame.plugin.groupId>kim.sesame.plugins</sesame.plugin.groupId>
+        <sesame.plugin.version>1.0.0</sesame.plugin.version>
     </properties>
 
     <!-- 环境配置 -->
@@ -237,6 +239,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+
         </plugins>
         <!-- 开启资源过滤 -->
         <resources>
