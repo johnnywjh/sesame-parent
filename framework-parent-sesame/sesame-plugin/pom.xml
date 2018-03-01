@@ -8,7 +8,7 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>plugin-zip</artifactId>
+    <artifactId>sesame-plugin</artifactId>
     <packaging>maven-plugin</packaging>
     <name>${project.artifactId}-${project.version}</name>
 

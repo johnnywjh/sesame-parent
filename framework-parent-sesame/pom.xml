@@ -32,7 +32,7 @@
 
         <module>framework-spring-boot</module><!--spring-boot 的一些集成 -->
 
-        <module>plugin-zip</module>
+        <module>sesame-plugin</module> <!--自定义插件-->
     </modules>
 
     <properties>
