@@ -50,7 +50,7 @@ public class ReLoadResourceFile extends AbstractMojo {
             getLog().info("--------------");
             for (int i = 0; i < srcFiles.size(); i++) {
                 FileUtil.copy(srcFiles.get(i), targetFiles.get(i));
-                getLog().info("复制文件 : "+srcFiles.get(i)+"\n\t\t\t --> "+targetFiles.get(i));
+                getLog().info("复制文件 : "+srcFiles.get(i)+"\n\t\t\t\t --> "+targetFiles.get(i));
             }
             getLog().info("--------------");
         } else {

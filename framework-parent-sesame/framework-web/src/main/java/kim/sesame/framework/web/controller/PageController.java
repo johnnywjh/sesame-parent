@@ -1,6 +1,8 @@
 package kim.sesame.framework.web.controller;
 
 import kim.sesame.framework.web.config.WebProperties;
+import kim.sesame.framework.web.interceptor.annotation.AuthNonCheckRequired;
+import kim.sesame.framework.web.interceptor.annotation.LoginNonCheckRequired;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +27,8 @@ public class PageController {
     /**
      * 加载页面
      */
+    @AuthNonCheckRequired
+    @LoginNonCheckRequired
     @RequestMapping("/{uriPath}")
     public String index(@PathVariable("uriPath") String uriPath, HttpServletRequest request, ModelMap modelMap) {
         Map<String, String[]> mm = request.getParameterMap();
