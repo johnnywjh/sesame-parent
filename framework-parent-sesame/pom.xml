@@ -84,24 +84,6 @@
 
     </profiles>
 
-    <!-- maven 私服配置 -->
-    <repositories>
-        <repository>
-            <id>sesame</id>
-            <url>http://www.sesame.kim:8081/nexus/content/groups/public/</url>
-            <layout>default</layout>
-        </repository>
-    </repositories>
-    <distributionManagement>
-        <repository>
-            <id>sesame-release</id>
-            <url>http://www.sesame.kim:8081/nexus/content/repositories/sesame-release</url>
-        </repository>
-        <snapshotRepository>
-            <id>sesame-snapshot</id>
-            <url>http://www.sesame.kim:8081/nexus/content/repositories/sesame-snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
