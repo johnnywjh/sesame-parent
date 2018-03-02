@@ -27,8 +27,8 @@ public class PageController {
     /**
      * 加载页面
      */
-    @AuthNonCheckRequired
-    @LoginNonCheckRequired
+//    @AuthNonCheckRequired
+//    @LoginNonCheckRequired
     @RequestMapping("/{uriPath}")
     public String index(@PathVariable("uriPath") String uriPath, HttpServletRequest request, ModelMap modelMap) {
         Map<String, String[]> mm = request.getParameterMap();
