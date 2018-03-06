@@ -87,8 +87,6 @@
         <war.path>../target</war.path>
 
         <sesame.framework.version>1.0.0</sesame.framework.version>
-        <sesame.plugin.groupId>kim.sesame.plugins</sesame.plugin.groupId>
-        <sesame.plugin.version>1.0.0</sesame.plugin.version>
     </properties>
 
     <!-- 环境配置 -->
@@ -261,7 +259,7 @@
                     <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
                 <!--</configuration>-->
             <!--</plugin>-->
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.10.3</version>
@@ -273,7 +271,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
