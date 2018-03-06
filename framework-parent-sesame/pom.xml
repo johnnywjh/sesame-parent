@@ -53,8 +53,6 @@
         <war.path>../target</war.path>
 
         <sesame.framework.version>1.0.0</sesame.framework.version>
-        <sesame.plugin.groupId>kim.sesame.plugins</sesame.plugin.groupId>
-        <sesame.plugin.version>1.0.0</sesame.plugin.version>
     </properties>
 
     <!-- 环境配置 -->
