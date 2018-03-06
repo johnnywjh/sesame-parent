@@ -11,7 +11,7 @@
 
     <groupId>kim.sesame.framework</groupId>
     <artifactId>framework-parent</artifactId>
-    <version>1.0.0</version>
+    <version>${sesame.framework.version}</version>
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
     <url>https://gitee.com/sesamekim/framework-boot</url>
@@ -86,7 +86,8 @@
 
         <war.path>../target</war.path>
 
-        <sesame.framework.version>1.0.0</sesame.framework.version>
+        <sesame.framework.version>1.0.1</sesame.framework.version>
+        <sesame.plugins.version>1.0.1</sesame.plugins.version>
     </properties>
 
     <!-- 环境配置 -->
