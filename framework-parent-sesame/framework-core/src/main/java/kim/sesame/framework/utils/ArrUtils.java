@@ -3,7 +3,7 @@ package kim.sesame.framework.utils;
 /**
  * 数组 工具
  * 
- * @author wangjianghai
+ * @author johnny
  * @date 2016年1月8日 下午9:18:51
  * @Title: ArrUtils
  * @ClassName: ArrUtils
@@ -14,7 +14,7 @@ public class ArrUtils {
 	/**
 	 * 把一个数组变成一个String {2,3,4} ==> "2,3,4"
 	 * 
-	 * @author wangjianghai
+	 * @author johnny
 	 * @date 2016年1月8日 下午9:20:51
 	 * @Title formate
 	 * @Description

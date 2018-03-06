@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 /**
- * @author liuhuan liuhuan@duoduopei.com.cn 
+ * @author johnny
  * @ClassName: AuthTokenInterceptor 
  * @Description: 使用拦截器验证请求终端的合法性，时效性等内容
  * @date 2016年9月27日 上午10:36:35  

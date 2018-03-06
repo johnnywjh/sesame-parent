@@ -12,7 +12,7 @@ import net.sf.json.JSONObject;
 
 /**
  * ip 信息
- * @author  wangjianghai
+ * @author  johnny
  * @date 2015年10月12日 上午9:39:38
  * @Title: IPUitl
  * @ClassName: IPUitl
@@ -22,7 +22,7 @@ public class IPUitl {
 	
 	/**
 	 * 获取客户端的ip
-	 * @author  wangjianghai
+	 * @author  johnny
 	 * @date 2015年10月12日 上午9:42:26
 	 * @Title getRemortIP
 	 * @Description 

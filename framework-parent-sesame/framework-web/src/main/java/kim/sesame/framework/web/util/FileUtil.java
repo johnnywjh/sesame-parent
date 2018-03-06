@@ -7,7 +7,7 @@ import java.io.InputStream;
 /**
  * 文件操作
  * 
- * @author wangjianghai
+ * @author johnny
  * @date 2016年4月1日 上午11:18:22
  * @Description:
  */
@@ -16,7 +16,7 @@ public class FileUtil {
 	/**
 	 * 文件写入磁盘
 	 * 
-	 * @author wangjianghai
+	 * @author johnny
 	 * @date 2016年2月22日 下午3:55:55
 	 * @Title createFile
 	 * @Description
@@ -40,7 +40,7 @@ public class FileUtil {
 	/**
 	 * 删除文件和目录
 	 * 
-	 * @author wangjianghai
+	 * @author johnny
 	 * @date 2017年5月8日 下午10:57:16
 	 * @Title clearFiles
 	 * @Description
@@ -56,7 +56,7 @@ public class FileUtil {
 	/**
 	 * 删除目录里的所有文件,保存源文件
 	 * 
-	 * @author wangjianghai
+	 * @author johnny
 	 * @date 2017年5月11日 下午9:27:46
 	 * @Title cleanDir
 	 * @Description
@@ -75,7 +75,7 @@ public class FileUtil {
 	/**
 	 * 递归删除文件夹和里面的文件
 	 * 
-	 * @author wangjianghai
+	 * @author johnny
 	 * @date 2017年5月11日 下午9:27:08
 	 * @Title deleteFile
 	 * @Description

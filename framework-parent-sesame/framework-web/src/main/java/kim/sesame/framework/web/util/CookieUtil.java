@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Cookie 的封装
  *
- * @author wangjianghai
+ * @author johnny
  * @date 2017年5月12日 上午12:15:01
  * @Description:
  */

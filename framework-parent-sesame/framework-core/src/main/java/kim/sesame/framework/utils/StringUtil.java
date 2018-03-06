@@ -3,7 +3,7 @@ package kim.sesame.framework.utils;
 /**
  * 字符串
  *
- * @author wangjianghai
+ * @author johnny
  * @date 2016年2月23日 上午10:43:55
  * @Title: StringUtil
  * @ClassName: StringUtil
@@ -32,7 +32,7 @@ public class StringUtil {
     /**
      * 两个字符串之间的比较
      *
-     * @author wangjianghai
+     * @author johnny
      * @date 2016年9月29日 下午5:12:44
      * @Title equals
      * @Description

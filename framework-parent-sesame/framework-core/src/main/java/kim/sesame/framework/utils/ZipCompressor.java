@@ -149,7 +149,7 @@ public class ZipCompressor {
     }
     public static void main(String[] args) {
         try {
-            unZipFiles(new File("C:\\Users\\wangjianghai\\com_sesame\\code\\theme.zip"), "C:\\Users\\wangjianghai\\com_sesame\\code\\");
+            unZipFiles(new File("C:\\Users\\johnny\\com_sesame\\code\\theme.zip"), "C:\\Users\\johnny\\com_sesame\\code\\");
         } catch (IOException e) {
             e.printStackTrace();
         }

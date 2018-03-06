@@ -4,7 +4,7 @@ import lombok.Data;
 
 /**
  * 菜单权限控制
- * @author wangjianghai
+ * @author johnny
  * @date 2016年1月17日 下午4:17:39
  * @Title: Ztter
  * @ClassName: Ztter

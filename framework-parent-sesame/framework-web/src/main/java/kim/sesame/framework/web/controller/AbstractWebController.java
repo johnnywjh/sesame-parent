@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * Web controller基类
  *
- * @author johnny-王江海
+ * @author johnny
  * @date 2017/10/23 20:13
  **/
 public class AbstractWebController extends AbstractController {

@@ -11,7 +11,7 @@ import net.sf.json.JSONObject;
 /**
  * @ClassName: AuthTokenUtils 
  * @Description: 根据对应的公钥和密钥规则创建相应的动态口令，对比相应的动态口令
- * @author liuhuan liuhuan@duoduopei.com.cn 
+ * @author johnny
  * @date 2016年9月27日 上午10:43:34  
  */
 public class AuthTokenUtils {

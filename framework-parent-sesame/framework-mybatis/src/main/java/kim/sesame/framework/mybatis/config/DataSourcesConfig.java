@@ -17,7 +17,7 @@ import java.sql.SQLException;
 /**
  * 数据源配置
  * 
- * @author wangjianghai (johnny_hzz@qq.com)
+ * @author johnny
  * @date 2017年6月12日 上午11:25:48
  * @Description:
  */
@@ -32,7 +32,7 @@ public class DataSourcesConfig {
 	/**
 	 * druid初始化
 	 * 
-	 * @author wangjianghai (johnny_hzz@qq.com)
+	 * @author johnny
 	 * @date 2017年6月12日 上午11:26:03
 	 * @Title Construction
 	 * @Description

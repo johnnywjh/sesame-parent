@@ -8,7 +8,7 @@ public class OrderNo {
 	/**
 	 * 生成交易订单
 	 * 
-	 * @author wangjianghai
+	 * @author johnny
 	 * @date 2015年10月27日 上午10:52:55
 	 * @Title getNo
 	 * @Description
@@ -24,7 +24,7 @@ public class OrderNo {
 	/**
 	 * 生成N位随机数
 	 * 
-	 * @author wangjianghai
+	 * @author johnny
 	 * @date 2015年10月27日 上午10:52:12
 	 * @Title getRandomNum
 	 * @Description

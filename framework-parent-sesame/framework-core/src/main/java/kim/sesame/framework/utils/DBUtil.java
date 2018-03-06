@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 /**
  * s数据库连接处理
  * 
- * @author wangjianghai
+ * @author johnny
  * @date 2016年10月28日 下午9:40:44
  * @Description:
  */

@@ -4,7 +4,7 @@ package kim.sesame.framework.exception;
 /**
  * 异常接口
  *
- * @author johnny-王江海
+ * @author johnny
  * @date 2017/10/23 20:15
  */
 public interface IException {

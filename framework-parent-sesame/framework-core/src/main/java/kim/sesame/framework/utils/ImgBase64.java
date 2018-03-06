@@ -11,7 +11,7 @@ import java.nio.file.StandardOpenOption;
 /**
  * 图片和图片base64字符串转化
  * 
- * @author wangjianghai
+ * @author johnny
  * @date 2017年9月2日 下午8:58:48
  * @Description: >= jdk 1.8
  */
@@ -20,7 +20,7 @@ public class ImgBase64 {
 	/**
 	 * 图片地址转化成Base64字符串 jdk1.8
 	 * 
-	 * @author wangjianghai
+	 * @author johnny
 	 * @date 2017年9月2日 下午8:46:49
 	 * @Title conversionString
 	 * @Description
@@ -49,7 +49,7 @@ public class ImgBase64 {
 	/**
 	 * 图片byte转化成Base64字符串 jdk1.8
 	 * 
-	 * @author wangjianghai
+	 * @author johnny
 	 * @date 2017年9月2日 下午8:47:40
 	 * @Title conversionString
 	 * @Description

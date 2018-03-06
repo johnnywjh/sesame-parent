@@ -3,7 +3,7 @@ package kim.sesame.framework.utils;
 /**
  * 系统常量
  *
- * @author wangjianghai
+ * @author johnny
  * @date 2017年4月16日 下午4:14:34
  * @Description: 特殊的常量建议在子项目中复制一份, 并修改java类名
  */

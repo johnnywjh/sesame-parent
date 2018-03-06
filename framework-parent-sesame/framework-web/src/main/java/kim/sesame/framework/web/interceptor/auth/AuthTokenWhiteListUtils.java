@@ -14,7 +14,7 @@ import net.sf.json.JSONArray;
  * 
  * @ClassName: AuthTokenWhiteListUtils 
  * @Description: token认证的白名单工具类，白名单匹配成功的编号可以不用动态口令的校验，反之则需要校验动态口令
- * @author liuhuan liuhuan@duoduopei.com.cn 
+ * @author johnny
  * @date 2016年9月28日 上午8:42:08  
  */
 public class AuthTokenWhiteListUtils {

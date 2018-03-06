@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * 文件操作
  *
- * @author wangjianghai
+ * @author johnny
  * @date 2016年4月1日 上午11:18:22
  * @Description:
  */
@@ -16,7 +16,7 @@ public class FileUtil {
      * 删除文件和目录
      *
      * @param file void
-     * @author wangjianghai
+     * @author johnny
      * @date 2017年5月8日 下午10:57:16
      * @Title clearFiles
      * @Description
@@ -31,7 +31,7 @@ public class FileUtil {
      * 删除目录里的所有文件,保存源文件
      *
      * @param file void
-     * @author wangjianghai
+     * @author johnny
      * @date 2017年5月11日 下午9:27:46
      * @Title cleanDir
      * @Description
@@ -49,7 +49,7 @@ public class FileUtil {
      * 递归删除文件夹和里面的文件
      *
      * @param file void
-     * @author wangjianghai
+     * @author johnny
      * @date 2017年5月11日 下午9:27:08
      * @Title deleteFile
      * @Description

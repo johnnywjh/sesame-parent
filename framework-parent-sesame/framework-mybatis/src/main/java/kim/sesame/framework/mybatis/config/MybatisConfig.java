@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 /**
  * mybatis配置类
  * 
- * @author wangjianghai
+ * @author johnny
  * @date 2017年7月6日 下午3:11:56
  * @Description:
  */

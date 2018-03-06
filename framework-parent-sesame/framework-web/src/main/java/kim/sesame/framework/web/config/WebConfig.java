@@ -14,7 +14,7 @@ import kim.sesame.framework.web.core.MyUrlRewriteFilter;
 /**
  * web 默认配置
  * 
- * @author wangjianghai
+ * @author johnny
  * @date 2017年9月7日 下午8:18:37
  * @Description:
  */

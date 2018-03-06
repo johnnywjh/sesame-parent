@@ -3,7 +3,7 @@ package kim.sesame.framework.utils;
 import java.security.MessageDigest;
 /**
  * MD5加密算法类
- * @author wangjianghai
+ * @author johnny
  * @date 2015年5月29日 上午11:22:56
  * @Title: MD5Utils
  * @ClassName: MD5Utils
@@ -20,7 +20,7 @@ public class MD5Util {
 	}
 	/**
 	 * 对字符串进行MD5加密  
-	 * @author  Kevin Li
+	 * @author  johnny
 	 * @date 2015年5月29日 上午11:14:29
 	 * @Title encodeByMD5
 	 * @Description 
@@ -46,7 +46,7 @@ public class MD5Util {
     }
     /**
      * 转换字节数组为十六进制字符串 
-     * @author  Kevin Li
+     * @author  johnny
      * @date 2015年5月29日 上午11:18:28
      * @Title byteArrayToHexString
      * @Description 
@@ -63,7 +63,7 @@ public class MD5Util {
     }  
     /**
      * 将一个字节转化成十六进制形式的字符串
-     * @author  Kevin Li
+     * @author  johnny
      * @date 2015年5月29日 上午11:18:44
      * @Title byteToHexString
      * @Description 

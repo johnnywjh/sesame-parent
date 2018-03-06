@@ -9,7 +9,7 @@ import org.springframework.core.convert.converter.Converter;
 
 /**
  * String 转换成 日期
- * @author wangjianghai
+ * @author johnny
  * @date 2017年9月6日 下午8:59:32
  * @Description:
  */

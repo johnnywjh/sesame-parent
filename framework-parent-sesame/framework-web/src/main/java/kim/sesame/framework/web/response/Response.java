@@ -8,7 +8,7 @@ import lombok.Data;
 /**
  * Web 返回结果
  *
- * @author johnny-王江海
+ * @author johnny
  * @date 2017/10/23 19:33
  */
 @Data

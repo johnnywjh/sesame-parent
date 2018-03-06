@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Controlle 基础抽象类
  *
- * @author johnny-王江海
+ * @author johnny
  * @date 2017/10/23 19:57
  **/
 @CommonsLog
