@@ -15,20 +15,16 @@ public class GMap extends HashMap<String, Object> {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @函数名 put
-	 * @函数描述 key做预处理，在SQL的查询对结果key做出预处理
-	 * @创建时间 2015年2月28日 下午11:39:23
-	 */
 	@Override
 	public Object put(String key, Object value) {
 		return super.put(convertKey(key), value);
 	}
 
 	/**
-	 * @函数名 putAction
-	 * @函数描述 key不做预处理，在SQL的操作中当作参数使用
-	 * @创建时间 2015年2月28日 下午11:39:23
+	 * key不做预处理，在SQL的操作中当作参数使用
+	 * @param key key
+	 * @param value value
+	 * @return object
 	 */
 	public Object putAction(String key, Object value) {
 		return super.put(key, value);

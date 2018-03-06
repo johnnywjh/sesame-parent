@@ -9,7 +9,6 @@ import java.util.Date;
  * 基础实体
  *
  * @author johnny
- * @date 2017/10/26 15:20
  */
 @Data
 public class BaseEntity implements IEntity {
@@ -51,6 +50,7 @@ public class BaseEntity implements IEntity {
         this.updateUser = user;
         this.updateTime = d;
     }
+
 
     public void initUpdate(String user) {
         Date d = new Date();

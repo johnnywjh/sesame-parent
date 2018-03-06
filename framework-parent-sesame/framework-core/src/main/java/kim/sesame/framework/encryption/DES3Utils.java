@@ -48,7 +48,7 @@ public class DES3Utils {
      *
      * @param data 明文
      * @return Base64编码的密文
-     * @throws Exception
+     * @throws Exception 异常
      */
     public static String encodeCBC(String data) throws Exception {
         byte[] key = keysecret.getBytes(ENCODE);
@@ -62,7 +62,7 @@ public class DES3Utils {
      * @param key  密钥
      * @param data 明文
      * @return Base64编码的密文
-     * @throws Exception
+     * @throws Exception 异常
      */
     public static byte[] des3EncodeECB(byte[] key, byte[] data) throws Exception {
         Key deskey = null;
@@ -81,7 +81,7 @@ public class DES3Utils {
      * @param key  密钥
      * @param data Base64编码的密文
      * @return 明文
-     * @throws Exception
+     * @throws Exception 异常
      */
     public static byte[] des3DecodeECB(byte[] key, byte[] data) throws Exception {
         Key deskey = null;
@@ -96,9 +96,9 @@ public class DES3Utils {
 
     /**
      * CBC加密
-     * @param data
-     * @return
-     * @throws Exception
+     * @param data btye arr
+     * @return  byte arr
+     * @throws Exception 异常
      */
     public static byte[] des3EncodeCBC(byte[] data) throws Exception {
         Key deskey = null;
@@ -114,9 +114,9 @@ public class DES3Utils {
 
     /**
      * CBC解密
-     * @param data
-     * @return
-     * @throws Exception
+     * @param data byte arr
+     * @return btye arr
+     * @throws Exception 异常
      */
     public static byte[] des3DecodeCBC(byte[] data) throws Exception {
         Key deskey = null;
