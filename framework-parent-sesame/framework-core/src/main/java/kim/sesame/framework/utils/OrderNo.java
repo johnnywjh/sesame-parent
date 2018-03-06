@@ -9,11 +9,8 @@ public class OrderNo {
 	 * 生成交易订单
 	 * 
 	 * @author johnny
-	 * @date 2015年10月27日 上午10:52:55
-	 * @Title getNo
-	 * @Description
+	 * date :  2015年10月27日 上午10:52:55
 	 * @return String
-	 * @throws
 	 */
 	public static String getNo() {
 		Date d = new Date();
@@ -25,13 +22,10 @@ public class OrderNo {
 	 * 生成N位随机数
 	 * 
 	 * @author johnny
-	 * @date 2015年10月27日 上午10:52:12
-	 * @Title getRandomNum
-	 * @Description
+	 * date :  2015年10月27日 上午10:52:12
 	 * @param num
 	 *            几位
 	 * @return String
-	 * @throws
 	 */
 	public static String getRandomNum(int num) {
 		Random random = new Random();

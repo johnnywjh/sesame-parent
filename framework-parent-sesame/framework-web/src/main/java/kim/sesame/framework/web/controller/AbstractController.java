@@ -19,7 +19,7 @@ import java.util.List;
  * Controlle 基础抽象类
  *
  * @author johnny
- * @date 2017/10/23 19:57
+ * date :  2017/10/23 19:57
  **/
 @CommonsLog
 public abstract class AbstractController {
@@ -66,8 +66,8 @@ public abstract class AbstractController {
     /**
      * 异常处理
      *
-     * @param exception
-     * @return
+     * @param exception exception
+     * @return Response
      */
     @ExceptionHandler(Exception.class)
     @ResponseBody

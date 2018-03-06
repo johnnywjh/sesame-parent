@@ -96,12 +96,7 @@ public class GenericJackson2JsonRedisSerializer implements RedisSerializer<Objec
         return deserialize(source, Object.class);
     }
 
-    /**
-     * @param source can be {@literal null}.
-     * @param type must not be {@literal null}.
-     * @return {@literal null} for empty source.
-     * @throws SerializationException
-     */
+
     public <T> T deserialize(byte[] source, Class<T> type) throws SerializationException {
 
         Assert.notNull(type,

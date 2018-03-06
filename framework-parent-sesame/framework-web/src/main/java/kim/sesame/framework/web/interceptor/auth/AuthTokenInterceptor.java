@@ -15,9 +15,8 @@ import java.io.PrintWriter;
 
 /**
  * @author johnny
- * @ClassName: AuthTokenInterceptor 
- * @Description: 使用拦截器验证请求终端的合法性，时效性等内容
- * @date 2016年9月27日 上午10:36:35  
+ * Description: 使用拦截器验证请求终端的合法性，时效性等内容
+ * date :  2016年9月27日 上午10:36:35  
  */
 public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
 

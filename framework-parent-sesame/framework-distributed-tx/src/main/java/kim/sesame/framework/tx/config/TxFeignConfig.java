@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 /**
  * 设置feign的configuration
  *
- * @FeignClient(value = "demo2",configuration = TxFeignConfig.class,fallback = Demo2ClientHystric.class)
+ * a FeignClient(value = "demo2",configuration = TxFeignConfig.class,fallback = Demo2ClientHystric.class)
  */
 public class TxFeignConfig {
 

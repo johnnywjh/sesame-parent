@@ -20,8 +20,7 @@ import java.util.Map;
 
 
 /**
-* @ClassName: Argument
-* @Description: 校验参数类
+* Description: 校验参数类
 *
 */
 

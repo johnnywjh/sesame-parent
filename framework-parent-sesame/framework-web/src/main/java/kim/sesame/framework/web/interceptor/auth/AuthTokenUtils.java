@@ -9,10 +9,9 @@ import kim.sesame.framework.web.util.FileUtil;
 import net.sf.json.JSONObject;
 
 /**
- * @ClassName: AuthTokenUtils 
- * @Description: 根据对应的公钥和密钥规则创建相应的动态口令，对比相应的动态口令
+ * Description: 根据对应的公钥和密钥规则创建相应的动态口令，对比相应的动态口令
  * @author johnny
- * @date 2016年9月27日 上午10:43:34  
+ * date :  2016年9月27日 上午10:43:34  
  */
 public class AuthTokenUtils {
 	// JavaScript容器引擎管理器
@@ -36,12 +35,11 @@ public class AuthTokenUtils {
 	/**
 	 * 获取动态口令值 token : 口令，c:误差时效 单位 分钟
 	 * 
-	 * @Title: getAuthToken_s 
-	 * @param token
-	 * @param private_token
-	 * @param c
+	 * @param token token
+	 * @param private_token private_token
+	 * @param c c
 	 * @return String    返回类型 
-	 * @throws js执行异常 
+	 * @throws Exception js执行异常 
 	 */
 	public static String getAuthToken_s(String token, String private_token, int c) throws Exception {
 		String res = (String) inv.invokeFunction("getAuthToken_s", token, private_token, c);
@@ -51,11 +49,10 @@ public class AuthTokenUtils {
 	/**
 	 * 获取5分钟误差时效的动态口令值 token : 口令
 	 * 
-	 * @Title: getAuthToken_s 
-	 * @param token
-	 * @param private_token
+	 * @param token token
+	 * @param private_token private_token
 	 * @return String    返回类型 
-	 * @throws js异常 
+	 * @throws Exception js异常 
 	 */
 	public static String getAuthToken_5minute(String token, String private_token) throws Exception {
 		String res = (String) inv.invokeFunction("getAuthToken_5minute", token, private_token);
@@ -65,26 +62,17 @@ public class AuthTokenUtils {
 	/**
 	 * 获取30分钟误差时效的动态口令值 token : 口令
 	 * 
-	 * @Title: getAuthToken_s 
-	 * @param token
-	 * @param private_token
+	 * @param token token
+	 * @param private_token private_token
 	 * @return String    返回类型 
-	 * @throws js异常 
+	 * @throws  Exception js异常 
 	 */
 	public static String getAuthToken_30minute(String token, String private_token) throws Exception {
 		String res = (String) inv.invokeFunction("getAuthToken_30minute", token, private_token);
 		return res;
 	}
 
-	/**
-	 * @Title: isVaild 
-	 * @Description: 对比动态口令是否正确，如果动态口令正确则返回true，不正确则返回false
-	 * @param public_token
-	 * @param authToken
-	 * @throws Exception   
-	 *             设定文件 
-	 * @return boolean 返回类型 
-	 */
+	//对比动态口令是否正确，如果动态口令正确则返回true，不正确则返回false
 	public static boolean isValid(String public_token, String authToken) throws Exception {
 		// 1.根据公钥获取私钥
 		JSONObject tokenObj = authSource.getJSONObject(public_token);

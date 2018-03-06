@@ -4,8 +4,7 @@ package kim.sesame.framework.web.security.exception;
 import kim.sesame.framework.exception.GeneralException;
 
 /**
-* @ClassName: AccessNotAllowException
-* @Description: 访问拒绝异常
+* Description: 访问拒绝异常
 *
 */
 public class AccessNotAllowException extends GeneralException {

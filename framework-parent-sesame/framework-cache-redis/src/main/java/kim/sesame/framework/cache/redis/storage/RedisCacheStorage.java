@@ -22,12 +22,9 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * @param <K>
- * @param <V>
- * @ClassName: RedisCacheStorage
- * @Description: 通过redis存储缓存数据
+ * Description: 通过redis存储缓存数据
  * 1.支持序列化json
- * @date 2015年4月22日 下午1:27:34
+ * date :  2015年4月22日 下午1:27:34
  */
 public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
         InitializingBean {
@@ -75,8 +72,8 @@ public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
     /**
      * <p>存入数据，默认时效：3600 * 24</p>
      *
-     * @param key
-     * @param value
+     * @param key key
+     * @param value value
      * @return boolean 是否执行成功
      */
     public boolean set(K key, V value) {
@@ -87,9 +84,9 @@ public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
     /**
      * <p>存入有时效的数据</p>
      *
-     * @param key
-     * @param value
-     * @param exp
+     * @param key key
+     * @param value value
+     * @param exp exp
      * @return boolean 是否执行成功
      */
     public boolean set(K key, V value, int exp) {
@@ -103,8 +100,8 @@ public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
     /**
      * <p>获取key对应的数据</p>
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return value
      */
     public V get(K key) {
         if (key == null) {
@@ -125,7 +122,7 @@ public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
     /**
      * <p>删除指定的缓存信息</p>
      *
-     * @param key
+     * @param key key
      */
     public void remove(K key) {
         redisTemplate.delete(key);
@@ -134,7 +131,7 @@ public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
     /**
      * <p>删除多个key的缓存信息</p>
      *
-     * @param keys
+     * @param keys keys
      */
     public void removeMulti(K... keys) {
         redisTemplate.delete(keys);
@@ -143,9 +140,9 @@ public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
 
     /**
      * 获取key对应的数据
-     *
-     * @return
-     * @see
+     * @param cacheId cacheId
+     * @param key key
+     * @return value
      */
     @SuppressWarnings("unchecked")
     public V hget(String cacheId, K key) {
@@ -167,11 +164,10 @@ public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
     /**
      * 存入数据
      *
-     * @param cacheId
-     * @param key
-     * @param value
+     * @param cacheId cacheId
+     * @param key key
+     * @param value value
      * @return 执行成功与否
-     * @see
      */
     public boolean hset(String cacheId, K key, V value) {
         if (key == null) {
@@ -214,9 +210,8 @@ public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
     /**
      * 删除
      *
-     * @param cacheId
-     * @param key
-     * @see
+     * @param cacheId cacheId
+     * @param key key
      */
     public void hremove(final String cacheId, final K key) {
 
@@ -282,8 +277,8 @@ public class RedisCacheStorage<K, V> implements IRemoteCacheStore<K, V>,
 
     /**
      * 开启初始化StrongCache线程任务
-     *
-     * @see
+     * @param cacheId cacheId
+     * @param map map
      */
     private void retryStorage(String cacheId, Map<K, V> map) {
         if (strongTask == null) {

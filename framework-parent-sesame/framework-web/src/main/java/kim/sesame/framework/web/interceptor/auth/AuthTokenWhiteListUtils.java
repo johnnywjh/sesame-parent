@@ -11,11 +11,9 @@ import kim.sesame.framework.web.util.FileUtil;
 import net.sf.json.JSONArray;
 
 /**
- * 
- * @ClassName: AuthTokenWhiteListUtils 
- * @Description: token认证的白名单工具类，白名单匹配成功的编号可以不用动态口令的校验，反之则需要校验动态口令
+ *  token认证的白名单工具类，白名单匹配成功的编号可以不用动态口令的校验，反之则需要校验动态口令
  * @author johnny
- * @date 2016年9月28日 上午8:42:08  
+ * date :  2016年9月28日 上午8:42:08  
  */
 public class AuthTokenWhiteListUtils {
 	private static Set<String> whiteList = new HashSet<String>();
@@ -35,9 +33,8 @@ public class AuthTokenWhiteListUtils {
 
 	/**
 	 * 
-	 * @Title: isValid 
-	 * @Description:验证白名单内容
-	 * @param srcIp
+	 * Description:验证白名单内容
+	 * @param srcIp srcip
 	 * @return 设定文件 
 	 * @return boolean  返回类型
 	 */

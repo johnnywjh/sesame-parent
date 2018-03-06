@@ -4,8 +4,7 @@ package kim.sesame.framework.cache.exception;
 import kim.sesame.framework.exception.GeneralException;
 
 /**
-* @ClassName: CacheConfigException
-* @Description: 缓存配置异常
+* 缓存配置异常
 *
 */
 public class CacheConfigException extends GeneralException {

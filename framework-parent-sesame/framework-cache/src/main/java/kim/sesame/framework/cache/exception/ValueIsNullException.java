@@ -4,8 +4,7 @@ package kim.sesame.framework.cache.exception;
 import kim.sesame.framework.exception.GeneralException;
 
 /**
-* @ClassName: ValueIsNullException
-* @Description: key存在，value为null
+* Description: key存在，value为null
 *
 */
 public class ValueIsNullException extends GeneralException {

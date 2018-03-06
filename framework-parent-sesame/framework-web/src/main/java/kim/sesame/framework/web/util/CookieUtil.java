@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletResponse;
  * Cookie 的封装
  *
  * @author johnny
- * @date 2017年5月12日 上午12:15:01
- * @Description:
+ * date :  2017年5月12日 上午12:15:01
+ * Description:
  */
 public class CookieUtil {
 
     /**
      * 设置cookie
      *
-     * @param response
+     * @param response response
      * @param name     cookie名字
      * @param value    cookie值
      * @param maxAge   cookie生命周期 以秒为单位
@@ -41,9 +41,9 @@ public class CookieUtil {
     /**
      * 根据名字获取cookie
      *
-     * @param request
+     * @param request request
      * @param name    cookie名字
-     * @return
+     * @return Cookie
      */
     public static Cookie getCookieByName(HttpServletRequest request, String name) {
         Map<String, Cookie> cookieMap = ReadCookieMap(request);
@@ -71,8 +71,8 @@ public class CookieUtil {
     /**
      * 将cookie封装到Map里面
      *
-     * @param request
-     * @return
+     * @param request request
+     * @return Map<String, Cookie>
      */
     private static Map<String, Cookie> ReadCookieMap(HttpServletRequest request) {
         Map<String, Cookie> cookieMap = new HashMap<String, Cookie>();

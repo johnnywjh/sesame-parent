@@ -4,23 +4,17 @@ package kim.sesame.framework.utils;
  * 数组 工具
  * 
  * @author johnny
- * @date 2016年1月8日 下午9:18:51
- * @Title: ArrUtils
- * @ClassName: ArrUtils
- * @Description:
+ * date :  2016年1月8日 下午9:18:51
  */
 public class ArrUtils {
 
 	/**
-	 * 把一个数组变成一个String {2,3,4} ==> "2,3,4"
+	 * 把一个数组变成一个String {2,3,4} == "2,3,4"
 	 * 
 	 * @author johnny
-	 * @date 2016年1月8日 下午9:20:51
-	 * @Title formate
-	 * @Description
-	 * @param arr
-	 * @return String
-	 * @throws
+	 * date :  2016年1月8日 下午9:20:51
+	 * @param arr 待处理的数组
+	 * @return String 处理之后的字符串
 	 */
 	public static String formateArr(Object[] arr) {
 		StringBuilder sb = new StringBuilder();
@@ -32,6 +26,7 @@ public class ArrUtils {
 
 	/**
 	 * 直接选择排序
+	 * @param arr  待处理的字符串
 	 */
 	public static void selectSort(Integer[] arr) {
 		for (int i = 0; i < arr.length - 1; i++) {

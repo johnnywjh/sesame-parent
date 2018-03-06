@@ -15,8 +15,8 @@ import kim.sesame.framework.web.core.MyUrlRewriteFilter;
  * web 默认配置
  * 
  * @author johnny
- * @date 2017年9月7日 下午8:18:37
- * @Description:
+ * date :  2017年9月7日 下午8:18:37
+ * Description:
  */
 @Configuration
 public class WebConfig {
@@ -28,6 +28,7 @@ public class WebConfig {
 
 	/**
 	 * 配置sessio失效时间
+	 * @return  EmbeddedServletContainerCustomizer
 	 */
 	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
@@ -39,6 +40,7 @@ public class WebConfig {
 	/**
 	 * java伪静态
 	 * app.sesame.web.urlrewrite.autoConfiguration=true
+	 * @return  FilterRegistrationBean
 	 */
 	@Bean
 	@ConditionalOnProperty(prefix = "sesame.framework.web", name = "urlrewrite-enabled", havingValue = "true")

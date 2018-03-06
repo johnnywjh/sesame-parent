@@ -315,8 +315,8 @@ public class MyUrlRewriteFilter extends UrlRewriteFilter {
 	 *            the response to filter
 	 * @param chain
 	 *            the chain for the filtering
-	 * @throws IOException
-	 * @throws ServletException
+	 * @throws IOException IOException
+	 * @throws ServletException ServletException
 	 */
 	public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain) throws IOException, ServletException {
 
@@ -357,11 +357,6 @@ public class MyUrlRewriteFilter extends UrlRewriteFilter {
 		}
 	}
 
-	/**
-	 * Called for every request.
-	 * <p/>
-	 * Split from doFilter so that it can be overriden.
-	 */
 	protected UrlRewriter getUrlRewriter(ServletRequest request, ServletResponse response, FilterChain chain) {
 		// check to see if the conf needs reloading
 		if (isTimeToReloadConf()) {
@@ -370,10 +365,7 @@ public class MyUrlRewriteFilter extends UrlRewriteFilter {
 		return urlRewriter;
 	}
 
-	/**
-	 * Is it time to reload the configuration now. Depends on is conf reloading
-	 * is enabled.
-	 */
+
 	public boolean isTimeToReloadConf() {
 		if (!confLoadedFromFile)
 			return false;
@@ -381,9 +373,6 @@ public class MyUrlRewriteFilter extends UrlRewriteFilter {
 		return confReloadCheckEnabled && !confReloadInProgress && (now - confReloadCheckInterval) > confReloadLastCheck;
 	}
 
-	/**
-	 * Forcibly reload the configuration now.
-	 */
 	public void reloadConf() {
 		long now = System.currentTimeMillis();
 		confReloadInProgress = true;
@@ -406,11 +395,6 @@ public class MyUrlRewriteFilter extends UrlRewriteFilter {
 		confReloadInProgress = false;
 	}
 
-	/**
-	 * Gets the last modified date of the conf file.
-	 *
-	 * @return time as a long
-	 */
 	private long getConfFileLastModified() {
 		if (context != null) {
 			String realPath = context.getRealPath(confPath);
@@ -424,16 +408,7 @@ public class MyUrlRewriteFilter extends UrlRewriteFilter {
 
 	private static long INITIALISED_TIME = System.currentTimeMillis();
 
-	/**
-	 * Show the status of the conf and the filter to the user.
-	 *
-	 * @param request
-	 *            to get status info from
-	 * @param response
-	 *            response to show the status on.
-	 * @throws java.io.IOException
-	 *             if the output cannot be written
-	 */
+
 	private void showStatus(final HttpServletRequest request, final ServletResponse response) throws IOException {
 
 		log.debug("showing status");
@@ -462,11 +437,6 @@ public class MyUrlRewriteFilter extends UrlRewriteFilter {
 		return confReloadCheckEnabled;
 	}
 
-	/**
-	 * The amount of seconds between reload checks.
-	 *
-	 * @return int number of millis
-	 */
 	public int getConfReloadCheckInterval() {
 		return confReloadCheckInterval / 1000;
 	}

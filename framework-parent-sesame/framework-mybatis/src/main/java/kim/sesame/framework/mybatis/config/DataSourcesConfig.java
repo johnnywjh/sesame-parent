@@ -18,8 +18,8 @@ import java.sql.SQLException;
  * 数据源配置
  * 
  * @author johnny
- * @date 2017年6月12日 上午11:25:48
- * @Description:
+ * date :  2017年6月12日 上午11:25:48
+ * Description:
  */
 @Configuration
 public class DataSourcesConfig {
@@ -33,10 +33,8 @@ public class DataSourcesConfig {
 	 * druid初始化
 	 * 
 	 * @author johnny
-	 * @date 2017年6月12日 上午11:26:03
-	 * @Title Construction
-	 * @Description
-	 * @return
+	 * date :  2017年6月12日 上午11:26:03
+	 * @return 11
 	 * @throws SQLException
 	 *             DruidDataSource
 	 */

@@ -4,8 +4,7 @@ package kim.sesame.framework.cache.exception;
 import kim.sesame.framework.exception.GeneralException;
 
 /**
-* @ClassName: KeyIsNotFoundException
-* @Description: key不存在
+* Description: key不存在
 *
 */
 public class KeyIsNotFoundException extends GeneralException {

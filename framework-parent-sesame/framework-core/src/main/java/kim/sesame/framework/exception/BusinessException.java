@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 业务异常基类
  *
  * @author johnny
- * @date 2017/10/23 20:13
+ * date :  2017/10/23 20:13
  */
 public class BusinessException extends RuntimeException implements
         Serializable, IException {

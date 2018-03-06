@@ -2,8 +2,7 @@ package kim.sesame.framework.cache;
 
 
 /**
-* @ClassName: RefreshableCache
-* @Description: 允许刷新缓存接口
+* 允许刷新缓存接口
 */
 public interface IRefreshableCache<K, V> extends ICache<K, V>{
     /**
@@ -12,8 +11,7 @@ public interface IRefreshableCache<K, V> extends ICache<K, V>{
      * 根据provider提供的最后修改时间去刷新这段时间之内修改的数据
      * 如果是LRU的根据最后修改时间刷新时间段的数据
      * 如果是Strong根据最后修改时间刷新所有数据
-     * @return
-     * @see
+     * @return boolean
      */
     boolean refresh();
     /**
@@ -22,9 +20,8 @@ public interface IRefreshableCache<K, V> extends ICache<K, V>{
      * 根据provider提供的最后修改时间去刷新这段时间之内修改的数据
      * 如果是LRU的根据传入的Key修改缓存数据
      * 如果是Strong的会Throws RuntimeException异常，不允许刷新部分数据
-     * @param keys
-     * @return
-     * @see
+     * @param keys keys
+     * @return boolean
      */
     boolean refresh(K... keys);
 }

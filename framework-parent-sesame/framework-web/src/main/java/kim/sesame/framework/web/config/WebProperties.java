@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
  * 系统默认属性
  *
  * @author johnny
- * @date 2017年9月7日 下午7:20:50
- * @Description:
+ * date :  2017年9月7日 下午7:20:50
+ * Description:
  */
 @Data
 @Component

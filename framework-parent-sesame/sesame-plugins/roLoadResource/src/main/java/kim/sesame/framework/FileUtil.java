@@ -6,8 +6,8 @@ import java.io.*;
  * 文件操作
  *
  * @author johnny
- * @date 2016年4月1日 上午11:18:22
- * @Description:
+ * date :  2016年4月1日 上午11:18:22
+ * Description:
  */
 public class FileUtil {
 
@@ -17,9 +17,7 @@ public class FileUtil {
      *
      * @param file void
      * @author johnny
-     * @date 2017年5月8日 下午10:57:16
-     * @Title clearFiles
-     * @Description
+     * date :  2017年5月8日 下午10:57:16
      */
     public static void clearFiles(File file) {
         if (file.exists()) {
@@ -32,9 +30,7 @@ public class FileUtil {
      *
      * @param file void
      * @author johnny
-     * @date 2017年5月11日 下午9:27:46
-     * @Title cleanDir
-     * @Description
+     * date :  2017年5月11日 下午9:27:46
      */
     public static void cleanDir(File file) {
         if (file.isDirectory()) {
@@ -50,9 +46,7 @@ public class FileUtil {
      *
      * @param file void
      * @author johnny
-     * @date 2017年5月11日 下午9:27:08
-     * @Title deleteFile
-     * @Description
+     * date :  2017年5月11日 下午9:27:08
      */
     private static void deleteFile(File file) {
         if (file.isDirectory()) {

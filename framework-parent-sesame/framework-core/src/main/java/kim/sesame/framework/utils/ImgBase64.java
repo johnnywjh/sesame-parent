@@ -12,8 +12,8 @@ import java.nio.file.StandardOpenOption;
  * 图片和图片base64字符串转化
  * 
  * @author johnny
- * @date 2017年9月2日 下午8:58:48
- * @Description: >= jdk 1.8
+ * date :  2017年9月2日 下午8:58:48
+ * Description:  jdk 1.8
  */
 public class ImgBase64 {
 
@@ -21,11 +21,9 @@ public class ImgBase64 {
 	 * 图片地址转化成Base64字符串 jdk1.8
 	 * 
 	 * @author johnny
-	 * @date 2017年9月2日 下午8:46:49
-	 * @Title conversionString
-	 * @Description
-	 * @param imgFile
-	 * @return String
+	 * date :  2017年9月2日 下午8:46:49
+	 * @param imgFile 图片在磁盘的地址
+	 * @return String str
 	 */
 	public static String conversionString(String imgFile) {
 		InputStream in = null;
@@ -50,11 +48,9 @@ public class ImgBase64 {
 	 * 图片byte转化成Base64字符串 jdk1.8
 	 * 
 	 * @author johnny
-	 * @date 2017年9月2日 下午8:47:40
-	 * @Title conversionString
-	 * @Description
-	 * @param imageContents
-	 * @return String
+	 * date :  2017年9月2日 下午8:47:40
+	 * @param imageContents 图片的二进制数组
+	 * @return String imgstr
 	 */
 	public static String conversionString(byte[] imageContents) {
 		if (imageContents != null)
@@ -66,8 +62,8 @@ public class ImgBase64 {
 	/**
 	 * base64字符串转化成图片字节
 	 * 
-	 * @param imgStr
-	 * @return
+	 * @param imgStr imgstr
+	 * @return bytearr
 	 */
 	public static byte[] imageConversionByte(String imgStr) { // 对字节数组字符串进行Base64解码并生成图片
 		if (imgStr != null)

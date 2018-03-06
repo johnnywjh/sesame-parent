@@ -5,10 +5,8 @@ import lombok.Data;
 /**
  * 菜单权限控制
  * @author johnny
- * @date 2016年1月17日 下午4:17:39
- * @Title: Ztter
- * @ClassName: Ztter
- * @Description:
+ * date :  2016年1月17日 下午4:17:39
+ * Description:
  */
 @Data
 public class Ztter implements java.io.Serializable {

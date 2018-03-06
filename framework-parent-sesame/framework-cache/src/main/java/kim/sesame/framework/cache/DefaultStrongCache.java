@@ -13,8 +13,7 @@ import java.util.Map;
 
 
 /**
-* @ClassName: DefaultStrongCache
-* @Description: 只读缓存默认实现
+* Description: 只读缓存默认实现
 */
 public abstract class DefaultStrongCache<K, V> implements IRefreshableCache<K, V>, InitializingBean, DisposableBean {
     
@@ -76,9 +75,7 @@ public abstract class DefaultStrongCache<K, V> implements IRefreshableCache<K, V
     /**
      * 应用停止时终止线程
      * @see DisposableBean#destroy()
-     * destroy
-     * @throws Exception
-     * @since:
+     * @throws Exception Exception
      */
     public void destroy() throws Exception {
         while (thread.state != 2) {
@@ -88,13 +85,8 @@ public abstract class DefaultStrongCache<K, V> implements IRefreshableCache<K, V
         }
         thread.interrupt();
     }
-    /**
-     * 
-     * 自动刷新缓存
-     * @date 2013-3-28 上午10:37:20
-     * @since
-     * @version
-     */
+
+    //自动刷新缓存
     private class ReloadThread extends Thread {
         private volatile int state;
 
@@ -129,8 +121,8 @@ public abstract class DefaultStrongCache<K, V> implements IRefreshableCache<K, V
     /**
      * 
      * <p>刷新策略</p> 
-     * @date 2013-3-28 上午10:38:41
-     * @return 
+     * date :  2013-3-28 上午10:38:41
+     * @return boolean
      */
     @Override
     public boolean refresh() {

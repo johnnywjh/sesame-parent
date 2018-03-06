@@ -2,8 +2,7 @@ package kim.sesame.framework.cache.redis.exception;
 
 
 /**
-* @ClassName: RedisConnectionException
-* @Description: Redis连接异常
+* Redis连接异常
 */
 public class RedisConnectionException extends RedisCacheStorageException {
 

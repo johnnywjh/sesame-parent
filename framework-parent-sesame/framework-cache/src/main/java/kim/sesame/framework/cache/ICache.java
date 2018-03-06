@@ -4,8 +4,7 @@ import java.util.Map;
 
 
 /**
-* @ClassName: ICache
-* @Description: 缓存接口
+* 缓存接口
 */
 public interface ICache<K, V> extends ICacheId{
 
@@ -19,7 +18,7 @@ public interface ICache<K, V> extends ICacheId{
     
     /**
      * 一次性取出所有内容
-     * @return
+     * @return map
      */
     Map<K,V> get();
     
@@ -30,7 +29,6 @@ public interface ICache<K, V> extends ICacheId{
      * 如果是LRU的在下一次使用会自动加载最新的
      * 如果是Strong的会立即重新加载一次新的数据到缓存中
      * 
-     * @see
      */
     void invalid();
     
@@ -39,15 +37,14 @@ public interface ICache<K, V> extends ICacheId{
      * 
      * 如果是LRU的会在下一次使用这个Key时自动加载最新的
      * 如果是Strong的会Throws RuntimeException异常，不允许失效部分数据
-     * @see
+     * @param key  key
      */
     void invalid(K key);
     
     /**
      * 失效传入的多个key对应的缓存
      *  
-     * @param keys
-     * @see
+     * @param keys keys
      */
     void invalidMulti(K... keys);
 

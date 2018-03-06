@@ -13,22 +13,17 @@ import net.sf.json.JSONObject;
 /**
  * ip 信息
  * @author  johnny
- * @date 2015年10月12日 上午9:39:38
- * @Title: IPUitl
- * @ClassName: IPUitl
- * @Description:
+ * date :  2015年10月12日 上午9:39:38
+ * Description:
  */
 public class IPUitl {
 	
 	/**
 	 * 获取客户端的ip
 	 * @author  johnny
-	 * @date 2015年10月12日 上午9:42:26
-	 * @Title getRemortIP
-	 * @Description 
-	 * @param request
+	 * date :  2015年10月12日 上午9:42:26
+	 * @param request request
 	 * @return String 
-	 * @throws
 	 */
 	public static String getRemortIP(HttpServletRequest request) {
 		if (request.getHeader("x-forwarded-for") == null) {
@@ -36,12 +31,12 @@ public class IPUitl {
 	    }     
 	    return request.getHeader("x-forwarded-for");
 	}
+
 	/**
 	 * 获取地址
-	 * @param params
-	 * @param encoding
-	 * @return
-	 * @throws Exception
+	 * @param ip ip
+	 * @return map
+	 * @throws Exception Exception
 	 */
 	public static Map<String, String> getAddress(String ip) throws Exception{
 		Map<String, String> mm = new HashMap<String, String>();

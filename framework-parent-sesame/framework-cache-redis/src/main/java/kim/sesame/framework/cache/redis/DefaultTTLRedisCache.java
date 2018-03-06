@@ -18,8 +18,7 @@ import java.util.Map;
 
 
 /**
-* @ClassName: DefaultTTLRedisCache
-* @Description: TTL类型的缓存
+* TTL类型的缓存
 */
 public abstract class DefaultTTLRedisCache<V> implements ICache<String, V>, InitializingBean, DisposableBean {
 
@@ -45,8 +44,7 @@ public abstract class DefaultTTLRedisCache<V> implements ICache<String, V>, Init
     
     /**
      * 设置数据提供者
-     * @param cacheProvider
-     * @see
+     * @param cacheProvider cacheProvider
      */
     public void setCacheProvider(ITTLCacheProvider<V> cacheProvider) {
         this.cacheProvider = cacheProvider;
@@ -54,8 +52,7 @@ public abstract class DefaultTTLRedisCache<V> implements ICache<String, V>, Init
 
     /**
      * 设置数据存储者
-     * @param cacheStorage
-     * @see
+     * @param cacheStorage cacheStorage
      */
     public void setCacheStorage(RedisCacheStorage<String, V> cacheStorage) {
         this.cacheStorage = cacheStorage;
@@ -63,8 +60,7 @@ public abstract class DefaultTTLRedisCache<V> implements ICache<String, V>, Init
     
     /**
      * 设置超时时间
-     * @param seconds
-     * @see
+     * @param seconds seconds
      */
     public void setTimeOut(int seconds) {
         this.timeOut = seconds;
@@ -72,9 +68,8 @@ public abstract class DefaultTTLRedisCache<V> implements ICache<String, V>, Init
     
     /**
      * 根据uuid和key生成key
-     * @param key
-     * @return
-     * @see
+     * @param key key
+     * @return keystr
      */
     protected String getKey(String key) {
         return getUUID() + "_" + key;
@@ -84,8 +79,8 @@ public abstract class DefaultTTLRedisCache<V> implements ICache<String, V>, Init
      * 获取数据
      * 如果返回null就是真的没有数据，无需再去数据库再取
      * 
-     * @param key
-     * @return 
+     * @param key key
+     * @return  value
      */
     @Override
     public V get(String key) {
@@ -139,7 +134,7 @@ public abstract class DefaultTTLRedisCache<V> implements ICache<String, V>, Init
 
     /** 
      * 失效数据
-     * @param key 
+     * @param key  key
      */
     @Override
     public void invalid(String key) {

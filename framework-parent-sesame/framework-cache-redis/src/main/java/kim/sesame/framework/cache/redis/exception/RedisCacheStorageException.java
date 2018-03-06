@@ -4,8 +4,7 @@ package kim.sesame.framework.cache.redis.exception;
 import kim.sesame.framework.exception.GeneralException;
 
 /**
-* @ClassName: RedisCacheStorageException
-* @Description: 查询参数异常
+*  查询参数异常
 */
 public class RedisCacheStorageException extends GeneralException {
 

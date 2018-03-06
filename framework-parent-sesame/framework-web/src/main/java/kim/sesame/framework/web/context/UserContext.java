@@ -8,8 +8,8 @@ import java.util.List;
  * UserContext
  *
  * @author johnny
- * @date 2017-11-07 13:25
- * @Description:用户上下文
+ * date :  2017-11-07 13:25
+ * Description:用户上下文
  */
 public class UserContext {
 

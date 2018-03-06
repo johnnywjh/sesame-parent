@@ -14,7 +14,7 @@ import org.springframework.core.env.Environment;
 
 /**
  * 系统启动时执行
- * @ServletComponentScan(basePackageClasses = SystemStart.class)
+ *  ServletComponentScan(basePackageClasses = SystemStart.class)
  * @author johnny
  */
 @CommonsLog

@@ -4,17 +4,14 @@ import java.util.Date;
 
 
 /**
-* @ClassName: ICacheProvider
-* @Description: Cache数据提供接口
-*
-* @param <K>
-* @param <V>
-*/
+ * Cache数据提供接口
+ * @param <K> key
+ * @param <V> value
+ */
 public interface ICacheProvider<K, V> {
     /**
      * 获取最后修改时间
-     * @return
-     * @see
+     * @return date
      */
     Date getLastModifyTime();
 }

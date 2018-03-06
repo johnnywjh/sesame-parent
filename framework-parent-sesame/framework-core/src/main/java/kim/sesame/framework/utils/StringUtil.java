@@ -4,10 +4,8 @@ package kim.sesame.framework.utils;
  * 字符串
  *
  * @author johnny
- * @date 2016年2月23日 上午10:43:55
- * @Title: StringUtil
- * @ClassName: StringUtil
- * @Description:
+ * date :  2016年2月23日 上午10:43:55
+ * Description:
  */
 public class StringUtil {
 
@@ -33,9 +31,7 @@ public class StringUtil {
      * 两个字符串之间的比较
      *
      * @author johnny
-     * @date 2016年9月29日 下午5:12:44
-     * @Title equals
-     * @Description
+     * date :  2016年9月29日 下午5:12:44
      */
     public static boolean equals(String str, String str2) {
 
@@ -53,10 +49,9 @@ public class StringUtil {
 
     /**
      * 评价两个int类型的数字成字符并转成Integer类型
-     *
-     * @author mlick @date 2016年10月12日 下午1:39:08 @Title
-     * joint2Int @Description @param one @param two @return
-     * String @throws
+     * @param one one
+     * @param two two
+     * @return int
      */
     public static Integer joint2Int(int one, int two) {
         return Integer.parseInt(one + "" + two);

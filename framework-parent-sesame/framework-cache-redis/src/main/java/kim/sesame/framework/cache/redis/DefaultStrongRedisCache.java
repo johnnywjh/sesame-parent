@@ -146,7 +146,7 @@ public abstract class DefaultStrongRedisCache <K, V>  implements IRefreshableCac
     /**
      * 
      * <p>刷新策略</p> 
-     * @return 
+     * @return  boolean
      */
     @Override
     public boolean refresh() {

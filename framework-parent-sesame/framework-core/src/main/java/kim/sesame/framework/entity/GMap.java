@@ -8,8 +8,8 @@ import java.util.List;
 /**
  * 全局Map ,封装参数,返回结果
  * @author johnny
- * @date 2015年2月28日 下午11:39:23
- * @Description:
+ * date :  2015年2月28日 下午11:39:23
+ * Description:
  */
 public class GMap extends HashMap<String, Object> {
 

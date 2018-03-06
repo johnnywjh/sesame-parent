@@ -4,10 +4,8 @@ import java.security.MessageDigest;
 /**
  * MD5加密算法类
  * @author johnny
- * @date 2015年5月29日 上午11:22:56
- * @Title: MD5Utils
- * @ClassName: MD5Utils
- * @Description:
+ * date :  2015年5月29日 上午11:22:56
+ * Description:
  */
 public class MD5Util {
 	/**
@@ -21,12 +19,9 @@ public class MD5Util {
 	/**
 	 * 对字符串进行MD5加密  
 	 * @author  johnny
-	 * @date 2015年5月29日 上午11:14:29
-	 * @Title encodeByMD5
-	 * @Description 
-	 * @param originString
+	 * date :  2015年5月29日 上午11:14:29
+	 * @param originString originString
 	 * @return String 
-	 * @throws
 	 */
     public static String encodeByMD5(String originString){  
     	try{
@@ -47,12 +42,9 @@ public class MD5Util {
     /**
      * 转换字节数组为十六进制字符串 
      * @author  johnny
-     * @date 2015年5月29日 上午11:18:28
-     * @Title byteArrayToHexString
-     * @Description 
-     * @param b 字节数组 
+     * date :  2015年5月29日 上午11:18:28
+     * @param b 字节数组
      * @return String  十六进制字符串 
-     * @throws
      */
     private static String byteArrayToHexString(byte[] b){  
     	StringBuffer resultSb = new StringBuffer();  
@@ -64,12 +56,9 @@ public class MD5Util {
     /**
      * 将一个字节转化成十六进制形式的字符串
      * @author  johnny
-     * @date 2015年5月29日 上午11:18:44
-     * @Title byteToHexString
-     * @Description 
+     * date :  2015年5月29日 上午11:18:44
      * @param b 字节数
      * @return String 
-     * @throws
      */
     private static String byteToHexString(byte b){  
     	int n = b;  

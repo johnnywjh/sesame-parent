@@ -4,8 +4,7 @@ package kim.sesame.framework.web.security.exception;
 import kim.sesame.framework.exception.GeneralException;
 
 /**
-* @ClassName: UserNotLoginException
-* @Description: 用户未登录异常
+* Description: 用户未登录异常
 *
 */
 public class UserNotLoginException extends GeneralException {

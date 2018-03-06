@@ -29,7 +29,7 @@ public class FileToZip {
 	}
 
 	/**
-	 * @param args
+	 * @param args args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -47,8 +47,8 @@ public class FileToZip {
 	/**
 	 * 压缩文件
 	 * @param zipFileName 输出文件的位置
-	 * @param inputFile
-	 * @throws Exception
+	 * @param inputFile inputFile
+	 * @throws Exception 异常
 	 */
 	public void zip(String zipFileName, File inputFile) throws Exception {
 		System.out.println("压缩中...");

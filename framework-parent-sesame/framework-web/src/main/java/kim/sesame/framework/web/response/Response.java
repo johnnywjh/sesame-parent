@@ -9,7 +9,7 @@ import lombok.Data;
  * Web 返回结果
  *
  * @author johnny
- * @date 2017/10/23 19:33
+ * date :  2017/10/23 19:33
  */
 @Data
 public class Response<T> implements java.io.Serializable {

@@ -8,8 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
-* @ClassName: CacheManager
-* @Description: 对缓存进行门面处理，所有的缓存策略通过应用根据场景去适配 应用只用实现对应的DataProvider 即可
+* Description: 对缓存进行门面处理，所有的缓存策略通过应用根据场景去适配 应用只用实现对应的DataProvider 即可
 */
 public final class CacheManager<K, V> {
 
@@ -37,7 +36,7 @@ public final class CacheManager<K, V> {
 	/**
 	 * 系统启动后自动注册所有的缓存类别
 	 * 
-	 * @param cache
+	 * @param cache cache
 	 */
 	public void registerCacheProvider(ICache<K, V> cache) {
 		// 不允许UUID重复，应用必须在实现的Cache接口确保命名不重复
@@ -53,11 +52,8 @@ public final class CacheManager<K, V> {
 
 	/**
 	 * 根据uuid获取缓存实例
-	 * getCache
-	 * @param uuid
-	 * @return
-	 * @return ICache<K,V>
-	 * @since:
+	 * @param uuid uuid
+	 * @return ICache
 	 */
 	public ICache<K, V> getCache(String uuid) {
 		ICache<K, V> cache = uuidCaches.get(uuid);

@@ -24,9 +24,7 @@ public class PageController {
     @Resource
     private WebProperties webProperties;
 
-    /**
-     * 加载页面
-     */
+    // 加载界面
 //    @AuthNonCheckRequired
 //    @LoginNonCheckRequired
     @RequestMapping("/{uriPath}")

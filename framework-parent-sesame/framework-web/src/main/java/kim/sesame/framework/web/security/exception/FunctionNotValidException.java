@@ -4,8 +4,7 @@ package kim.sesame.framework.web.security.exception;
 import kim.sesame.framework.exception.GeneralException;
 
 /**
-* @ClassName: FunctionNotValidException
-* @Description: 功能无效异常
+* Description: 功能无效异常
 *
 */
 public class FunctionNotValidException extends GeneralException {

@@ -27,7 +27,7 @@ public class CacheUtil {
 
     /**
      * 获取权限缓存ID
-     * @return
+     * @return cacheId
      */
     public static String getFunctionCacheId(){
         if(StringUtil.isNotBlank(functionCacheId)){

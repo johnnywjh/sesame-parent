@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
  * BaseDao
  *
  * @author johnny
- * @date 2017-11-29 13:05
- * @Description: 基础Dao
+ * date :  2017-11-29 13:05
+ * Description: 基础Dao
  */
 @Component
 public class BaseDao {
