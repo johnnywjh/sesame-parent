@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mojo(name = "roLoadResource")
+@Mojo(name = "reloadResourcesFile")
 public class ReLoadResourceFile extends AbstractMojo {
 
     /**
