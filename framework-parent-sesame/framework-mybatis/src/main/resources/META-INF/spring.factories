@@ -1,8 +1,0 @@
-# Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-kim.sesame.framework.mybatis.config.DataSourcesConfig,\
-kim.sesame.framework.mybatis.config.DruidProperties,\
-kim.sesame.framework.mybatis.config.MybatisConfig,\
-kim.sesame.framework.mybatis.dao.BaseDao
-
-

@@ -1,8 +1,0 @@
-# Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-kim.sesame.framework.web.config.MyWebAppConfigurer,\
-kim.sesame.framework.web.config.WebConfig,\
-kim.sesame.framework.web.config.WebProperties,\
-kim.sesame.framework.web.controller.PageController,\
-kim.sesame.framework.web.core.CommonErrorPageRegistrar,\
-kim.sesame.framework.web.jwt.JWTProperties
