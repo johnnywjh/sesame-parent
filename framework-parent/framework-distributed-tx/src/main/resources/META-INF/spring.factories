@@ -1,0 +1,10 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+kim.sesame.framework.tx.config.TXConfig,\
+kim.sesame.framework.tx.config.TxTransactionInterceptor
+
+
+
+
+
+

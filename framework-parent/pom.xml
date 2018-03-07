@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>kim.sesame.framework</groupId>
+        <artifactId>kim-sesame-parent</artifactId>
+        <version>1.0.2</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>framework-parent</artifactId>
+    <version>1.0.2</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}-${project.version}</name>
+
+    <!-- 项目集合-->
+    <modules>
+        <module>framework-core</module> <!--核心模块,其他模块大部分要依赖这个模块-->
+        <module>framework-mybatis</module><!--mybatis 模块-->
+        <module>framework-web</module><!--web 模块-->
+
+        <module>framework-cache</module><!--缓存接口的定义-->
+        <module>framework-cache-redis</module><!--缓存接口的实现-->
+
+        <module>framework-distributed-lock</module><!--分布式锁,和序列,建议使用下面两个-->
+        <module>framework-lock</module><!--分布式锁 -->
+        <module>framework-lock-serial</module><!--分布式序列,依赖 [ framework-lock ] -->
+
+        <module>framework-distributed-tx</module><!--分布式事物配置 -->
+
+        <module>framework-spring-boot</module><!--spring-boot 的一些集成 -->
+    </modules>
+
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+</project>

@@ -1,0 +1,322 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.10.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>kim.sesame.framework</groupId>
+    <artifactId>kim-sesame-parent</artifactId>
+    <version>${sesame.version}</version>
+    <packaging>pom</packaging>
+    <name>${project.artifactId}-${project.version}</name>
+    <url>https://gitee.com/sesamekim/framework-boot</url>
+    <description></description>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>johnny</name>
+            <email>654499437@qq.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://gitee.com/sesamekim/framework-boot.git</connection>
+        <developerConnection>scm:git:https://gitee.com/sesamekim/framework-boot.git</developerConnection>
+        <url>https://gitee.com/sesamekim/framework-boot</url>
+        <tag>v${project.version}</tag>
+    </scm>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>Maven Central Staging Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <!-- 项目集合-->
+    <modules>
+        <module>framework-parent</module><!--架构集合-->
+        <module>sesame-plugins</module><!--自定义插件-->
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <jdk.version>1.8</jdk.version>
+        <!--https://projects.spring.io/spring-cloud/-->
+        <spring.cloud.version>Dalston.SR4</spring.cloud.version>
+
+        <thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
+        <thymeleaf-layout-dialect.version>2.0.0</thymeleaf-layout-dialect.version>
+
+        <slf4j.version>1.7.7</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
+
+        <war.path>../target</war.path>
+
+        <sesame.groupId>kim.sesame.framework</sesame.groupId>
+        <sesame.version>1.0.2</sesame.version>
+        <sesame.plugins.version>1.0.2</sesame.plugins.version>
+    </properties>
+
+    <!-- 环境配置 -->
+    <profiles>
+        <!-- 开发环境 -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault><!-- 默认激活 -->
+            </activation>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+        </profile>
+        <!-- 测试环境 -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileActive>test</profileActive>
+            </properties>
+        </profile>
+        <!-- 生产环境 -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+            </properties>
+        </profile>
+
+    </profiles>
+
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- java伪静态 -->
+            <dependency>
+                <groupId>org.tuckey</groupId>
+                <artifactId>urlrewritefilter</artifactId>
+                <version>4.0.4</version>
+            </dependency>
+            <!-- 阿里数据池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>3.4.4</version>
+            </dependency>
+            <!-- 网络框架 -->
+            <dependency>
+                <groupId>com.github.kevinsawicki</groupId>
+                <artifactId>http-request</artifactId>
+                <version>6.0</version>
+            </dependency>
+
+            <!--framework.sesame start -->
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-core</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-mybatis</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-cache</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-cache-redis</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-distributed-lock</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-lock</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-lock-serial</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-spring-boot</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-spring-boot-cloud</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-spring-boot-starter</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-distributed-tx</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-web</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <!--framework.sesame end -->
+
+            <!--spring cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <!--jdk 版本 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                </configuration>
+            </plugin>
+            <!-- 处理资源文件的编码 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!--源码打包-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- maven-source-plugin -->
+            <!--<plugin>-->
+            <!--<groupId>org.sonatype.plugins</groupId>-->
+            <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
+            <!--<version>1.6.3</version>-->
+            <!--<extensions>true</extensions>-->
+            <!--<configuration>-->
+            <!--<serverId>ossrh</serverId>-->
+            <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+            <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+            <!--</configuration>-->
+            <!--</plugin>-->
+
+        </plugins>
+        <!--插件定义,被继承-->
+        <pluginManagement>
+            <plugins>
+                <!--自定义插件:重新加载资源文件-->
+                <plugin>
+                    <groupId>kim.sesame.framework</groupId>
+                    <artifactId>reload-resources-file</artifactId>
+                    <version>${sesame.plugins.version}</version>
+                    <configuration>
+                        <srcFiles>
+                            <srcFile>${project.basedir}/src/main/resources/public</srcFile>
+                            <srcFile>${project.basedir}/src/main/resources/static</srcFile>
+                            <srcFile>${project.basedir}/src/main/resources/templates</srcFile>
+                        </srcFiles>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>reloadResourcesFile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--自定义插件:打包时压缩指定目录-->
+                <plugin>
+                    <groupId>kim.sesame.framework</groupId>
+                    <artifactId>zip</artifactId>
+                    <version>${sesame.plugins.version}</version>
+                    <configuration>
+                        <path>${project.basedir}/target/classes/com/sesame/theme</path>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>zip</goal>
+                            </goals>
+                            <phase>compile</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <!-- 开启资源过滤 -->
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/spring.factories</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/java</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.js</include>
+                    <include>**/*.json</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+</project>
