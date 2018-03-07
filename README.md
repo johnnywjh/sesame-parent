@@ -3,7 +3,7 @@
 - 然后自己封装的一些spring-boot cloud 的东西,用起来方便,特此记录
 - 文档地址 **[Wiki](https://gitee.com/sesamekim/framework-boot/wikis/pages)**
 - 查看maven中最新版本 : [kim.sesame](http://search.maven.org/#search%7Cga%7C1%7Ckim.sesame)
-- QQ交流群 : 661013788
+- QQ交流群 : 661013788   欢迎大家给我提建议
 
 #### 其他项目地址
 - demo 项目地址 : [https://gitee.com/sesamekim/demo](https://gitee.com/sesamekim/demo)
