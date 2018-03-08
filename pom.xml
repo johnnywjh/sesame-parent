@@ -6,12 +6,11 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.10.RELEASE</version>
-        <relativePath/>
     </parent>
 
     <groupId>kim.sesame.framework</groupId>
-    <artifactId>kim-sesame-parent</artifactId>
-    <version>${sesame.version}</version>
+    <artifactId>sesame-parent</artifactId>
+    <version>1.1</version><!-- sesame.version -->
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
     <url>https://gitee.com/sesamekim/framework-boot</url>
@@ -73,8 +72,8 @@
         <war.path>../target</war.path>
 
         <sesame.groupId>kim.sesame.framework</sesame.groupId>
-        <sesame.version>1.0.2</sesame.version>
-        <sesame.plugins.version>1.0.2</sesame.plugins.version>
+        <sesame.version>${project.version}</sesame.version>
+        <sesame.plugins.version>1.1</sesame.plugins.version>
     </properties>
 
     <!-- 环境配置 -->
@@ -242,18 +241,37 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- maven-source-plugin -->
-            <!--<plugin>-->
-            <!--<groupId>org.sonatype.plugins</groupId>-->
-            <!--<artifactId>nexus-staging-maven-plugin</artifactId>-->
-            <!--<version>1.6.3</version>-->
-            <!--<extensions>true</extensions>-->
-            <!--<configuration>-->
-            <!--<serverId>ossrh</serverId>-->
-            <!--<nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
-            <!--<autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
+
+            <!--本地install  注释掉这个-->
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+            <!--
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.3</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            -->
 
         </plugins>
         <!--插件定义,被继承-->

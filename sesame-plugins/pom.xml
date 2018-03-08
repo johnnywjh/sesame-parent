@@ -4,13 +4,13 @@
 
     <parent>
         <groupId>kim.sesame.framework</groupId>
-        <artifactId>kim-sesame-parent</artifactId>
-        <version>1.0.2</version>
-        <relativePath/>
+        <artifactId>sesame-parent</artifactId>
+        <version>1.1</version><!-- sesame.version -->
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>sesame-plugins</artifactId>
-    <version>1.0.2</version>
+    <version>1.1</version><!-- sesame.version -->
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
 
