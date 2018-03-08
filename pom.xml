@@ -10,7 +10,7 @@
 
     <groupId>kim.sesame.framework</groupId>
     <artifactId>sesame-parent</artifactId>
-    <version>1.1</version><!-- sesame.version -->
+    <version>1.2</version><!-- sesame.version -->
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
     <url>https://gitee.com/sesamekim/framework-boot</url>
@@ -37,9 +37,10 @@
 
         <war.path>../target</war.path>
 
-        <sesame.groupId>kim.sesame.framework</sesame.groupId>
+        <sesame.groupId>${project.groupId}</sesame.groupId>
         <sesame.version>${project.version}</sesame.version>
-        <sesame.plugins.version>1.1</sesame.plugins.version>
+        <sesame.plugins.version>1.2</sesame.plugins.version>
+        <gpg.version>1.6</gpg.version>
     </properties>
 
     <!-- 环境配置 -->
@@ -213,7 +214,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
+                <version>${gpg.version}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -238,7 +239,6 @@
                 </configuration>
             </plugin>
             -->
-
         </plugins>
         <!--插件定义,被继承-->
         <pluginManagement>
@@ -269,7 +269,9 @@
                     <artifactId>zip</artifactId>
                     <version>${sesame.plugins.version}</version>
                     <configuration>
-                        <path>${project.basedir}/target/classes/com/sesame/theme</path>
+                        <paths>
+                            <path>${project.basedir}/target/classes/com/sesame/theme</path>
+                        </paths>
                     </configuration>
                     <executions>
                         <execution>
@@ -280,6 +282,23 @@
                         </execution>
                     </executions>
                 </plugin>
+
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${gpg.version}</version>
+                    <executions>
+                        <execution>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
             </plugins>
         </pluginManagement>
         <!-- 开启资源过滤 -->
