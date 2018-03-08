@@ -2,6 +2,7 @@
 - 写这个架构的初衷是: 易开发,易维护,易扩展,高可用
 - 然后自己封装的一些spring-boot cloud 的东西,用起来方便,特此记录
 - 文档地址 **[Wiki](https://gitee.com/sesamekim/framework-boot/wikis/pages)**
+- 使用前需要看看的文档 : **[帮助文档](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E&parent=)**
 - 查看maven中最新版本 : [kim.sesame](http://search.maven.org/#search%7Cga%7C1%7Ckim.sesame)
 - QQ交流群 : 661013788   欢迎大家给我提建议
 
