@@ -10,7 +10,7 @@
 
     <groupId>kim.sesame.framework</groupId>
     <artifactId>sesame-parent</artifactId>
-    <version>1.2</version><!-- sesame.version -->
+    <version>1.21</version><!-- sesame.version -->
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
     <url>https://gitee.com/sesamekim/framework-boot</url>
@@ -23,6 +23,11 @@
     </modules>
 
     <properties>
+        <sesame.groupId>kim.sesame.framework</sesame.groupId>
+        <sesame.version>1.21</sesame.version>
+        <sesame.plugins.version>1.21</sesame.plugins.version>
+        <gpg.version>1.6</gpg.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <jdk.version>1.8</jdk.version>
@@ -36,11 +41,6 @@
         <log4j.version>1.2.17</log4j.version>
 
         <war.path>../target</war.path>
-
-        <sesame.groupId>${project.groupId}</sesame.groupId>
-        <sesame.version>${project.version}</sesame.version>
-        <sesame.plugins.version>1.2</sesame.plugins.version>
-        <gpg.version>1.6</gpg.version>
     </properties>
 
     <!-- 环境配置 -->
