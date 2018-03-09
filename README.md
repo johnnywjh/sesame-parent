@@ -13,6 +13,10 @@
 
 #### 更新日志(感觉还是要记录点什么的好)
 
+##### 2018-3-8
+1. 插件 zip 支持多个路径的写法
+2. 修改了整体结构,并更新为1.2
+
 ##### 2018-3-1
 1. 添加maven自定义插件模块 [文档地址](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=1-%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6&parent=%E8%87%AA%E5%AE%9A%E4%B9%89maven%E6%8F%92%E4%BB%B6)
 
