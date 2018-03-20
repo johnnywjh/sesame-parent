@@ -2,7 +2,7 @@ package kim.sesame.framework.web.interceptor.web;
 
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IUser;
-import kim.sesame.framework.web.interceptor.annotation.LoginNonCheckRequired;
+import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.response.ResponseFactory;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -30,7 +30,7 @@ public class WebUserInterceptor extends HandlerInterceptorAdapter {
 
 		HandlerMethod method = (HandlerMethod) handler;
 		// 1.方法名称上有忽略注解的==>直接放行
-		if (method.getMethod().isAnnotationPresent(LoginNonCheckRequired.class)) {
+		if (method.getMethod().isAnnotationPresent(IgnoreLoginCheck.class)) {
 			return true;
 		}
 

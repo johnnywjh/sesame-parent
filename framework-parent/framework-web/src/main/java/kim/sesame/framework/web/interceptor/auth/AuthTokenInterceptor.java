@@ -2,7 +2,7 @@ package kim.sesame.framework.web.interceptor.auth;
 
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.controller.AbstractController;
-import kim.sesame.framework.web.interceptor.annotation.AuthNonCheckRequired;
+import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.response.Response;
 import kim.sesame.framework.web.util.IPUitl;
 import net.sf.json.JSONObject;
@@ -30,7 +30,7 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
         try {
             HandlerMethod method = (HandlerMethod) handler;
             // 1.方法名称上有忽略注解的==>直接放行
-            if (method.getMethod().isAnnotationPresent(AuthNonCheckRequired.class)) {
+            if (method.getMethod().isAnnotationPresent(IgnoreLoginCheck.class)) {
                 return true;
             }
 

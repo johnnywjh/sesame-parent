@@ -60,7 +60,7 @@ public abstract class AbstractController {
     @ExceptionHandler(UserNotLoginException.class)
     public String handleUserNotLoginException() {
         //用户未登录重定向到根目录
-        return "redirect:/index/login.shtml";
+        return "redirect:/index/login";
     }
 
     /**

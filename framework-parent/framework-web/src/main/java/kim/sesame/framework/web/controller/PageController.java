@@ -1,8 +1,6 @@
 package kim.sesame.framework.web.controller;
 
 import kim.sesame.framework.web.config.WebProperties;
-import kim.sesame.framework.web.interceptor.annotation.AuthNonCheckRequired;
-import kim.sesame.framework.web.interceptor.annotation.LoginNonCheckRequired;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
