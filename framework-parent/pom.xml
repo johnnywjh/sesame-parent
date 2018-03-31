@@ -21,7 +21,8 @@
         <module>framework-web</module><!--web 模块-->
 
         <module>framework-cache</module><!--缓存接口的定义-->
-        <module>framework-cache-redis</module><!--缓存接口的实现-->
+        <!--<module>framework-cache-annotation</module>缓存接口的定义-annotation-->
+        <module>framework-cache-redis</module><!--缓存接口的实现- redis-->
 
         <module>framework-distributed-lock</module><!--分布式锁,和序列,建议使用下面两个-->
         <module>framework-lock</module><!--分布式锁 -->
