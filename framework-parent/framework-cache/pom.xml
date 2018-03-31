@@ -15,11 +15,11 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
+			<groupId>${sesame.groupId}</groupId>
 			<artifactId>framework-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
+			<groupId>${sesame.groupId}</groupId>
 			<artifactId>framework-web</artifactId>
 			<scope>provided</scope>
 		</dependency>

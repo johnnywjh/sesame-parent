@@ -19,15 +19,10 @@
         https://github.com/codingapi/tx-lcn.git
     </description>
 
-    <properties>
-        <!-- https://mvnrepository.com/artifact/com.codingapi/transaction-springcloud -->
-        <lcn.last.version>4.0.2</lcn.last.version>
-    </properties>
-
     <dependencies>
 
         <dependency>
-            <groupId>${project.parent.groupId}</groupId>
+            <groupId>${sesame.groupId}</groupId>
             <artifactId>framework-mybatis</artifactId>
             <scope>provided</scope>
         </dependency>

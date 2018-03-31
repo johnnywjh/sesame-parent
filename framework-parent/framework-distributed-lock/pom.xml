@@ -19,17 +19,17 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
+			<groupId>${sesame.groupId}</groupId>
 			<artifactId>framework-web</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
+			<groupId>${sesame.groupId}</groupId>
 			<artifactId>framework-mybatis</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
+			<groupId>${sesame.groupId}</groupId>
 			<artifactId>framework-cache-redis</artifactId>
 			<scope>provided</scope>
 		</dependency>

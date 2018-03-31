@@ -40,6 +40,9 @@
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
 
+        <!-- https://mvnrepository.com/artifact/com.codingapi/transaction-springcloud -->
+        <lcn.last.version>4.1.0</lcn.last.version>
+
         <war.path>../target</war.path>
     </properties>
 

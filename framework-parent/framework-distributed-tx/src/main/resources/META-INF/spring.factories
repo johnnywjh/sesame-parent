@@ -1,7 +1,8 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-kim.sesame.framework.tx.config.TXConfig,\
-kim.sesame.framework.tx.config.TxTransactionInterceptor
+kim.sesame.framework.tx.config.TxDataSource,\
+kim.sesame.framework.tx.config.TxManagerHttpRequestServiceImpl,\
+kim.sesame.framework.tx.config.TxManagerTxUrlServiceImpl
 
 
 

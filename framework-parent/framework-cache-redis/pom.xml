@@ -24,7 +24,7 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
+			<groupId>${sesame.groupId}</groupId>
 			<artifactId>framework-cache</artifactId>
 		</dependency>
 
