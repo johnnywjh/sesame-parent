@@ -126,6 +126,11 @@
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-cache-annotation</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
                 <artifactId>framework-distributed-lock</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
