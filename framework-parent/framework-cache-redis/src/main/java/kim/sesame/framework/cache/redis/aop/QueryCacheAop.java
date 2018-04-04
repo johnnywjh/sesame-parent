@@ -42,7 +42,7 @@ public class QueryCacheAop {
     @Around("@annotation(kim.sesame.framework.cache.annotation.QueryCache)")
     public Object aroundMethod(ProceedingJoinPoint pjd) throws Throwable {
         Object result = null;
-
+        log.debug("");
         // 获取注解
         MethodSignature sign = (MethodSignature) pjd.getSignature();
         Method method = sign.getMethod();
@@ -88,6 +88,7 @@ public class QueryCacheAop {
             }
         }
         log.debug(result);
+        log.debug("");
         return result;
     }
 
