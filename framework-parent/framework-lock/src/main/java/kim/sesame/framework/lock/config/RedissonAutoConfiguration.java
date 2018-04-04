@@ -1,6 +1,6 @@
 package kim.sesame.framework.lock.config;
 import kim.sesame.framework.lock.service.DistributedLocker;
-import kim.sesame.framework.lock.service.impl.RedissonDistributedLocker;
+import kim.sesame.framework.lock.service.impl.RedissonLock;
 import kim.sesame.framework.lock.util.RedissLockUtil;
 import kim.sesame.framework.utils.StringUtil;
 import org.redisson.Redisson;
@@ -70,7 +70,7 @@ public class RedissonAutoConfiguration {
      */
     @Bean
     DistributedLocker distributedLocker(RedissonClient redissonClient) {
-        RedissonDistributedLocker locker = new RedissonDistributedLocker();
+        RedissonLock locker = new RedissonLock();
         locker.setRedissonClient(redissonClient);
         RedissLockUtil.setLocker(locker);
         return locker;

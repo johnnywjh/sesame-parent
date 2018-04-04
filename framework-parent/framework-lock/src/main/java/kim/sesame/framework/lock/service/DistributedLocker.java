@@ -16,4 +16,8 @@ public interface DistributedLocker {
     void lock(String lockKey, int timeout);
 
     void lock(String lockKey, TimeUnit unit, int timeout);
+
+    Boolean tryLock(String lockKey,Long tryTime,Long timeout) throws InterruptedException;
+
+    Boolean tryFairLock(String lockKey,Long tryTime,Long timeout) throws InterruptedException;
 }
