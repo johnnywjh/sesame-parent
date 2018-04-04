@@ -9,15 +9,39 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 定时刷新缓存
+ *
+ * @param <T>
+ */
 @CommonsLog
 public class AutoRefreshCache<T> implements InitializingBean {
 
+    /**
+     * redis 缓存操作
+     */
     protected StringRedisTemplate stringRedisTemplate;
+    /**
+     * 定时刷新缓存的时间
+     */
     protected int refreshTime;
+    /**
+     * 返回的list 里面对象的类型,主要是 gson 反序列化时会用到
+     */
     protected Class clazz = Object.class;
-    protected boolean state = false; //get 方法是否可以访问
-    protected boolean openCache = true; //是否开启缓存
+    /**
+     * 标识
+     */
+    protected volatile boolean state = false; //
+    /**
+     * 是否开启缓存, 如果 false  那么刷新任务不会开启, getData()方法也获取不到数据
+     */
+    protected boolean openCache = true;
 
+    /**
+     * 模板方法, 提供给子类重写
+     * @return
+     */
     protected List<T> dataLoading() {
         return null;
     }
@@ -44,7 +68,6 @@ public class AutoRefreshCache<T> implements InitializingBean {
     }
 
     public void refresh() {
-//        log.info("refresh : "+Thread.currentThread().getName());
         List<T> list = dataLoading();
         String json = GsonUtil.getGson().toJson(list);
         state = false;
@@ -52,6 +75,10 @@ public class AutoRefreshCache<T> implements InitializingBean {
         state = true;
     }
 
+    /**
+     * 对外提供的获取数据的方法
+     * @return
+     */
     public List<T> getData() {
         if (openCache == false) {
             return null;
@@ -68,7 +95,7 @@ public class AutoRefreshCache<T> implements InitializingBean {
                 if (count >= 5) {
                     return null;
                 }
-            }else{
+            } else {
                 String cacheResult = stringRedisTemplate.opsForValue().get(getKey());
                 if (StringUtil.isNotEmpty(cacheResult)) {
                     return GsonUtil.fromJsonList(cacheResult, clazz);

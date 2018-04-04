@@ -11,7 +11,13 @@
 - 代码生成工具 : [https://gitee.com/sesamekim/codeGenerate](https://gitee.com/sesamekim/codeGenerate)
 - 通用sso : [https://gitee.com/sesamekim/sso-web](https://gitee.com/sesamekim/sso-web) 未完成,开发中
 
-#### 更新日志(感觉还是要记录点什么的好) 测试一下~
+#### 更新日志
+
+#### 1.3 `2018-4-5 暂未发布`
+1. 优化 SpringContextUtil 内上下文对象的注入方式,无需手动注入
+2. 删除 framework-distributed-lock 模块
+3. 整体重写 cache 和 cache-redis 模块,不兼容之前的版本 : 文档
+
 
 #### 1.21 `2018-3-8`
 1. 优化当前项目 groupId 不是 kim.sesame.framework 不一致导致的依赖问题
