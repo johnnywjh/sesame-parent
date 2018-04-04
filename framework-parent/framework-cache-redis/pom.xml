@@ -26,6 +26,11 @@
 
 		<dependency>
 			<groupId>${sesame.groupId}</groupId>
+			<artifactId>framework-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>${sesame.groupId}</groupId>
 			<artifactId>framework-cache</artifactId>
 		</dependency>
 

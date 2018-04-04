@@ -6,6 +6,7 @@ import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -40,6 +41,7 @@ public class AutoRefreshCache<T> implements InitializingBean {
 
     /**
      * 模板方法, 提供给子类重写
+     *
      * @return
      */
     protected List<T> dataLoading() {
@@ -68,15 +70,20 @@ public class AutoRefreshCache<T> implements InitializingBean {
     }
 
     public void refresh() {
+        String key = getKey();
+        log.debug("-----------  自动刷新缓存数据  start  ----------------------------------------");
+        log.debug(MessageFormat.format("存储时间 : {0} {1}, key : {2}", refreshTime, TimeUnit.MINUTES, key));
         List<T> list = dataLoading();
         String json = GsonUtil.getGson().toJson(list);
         state = false;
-        this.stringRedisTemplate.opsForValue().set(getKey(), json, refreshTime, TimeUnit.MINUTES);
+        this.stringRedisTemplate.opsForValue().set(key, json, refreshTime, TimeUnit.MINUTES);
         state = true;
+        log.debug("-----------  自动刷新缓存数据  end  ----------------------------------------");
     }
 
     /**
      * 对外提供的获取数据的方法
+     *
      * @return
      */
     public List<T> getData() {
