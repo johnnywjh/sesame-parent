@@ -10,7 +10,7 @@
 
     <groupId>kim.sesame.framework</groupId>
     <artifactId>sesame-parent</artifactId>
-    <version>1.21</version><!-- sesame.version -->
+    <version>1.3</version><!-- sesame.version -->
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
     <url>https://gitee.com/sesamekim/framework-boot</url>
@@ -122,16 +122,6 @@
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
                 <artifactId>framework-cache-redis</artifactId>
-                <version>${sesame.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-cache-annotation</artifactId>
-                <version>${sesame.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-distributed-lock</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
