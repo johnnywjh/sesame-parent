@@ -4,7 +4,6 @@ package kim.sesame.framework.encryption;
 public class Test {
 	public static void main(String[] args) throws Exception {
 
-		String ENCODE = "UTF-8";
 		String str = "中国ABCabc123";
 
 

@@ -13,7 +13,7 @@ import java.security.Key;
 public class DES3Utils {
 
     private static byte[] keyiv = {1, 2, 3, 4, 5, 6, 7, 8};
-    private static String keysecret = "com-sesame-123456789123456789123456789";
+    private static String keysecret = "kimsesame-123456789123456789123456789";
     public final static String ENCODE = "UTF-8";
 
 
