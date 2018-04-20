@@ -6,6 +6,7 @@ import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.cas.CasUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
+import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -53,7 +54,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         IUser user = null;
         List list_roles = null;
         if (StringUtil.isNotEmpty(userNo)) {
-            user = userCache.getUserCache(userNo);
+            user = (IUser) userCache.getUserCache(userNo);
             list_roles = userCache.getUserRoles(userNo);
         }
         log.debug(">>>>>>3 userNo : " + userNo);

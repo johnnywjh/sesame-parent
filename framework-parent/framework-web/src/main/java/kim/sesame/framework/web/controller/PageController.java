@@ -26,6 +26,7 @@ public class PageController {
     /**
      * 加载界面
      */
+    @IgnoreLoginCheck
     @RequestMapping("/{uriPath}")
     public String index(@PathVariable("uriPath") String uriPath, HttpServletRequest request, ModelMap modelMap) {
         Map<String, String[]> mm = request.getParameterMap();

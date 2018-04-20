@@ -1,5 +1,6 @@
 package kim.sesame.framework.web.cache;
 
+import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * 用户缓存的空实现
  */
-public class AbstractUserCache implements IUserCache {
+public class AbstractUserCache<T> implements IUserCache {
     @Override
     public String userCacheId(String sessionId) {
         return USER_ACCOUNT_KEY + "_" + sessionId;
@@ -29,7 +30,7 @@ public class AbstractUserCache implements IUserCache {
     }
 
     @Override
-    public IUser getUserCache(String userNo) {
+    public T getUserCache(String userNo) {
         return null;
     }
 

@@ -1,5 +1,6 @@
 package kim.sesame.framework.web.cache;
 
+import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * 用户缓存Cache接口
  **/
-public interface IUserCache {
+public interface IUserCache<T> {
 
     /**
      * 子类在spring 容器中的注册名字
@@ -63,7 +64,7 @@ public interface IUserCache {
      * @param userNo 用户账号
      * @return 用户信息
      */
-    IUser getUserCache(String userNo);
+    T getUserCache(String userNo);
 
     /**
      * 获取用户角色信息
