@@ -3,9 +3,11 @@ package kim.sesame.framework.web.interceptor.user;
 import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.cache.IUserCache;
+import kim.sesame.framework.web.cas.CasUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IUser;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import java.util.List;
 /**
  * 用户信息拦截和设置
  */
+@CommonsLog
 public class UserInfoInterceptor extends HandlerInterceptorAdapter {
 
     /**
@@ -22,16 +25,26 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // 用户进来只有两种方式 1 sessionid , 2 userNo
 
-        //   web 方式进入
+        String requestUrl = request.getRequestURL().toString();
+        log.debug(">>>>>>1 requestUrl : " + requestUrl);
+
         String sessionId = "";
-        String zuulSessionId = request.getParameter(GData.CLOUD.ZUUL_SESSION_ID);
-        if(StringUtil.isEmpty(zuulSessionId)){
-            sessionId = request.getSession().getId();
-        }else{
-            sessionId = zuulSessionId;
+        String casSessionId = CasUtil.getSessionId(request);
+        if (StringUtil.isNotEmpty(casSessionId)) {
+            sessionId = casSessionId;
+            log.debug(">>>>>>2 casSessionId : " + sessionId);
+        } else {
+            String zuulSessionId = request.getParameter(GData.CLOUD.ZUUL_SESSION_ID);
+            if (StringUtil.isNotEmpty(zuulSessionId)) {
+                sessionId = zuulSessionId;
+                log.debug(">>>>>>2 zuulSessionId : " + sessionId);
+            } else {
+                sessionId = request.getSession().getId();
+                log.debug(">>>>>>2 requestSessionId : " + sessionId);
+            }
         }
+
         UserContext.getUserContext().setUserSessionId(sessionId);
 
         IUserCache userCache = (IUserCache) SpringContextUtil.getBean(IUserCache.USER_LOGIN_BEAN);
@@ -39,10 +52,12 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
 
         IUser user = null;
         List list_roles = null;
-        if(StringUtil.isNotEmpty(userNo)){
+        if (StringUtil.isNotEmpty(userNo)) {
             user = userCache.getUserCache(userNo);
             list_roles = userCache.getUserRoles(userNo);
         }
+        log.debug(">>>>>>3 userNo : " + userNo);
+        log.debug(">>>>>>4 user : " + user);
 
         UserContext.getUserContext().setUser(user);
         UserContext.getUserContext().setUserRole(list_roles);

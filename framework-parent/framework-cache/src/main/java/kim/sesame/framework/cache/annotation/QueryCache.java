@@ -14,6 +14,13 @@ import java.util.concurrent.TimeUnit;
 public @interface QueryCache {
 
     /**
+     * 完整的key, 如果有值,就不进行key的计算
+     *
+     * @return
+     */
+    String key() default "";
+
+    /**
      * 缓存key 的前缀,一般加上项目名称
      *
      * @return keyPrefix

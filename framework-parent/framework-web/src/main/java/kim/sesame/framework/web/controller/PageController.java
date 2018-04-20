@@ -1,5 +1,6 @@
 package kim.sesame.framework.web.controller;
 
+import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.config.WebProperties;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,9 @@ public class PageController {
     @Resource
     private WebProperties webProperties;
 
-    // 加载界面
-//    @AuthNonCheckRequired
-//    @LoginNonCheckRequired
+    /**
+     * 加载界面
+     */
     @RequestMapping("/{uriPath}")
     public String index(@PathVariable("uriPath") String uriPath, HttpServletRequest request, ModelMap modelMap) {
         Map<String, String[]> mm = request.getParameterMap();
@@ -33,6 +34,13 @@ public class PageController {
         }
         uriPath = uriPath.replaceAll(webProperties.getPageReplace(), "/");
         return uriPath;
+    }
+
+    @IgnoreLoginCheck
+    @RequestMapping("/error")
+    public String page404(String e, ModelMap modelMap) {
+        modelMap.put("e", e);
+        return "error";
     }
 
 }

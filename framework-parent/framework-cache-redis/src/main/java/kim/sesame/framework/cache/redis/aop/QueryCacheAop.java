@@ -53,7 +53,7 @@ public class QueryCacheAop {
         String classPath = pjd.getSignature().getDeclaringTypeName();
         String methodName = pjd.getSignature().getName();
 
-        String cacheKey = getCacheKey(ann.keyPrefix(), classPath, methodName, params);
+        String cacheKey = getCacheKey(ann.key(), ann.keyPrefix(), classPath, methodName, params);
         log.debug("缓存 : key = " + cacheKey);
         int time = 0;
         TimeUnit timeUnit = null;
@@ -95,13 +95,17 @@ public class QueryCacheAop {
     /**
      * 缓存key的算法,
      */
-    private static String getCacheKey(String prefix, String classPath, String methodName, Object... params) {
+    private static String getCacheKey(String key, String prefix, String classPath, String methodName, Object... params) {
         StringBuffer sb = new StringBuffer();
 
-        if (StringUtil.isNotEmpty(prefix)) {
-            sb.append(prefix).append("_");
+        if (StringUtil.isNotEmpty(key)) {
+            sb.append(key);
+        } else {
+            if (StringUtil.isNotEmpty(prefix)) {
+                sb.append(prefix).append("_");
+            }
+            sb.append(classPath).append(".").append(methodName);
         }
-        sb.append(classPath).append(".").append(methodName);
 
         if (params != null && params.length > 0) {
             sb.append("_");
@@ -111,14 +115,14 @@ public class QueryCacheAop {
                 }
             }
         }
-        return sb.toString().substring(0, sb.toString().length() - 2);
+        return sb.toString().substring(0, sb.toString().length() - 1);
     }
 
-    public static void invalid(String prefix, String classPath, String methodName, Object[] params) {
-        String key = getCacheKey(prefix, classPath, methodName, params);
+    public static void invalid(String key, String prefix, String classPath, String methodName, Object[] params) {
+        String cachekey = getCacheKey(key, prefix, classPath, methodName, params);
 
         CacheServer cacheServer = SpringContextUtil.getBean(CacheServer.class);
-        cacheServer.invalid(key);
+        cacheServer.invalid(cachekey);
     }
 
 }

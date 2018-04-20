@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CommonErrorPageRegistrar implements ErrorPageRegistrar {
-	public void registerErrorPages(ErrorPageRegistry registry) {
-		
-		ErrorPage e404 = new ErrorPage(HttpStatus.NOT_FOUND, "/404.html");
-		ErrorPage e500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500.html");
+    public void registerErrorPages(ErrorPageRegistry registry) {
 
-		registry.addErrorPages(e404, e500);
-	}
+        ErrorPage e404 = new ErrorPage(HttpStatus.NOT_FOUND, "/page/error?e=404");
+        ErrorPage e500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/page/error?e=500");
+
+        registry.addErrorPages(e404, e500);
+    }
 }
