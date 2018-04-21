@@ -1,7 +1,5 @@
 package kim.sesame.framework.utils;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Enumeration;

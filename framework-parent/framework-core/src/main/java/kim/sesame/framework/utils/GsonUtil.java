@@ -14,10 +14,6 @@ public class GsonUtil {
         return new GsonBuilder().serializeNulls().create();
     }
 
-    public static String toJson(List list) {
-        return getGson().toJson(list);
-    }
-
     public static <T> ArrayList<T> fromJsonList(String json, Class<T> cls) {
         Gson gson = GsonUtil.getGson();
         ArrayList<T> mList = new ArrayList<T>();

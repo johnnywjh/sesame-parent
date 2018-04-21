@@ -1,6 +1,5 @@
 package kim.sesame.framework.web.config;
 
-import kim.sesame.framework.web.interceptor.auth.AuthTokenInterceptor;
 import kim.sesame.framework.web.interceptor.user.UserInfoInterceptor;
 import kim.sesame.framework.web.interceptor.web.WebUserInterceptor;
 import kim.sesame.framework.web.util.StringToDateConverter;
@@ -34,7 +33,7 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         }
         // 公钥私钥 认证
         if (webProperties.isInterceptorAuth()) {
-            registry.addInterceptor(new AuthTokenInterceptor()).addPathPatterns("/**");
+//            registry.addInterceptor(new AuthTokenInterceptor()).addPathPatterns("/**");
         }
 
         super.addInterceptors(registry);

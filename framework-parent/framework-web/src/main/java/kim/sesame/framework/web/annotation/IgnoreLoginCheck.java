@@ -14,4 +14,11 @@ import java.lang.annotation.Target;
 @Inherited
 public @interface IgnoreLoginCheck {
 
+    /**
+     * 是否加载用户数据
+     *
+     * @return boolean
+     */
+    boolean isLoadUser() default false;
+
 }

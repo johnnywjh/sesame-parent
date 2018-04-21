@@ -30,12 +30,12 @@ public class AbstractUserCache<T> implements IUserCache {
     }
 
     @Override
-    public T getUserCache(String userNo) {
+    public IUser getUserCache(String userNo) {
         return null;
     }
 
     @Override
-    public List getUserRoles(String userNo) {
+    public List<IRole> getUserRoles(String userNo) {
         return null;
     }
 }

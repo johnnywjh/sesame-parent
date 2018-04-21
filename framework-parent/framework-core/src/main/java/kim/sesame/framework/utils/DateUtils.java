@@ -1,8 +1,8 @@
 package kim.sesame.framework.utils;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -82,7 +82,7 @@ public class DateUtils {
      * @return date
      */
     public static Date concat(String ymd, String hm) {
-        if (StringUtils.isNotBlank(ymd) && StringUtils.isNotBlank(hm)) {
+        if (StringUtil.isNotBlank(ymd) && StringUtil.isNotBlank(hm)) {
             try {
                 String dateString = ymd.concat(" ").concat(
                         hm.substring(0, 2).concat(":")

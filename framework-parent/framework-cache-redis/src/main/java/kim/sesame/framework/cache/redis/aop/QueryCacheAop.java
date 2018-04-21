@@ -1,10 +1,12 @@
 package kim.sesame.framework.cache.redis.aop;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import kim.sesame.framework.cache.annotation.QueryCache;
 import kim.sesame.framework.cache.annotation.ResultType;
 import kim.sesame.framework.cache.redis.config.QueryCacheProperties;
 import kim.sesame.framework.cache.redis.server.CacheServer;
-import kim.sesame.framework.utils.GsonUtil;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import lombok.extern.apachecommons.CommonsLog;
@@ -13,7 +15,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -28,8 +29,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 @CommonsLog
 public class QueryCacheAop {
-    @Autowired
-    RedisTemplate<String, Object> redisTemplate;
+
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
@@ -64,28 +64,26 @@ public class QueryCacheAop {
             time = ann.invalidTime();
             timeUnit = ann.timeUnit();
         }
-        // 判断返回类型 , 返回类型为单个对象
-        if (ann.resultType() == ResultType.Object) {
-            Object cacheResult = redisTemplate.opsForValue().get(cacheKey);
-            if (cacheResult == null) {
-                log.debug(MessageFormat.format("缓存不存在,走数据库查询 ,存储时间 : {0} , 单位 : {1} ", time, timeUnit));
-                result = pjd.proceed();
-                redisTemplate.opsForValue().set(cacheKey, result, time, timeUnit);
-            } else {
-                result = cacheResult;
+        String cacheResult = stringRedisTemplate.opsForValue().get(cacheKey);
+
+        if (StringUtil.isEmpty(cacheResult)) {
+            log.debug(MessageFormat.format("缓存不存在,走数据库查询 ,存储时间 : {0} , 单位 : {1} ", time, timeUnit));
+            result = pjd.proceed();
+
+            String json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue);
+            stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
+        } else {
+            // 判断返回类型 , 返回类型为单个对象
+            if (ann.resultType() == ResultType.Object) {
+                // result = GsonUtil.getGson().fromJson(cacheResult, ann.resultClazz());
+                result = JSON.parseObject(cacheResult, ann.resultClazz());
             }
-        }
-        // 返回类型为 list 集合
-        else if (ann.resultType() == ResultType.List) {
-            String cacheResult = stringRedisTemplate.opsForValue().get(cacheKey);
-            if (StringUtil.isEmpty(cacheResult)) {
-                log.debug(MessageFormat.format("缓存不存在,走数据库查询 ,存储时间 : {0} , 单位 : {1} ", time, timeUnit));
-                result = pjd.proceed();
-                String json = GsonUtil.getGson().toJson(result);
-                stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
-            } else {
-                result = GsonUtil.fromJsonList(cacheResult, ann.resultClazz());
+            // 返回类型为 list 集合
+            else if (ann.resultType() == ResultType.List) {
+                // result = GsonUtil.fromJsonList(cacheResult, ann.resultClazz());
+                result = JSONArray.parseArray(cacheResult, ann.resultClazz());
             }
+
         }
         log.debug(result);
         log.debug("");

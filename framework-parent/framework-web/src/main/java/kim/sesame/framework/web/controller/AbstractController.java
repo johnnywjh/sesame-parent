@@ -9,7 +9,6 @@ import kim.sesame.framework.web.security.exception.FunctionNotValidException;
 import kim.sesame.framework.web.security.exception.UserNotLoginException;
 import kim.sesame.framework.web.validator.exception.DataValidatorException;
 import lombok.extern.apachecommons.CommonsLog;
-import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -39,7 +38,7 @@ public abstract class AbstractController {
     }
 
     //    @Autowired(required = false)*****
-//    private ILogExceptionWriter logExceptionWriter;
+    //    private ILogExceptionWriter logExceptionWriter;
     public Response returnSuccess() {
         return Response.create().setSuccess(true);
     }
@@ -74,9 +73,9 @@ public abstract class AbstractController {
     public Response handleException(Exception exception) {
         //打印异常******
         log.error(exception.getMessage(), exception);
-//        if(logExceptionWriter != null){
-//            logExceptionWriter.write(exception);
-//        }
+        //        if(logExceptionWriter != null){
+        //            logExceptionWriter.write(exception);
+        //        }
         //参数校验异常
         if (exception instanceof IllegalArgumentException) {
             String errorCode = ErrorCode.BUSINESS;
@@ -108,7 +107,7 @@ public abstract class AbstractController {
         }
         //系统异常
         else {
-            return Response.create().setExceptionType(ExceptionType.SYSTEM).setErrorCode(ErrorCode.SYSTEM).setMessage(ExceptionUtils.getStackTrace(exception));
+            return Response.create().setExceptionType(ExceptionType.SYSTEM).setErrorCode(ErrorCode.SYSTEM).setMessage(exception.getMessage());
         }
     }
 

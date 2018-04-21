@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 用户缓存Cache接口
  **/
-public interface IUserCache<T> {
+public interface IUserCache {
 
     /**
      * 子类在spring 容器中的注册名字
@@ -64,7 +64,7 @@ public interface IUserCache<T> {
      * @param userNo 用户账号
      * @return 用户信息
      */
-    T getUserCache(String userNo);
+    IUser getUserCache(String userNo);
 
     /**
      * 获取用户角色信息
@@ -72,5 +72,5 @@ public interface IUserCache<T> {
      * @param userNo 用户账号
      * @return 用户角色信息的集合
      */
-    List getUserRoles(String userNo);
+    List<IRole> getUserRoles(String userNo);
 }

@@ -1,8 +1,8 @@
 package kim.sesame.framework.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.kevinsawicki.http.HttpRequest;
 import kim.sesame.framework.entity.GMap;
-import net.sf.json.JSONObject;
 
 /**
  * 图片上传
@@ -27,7 +27,7 @@ public class FileUploadUitls {
         params.putAction("type", type);
         String body = HttpRequest.post(upload_url).form(params).body();
 
-        return JSONObject.fromObject(body);
+        return JSONObject.parseObject(body);
     }
 
     /**
