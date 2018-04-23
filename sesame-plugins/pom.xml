@@ -10,7 +10,7 @@
     </parent>
 
     <artifactId>sesame-plugins</artifactId>
-    <version>1.21</version><!-- sesame.version.plugins -->
+    <version>1.3</version><!-- sesame.version.plugins -->
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
 
