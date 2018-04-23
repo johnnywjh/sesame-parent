@@ -18,7 +18,8 @@
 2. 删除 framework-distributed-lock 模块
 3. 整体重写 cache 和 cache-redis 模块,不兼容之前的版本 : [文档详情](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=2.2%20%E7%BC%93%E5%AD%98-redis%20-%5B1.3%5D&parent=%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8)
 4. IuserCache 添加注销方法
-5. 1.3版本升级spring-boot 为 1.5.12, 从1.4开始开始使用spring-boot 2.x 
+5. 重新定义 IUser,IRole 类,
+6. 1.3版本升级spring-boot 为 1.5.12, 从1.4开始开始使用spring-boot 2.x 
 
 
 #### 1.21 `2018-3-8`
