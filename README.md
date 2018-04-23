@@ -19,7 +19,8 @@
 3. 整体重写 cache 和 cache-redis 模块,不兼容之前的版本 : [文档详情](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=2.2%20%E7%BC%93%E5%AD%98-redis%20-%5B1.3%5D&parent=%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8)
 4. IuserCache 添加注销方法
 5. 重新定义 IUser,IRole 类,
-6. 1.3版本升级spring-boot 为 1.5.12, 从1.4开始开始使用spring-boot 2.x 
+6. 1.3版本升级spring-boot 为 1.5.12, 从1.4开始开始使用spring-boot 2.x
+7. maven 仓库文件下载 [sesame-parent-1.3](https://gitee.com/sesamekim/framework-boot/attach_files/download?i=130986&u=http%3A%2F%2Ffiles.git.oschina.net%2Fgroup1%2FM00%2F03%2F6E%2FPaAvDFrdkj-AO1WnAAZUAj-vFTU901.zip%3Ftoken%3D5242bbcbbaa8b4f0ca1bb4980aa53c3e%26ts%3D1524470335%26attname%3Dsesame-parent-1.3.zip) 
 
 
 #### 1.21 `2018-3-8`
