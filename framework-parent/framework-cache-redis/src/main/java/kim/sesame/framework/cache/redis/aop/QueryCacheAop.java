@@ -70,7 +70,12 @@ public class QueryCacheAop {
             log.debug(MessageFormat.format("缓存不存在,走数据库查询 ,存储时间 : {0} , 单位 : {1} ", time, timeUnit));
             result = pjd.proceed();
 
-            String json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue);
+            String json = "";
+            if (ann.isWriteNullValue()) {
+                json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue);
+            } else {
+                json = JSON.toJSONString(result);
+            }
             stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
         } else {
             // 判断返回类型 , 返回类型为单个对象

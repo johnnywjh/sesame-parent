@@ -55,4 +55,11 @@ public @interface QueryCache {
      * @return resultClazz
      */
     Class resultClazz() default Object.class;
+
+    /**
+     * 序列化时 , 是否写空值进去
+     *
+     * @return
+     */
+    boolean isWriteNullValue() default true;
 }
