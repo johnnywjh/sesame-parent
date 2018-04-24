@@ -13,7 +13,7 @@
 
 #### 更新日志
 
-#### 1.4 孵化中
+#### 1.4 `孵化中`
 1. spring-boot 版本升级到 2.x
 2. [升级修改事项](https://gitee.com/sesamekim/framework-boot/blob/master/doc/spring-boot-2.x.md)
 
