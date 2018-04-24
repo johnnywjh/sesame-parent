@@ -16,6 +16,7 @@
 #### 1.4 `孵化中`
 1. spring-boot 版本升级到 2.x
 2. [升级修改事项](https://gitee.com/sesamekim/framework-boot/blob/master/doc/spring-boot-2.x.md)
+3. 废弃 AbstractUserCache 这个空实现类,采用java8 的接口 default方法
 
 #### 1.3 `2018-4-23 `
 1. 优化 SpringContextUtil 内上下文对象的注入方式,无需手动注入

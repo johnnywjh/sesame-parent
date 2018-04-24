@@ -7,8 +7,10 @@ import java.util.List;
 
 /**
  * 用户缓存的空实现
+ * 这个类将被废弃掉,请直接实现 IUserCache这个接口
  */
-public class AbstractUserCache<T> implements IUserCache {
+@Deprecated
+public class AbstractUserCache implements IUserCache {
     @Override
     public String userCacheId(String sessionId) {
         return USER_ACCOUNT_KEY + "_" + sessionId;

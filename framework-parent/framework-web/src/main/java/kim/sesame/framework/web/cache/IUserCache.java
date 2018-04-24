@@ -1,9 +1,17 @@
 package kim.sesame.framework.web.cache;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+import kim.sesame.framework.cache.define.IStringCacheTemplate;
+import kim.sesame.framework.utils.StringUtil;
+import kim.sesame.framework.web.config.WebProperties;
+import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
+import lombok.extern.apachecommons.CommonsLog;
 
+import java.text.MessageFormat;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 用户缓存Cache接口
@@ -33,7 +41,9 @@ public interface IUserCache {
      * @param sessionId sessionid
      * @return
      */
-    String userCacheId(String sessionId);
+    default String userCacheId(String sessionId) {
+        return USER_ACCOUNT_KEY + "_" + sessionId;
+    }
 
     /**
      * 添加用户信息到缓存
@@ -41,14 +51,36 @@ public interface IUserCache {
      * @param user      用户信息
      * @param sessionId sessionId
      */
-    void addUsersToCache(String user, String sessionId);
+    default void addUsersToCache(String user, String sessionId) {
+        IStringCacheTemplate stringCache = (IStringCacheTemplate) SpringContextUtil.getBean(IStringCacheTemplate.STRING_CACHE_BEAN);
+        WebProperties web = SpringContextUtil.getBean(WebProperties.class);
+        if (stringCache == null) {
+            throw new NullPointerException("请实现 IStringCacheTemplate 接口");
+        }
+        if (web == null) {
+            throw new NullPointerException("扫描问题,无法装配 WebProperties");
+        }
+
+        String key = userCacheId(sessionId);
+        String value = user;
+        int time = web.getUserCacheTime();
+        System.out.println(MessageFormat.format("登录成功,添加到缓存 : [key] : {0} , [value] : {1} , [time] : {2} 分钟", key, value, time));
+        stringCache.set(key, value, time, TimeUnit.MINUTES);
+    }
 
     /**
      * 从缓存中删除用户信息
      *
      * @param sessionId sessionid
      */
-    void invalidUserCache(String sessionId);
+    default void invalidUserCache(String sessionId) {
+        IStringCacheTemplate stringCache = (IStringCacheTemplate) SpringContextUtil.getBean(IStringCacheTemplate.STRING_CACHE_BEAN);
+        if (stringCache == null) {
+            throw new NullPointerException("请实现 IStringCacheTemplate 接口");
+        }
+        String key = userCacheId(sessionId);
+        stringCache.delete(key);
+    }
 
     /**
      * 从缓存中获取用户账号
@@ -56,7 +88,32 @@ public interface IUserCache {
      * @param sessionId sessionId
      * @return
      */
-    String getUserNo(String sessionId);
+    default String getUserNo(String sessionId) {
+        IStringCacheTemplate stringCache = (IStringCacheTemplate) SpringContextUtil.getBean(IStringCacheTemplate.STRING_CACHE_BEAN);
+        WebProperties web = SpringContextUtil.getBean(WebProperties.class);
+        if (stringCache == null) {
+            throw new NullPointerException("请实现 IStringCacheTemplate 接口");
+        }
+        if (web == null) {
+            throw new NullPointerException("扫描问题,无法装配 WebProperties");
+        }
+
+        String key = userCacheId(sessionId);
+        try {
+            String userCode = stringCache.get(key);
+            // 当获取用户编号完成之后,再存一次到缓存中,延续登录
+            new Thread(() -> {
+                if (StringUtil.isNotEmpty(userCode)) {
+                    int time = web.getUserCacheTime();
+                    stringCache.set(key, userCode, time, TimeUnit.MINUTES);
+                }
+            }).start();
+            return userCode;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     /**
      * 获取用户对象
