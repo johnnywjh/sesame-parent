@@ -11,7 +11,7 @@ import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,13 +21,18 @@ import java.util.List;
  * 用户信息拦截和设置
  */
 @CommonsLog
-public class UserInfoInterceptor extends HandlerInterceptorAdapter {
+public class UserInfoInterceptor implements HandlerInterceptor {
 
     /**
      * 一个请求的第一个拦截方法,给这个线程添加数据
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        //过滤掉静态资源
+        if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
+            return true;
+        }
 
         String requestUrl = request.getRequestURL().toString();
         log.debug(">>>>>>1 requestUrl : " + requestUrl);
@@ -50,10 +55,12 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         UserContext.getUserContext().setUserSessionId(sessionId);
 
         // 1.方法名称上有忽略注解的==>直接放行
-        HandlerMethod method = (HandlerMethod) handler;
-        if (method.getMethod().isAnnotationPresent(IgnoreLoginCheck.class)) {
-            if (!method.getMethod().getAnnotation(IgnoreLoginCheck.class).isLoadUser()) {
-                return true;
+        if(handler instanceof  HandlerMethod){
+            HandlerMethod method = (HandlerMethod) handler;
+            if (method.getMethod().isAnnotationPresent(IgnoreLoginCheck.class)) {
+                if (!method.getMethod().getAnnotation(IgnoreLoginCheck.class).isLoadUser()) {
+                    return true;
+                }
             }
         }
 

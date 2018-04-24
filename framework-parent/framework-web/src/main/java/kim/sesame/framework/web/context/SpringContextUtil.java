@@ -102,9 +102,11 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     private static void printBase() {
         Environment environment = getApplicationContext().getEnvironment();
-        String project_url = "http://127.0.0.1:" + environment.getProperty("server.port") + environment.getProperty("server.context-path");
+        String port = environment.getProperty("server.port");
+        String basePath = environment.getProperty("server.servlet.context-path"); // spring boot 2.x 的写法
+        String project_url = "http://127.0.0.1:" + port + basePath;
         println(project_url);
-        project_url = "http://" + Ipconfig.getInfo().getLocalip() + ":" + environment.getProperty("server.port") + environment.getProperty("server.context-path");
+        project_url = "http://" + Ipconfig.getInfo().getLocalip() + ":" + port + basePath;
         println(project_url);
         String profile = environment.getProperty("spring.profiles.active");
         if (StringUtil.isNotEmpty(profile)) {

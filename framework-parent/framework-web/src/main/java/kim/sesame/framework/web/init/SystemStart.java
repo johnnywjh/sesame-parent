@@ -14,7 +14,8 @@ import org.springframework.core.env.Environment;
 
 /**
  * 系统启动时执行
- *  ServletComponentScan(basePackageClasses = SystemStart.class)
+ * ServletComponentScan(basePackageClasses = SystemStart.class)
+ *
  * @author johnny
  */
 @CommonsLog
@@ -42,7 +43,9 @@ public class SystemStart extends HttpServlet implements ServletContextListener {
 
         // 1 项目当前路径
         if (StringUtil.isEmpty(web.getBasePath())) {
-            String context_path = env.getProperty("server.context-path");
+//            String context_path = env.getProperty("server.context-path"); // spring boot 1.x 的写法
+            String context_path = env.getProperty("server.servlet.context-path");// spring boot 2.x 的写法
+
             application.setAttribute("basePath", context_path);
         } else {
             application.setAttribute("basePath", web.getBasePath());

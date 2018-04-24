@@ -6,12 +6,12 @@ import kim.sesame.framework.web.util.StringToDateConverter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
 
 @Configuration
-public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
+public class MyWebAppConfigurer implements WebMvcConfigurer {
 
     @SuppressWarnings("all")
     @Resource
@@ -36,12 +36,11 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
 //            registry.addInterceptor(new AuthTokenInterceptor()).addPathPatterns("/**");
         }
 
-        super.addInterceptors(registry);
     }
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new StringToDateConverter());
-        super.addFormatters(registry);
+
     }
 }
