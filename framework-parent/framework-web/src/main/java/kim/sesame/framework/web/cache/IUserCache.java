@@ -1,13 +1,11 @@
 package kim.sesame.framework.web.cache;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import kim.sesame.framework.cache.define.IStringCacheTemplate;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
-import lombok.extern.apachecommons.CommonsLog;
 
 import java.text.MessageFormat;
 import java.util.List;
