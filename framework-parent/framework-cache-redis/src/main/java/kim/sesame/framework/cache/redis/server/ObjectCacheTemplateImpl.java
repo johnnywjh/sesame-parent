@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 @CommonsLog
 @Service(value = IObjectCacheTemplate.STRING_CACHE_BEAN)
-public class ObjectCacheTemplateImpl<T> implements IObjectCacheTemplate {
+public class ObjectCacheTemplateImpl implements IObjectCacheTemplate {
 
     @Autowired
     private RedisTemplate redisTemplate;
