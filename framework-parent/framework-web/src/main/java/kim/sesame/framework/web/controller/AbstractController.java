@@ -47,6 +47,10 @@ public abstract class AbstractController {
         return Response.create().setSuccess(true).setResult(result);
     }
 
+    public Response returnSuccess(Object result, String msg) {
+        return Response.create().setSuccess(true).setResult(result).setMessage(msg);
+    }
+
     public Response returnSuccess(List list) {
         return Response.create().setSuccess(true).setResult(list);
     }

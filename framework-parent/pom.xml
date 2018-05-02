@@ -19,6 +19,7 @@
         <module>framework-core</module> <!--核心模块,其他模块大部分要依赖这个模块-->
         <module>framework-mybatis</module><!--mybatis 模块-->
         <module>framework-web</module><!--web 模块-->
+        <module>framework-websocket</module><!--websocket 模块-->
 
         <module>framework-cache</module><!--缓存接口的定义-->
         <module>framework-cache-redis</module><!--缓存接口的实现- redis-->

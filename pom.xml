@@ -159,6 +159,11 @@
                 <artifactId>framework-web</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-websocket</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
             <!--framework.sesame end -->
 
             <!--spring cloud -->
