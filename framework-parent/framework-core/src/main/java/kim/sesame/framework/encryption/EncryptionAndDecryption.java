@@ -22,11 +22,31 @@ public class EncryptionAndDecryption {
     }
 
     public EncryptionAndDecryption(String keysecret) {
-        this.keysecret = keysecret;
+        this.keysecret = computeKey(keysecret);
+    }
+
+    public String getKeysecret() {
+        return keysecret;
     }
 
     public void setKeysecret(String keysecret) {
-        this.keysecret = keysecret;
+        this.keysecret = computeKey(keysecret);
+    }
+
+    public String computeKey(String keysecret) {
+        if (keysecret == null) {
+            keysecret = "";
+        }
+        if (keysecret.length() >= 24) {
+            return keysecret;
+        }
+        System.out.println("keysecret 的长度小于24,需要默认处理");
+        int size = 24 - keysecret.length();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < size; i++) {
+            sb.append("0");
+        }
+        return keysecret + sb.toString();
     }
 
     /**

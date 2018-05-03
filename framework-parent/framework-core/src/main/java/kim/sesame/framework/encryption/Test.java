@@ -5,6 +5,11 @@ public class Test {
     public static void main(String[] args) throws Exception {
 
         EncryptionAndDecryption ead = new EncryptionAndDecryption();
+        String key ="mybatis";
+
+        ead.setKeysecret(key);
+        System.out.println(ead.getKeysecret());
+        System.out.println(ead.getKeysecret().length());
 
         String str = "中国ABCabc123=";
         System.out.println("加密前字符串:" + str);
