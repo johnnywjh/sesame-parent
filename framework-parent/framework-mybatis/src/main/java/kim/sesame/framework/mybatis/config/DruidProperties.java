@@ -1,6 +1,6 @@
 package kim.sesame.framework.mybatis.config;
 
-import kim.sesame.framework.encryption.DES3Utils;
+import kim.sesame.framework.encryption.EncryptionAndDecryption;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -53,6 +53,7 @@ public class DruidProperties {
     private boolean encryption = false;
 
     public String decodeStr(String str) {
-        return DES3Utils.decodeCBC(str);
+        EncryptionAndDecryption ead = new EncryptionAndDecryption("mybatis");
+        return ead.decodeCBC(str);
     }
 }
