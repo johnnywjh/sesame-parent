@@ -5,10 +5,14 @@ import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.config.WebProperties;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+
+import java.util.Map;
 
 @Component
 @CommonsLog
@@ -45,6 +49,23 @@ public class SpringContextUtil implements ApplicationContextAware {
         if (StringUtil.isNotEmpty(context_path)) {
             SpringContextUtil.currentPath = web.getUserHome() + "/sesame_space" + context_path;
         }
+    }
+
+    /**
+     * 动态注入bean, 当前bean一定要有无参的构造函数
+     *
+     * @param beanName bean的名字
+     * @param params   bean的属性
+     * @param clazz    bean 的clazz
+     */
+    public static void registerBean(String beanName, Map<String, Object> params, Class clazz) {
+        BeanDefinitionBuilder beanDefinitionBuilder = BeanDefinitionBuilder.genericBeanDefinition(clazz);
+        for (String key : params.keySet()) {
+            beanDefinitionBuilder.addPropertyValue(key, params.get(key));
+        }
+
+        DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) getApplicationContext().getAutowireCapableBeanFactory();
+        beanFactory.registerBeanDefinition(beanName, beanDefinitionBuilder.getBeanDefinition());
     }
 
     public static String getCurrentPath() {
