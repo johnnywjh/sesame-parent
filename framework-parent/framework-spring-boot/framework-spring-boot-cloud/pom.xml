@@ -5,7 +5,7 @@
     <parent>
         <groupId>kim.sesame.framework</groupId>
         <artifactId>framework-spring-boot</artifactId>
-        <version>1.4</version><!-- sesame.version -->
+        <version>1.3.1</version><!-- sesame.version -->
         <relativePath>../pom.xml</relativePath>
     </parent>
 

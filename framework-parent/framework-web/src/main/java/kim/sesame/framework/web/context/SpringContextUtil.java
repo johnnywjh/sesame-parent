@@ -1,5 +1,6 @@
 package kim.sesame.framework.web.context;
 
+import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.utils.Ipconfig;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.config.WebProperties;
@@ -124,7 +125,7 @@ public class SpringContextUtil implements ApplicationContextAware {
     private static void printBase() {
         Environment environment = getApplicationContext().getEnvironment();
         String port = environment.getProperty("server.port");
-        String basePath = environment.getProperty("server.servlet.context-path"); // spring boot 2.x 的写法
+        String basePath = environment.getProperty(GData.SPRINGBOOT.contextPath);
         String project_url = "http://127.0.0.1:" + port + basePath;
         println(project_url);
         project_url = "http://" + Ipconfig.getInfo().getLocalip() + ":" + port + basePath;

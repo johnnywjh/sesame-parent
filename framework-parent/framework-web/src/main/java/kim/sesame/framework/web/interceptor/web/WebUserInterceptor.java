@@ -6,6 +6,7 @@ import kim.sesame.framework.web.entity.IUser;
 import kim.sesame.framework.web.response.ResponseFactory;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,7 @@ import java.io.PrintWriter;
 /**
  * 后台用户拦截,
  */
-public class WebUserInterceptor implements HandlerInterceptor {
+public class WebUserInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * 在业务处理器处理请求之前被调用 如果返回false 从当前的拦截器往回执行所有拦截器的afterCompletion(),再退出拦截器链

@@ -10,5 +10,5 @@ public interface IStringCacheTemplate {
 
     void set(String key, String value, long timeout, TimeUnit unit);
 
-    boolean delete(String key);
+    void delete(String key);
 }

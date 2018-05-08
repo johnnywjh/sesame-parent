@@ -26,8 +26,8 @@ public class StringCacheTemplateImpl implements IStringCacheTemplate {
     }
 
     @Override
-    public boolean delete(String key) {
-        return stringRedisTemplate.delete(key);
+    public void delete(String key) {
+        stringRedisTemplate.delete(key);
     }
 
 }

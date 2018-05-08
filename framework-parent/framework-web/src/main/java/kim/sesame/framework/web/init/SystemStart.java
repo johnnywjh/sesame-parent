@@ -7,6 +7,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServlet;
 
+import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.config.WebProperties;
 import lombok.extern.apachecommons.CommonsLog;
@@ -43,8 +44,7 @@ public class SystemStart extends HttpServlet implements ServletContextListener {
 
         // 1 项目当前路径
         if (StringUtil.isEmpty(web.getBasePath())) {
-//            String context_path = env.getProperty("server.context-path"); // spring boot 1.x 的写法
-            String context_path = env.getProperty("server.servlet.context-path");// spring boot 2.x 的写法
+            String context_path = env.getProperty(GData.SPRINGBOOT.contextPath);
 
             application.setAttribute("basePath", context_path);
         } else {

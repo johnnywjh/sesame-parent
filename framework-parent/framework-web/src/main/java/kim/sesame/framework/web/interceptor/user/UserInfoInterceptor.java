@@ -12,6 +12,7 @@ import kim.sesame.framework.web.entity.IUser;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +22,7 @@ import java.util.List;
  * 用户信息拦截和设置
  */
 @CommonsLog
-public class UserInfoInterceptor implements HandlerInterceptor {
+public class UserInfoInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * 一个请求的第一个拦截方法,给这个线程添加数据

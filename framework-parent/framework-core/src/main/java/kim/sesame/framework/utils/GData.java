@@ -9,6 +9,14 @@ package kim.sesame.framework.utils;
  */
 public class GData {
 
+    public static interface SPRINGBOOT {
+        /**
+         * spirng boot 1.x : server.context-path
+         * spirng boot 2.x : server.servlet.context-path
+         */
+        String contextPath= "server.context-path";
+    }
+
     /**
      * 系统常量
      */
