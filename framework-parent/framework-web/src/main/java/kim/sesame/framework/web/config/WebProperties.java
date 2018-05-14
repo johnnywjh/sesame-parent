@@ -20,7 +20,10 @@ import org.springframework.stereotype.Component;
 public class WebProperties implements InitializingBean {
 
     private String userHome = System.getProperty("user.home");
-    private int sesaionTime = 30;
+    /**
+     * session 失效时间, 默认0
+     */
+    private int sesaionTime = 0;
     private int userCacheTime = 60;// 单位 : 分钟
     private int defaultPageSize = 10;
 
