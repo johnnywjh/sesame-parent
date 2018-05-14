@@ -23,6 +23,7 @@
 2. 新增 websocket 模块,暂时提供了单机支持,集群需要自己去实现
 3. 修改对称加密,优化线程安全 EncryptionAndDecryption.java
 4. 新增Excel解析类 XLSXCovertCSVReader.java(framework-core)
+5. 更改时间类型参数传到后台如果值为空,返回 new Date()问题,现在返回 null
 
 #### 1.3 `2018-4-23 `
 1. 优化 SpringContextUtil 内上下文对象的注入方式,无需手动注入
