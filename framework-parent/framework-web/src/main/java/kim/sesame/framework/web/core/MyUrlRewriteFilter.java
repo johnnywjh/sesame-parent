@@ -1,5 +1,11 @@
 package kim.sesame.framework.web.core;
 
+import org.tuckey.web.filters.urlrewrite.*;
+import org.tuckey.web.filters.urlrewrite.utils.*;
+
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,26 +14,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.Properties;
-
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.tuckey.web.filters.urlrewrite.Conf;
-import org.tuckey.web.filters.urlrewrite.Status;
-import org.tuckey.web.filters.urlrewrite.UrlRewriteFilter;
-import org.tuckey.web.filters.urlrewrite.UrlRewriteWrappedResponse;
-import org.tuckey.web.filters.urlrewrite.UrlRewriter;
-import org.tuckey.web.filters.urlrewrite.utils.Log;
-import org.tuckey.web.filters.urlrewrite.utils.ModRewriteConfLoader;
-import org.tuckey.web.filters.urlrewrite.utils.NumberUtils;
-import org.tuckey.web.filters.urlrewrite.utils.ServerNameMatcher;
-import org.tuckey.web.filters.urlrewrite.utils.StringUtils;
 
 public class MyUrlRewriteFilter extends UrlRewriteFilter {
 

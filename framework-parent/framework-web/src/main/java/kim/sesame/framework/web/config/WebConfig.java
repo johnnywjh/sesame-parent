@@ -1,14 +1,13 @@
 package kim.sesame.framework.web.config;
 
-import javax.annotation.Resource;
-
+import kim.sesame.framework.web.core.MyUrlRewriteFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
-import kim.sesame.framework.web.core.MyUrlRewriteFilter;
+import javax.annotation.Resource;
 
 /**
  * web 默认配置

@@ -1,9 +1,9 @@
 package kim.sesame.framework.utils;
 
-import kim.sesame.framework.entity.GMap;
 import lombok.Data;
 
-import java.net.*;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 
 /**
  * 获取本机ip地址和相关信息
