@@ -102,6 +102,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             }
         }
         if (bean != null) {
+            log.debug(">>>>>> token : " + bean.toString());
             return bean;
         }
 
@@ -142,6 +143,14 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         public ReqUser(String sessionId, String account) {
             this.sessionId = sessionId;
             this.account = account;
+        }
+
+        @Override
+        public String toString() {
+            return "ReqUser{" +
+                    "sessionId='" + sessionId + '\'' +
+                    ", account='" + account + '\'' +
+                    '}';
         }
     }
 }
