@@ -1,17 +1,17 @@
 package kim.sesame.framework.web.init;
 
+import kim.sesame.framework.utils.GData;
+import kim.sesame.framework.utils.StringUtil;
+import kim.sesame.framework.web.config.WebProperties;
+import lombok.extern.apachecommons.CommonsLog;
+import org.springframework.core.env.Environment;
+
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServlet;
-
-import kim.sesame.framework.utils.GData;
-import kim.sesame.framework.utils.StringUtil;
-import kim.sesame.framework.web.config.WebProperties;
-import lombok.extern.apachecommons.CommonsLog;
-import org.springframework.core.env.Environment;
 
 /**
  * 系统启动时执行

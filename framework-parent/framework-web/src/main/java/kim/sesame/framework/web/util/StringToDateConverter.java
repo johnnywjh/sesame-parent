@@ -1,11 +1,11 @@
 package kim.sesame.framework.web.util;
 
+import kim.sesame.framework.utils.StringUtil;
+import org.springframework.core.convert.converter.Converter;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import kim.sesame.framework.utils.StringUtil;
-import org.springframework.core.convert.converter.Converter;
 
 /**
  * String 转换成 日期
@@ -41,6 +41,6 @@ public class StringToDateConverter implements Converter<String, Date> {
 				throw new IllegalArgumentException("invalid date format. Please use this pattern\"" + datePattern + "\"");
 			}
 		}
-        return new Date();
+        return null;
     }
 }

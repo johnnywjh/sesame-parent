@@ -4,7 +4,6 @@ import kim.sesame.framework.utils.UUIDUtil;
 import lombok.Data;
 
 import java.util.Date;
-
 /**
  * 基础实体
  *

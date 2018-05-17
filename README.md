@@ -4,7 +4,7 @@
 - 文档地址 **[Wiki](https://gitee.com/sesamekim/framework-boot/wikis/pages)**
 - 使用前需要看看的文档 : **[帮助文档](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E&parent=)**
 - 查看maven中最新版本 : [kim.sesame](http://search.maven.org/#search%7Cga%7C1%7Ckim.sesame)
-- QQ交流群 : 661013788   欢迎大家给我提建议
+- 欢迎大家给我提建议
 
 #### 其他项目地址
 - demo 项目地址 : [https://gitee.com/sesamekim/demo](https://gitee.com/sesamekim/demo)
@@ -14,7 +14,7 @@
 #### 更新日志
 
 #### 1.4 `孵化中`
-1. spring-boot 版本升级到 2.x
+1. spring-boot 版本升级到 2.x,代码在分支1.4中
 2. [升级修改事项](https://gitee.com/sesamekim/framework-boot/blob/master/doc/spring-boot-2.x.md)
 3. 2.0尝试了一下,发现对springcloud不支持,所以现在静静的等待官网更新.[参考资料](https://blog.csdn.net/wd2014610/article/details/79632219)
 
@@ -22,6 +22,9 @@
 1. 废弃 AbstractUserCache 这个空实现类,采用java8 的接口 default方法
 2. 新增 websocket 模块,暂时提供了单机支持,集群需要自己去实现
 3. 修改对称加密,优化线程安全 EncryptionAndDecryption.java
+4. 新增Excel解析类 XLSXCovertCSVReader.java(framework-core)
+5. 更改时间类型参数传到后台如果值为空,返回 new Date()问题,现在返回 null
+6. framework-core 增加运行环境判断工具类,VifRunEnv.isJar(Class clazz);
 
 #### 1.3 `2018-4-23 `
 1. 优化 SpringContextUtil 内上下文对象的注入方式,无需手动注入

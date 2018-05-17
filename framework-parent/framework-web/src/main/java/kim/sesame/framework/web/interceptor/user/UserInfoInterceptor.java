@@ -11,7 +11,6 @@ import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;

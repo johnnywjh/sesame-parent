@@ -3,7 +3,6 @@ package kim.sesame.framework.utils;
 import com.google.gson.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * gson 工具类
