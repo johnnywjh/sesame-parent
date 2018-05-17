@@ -54,9 +54,9 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         }
         String userNo = null;
         IUserCache userCache = (IUserCache) SpringContextUtil.getBean(IUserCache.USER_LOGIN_BEAN);
-        if(StringUtil.isNotEmpty(reqUser.getAccount())){
+        if (StringUtil.isNotEmpty(reqUser.getAccount())) {
             userNo = reqUser.getAccount();
-        }else{
+        } else {
             userNo = userCache.getUserNo(reqUser.getSessionId()); // 用户账号
         }
 
@@ -94,8 +94,8 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         if (StringUtil.isNotEmpty(token)) {
             Claims claims = JwtHelper.parseJWT(token);
             if (claims != null) {
-                account = claims.get(GData.JWT.USER_ACC).toString();
-                sessionId = claims.get(GData.JWT.SESSION_ID).toString();
+                account =getClaimsKey(claims,GData.JWT.USER_ACC);
+                sessionId =getClaimsKey(claims,GData.JWT.SESSION_ID);
                 if (account != null || sessionId != null) {
                     bean = new ReqUser(sessionId, account);
                 }
@@ -123,13 +123,21 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         return new ReqUser(sessionId, null);
     }
 
-    public String getToken(HttpServletRequest request){
+    private String getToken(HttpServletRequest request) {
         String token = request.getParameter(GData.JWT.TOKEN);
-        if(StringUtil.isNotEmpty(token)){
-            return  token;
+        if (StringUtil.isNotEmpty(token)) {
+            return token;
         }
 //        request.getHeader()
-        return  token;
+        return token;
+    }
+
+    private String getClaimsKey(Claims claims, String key) {
+        try {
+            return claims.get(key).toString();
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Data
