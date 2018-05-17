@@ -4,11 +4,13 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import kim.sesame.framework.web.context.SpringContextUtil;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.util.Date;
+import java.util.Map;
 
 public class JwtHelper {
 
@@ -23,27 +25,32 @@ public class JwtHelper {
         }
     }
 
-    public static String createJWT(String userCode, String roleCode,
-                                   String issuer, long TTLMillis, String base64Security) {
+    public static String createJWT(Map<String,Object> claims) {
+        JWTProperties jwt = SpringContextUtil.getBean(JWTProperties.class);
+        if(jwt==null){
+            return "JWTProperties is null";
+        }
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
-        long nowMillis = System.currentTimeMillis();
-        Date now = new Date(nowMillis);
-
         //生成签名密钥
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(base64Security);
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(jwt.getSecret());
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 
         //添加构成JWT的参数
-        JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT")
-                .claim("userCode", userCode)
-                .claim("roleCode", roleCode)
-                .setIssuer(issuer)
+        JwtBuilder builder = Jwts.builder()
+                .setHeaderParam("typ", "JWT")
+//                .claim("userCode", userCode)
+//                .claim("roleCode", roleCode)
+                .setClaims(claims)
+                .setIssuer(jwt.getIss())
 //                .setAudience(audience)
                 .signWith(signatureAlgorithm, signingKey);
         //添加Token过期时间
-        if (TTLMillis >= 0) {
-            long expMillis = nowMillis + TTLMillis;
+        if (jwt.getInvalidSecond() > 0) {
+            long nowMillis = System.currentTimeMillis();
+            Date now = new Date(nowMillis);
+
+            long expMillis = nowMillis + jwt.getInvalidSecond()* 1000;
             Date exp = new Date(expMillis);
             builder.setExpiration(exp).setNotBefore(now);
         }
