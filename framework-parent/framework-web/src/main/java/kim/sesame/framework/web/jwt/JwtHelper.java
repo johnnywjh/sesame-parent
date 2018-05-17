@@ -14,10 +14,11 @@ import java.util.Map;
 
 public class JwtHelper {
 
-    public static Claims parseJWT(String jsonWebToken, String base64Security) {
+    public static Claims parseJWT(String jsonWebToken) {
+        JWTProperties jwt = SpringContextUtil.getBean(JWTProperties.class);
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(jwt.getSecret()))
                     .parseClaimsJws(jsonWebToken).getBody();
             return claims;
         } catch (Exception ex) {
@@ -27,14 +28,13 @@ public class JwtHelper {
 
     public static String createJWT(Map<String,Object> claims) {
         JWTProperties jwt = SpringContextUtil.getBean(JWTProperties.class);
-        if(jwt==null){
-            return "JWTProperties is null";
-        }
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
         //生成签名密钥
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(jwt.getSecret());
         Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+        long nowMillis = System.currentTimeMillis();
+        claims.put("jwt_create_time",nowMillis);
 
         //添加构成JWT的参数
         JwtBuilder builder = Jwts.builder()
@@ -47,7 +47,6 @@ public class JwtHelper {
                 .signWith(signatureAlgorithm, signingKey);
         //添加Token过期时间
         if (jwt.getInvalidSecond() > 0) {
-            long nowMillis = System.currentTimeMillis();
             Date now = new Date(nowMillis);
 
             long expMillis = nowMillis + jwt.getInvalidSecond()* 1000;
