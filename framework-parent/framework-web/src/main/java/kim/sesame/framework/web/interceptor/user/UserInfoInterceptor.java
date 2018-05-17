@@ -11,7 +11,6 @@ import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
 import kim.sesame.framework.web.jwt.JwtHelper;
-import lombok.Data;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -40,8 +39,8 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         String requestUrl = request.getRequestURL().toString();
         log.debug(">>>>>>1 requestUrl : " + requestUrl);
 
-        ReqUser reqUser = getReqUser(request);
-        UserContext.getUserContext().setUserSessionId(reqUser.getSessionId());
+        String sessionId = getSessionId(request);
+        UserContext.getUserContext().setUserSessionId(sessionId);
 
         // 1.方法名称上有忽略注解的==>直接放行
         if (handler instanceof HandlerMethod) {
@@ -54,11 +53,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         }
         String userNo = null;
         IUserCache userCache = (IUserCache) SpringContextUtil.getBean(IUserCache.USER_LOGIN_BEAN);
-        if (StringUtil.isNotEmpty(reqUser.getAccount())) {
-            userNo = reqUser.getAccount();
-        } else {
-            userNo = userCache.getUserNo(reqUser.getSessionId()); // 用户账号
-        }
+        userNo = userCache.getUserNo(sessionId); // 用户账号
 
         IUser user = null;
         List<IRole> list_roles = null;
@@ -86,24 +81,20 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
     /**
      * 根据用户进入的方式,获取sessionId, 或是 account
      */
-    public ReqUser getReqUser(HttpServletRequest request) {
-        ReqUser bean = null;
+    private String getSessionId(HttpServletRequest request) {
+
         String sessionId = null;
-        String account = null;
-        String token = request.getParameter(GData.JWT.TOKEN);
+
+        String token = getToken(request);
         if (StringUtil.isNotEmpty(token)) {
             Claims claims = JwtHelper.parseJWT(token);
             if (claims != null) {
-                account =getClaimsKey(claims,GData.JWT.USER_ACC);
-                sessionId =getClaimsKey(claims,GData.JWT.SESSION_ID);
-                if (account != null || sessionId != null) {
-                    bean = new ReqUser(sessionId, account);
+                sessionId = getClaimsKey(claims, GData.JWT.SESSION_ID);
+                if (StringUtil.isNotEmpty(sessionId)) {
+                    log.debug(">>>>>>2 token_session : " + sessionId);
+                    return sessionId;
                 }
             }
-        }
-        if (bean != null) {
-            log.debug(">>>>>> token : " + bean.toString());
-            return bean;
         }
 
         String casSessionId = CasUtil.getSessionId(request);
@@ -120,15 +111,18 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
                 log.debug(">>>>>>2 requestSessionId : " + sessionId);
             }
         }
-        return new ReqUser(sessionId, null);
+        return sessionId;
     }
 
+    /**
+     * 从请求中获取 token,
+     * 当请求都里没有的时候 从请求参数里去获取
+     */
     private String getToken(HttpServletRequest request) {
-        String token = request.getParameter(GData.JWT.TOKEN);
-        if (StringUtil.isNotEmpty(token)) {
-            return token;
+        String token = request.getHeader(GData.JWT.TOKEN);
+        if (StringUtil.isEmpty(token)) {
+            token = request.getParameter(GData.JWT.TOKEN);
         }
-//        request.getHeader()
         return token;
     }
 
@@ -137,28 +131,6 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             return claims.get(key).toString();
         } catch (Exception e) {
             return null;
-        }
-    }
-
-    @Data
-    class ReqUser {
-        private String sessionId;
-        private String account;
-
-        public ReqUser() {
-        }
-
-        public ReqUser(String sessionId, String account) {
-            this.sessionId = sessionId;
-            this.account = account;
-        }
-
-        @Override
-        public String toString() {
-            return "ReqUser{" +
-                    "sessionId='" + sessionId + '\'' +
-                    ", account='" + account + '\'' +
-                    '}';
         }
     }
 }
