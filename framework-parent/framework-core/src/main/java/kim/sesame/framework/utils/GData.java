@@ -14,7 +14,13 @@ public class GData {
          * spirng boot 1.x : server.context-path
          * spirng boot 2.x : server.servlet.context-path
          */
-        String contextPath= "server.context-path";
+        String contextPath = "server.context-path";
+    }
+
+    public static interface JWT {
+        String SESSION_ID = "jwt_session_id";
+        String USER_ACC = "jwt_user_acc";
+        String TOKEN = "accessToken";
     }
 
     /**
