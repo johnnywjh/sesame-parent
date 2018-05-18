@@ -1,6 +1,5 @@
 package kim.sesame.framework.web.jwt;
 
-import kim.sesame.framework.utils.MD5Util;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

@@ -1,10 +1,8 @@
 package kim.sesame.framework.web.interceptor.auth;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import kim.sesame.framework.utils.StringUtil;
-import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
-import kim.sesame.framework.web.controller.AbstractController;
+import kim.sesame.framework.web.annotation.IgnoreAuthCheck;
 import kim.sesame.framework.web.response.Response;
 import kim.sesame.framework.web.response.ResponseFactory;
 import kim.sesame.framework.web.util.IPUitl;
@@ -32,7 +30,7 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
         try {
             HandlerMethod method = (HandlerMethod) handler;
             // 1.方法名称上有忽略注解的==>直接放行
-            if (method.getMethod().isAnnotationPresent(IgnoreLoginCheck.class)) {
+            if (method.getMethod().isAnnotationPresent(IgnoreAuthCheck.class)) {
                 return true;
             }
 
@@ -44,10 +42,10 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
                     return true;
                 } else {
                     // 验证动态口令
-                    String public_token = req.getHeader("PUBLIC_TOKEN");
-                    String auth_token = req.getHeader("AUTH_TOKEN");
-                    if (StringUtil.isNotEmpty(public_token) && StringUtil.isNotEmpty(auth_token)) {
-                        if (AuthTokenUtils.isValid(public_token, auth_token)) {
+                    String publicToken = req.getHeader(AuthTokenUtils.PUBLIC_TOKEN_KEY);//公钥
+                    String dynamicToken = req.getHeader(AuthTokenUtils.DYNAMIC_TOKEN_KEY);//动态tokean
+                    if (StringUtil.isNotEmpty(publicToken) && StringUtil.isNotEmpty(dynamicToken)) {
+                        if (AuthTokenUtils.isValid(publicToken, dynamicToken)) {
                             return true;
                         }
                     }
@@ -57,7 +55,7 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
             e.printStackTrace();
         }
 
-        Response response = ResponseFactory.illegalRequest("权限不足!", requestIp);
+        Response response = ResponseFactory.illegalRequest("签名验证错误,非法请求", requestIp);
         res.setCharacterEncoding("UTF-8");
         res.setContentType("application/json; charset=utf-8");
         PrintWriter out = res.getWriter();

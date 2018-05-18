@@ -1,24 +1,31 @@
 package kim.sesame.framework.web.interceptor.auth;
 
+import kim.sesame.framework.utils.StringUtil;
+import kim.sesame.framework.web.context.SpringContextUtil;
+import kim.sesame.framework.web.util.FileUtil;
+import lombok.extern.apachecommons.CommonsLog;
+
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import kim.sesame.framework.web.util.FileUtil;
+import java.text.MessageFormat;
 
 /**
- * Description: 根据对应的公钥和密钥规则创建相应的动态口令，对比相应的动态口令
+ * 根据对应的公钥和密钥规则创建相应的动态口令，对比相应的动态口令
  *
  * @author johnny
  * date :  2016年9月27日 上午10:43:34  
  */
+@CommonsLog
 public class AuthTokenUtils {
+    /* 公钥   */
+    public static final String PUBLIC_TOKEN_KEY = "PUBLIC_TOKEN";
+    /*  动态tokean  */
+    public static final String DYNAMIC_TOKEN_KEY = "DYNAMIC_TOKEN";
+
     // JavaScript容器引擎管理器
     private static ScriptEngine scriptEngine = null;
     private static Invocable inv = null;
-    private static JSONObject authSource = null;
 
     static {
         try {
@@ -26,7 +33,6 @@ public class AuthTokenUtils {
             scriptEngine = sem.getEngineByName("js");
             scriptEngine.eval(FileUtil.inputStream2String(AuthTokenUtils.class.getResourceAsStream("AuthToken.js")));
             inv = (Invocable) AuthTokenUtils.scriptEngine;
-            authSource = JSON.parseObject(FileUtil.inputStream2String(AuthTokenUtils.class.getResourceAsStream("AuthTokenSource.json")));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,42 +54,32 @@ public class AuthTokenUtils {
     }
 
     /**
-     * 获取5分钟误差时效的动态口令值 token : 口令
+     * 对比动态口令是否正确，
      *
-     * @param token         token
-     * @param private_token private_token
-     * @return String    返回类型 
-     * @throws Exception js异常 
+     * @param publicToken 公钥
+     * @param authToken   根据公钥,私钥算出来的值
+     * @return 如果动态口令正确则返回true，不正确则返回false
+     * @throws Exception
      */
-    public static String getAuthToken_5minute(String token, String private_token) throws Exception {
-        String res = (String) inv.invokeFunction("getAuthToken_5minute", token, private_token);
-        return res;
-    }
+    public static boolean isValid(String publicToken, String authToken) throws Exception {
+        if (StringUtil.isEmpty(publicToken)) {
+            return false;
+        }
+        // 1.根据公钥获取私钥对象
+        AuthProperties auth = SpringContextUtil.getBean(AuthProperties.class);
+        AuthProperties.AuthToken tokean = auth.getAuthToken().get(publicToken);
+        if (tokean == null) {
+            return false;
+        }
 
-    /**
-     * 获取30分钟误差时效的动态口令值 token : 口令
-     *
-     * @param token         token
-     * @param private_token private_token
-     * @return String    返回类型 
-     * @throws Exception js异常 
-     */
-    public static String getAuthToken_30minute(String token, String private_token) throws Exception {
-        String res = (String) inv.invokeFunction("getAuthToken_30minute", token, private_token);
-        return res;
-    }
-
-    //对比动态口令是否正确，如果动态口令正确则返回true，不正确则返回false
-    public static boolean isValid(String public_token, String authToken) throws Exception {
-        // 1.根据公钥获取私钥
-        JSONObject tokenObj = authSource.getJSONObject(public_token);
-        String private_token = null;
-        if (tokenObj != null && (private_token = tokenObj.getString("private_token")) != null) {
+        // 获取私钥
+        String privateToken = tokean.getPrivateToken();
+        if (privateToken != null) {
             // 2.通过公钥私钥和时间有效数获取动态authToken
-            String localAuthToken = AuthTokenUtils.getAuthToken_s(public_token, private_token, tokenObj.getIntValue("token_c"));
+            String localAuthToken = AuthTokenUtils.getAuthToken_s(publicToken, privateToken, tokean.getTimeOut());
             // 3.对比动态客户端提交的authToken和服务器authToken是否一致，如果一致返回true，不一致返回false
             if (localAuthToken.equals(authToken)) {
-                System.out.println("token:" + public_token + ",认证成功," + tokenObj.getString("desc"));
+                log.debug(MessageFormat.format("token : {0} ,认证成功,{1}", publicToken, tokean.getRemark()));
                 return true;
             }
         }

@@ -33,7 +33,7 @@ auth_token.bitArray = {
         var d = Math.floor(-b - c & 31);
         return ((b + c - 1 ^ b) & -32 ? a[b / 32 | 0] << 32 - d ^ a[b / 32 + 1 | 0] >>> d : a[b / 32 | 0] >>> d) & (1 << c) - 1
     }, concat: function (a, b) {
-        if (0 === a.length || 0 === b.length)return a.concat(b);
+        if (0 === a.length || 0 === b.length) return a.concat(b);
         var c = a[a.length - 1], d = auth_token.bitArray.getPartial(c);
         return 32 === d ? a.concat(b) : auth_token.bitArray.g(b, d, c | 0, a.slice(0, a.length - 1))
     }, bitLength: function (a) {
@@ -41,7 +41,7 @@ auth_token.bitArray = {
         return 0 ===
         b ? 0 : 32 * (b - 1) + auth_token.bitArray.getPartial(a[b - 1])
     }, clamp: function (a, b) {
-        if (32 * a.length < b)return a;
+        if (32 * a.length < b) return a;
         a = a.slice(0, Math.ceil(b / 32));
         var c = a.length;
         b &= 31;
@@ -52,17 +52,17 @@ auth_token.bitArray = {
     }, getPartial: function (a) {
         return Math.round(a / 0x10000000000) || 32
     }, equal: function (a, b) {
-        if (auth_token.bitArray.bitLength(a) !== auth_token.bitArray.bitLength(b))return !1;
+        if (auth_token.bitArray.bitLength(a) !== auth_token.bitArray.bitLength(b)) return !1;
         var c = 0, d;
-        for (d = 0; d < a.length; d++)c |= a[d] ^ b[d];
+        for (d = 0; d < a.length; d++) c |= a[d] ^ b[d];
         return 0 ===
             c
     }, g: function (a, b, c, d) {
         var e;
         e = 0;
-        for (void 0 === d && (d = []); 32 <= b; b -= 32)d.push(c), c = 0;
-        if (0 === b)return d.concat(a);
-        for (e = 0; e < a.length; e++)d.push(c | a[e] >>> b), c = a[e] << 32 - b;
+        for (void 0 === d && (d = []); 32 <= b; b -= 32) d.push(c), c = 0;
+        if (0 === b) return d.concat(a);
+        for (e = 0; e < a.length; e++) d.push(c | a[e] >>> b), c = a[e] << 32 - b;
         e = a.length ? a[a.length - 1] : 0;
         a = auth_token.bitArray.getPartial(e);
         d.push(auth_token.bitArray.partial(b + a & 31, 32 < b + a ? c : d.pop(), 1));
@@ -74,11 +74,11 @@ auth_token.bitArray = {
 auth_token.codec.base32 = {
     e: "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", fromBits: function (a, b) {
         var c = "", d, e = 0, g = auth_token.codec.base32.e, f = 0, k = auth_token.bitArray.bitLength(a);
-        for (d = 0; 5 * c.length < k;)c += g.charAt((f ^ a[d] >>> e) >>> 27), 5 > e ? (f = a[d] << 5 - e, e += 27, d++) : (f <<= 5, e -= 5);
-        for (; c.length & 5 && !b;)c += "=";
+        for (d = 0; 5 * c.length < k;) c += g.charAt((f ^ a[d] >>> e) >>> 27), 5 > e ? (f = a[d] << 5 - e, e += 27, d++) : (f <<= 5, e -= 5);
+        for (; c.length & 5 && !b;) c += "=";
         return c
     }, toBits: function (a_) {
-    	a_ = (a_+"").replace(/\s|=/g, "").toUpperCase();
+        a_ = (a_ + "").replace(/\s|=/g, "").toUpperCase();
         var b = [], c, d = 0, e = auth_token.codec.base32.e, g = 0, f;
         for (c = 0; c < a_.length; c++) {
             f = e.indexOf(a_.charAt(c));
@@ -107,13 +107,13 @@ auth_token.hash.sha1.prototype = {
         var b, c = this.b = auth_token.bitArray.concat(this.b, a);
         b = this.a;
         a = this.a = b + auth_token.bitArray.bitLength(a);
-        for (b = this.blockSize + b & -this.blockSize; b <= a; b += this.blockSize)auth_token.n(this, c.splice(0, 16));
+        for (b = this.blockSize + b & -this.blockSize; b <= a; b += this.blockSize) auth_token.n(this, c.splice(0, 16));
         return this;
     }, finalize: function () {
         var a, b = this.b, c = this.d, b = auth_token.bitArray.concat(b, [auth_token.bitArray.partial(1, 1)]);
-        for (a = b.length + 2; a & 15; a++)b.push(0);
+        for (a = b.length + 2; a & 15; a++) b.push(0);
         b.push(Math.floor(this.a / 0x100000000));
-        for (b.push(this.a | 0); b.length;)auth_token.n(this, b.splice(0, 16));
+        for (b.push(this.a | 0); b.length;) auth_token.n(this, b.splice(0, 16));
         this.reset();
         return c;
     }, h: [1732584193, 4023233417, 2562383102, 271733878, 3285377520], i: [1518500249, 1859775393, 2400959708, 3395469782]
@@ -125,7 +125,7 @@ auth_token.n = function (a, b) {
     f = h[2];
     k = h[3];
     m = h[4];
-    for (c = 0; 79 >= c; c++)16 <= c && (l[c] = (l[c - 3] ^ l[c - 8] ^ l[c - 14] ^ l[c - 16]) << 1 | (l[c - 3] ^ l[c - 8] ^ l[c - 14] ^ l[c - 16]) >>> 31), d = 19 >= c ? g & f | ~g & k : 39 >= c ? g ^ f ^ k : 59 >= c ? g & f | g & k | f & k : 79 >= c ? g ^ f ^ k : void 0, d = (e << 5 | e >>> 27) + d + m + l[c] + a.i[Math.floor(c / 20)] | 0, m = k, k = f, f = g << 30 | g >>> 2, g = e, e = d;
+    for (c = 0; 79 >= c; c++) 16 <= c && (l[c] = (l[c - 3] ^ l[c - 8] ^ l[c - 14] ^ l[c - 16]) << 1 | (l[c - 3] ^ l[c - 8] ^ l[c - 14] ^ l[c - 16]) >>> 31), d = 19 >= c ? g & f | ~g & k : 39 >= c ? g ^ f ^ k : 59 >= c ? g & f | g & k | f & k : 79 >= c ? g ^ f ^ k : void 0, d = (e << 5 | e >>> 27) + d + m + l[c] + a.i[Math.floor(c / 20)] | 0, m = k, k = f, f = g << 30 | g >>> 2, g = e, e = d;
     h[0] = h[0] + e | 0;
     h[1] = h[1] + g | 0;
     h[2] = h[2] + f | 0;
@@ -137,7 +137,7 @@ auth_token.misc.hmac = function (a, b) {
     var c = [[], []], d, e = b.prototype.blockSize / 32;
     this.c = [new b, new b];
     a.length > e && (a = b.hash(a));
-    for (d = 0; d < e; d++)c[0][d] = a[d] ^ 909522486, c[1][d] = a[d] ^ 1549556828;
+    for (d = 0; d < e; d++) c[0][d] = a[d] ^ 909522486, c[1][d] = a[d] ^ 1549556828;
     this.c[0].update(c[0]);
     this.c[1].update(c[1]);
 };
@@ -168,13 +168,5 @@ var getAuthToken = auth_token.getAuthToken = function (token, C) {
 };
 //获取动态口令值 token : 口令，c:误差时效 单位 分钟
 var getAuthToken_s = auth_token.getAuthToken_s = function (token, private_token, c) {
-    return getAuthToken(token, (new Date().getTime() / 1000 / 60 / c).toFixed(0).toString() + private_token);
-};
-//获取5分钟误差时效的动态口令值 token : 口令
-var getAuthToken_5minute = auth_token.getAuthToken_5minute = function (token, private_token) {
-    return getAuthToken_s(token, private_token, 5);
-};
-//获取5分钟误差时效的动态口令值 token : 口令
-var getAuthToken_30minute = auth_token.getAuthToken_30minute = function (token, private_token) {
-    return getAuthToken_s(token, private_token, 30);
+    return getAuthToken(token + private_token, (new Date().getTime() / 1000 / 60 / c).toFixed(0).toString());
 };
