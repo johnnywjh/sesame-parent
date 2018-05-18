@@ -29,7 +29,7 @@ public class WebUserInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        if(handler instanceof  HandlerMethod){
+        if (handler instanceof HandlerMethod) {
             HandlerMethod method = (HandlerMethod) handler;
             // 1.方法名称上有忽略注解的==>直接放行
             if (method.getMethod().isAnnotationPresent(IgnoreLoginCheck.class)) {
@@ -49,7 +49,7 @@ public class WebUserInterceptor extends HandlerInterceptorAdapter {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
             PrintWriter out = response.getWriter();
-            out.print(ResponseFactory.illegalRequest("验证失败，非法请求 : " + reqRootUrl));
+            out.print(ResponseFactory.illegalRequest("用户未登录, 不能访问!", reqRootUrl));
 
             out.flush();
             out.close();

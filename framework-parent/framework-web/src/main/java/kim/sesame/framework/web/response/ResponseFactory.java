@@ -27,8 +27,11 @@ public class ResponseFactory {
      * @return Response
      */
     public static Response illegalRequest(String message) {
+        return illegalRequest(message,null);
+    }
+    public static Response illegalRequest(String message,Object result) {
         return Response.create().setExceptionType(AbstractController.ExceptionType.VALIDATOR)
-                .setErrorCode(AbstractController.ErrorCode.VALIDATOR).setMessage(message);
+                .setErrorCode(AbstractController.ErrorCode.VALIDATOR).setMessage(message).setResult(result);
     }
 
     /**
