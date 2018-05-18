@@ -1,6 +1,8 @@
 package kim.sesame.framework.cache.redis.server;
 
-import kim.sesame.framework.utils.GsonUtil;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import kim.sesame.framework.utils.StringUtil;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.InitializingBean;
@@ -30,6 +32,11 @@ public class AutoRefreshCache<T> implements InitializingBean {
      * 返回的list 里面对象的类型,主要是 gson 反序列化时会用到
      */
     protected Class clazz = Object.class;
+
+    /**
+     * 序列化时是否写空值进去
+     */
+    protected boolean isWriteNullValue = true;
     /**
      * 标识
      */
@@ -74,7 +81,12 @@ public class AutoRefreshCache<T> implements InitializingBean {
         log.debug("-----------  自动刷新缓存数据  start  ----------------------------------------");
         log.debug(MessageFormat.format("存储时间 : {0} {1}, key : {2}", refreshTime, TimeUnit.MINUTES, key));
         List<T> list = dataLoading();
-        String json = GsonUtil.getGson().toJson(list);
+        String json = "";
+        if (isWriteNullValue) {
+            json = JSON.toJSONString(list, SerializerFeature.WriteMapNullValue);
+        } else {
+            json = JSON.toJSONString(list);
+        }
         state = false;
         this.stringRedisTemplate.opsForValue().set(key, json, refreshTime, TimeUnit.MINUTES);
         state = true;
@@ -105,7 +117,7 @@ public class AutoRefreshCache<T> implements InitializingBean {
             } else {
                 String cacheResult = stringRedisTemplate.opsForValue().get(getKey());
                 if (StringUtil.isNotEmpty(cacheResult)) {
-                    return GsonUtil.fromJsonList(cacheResult, clazz);
+                    return JSONArray.parseArray(cacheResult, clazz);
                 } else {
                     return null;
                 }
