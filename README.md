@@ -25,6 +25,7 @@
 4. 新增Excel解析类 XLSXCovertCSVReader.java(framework-core)
 5. 更改时间类型参数传到后台如果值为空,返回 new Date()问题,现在返回 null
 6. framework-core 增加运行环境判断工具类,VifRunEnv.isJar(Class clazz);
+7. framework-web 增加签名校验,动态tokean校验,时间控制,使用文档还没有写.懒一会
 
 #### 1.3 `2018-4-23 `
 1. 优化 SpringContextUtil 内上下文对象的注入方式,无需手动注入
