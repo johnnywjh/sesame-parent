@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeUnit;
 
 @CommonsLog
-@Service(value = IObjectCacheTemplate.STRING_CACHE_BEAN)
+@Service//(value = IObjectCacheTemplate.STRING_CACHE_BEAN)
 public class ObjectCacheTemplateImpl implements IObjectCacheTemplate {
 
     @Autowired

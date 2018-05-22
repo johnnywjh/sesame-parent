@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 @CommonsLog
-@Service(value = IMapCacheTemplate.STRING_CACHE_BEAN)
+@Service//(value = IMapCacheTemplate.STRING_CACHE_BEAN)
 public class MapCacheTemplateImpl implements IMapCacheTemplate {
 
     @Autowired

@@ -19,7 +19,7 @@ public interface IUserCache {
     /**
      * 子类在spring 容器中的注册名字
      */
-    String USER_LOGIN_BEAN = "user_cache_bean";
+   // String USER_LOGIN_BEAN = "user_cache_bean";
     /**
      * 登录后,用户账号在缓存中的key
      */
@@ -50,7 +50,7 @@ public interface IUserCache {
      * @param sessionId sessionId
      */
     default void addUsersToCache(String user, String sessionId) {
-        IStringCacheTemplate stringCache = (IStringCacheTemplate) SpringContextUtil.getBean(IStringCacheTemplate.STRING_CACHE_BEAN);
+        IStringCacheTemplate stringCache = SpringContextUtil.getBean(IStringCacheTemplate.class);
         WebProperties web = SpringContextUtil.getBean(WebProperties.class);
         if (stringCache == null) {
             throw new NullPointerException("请实现 IStringCacheTemplate 接口");
@@ -72,7 +72,7 @@ public interface IUserCache {
      * @param sessionId sessionid
      */
     default void invalidUserCache(String sessionId) {
-        IStringCacheTemplate stringCache = (IStringCacheTemplate) SpringContextUtil.getBean(IStringCacheTemplate.STRING_CACHE_BEAN);
+        IStringCacheTemplate stringCache = SpringContextUtil.getBean(IStringCacheTemplate.class);
         if (stringCache == null) {
             throw new NullPointerException("请实现 IStringCacheTemplate 接口");
         }
@@ -87,7 +87,7 @@ public interface IUserCache {
      * @return
      */
     default String getUserNo(String sessionId) {
-        IStringCacheTemplate stringCache = (IStringCacheTemplate) SpringContextUtil.getBean(IStringCacheTemplate.STRING_CACHE_BEAN);
+        IStringCacheTemplate stringCache = SpringContextUtil.getBean(IStringCacheTemplate.class);
         WebProperties web = SpringContextUtil.getBean(WebProperties.class);
         if (stringCache == null) {
             throw new NullPointerException("请实现 IStringCacheTemplate 接口");

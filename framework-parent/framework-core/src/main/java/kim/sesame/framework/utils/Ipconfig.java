@@ -90,7 +90,9 @@ public class Ipconfig {
         return sb.toString().toUpperCase();
     }
 
-
+public static void main(String[] args) {
+    System.out.println(getInfo());
+}
     /*
     Enumeration allNetInterfaces = NetworkInterface.getNetworkInterfaces();
 InetAddress ip = null;

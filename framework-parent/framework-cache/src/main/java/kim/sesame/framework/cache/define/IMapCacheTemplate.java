@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface IMapCacheTemplate {
 
-    String STRING_CACHE_BEAN = "i_map_cache_template";
+//    String STRING_CACHE_BEAN = "i_map_cache_template";
 
     Long size(String mapKey);
 

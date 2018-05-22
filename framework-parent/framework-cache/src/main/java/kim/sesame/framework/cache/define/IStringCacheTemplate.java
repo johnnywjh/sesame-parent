@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 public interface IStringCacheTemplate {
 
-    String STRING_CACHE_BEAN = "i_string_cache_template";
+//    String STRING_CACHE_BEAN = "i_string_cache_template";
 
     String get(String key);
 

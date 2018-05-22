@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.TimeUnit;
 
 @CommonsLog
-@Service(value = IStringCacheTemplate.STRING_CACHE_BEAN)
+@Service //(value = IStringCacheTemplate.STRING_CACHE_BEAN)
 public class StringCacheTemplateImpl implements IStringCacheTemplate {
 
     @Autowired

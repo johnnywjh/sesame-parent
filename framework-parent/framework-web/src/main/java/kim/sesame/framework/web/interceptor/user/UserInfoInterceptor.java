@@ -52,7 +52,8 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             }
         }
         String userNo = null;
-        IUserCache userCache = (IUserCache) SpringContextUtil.getBean(IUserCache.USER_LOGIN_BEAN);
+//        IUserCache userCache = (IUserCache) SpringContextUtil.getBean(IUserCache.USER_LOGIN_BEAN);
+        IUserCache userCache = SpringContextUtil.getBean(IUserCache.class);
         userNo = userCache.getUserNo(sessionId); // 用户账号
 
         IUser user = null;
