@@ -4,6 +4,7 @@ import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.utils.Ipconfig;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.config.WebProperties;
+import kim.sesame.framework.web.controller.ISwagger;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -80,7 +81,11 @@ public class SpringContextUtil implements ApplicationContextAware {
      * @return object
      */
     public static Object getBean(String name) {
-        return applicationContext.getBean(name);
+        try {
+            return applicationContext.getBean(name);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**
@@ -90,7 +95,12 @@ public class SpringContextUtil implements ApplicationContextAware {
      * @return object
      */
     public static <T> T getBean(Class<T> requiredType) {
-        return applicationContext.getBean(requiredType);
+        try {
+            return applicationContext.getBean(requiredType);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     /**
@@ -126,15 +136,23 @@ public class SpringContextUtil implements ApplicationContextAware {
         Environment environment = getApplicationContext().getEnvironment();
         String port = environment.getProperty("server.port");
         String basePath = environment.getProperty(GData.SPRINGBOOT.contextPath);
-        String project_url = "http://127.0.0.1:" + port + basePath;
-        println(project_url);
-        project_url = "http://" + Ipconfig.getInfo().getLocalip() + ":" + port + basePath;
-        println(project_url);
+        String local_project_url = "http://127.0.0.1:" + port + basePath;
+        println(local_project_url);
+        String ip_project_url = "http://" + Ipconfig.getInfo().getLocalip() + ":" + port + basePath;
+        println(ip_project_url);
         String profile = environment.getProperty("spring.profiles.active");
         if (StringUtil.isNotEmpty(profile)) {
             println("当前激活的环境文件:" + profile);
+        } else {
+            println("当前激活的环境文件: 无 ,如有需要请配置 spring.profiles.active=@profileActive@");
         }
         println("当前项目资源路径:SpringContextUtil.getCurrentPath() : " + getCurrentPath());
+        ISwagger iSwagger = SpringContextUtil.getBean(ISwagger.class);
+        if (iSwagger != null) {
+            String url = "/swagger-ui.html";
+            println(local_project_url + url);
+            println(ip_project_url + url);
+        }
         println("***************");
     }
 
