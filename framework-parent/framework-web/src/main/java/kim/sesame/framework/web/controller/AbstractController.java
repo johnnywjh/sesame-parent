@@ -55,6 +55,10 @@ public abstract class AbstractController {
         return Response.create().setSuccess(true).setResult(list);
     }
 
+    public Response returnSuccess(List list, String msg) {
+        return Response.create().setSuccess(true).setResult(list).setMessage(msg);
+    }
+
     public Response returnSuccess(List list, GPage gPage) {
         return Response.create().setSuccess(true).setResult(list).setPage(gPage);
     }
