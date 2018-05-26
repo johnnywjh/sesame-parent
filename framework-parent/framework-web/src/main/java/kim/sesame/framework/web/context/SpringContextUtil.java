@@ -135,6 +135,9 @@ public class SpringContextUtil implements ApplicationContextAware {
     private static void printBase() {
         Environment environment = getApplicationContext().getEnvironment();
         String port = environment.getProperty("server.port");
+        if(StringUtil.isEmpty(port)){
+            port = "8080";
+        }
         String basePath = environment.getProperty(GData.SPRINGBOOT.contextPath);
         String local_project_url = "http://127.0.0.1:" + port + basePath;
         println(local_project_url);
