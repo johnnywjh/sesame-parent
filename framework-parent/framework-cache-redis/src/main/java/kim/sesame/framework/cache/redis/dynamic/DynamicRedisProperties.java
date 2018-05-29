@@ -49,6 +49,9 @@ public class DynamicRedisProperties implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
+        if(nodes==null){
+            return;
+        }
         Set<String> keys = nodes.keySet();
         if (keys.size() == 0) {
             return;
