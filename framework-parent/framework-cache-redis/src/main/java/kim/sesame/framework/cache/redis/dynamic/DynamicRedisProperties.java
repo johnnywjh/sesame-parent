@@ -1,8 +1,6 @@
-package kim.sesame.framework.cache.redis.config;
+package kim.sesame.framework.cache.redis.dynamic;
 
 
-import kim.sesame.framework.cache.redis.server.DynamicStringRedisTemplate;
-import kim.sesame.framework.web.context.SpringContextUtil;
 import lombok.Data;
 import org.apache.commons.pool2.impl.BaseObjectPoolConfig;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
@@ -10,26 +8,25 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.Protocol;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
- * https://www.cnblogs.com/yjmyzz/p/how-to-inject-multi-redis-instance-in-spring-boot.html
+ * 多redis 配置
  */
 @Data
 @Component
 @ConfigurationProperties(prefix = "sesame.framework.redis")
 public class DynamicRedisProperties implements InitializingBean {
 
-    private String groupName = "sesame-redis";
+//    private String groupName = "sesame-redis";
 
     private Map<String, RedisNode> nodes;
 
@@ -58,15 +55,12 @@ public class DynamicRedisProperties implements InitializingBean {
         }
         for (String key : keys) {
             RedisNode node = nodes.get(key);
-            StringRedisTemplate redisTemplate = redisTemplate(buildConnectionFactory(node));
-            Map<String,Object> map = new HashMap<>();
-            map.put("stringRedisTemplate",redisTemplate);
+            JedisConnectionFactory jcf = buildConnectionFactory(node);
+            StringRedisTemplate stringRedisTemplate = getStringRedisTemplate(jcf);
+            RedisTemplate redisTemplate = getRedisTemplate(jcf);
 
-            redisTemplate.opsForValue().set("aaaaaaaa","123456",2,TimeUnit.MINUTES);
-           // SpringContextUtil.registerBean(key,map,DynamicStringRedisTemplate.class);
+            DynamicRedisService.getDrt().put(key, new DynamicRedisTemplate(redisTemplate, stringRedisTemplate));
         }
-
-
     }
 
     public JedisPoolConfig jedisPoolConfig(RedisNode node) {
@@ -97,7 +91,14 @@ public class DynamicRedisProperties implements InitializingBean {
         return new StringRedisSerializer();
     }
 
-    private StringRedisTemplate redisTemplate(JedisConnectionFactory jedisConnectionFactory) {
+    private RedisTemplate getRedisTemplate(JedisConnectionFactory jedisConnectionFactory) {
+        RedisTemplate template = new RedisTemplate();
+        template.setConnectionFactory(jedisConnectionFactory);
+        template.afterPropertiesSet();
+        return template;
+    }
+
+    private StringRedisTemplate getStringRedisTemplate(JedisConnectionFactory jedisConnectionFactory) {
         StringRedisTemplate template = new StringRedisTemplate();
         template.setConnectionFactory(jedisConnectionFactory);
         template.setValueSerializer(stringRedisSerializer());
