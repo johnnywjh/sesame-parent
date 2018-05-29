@@ -3,7 +3,6 @@
 - 然后自己封装的一些spring-boot cloud 的东西,用起来方便,特此记录
 - 文档地址 **[Wiki](https://gitee.com/sesamekim/framework-boot/wikis/pages)**
 - 使用前需要看看的文档 : **[帮助文档](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E&parent=)**
-- 查看maven中最新版本 : [kim.sesame](http://search.maven.org/#search%7Cga%7C1%7Ckim.sesame)
 - 欢迎大家给我提建议
 
 #### 其他项目地址
@@ -26,16 +25,15 @@
 5. 更改时间类型参数传到后台如果值为空,返回 new Date()问题,现在返回 null
 6. framework-core 增加运行环境判断工具类,VifRunEnv.isJar(Class clazz);
 7. framework-web 增加签名校验,动态tokean校验,时间控制,使用文档还没有写.懒一会
-8. framework-cache-redis 增加多redis实例支持, [详细文档](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=2.2-redis%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%85%8D%E7%BD%AE&parent=%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8)
+8. framework-cache-redis 增加多redis实例支持, [#详见文档](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=2.2-redis%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%85%8D%E7%BD%AE&parent=%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8)
 
 #### 1.3 `2018-4-23 `
 1. 优化 SpringContextUtil 内上下文对象的注入方式,无需手动注入
 2. 删除 framework-distributed-lock 模块
-3. 整体重写 cache 和 cache-redis 模块,不兼容之前的版本 : [文档详情](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=2.2%20%E7%BC%93%E5%AD%98-redis%20-%5B1.3%5D&parent=%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8)
+3. 整体重写 cache 和 cache-redis 模块,不兼容之前的版本 : [#详见文档](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=2.2%20%E7%BC%93%E5%AD%98-redis%20-%5B1.3%5D&parent=%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8)
 4. IuserCache 添加注销方法
 5. 重新定义 IUser,IRole 类,
 6. 1.3版本升级spring-boot 为 1.5.12
-7. maven 仓库文件下载 [sesame-parent-1.3](https://gitee.com/sesamekim/framework-boot/attach_files/download?i=130986&u=http%3A%2F%2Ffiles.git.oschina.net%2Fgroup1%2FM00%2F03%2F6E%2FPaAvDFrdkj-AO1WnAAZUAj-vFTU901.zip%3Ftoken%3D5242bbcbbaa8b4f0ca1bb4980aa53c3e%26ts%3D1524470335%26attname%3Dsesame-parent-1.3.zip) 
 
 
 #### 1.21 `2018-3-8`
