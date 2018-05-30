@@ -4,6 +4,7 @@ import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public class JedisShardService {
     static ShardedJedisPool jedisPool = null;
@@ -15,34 +16,22 @@ public class JedisShardService {
     }
 
     /**
-     * 像 redis 存值
-     *
-     * @param key                 key
-     * @param value               value
-     * @param timeUnit:过期时间单位,只接受 SECONDS,MINUTES,HOURS,DAYS , 默认SECONDS
-     * @param time                过期时间的值
+     * jedis 操作
      */
-    public static String set(String key, String value, TimeUnit timeUnit, long time) {
+    public static <R> R op(Function<ShardedJedis, Object> f, Class<R> clazz) {
+        return (R) op(f);
+    }
+
+    /**
+     * jedis 操作
+     */
+    public static Object op(Function<ShardedJedis, Object> f) {
         vifNull();
-        String res = null;
+        Object res = null;
         ShardedJedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            String nxxx = "NX";
-            if (jedis.exists(key)) {
-                nxxx = "XX";
-            }
-            //EX = seconds, 秒; PX = milliseconds 毫秒
-            String expx = "EX"; //秒
-            if (timeUnit == TimeUnit.MINUTES) {
-                time = time * 60;
-            } else if (timeUnit == TimeUnit.HOURS) {
-                time = time * 60 * 60;
-            } else if (timeUnit == TimeUnit.DAYS) {
-                time = time * 60 * 60 * 24;
-            }
-
-            res = jedis.set(key, value, nxxx, expx, time);
+            res = f.apply(jedis);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -51,6 +40,34 @@ public class JedisShardService {
             }
         }
         return res;
+    }
+
+    /**
+     * 像 redis 存值
+     *
+     * @param key                 key
+     * @param value               value
+     * @param time                过期时间的值
+     * @param timeUnit:过期时间单位,只接受 SECONDS,MINUTES,HOURS,DAYS , 默认SECONDS
+     */
+    public static String set(String key, String value, long time, TimeUnit timeUnit) {
+        return op((jedis) -> {
+            String nxxx = "NX";
+            if (jedis.exists(key)) {
+                nxxx = "XX";
+            }
+            //EX = seconds, 秒; PX = milliseconds 毫秒
+            String expx = "EX"; //秒
+            long t = time;
+            if (timeUnit == TimeUnit.MINUTES) {
+                t = time * 60;
+            } else if (timeUnit == TimeUnit.HOURS) {
+                t = time * 60 * 60;
+            } else if (timeUnit == TimeUnit.DAYS) {
+                t = time * 60 * 60 * 24;
+            }
+            return jedis.set(key, value, nxxx, expx, t);
+        }, String.class);
     }
 
     /**
@@ -66,36 +83,19 @@ public class JedisShardService {
      * @return Status code reply
      */
     public static String set(String key, String value, String nxxx, String expx, long time) {
-        vifNull();
-        String res = null;
-        ShardedJedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            res = jedis.set(key, value, nxxx, expx, time);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-        return res;
+        return op((jedis) -> {
+            return jedis.set(key, value, nxxx, expx, time);
+        }, String.class);
     }
 
+    /**
+     * 返回 key 对应的值
+     */
     public static String get(String key) {
-        vifNull();
-        ShardedJedis jedis = null;
-        String res = null;
-        try {
-            jedis = jedisPool.getResource();
-            res = jedis.get(key);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-        return res;
+        return op((jedis) -> {
+            return jedis.get(key);
+        }, String.class);
     }
+
+
 }
