@@ -4,11 +4,15 @@ import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class JedisShardService {
     static ShardedJedisPool jedisPool = null;
+
+    private static void vifNull() {
+        if (jedisPool == null) {
+            throw new NullPointerException("jedis 连接池为空,配置:sesame.framework.shard.hosts");
+        }
+    }
 
     /**
      * 像 redis 存值
@@ -19,6 +23,7 @@ public class JedisShardService {
      * @param time                过期时间的值
      */
     public static String set(String key, String value, TimeUnit timeUnit, long time) {
+        vifNull();
         String res = null;
         ShardedJedis jedis = null;
         try {
@@ -61,6 +66,7 @@ public class JedisShardService {
      * @return Status code reply
      */
     public static String set(String key, String value, String nxxx, String expx, long time) {
+        vifNull();
         String res = null;
         ShardedJedis jedis = null;
         try {
@@ -77,6 +83,7 @@ public class JedisShardService {
     }
 
     public static String get(String key) {
+        vifNull();
         ShardedJedis jedis = null;
         String res = null;
         try {
