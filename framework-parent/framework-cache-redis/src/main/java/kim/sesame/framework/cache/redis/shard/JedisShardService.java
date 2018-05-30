@@ -16,7 +16,7 @@ public class JedisShardService {
 
     private static void vifNull() {
         if (jedisPool == null) {
-            throw new NullPointerException("jedis 连接池为空,配置:sesame.framework.shard.hosts");
+            throw new NullPointerException("请传入mapkey, 或者sesame.framework.shard.nodes. 只配置一个key");
         }
     }
     /*
@@ -27,26 +27,14 @@ public class JedisShardService {
      * jedis 操作
      */
     public static <R> R op(Function<ShardedJedis, Object> f, Class<R> clazz) {
-        return (R) op(f);
+        return (R) op(null, f, clazz);
     }
 
     /**
      * jedis 操作
      */
     public static Object op(Function<ShardedJedis, Object> f) {
-        Object res = null;
-        ShardedJedis jedis = null;
-        try {
-            jedis = getJedis(null);
-            res = f.apply(jedis);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-        return res;
+        return op(null, f);
     }
 
     /**
@@ -58,16 +46,7 @@ public class JedisShardService {
      * @param timeUnit:过期时间单位,只接受 SECONDS,MINUTES,HOURS,DAYS , 默认SECONDS
      */
     public static String set(String key, String value, long time, TimeUnit timeUnit) {
-        return op((jedis) -> {
-            String nxxx = "NX";
-            if (jedis.exists(key)) {
-                nxxx = "XX";
-            }
-            //EX = seconds, 秒; PX = milliseconds 毫秒
-            String expx = "EX"; //秒
-            long t = computationTime(time, timeUnit);
-            return jedis.set(key, value, nxxx, expx, t);
-        }, String.class);
+        return set(null, key, value, time, timeUnit);
     }
 
     /**
@@ -83,18 +62,14 @@ public class JedisShardService {
      * @return Status code reply
      */
     public static String set(String key, String value, String nxxx, String expx, long time) {
-        return op((jedis) -> {
-            return jedis.set(key, value, nxxx, expx, time);
-        }, String.class);
+        return set(null, key, value, nxxx, expx, time);
     }
 
     /**
      * 返回 key 对应的值
      */
     public static String get(String key) {
-        return op((jedis) -> {
-            return jedis.get(key);
-        }, String.class);
+        return get(null, key);
     }
     /*
      *--------------------  操作默认的jedisPool end  --------------------------------------------------
@@ -121,6 +96,7 @@ public class JedisShardService {
             res = f.apply(jedis);
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         } finally {
             if (jedis != null) {
                 jedis.close();
