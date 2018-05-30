@@ -190,9 +190,9 @@ public class JedisShardService {
     public static ShardedJedis getJedis(String mapKey) {
         if (StringUtil.isEmpty(mapKey)) {
             vifNull();
-            return jedisPoolMap.get(mapKey).getResource();
-        } else {
             return jedisPool.getResource();
+        } else {
+            return jedisPoolMap.get(mapKey).getResource();
         }
     }
 }

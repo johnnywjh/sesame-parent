@@ -120,7 +120,7 @@ public class JedisShardProperties implements InitializingBean {
             }
             JedisShardService.jedisPoolMap.put(key, shardedJedisPool);
             // 如果只有一个配置,默认 JedisShardService 保存第一个
-            if (keys.size() == 0) {
+            if (keys.size() == 1) {
                 JedisShardService.jedisPool = shardedJedisPool;
             }
         }// for mapkey
