@@ -16,7 +16,7 @@ public class JedisShardService {
 
     private static void vifNull() {
         if (jedisPool == null) {
-            throw new NullPointerException("请传入mapkey, 或者sesame.framework.shard.nodes. 只配置一个key");
+            throw new NullPointerException("当前存在至少两个配置,请传入mapkey, 或者sesame.framework.shard.nodes. 只配置一个key");
         }
     }
     /*
