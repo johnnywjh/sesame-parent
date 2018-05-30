@@ -27,7 +27,7 @@ public class JedisShardService {
      * jedis 操作
      */
     public static <R> R op(Function<ShardedJedis, Object> f, Class<R> clazz) {
-        return (R) op(null, f, clazz);
+        return op(null, f, clazz);
     }
 
     /**
