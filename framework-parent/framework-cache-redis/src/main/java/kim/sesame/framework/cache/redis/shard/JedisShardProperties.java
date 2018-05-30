@@ -34,7 +34,7 @@ public class JedisShardProperties implements InitializingBean {
      */
     private int connectionTimeout = 0;
     /**
-     * key 的算法,默认Hashing.MURMUR_HASH
+     * key 的算法,一般不用设置,默认Hashing.MURMUR_HASH
      * 两个值 MURMUR_HASH , MD5
      */
     private String keyAlgo = null;
