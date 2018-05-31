@@ -14,14 +14,14 @@ import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServlet;
 
 /**
- * 系统启动时执行
- * ServletComponentScan(basePackageClasses = SystemStart.class)
+ * web 项目启动时初始化
+ * ServletComponentScan(basePackageClasses = WebInit.class)
  *
  * @author johnny
  */
 @CommonsLog
 @WebListener
-public class SystemStart extends HttpServlet implements ServletContextListener {
+public class WebInit extends HttpServlet implements ServletContextListener {
 
     @Resource
     private Environment env;
@@ -45,7 +45,6 @@ public class SystemStart extends HttpServlet implements ServletContextListener {
         // 1 项目当前路径
         if (StringUtil.isEmpty(web.getBasePath())) {
             String context_path = env.getProperty(GData.SPRINGBOOT.contextPath);
-
             application.setAttribute("basePath", context_path);
         } else {
             application.setAttribute("basePath", web.getBasePath());
