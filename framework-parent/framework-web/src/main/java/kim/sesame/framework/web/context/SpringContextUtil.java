@@ -21,7 +21,8 @@ import java.util.Map;
 public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
-    private static String currentPath;
+    private static String currentPath; // 当前项目资源路径,
+    private static String projectPath; // 当前项目路径
 
     @Autowired
     Environment env;
@@ -47,9 +48,9 @@ public class SpringContextUtil implements ApplicationContextAware {
         //初始化当前项目资源路径
         WebProperties web = applicationContext.getBean(WebProperties.class);
 
-        String context_path = env.getProperty("server.context-path");
-        if (StringUtil.isNotEmpty(context_path)) {
-            SpringContextUtil.currentPath = web.getUserHome() + "/sesame_space" + context_path;
+        projectPath = env.getProperty(GData.SPRINGBOOT.contextPath);
+        if (StringUtil.isNotEmpty(projectPath)) {
+            SpringContextUtil.currentPath = web.getUserHome() + "/sesame_space" + projectPath;
         }
     }
 
@@ -72,6 +73,10 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     public static String getCurrentPath() {
         return currentPath;
+    }
+
+    public static String getProjectPath() {
+        return projectPath;
     }
 
     /**
