@@ -27,10 +27,10 @@ public class DataSourcesConfig {
 	@Resource
 	private Environment environment;
 	@Resource
-	private DruidProperties druid;
+	private DbProperties db;
 
 	/**
-	 * druid初始化
+	 * db初始化
 	 *
 	 * @author johnny
 	 * date :  2017年6月12日 上午11:26:03
@@ -46,76 +46,76 @@ public class DataSourcesConfig {
 		dataSource.setUrl(environment.getProperty("spring.datasource.url"));
 		String username = environment.getProperty("spring.datasource.username");
 		String password = environment.getProperty("spring.datasource.password");
-		if(druid.isEncryption()){
-			username = druid.decodeStr(username);
-			password = druid.decodeStr(password);
+		if(db.isEncryption()){
+			username = db.decodeStr(username);
+			password = db.decodeStr(password);
 		}
 		dataSource.setUsername(username);
 		dataSource.setPassword(password);
 		// dataSource.setDriverClassName(environment.getProperty("spring.datasource.driverClassName"));
 
-		// 配置最大连接
-		dataSource.setMaxActive(druid.getMaxActive());
 		// 配置初始连接
-		dataSource.setInitialSize(druid.getInitialSize());
+		dataSource.setInitialSize(db.getInitialSize());
 		// 配置最小连接
-		dataSource.setMinIdle(druid.getMinIdle());
+		dataSource.setMinIdle(db.getMinIdle());
+		// 配置最大连接
+		dataSource.setMaxActive(db.getMaxActive());
 		// 连接等待超时时间
-		dataSource.setMaxWait(druid.getMaxWait());
+		dataSource.setMaxWait(db.getMaxWait());
 		// 间隔多久进行检测,关闭空闲连接
-		dataSource.setTimeBetweenEvictionRunsMillis(druid.getTimeBetweenEvictionRunsMillis());
+		dataSource.setTimeBetweenEvictionRunsMillis(db.getTimeBetweenEvictionRunsMillis());
 		// 一个连接最小生存时间
-		dataSource.setMinEvictableIdleTimeMillis(druid.getMinEvictableIdleTimeMillis());
+		dataSource.setMinEvictableIdleTimeMillis(db.getMinEvictableIdleTimeMillis());
 		// 用来检测是否有效的sql
 		dataSource.setValidationQuery("select 'x'");
-		dataSource.setTestWhileIdle(true);
-		dataSource.setTestOnBorrow(false);
-		dataSource.setTestOnReturn(false);
+		dataSource.setTestWhileIdle(db.isTestWhileIdle());
+		dataSource.setTestOnBorrow(db.isTestOnBorrow());
+		dataSource.setTestOnReturn(db.isTestOnReturn());
 		// 打开PSCache,并指定每个连接的PSCache大小
 		dataSource.setPoolPreparedStatements(true);
 		dataSource.setMaxOpenPreparedStatements(20);
 		// 配置sql监控的filter
-		if (druid.isDruidEnabled()) {
+		if (db.isDruidEnabled()) {
 			dataSource.setFilters("stat,wall,log4j");
 		}
 		try {
 			dataSource.init();
 		} catch (SQLException e) {
-			throw new RuntimeException("druid datasource init fail");
+			throw new RuntimeException("db datasource init fail");
 		}
 		return dataSource;
 	}
 
 	/**
-	 * druid监控
+	 * db监控
 	 *
 	 * @return
 	 */
 	@Bean
-	@ConditionalOnProperty(prefix = "sesame.framework.mybatis", name = "druid-enabled", havingValue = "true")
-	public ServletRegistrationBean druidServlet() {
+	@ConditionalOnProperty(prefix = "sesame.framework.mybatis", name = "db-enabled", havingValue = "true")
+	public ServletRegistrationBean dbServlet() {
 		ServletRegistrationBean reg = new ServletRegistrationBean();
 		reg.setServlet(new StatViewServlet());
-		reg.addUrlMappings("/druid/*");
+		reg.addUrlMappings("/db/*");
 		// -- reg.addInitParameter("allow", "127.0.0.1");
 		// -- reg.addInitParameter("deny","");
-		reg.addInitParameter("loginUsername", druid.getDruidLoginName());
-		reg.addInitParameter("loginPassword", druid.getDruidLoginPwd());
+		reg.addInitParameter("loginUsername", db.getDruidLoginName());
+		reg.addInitParameter("loginPassword", db.getDruidLoginPwd());
 		return reg;
 	}
 
 	/**
-	 * druid监控过滤
+	 * db监控过滤
 	 *
 	 * @return
 	 */
 	@Bean
-	@ConditionalOnProperty(prefix = "sesame.framework.mybatis", name = "druid-enabled", havingValue = "true")
+	@ConditionalOnProperty(prefix = "sesame.framework.mybatis", name = "db-enabled", havingValue = "true")
 	public FilterRegistrationBean filterRegistrationBean() {
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
 		filterRegistrationBean.setFilter(new WebStatFilter());
 		filterRegistrationBean.addUrlPatterns("/*");
-		filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
+		filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/db/*");
 		return filterRegistrationBean;
 	}
 }

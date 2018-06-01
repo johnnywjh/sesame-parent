@@ -34,7 +34,7 @@ public class MybatisConfig implements TransactionManagementConfigurer {
 	@Resource
 	private Environment env;
 	@Resource
-	private DruidProperties druid;
+	private DbProperties druid;
 
 	/**
 	 * 可以通过这个类,详细配置mybatis
