@@ -1,6 +1,6 @@
 ### 环境
 - jdk 1.8
-- spring boot 1.5.10
+- spring boot 1.5.13
 - tool : idea (强烈建议)
 - 什么? 你还不熟悉 idea, 这可是号称当下最流行的java开发工具,**[帮助文档](https://github.com/judasn/IntelliJ-IDEA-Tutorial) [Window快捷键](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md) [Mac快捷键](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-mac-introduce.md)** 
 
