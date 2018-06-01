@@ -4,7 +4,6 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 
 本项目对目前Web开发中常用的各个技术，通过和SpringBoot的集成,做了一些封装,详细文档如下
 
-#### 文档整理中........会有很多错误的地方
 
 #### 基本信息
 
@@ -18,16 +17,16 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 - chapter2 1 ：[一个简单的web项目](doc/ch2/web.md)
 - chapter2 2 ：[dev,test,prod环境分离](doc/ch2/dev-test-prod.md)
 - chapter2 3 ：[idea热部署](doc/ch2/idea-rebushu.md)
-- chapter2 4 ：[web整个mybatis](doc/ch2/web-mybatis.md)
+- chapter2 4 ：[web整合mybatis](doc/ch2/web-mybatis.md)
 - chapter2 5 ：[日志配置logback-spring.xml](doc/ch2/log.md)
 - chapter2 6 ：[代码生成工具使用](doc/ch2/code.md)
 - chapter2 7 ：[项目默认属性说明](doc/ch2/default-pro.md)
-- chapter2 8 ：[切换内嵌的服务器为jetty](doc/ch2/j)
+- chapter2 8 ：[切换内嵌的服务器为jetty](doc/ch2/jetty.md)
 
 #### 自定义maven插件
 
-- chapter3 1 ：[](doc/ch3/reload.md)
-- chapter3 2 ：[](doc/ch3/zip.md)
+- chapter3 1 ：[重新加载资源文件](doc/ch3/reload.md)
+- chapter3 2 ：[压缩指定目录](doc/ch3/zip.md)
 
 #### 架构组件使用
 

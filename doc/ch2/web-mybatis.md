@@ -10,7 +10,7 @@
 
 ##### framework-mybatis中
 - 所有的配置在 DruidProperties.java 里
-- xml的默认扫描方式 classpath*:com/sesame/**/dao/*.xml , 可通过配置sesame.framework.mybatis.mapper-path=   修改
+- xml的默认扫描方式 classpath*:**/dao/*DaoMapping.xml , 可通过配置sesame.framework.db.mapper-path=   修改
 - 分页插件采用 PageHelper [文档地址](https://gitee.com/free/Mybatis_PageHelper)
 
 #### 2 application.properties 添加数据库配置
