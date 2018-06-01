@@ -24,19 +24,23 @@
 2. 插件逻辑代码
 ```
 getLog().info("执行压缩插件..................");
-        if (path != null && path.length() > 0) {
-            File file = new File(path);
-            if (file.exists()) {
-                String fileName = path.substring(path.lastIndexOf("/") + 1);
-                // 文件压缩
-                ZipCompressor zc = new ZipCompressor(path + ".zip");
-                zc.compress(path);
-                getLog().info("文件压缩成功 : " + path + ".zip");
+        for (int i = 0; i < paths.size(); i++) {
+            String path = paths.get(i);
+            if (path != null && path.length() > 0) {
+                File file = new File(path);
+                if (file.exists()) {
+                    String fileName = path.substring(path.lastIndexOf("/") + 1);
+                    // 文件压缩
+                    ZipCompressor zc = new ZipCompressor(path + ".zip");
+                    zc.compress(path);
+                    getLog().info("文件压缩成功 : " + path + ".zip");
+                } else {
+                    getLog().warn("path 路径不存在, : " + path);
+                }
             } else {
-                getLog().warn("path 路径不存在, : " + path);
+                getLog().warn("path 路径不能为空");
             }
-        } else {
-            getLog().warn("path 路径不能为空");
         }
+
         getLog().info("执行压缩插件结束..................");
 ```
