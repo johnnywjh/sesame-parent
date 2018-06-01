@@ -50,3 +50,17 @@
         <td>websocket推送</td>
     </tr>
 </table>
+
+<table>
+    <tr>
+        <th colspan="2">maven插件 sesame-plugins</th>
+    </tr>
+    <tr>
+        <td>reload-resources-file</td>
+        <td>重新加载资源文件,用于html界面编写后的编译到target目录</td>
+    </tr>
+    <tr>
+        <td>zip</td>
+        <td>指定目录文件的压缩</td>
+    </tr>
+</table>
