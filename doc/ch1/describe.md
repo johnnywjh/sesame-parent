@@ -5,20 +5,48 @@
 - 什么? 你还不熟悉 idea, 这可是号称当下最流行的java开发工具,**[帮助文档](https://github.com/judasn/IntelliJ-IDEA-Tutorial) [Window快捷键](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-introduce.md) [Mac快捷键](https://github.com/judasn/IntelliJ-IDEA-Tutorial/blob/master/keymap-mac-introduce.md)** 
 
 ### 项目子模块描述
-```
-    <modules>
-        <module>framework-core</module> <!--核心模块,其他模块大部分要依赖这个模块-->
-        <module>framework-mybatis</module><!--mybatis 模块-->
-        <module>framework-web</module><!--web 模块-->
-
-        <module>framework-cache</module><!--缓存接口的定义-->
-        <module>framework-cache-redis</module><!--缓存接口的实现-->
-
-        <module>framework-lock</module><!--分布式锁 -->
-        <module>framework-lock-serial</module><!--分布式序列,依赖 [ framework-lock ] -->
-
-        <module>framework-distributed-tx</module><!--分布式事物配置 -->
-
-        <module>framework-spring-boot</module><!--spring-boot 的一些集成 -->
-    </modules>
-```
+<table>
+    <tr>
+        <th colspan="2">架构模块 framework-parent</th>
+    </tr>
+    <tr>
+        <td>framework-cache</td>
+        <td>缓存中定义,一般是接口和常量</td>
+    </tr>
+    <tr>
+        <td>framework-cache-redis</td>
+        <td>cache 的 redis 实现</td>
+    </tr>
+    <tr>
+        <td>framework-core</td>
+        <td>所有模块的基础模块</td>
+    </tr>
+    <tr>
+        <td>framework-distributed-tx</td>
+        <td>分布式事物</td>
+    </tr>
+    <tr>
+        <td>framework-lock</td>
+        <td>分布式锁</td>
+    </tr>
+    <tr>
+        <td>framework-lock-serial</td>
+        <td>分布式序列号的生成</td>
+    </tr>
+    <tr>
+        <td>framework-mybatis</td>
+        <td>mybatis的基础封装</td>
+    </tr>
+    <tr>
+        <td>framework-spring-boot</td>
+        <td>springcloud 的封装,包含cloud,starter模块</td>
+    </tr>
+    <tr>
+        <td>framework-web</td>
+        <td>web模块的封装</td>
+    </tr>
+    <tr>
+        <td>framework-websocket</td>
+        <td>websocket推送</td>
+    </tr>
+</table>
