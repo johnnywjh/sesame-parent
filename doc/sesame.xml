@@ -79,4 +79,14 @@
       <option name="JAVA_SCRIPT" value="true" />
     </context>
   </template>
+  <template name="Map" value="Map&lt;String,String&gt; map = new HashMap&lt;&gt;();" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="mput" value="map.put(&quot;&quot;,&quot;&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
 </templateSet>
