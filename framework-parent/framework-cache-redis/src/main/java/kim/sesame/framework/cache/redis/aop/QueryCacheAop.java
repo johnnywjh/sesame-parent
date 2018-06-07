@@ -87,6 +87,7 @@ public class QueryCacheAop {
                 if (List.class.isAssignableFrom(returnTypeClazz)) {
                     ResolvableType resolvableType = ResolvableType.forMethodReturnType(method);
                     Class clazz = resolvableType.getGeneric(0).resolve();
+                    clazz = clazz == null ? Object.class : clazz;
                     result = JSONArray.parseArray(cacheResult, clazz);
                 } else {
                     throw new ClassCastException(MessageFormat.format
