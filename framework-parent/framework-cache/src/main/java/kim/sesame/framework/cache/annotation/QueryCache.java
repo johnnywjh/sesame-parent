@@ -42,21 +42,6 @@ public @interface QueryCache {
     int invalidTime() default 30;
 
     /**
-     * 目标方法返回值类型
-     *
-     * @return resultType
-     */
-    ResultType resultType() default ResultType.Object;
-
-    /**
-     * 当resultType = ResultType.List 时, List 里的类型
-     * 反序列化时会用到
-     *
-     * @return resultClazz
-     */
-    Class resultClazz() default Object.class;
-
-    /**
      * 序列化时 , 是否写空值进去
      *
      * @return

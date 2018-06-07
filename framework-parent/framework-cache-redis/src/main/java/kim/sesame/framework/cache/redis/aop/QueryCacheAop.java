@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import kim.sesame.framework.cache.annotation.QueryCache;
-import kim.sesame.framework.cache.annotation.ResultType;
 import kim.sesame.framework.cache.redis.config.QueryCacheProperties;
 import kim.sesame.framework.cache.redis.server.CacheServer;
 import kim.sesame.framework.utils.StringUtil;
@@ -15,12 +14,14 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ResolvableType;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
-import java.util.Optional;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -47,6 +48,7 @@ public class QueryCacheAop {
         // 获取注解
         MethodSignature sign = (MethodSignature) pjd.getSignature();
         Method method = sign.getMethod();
+        Class returnTypeClazz = method.getReturnType();// 方法返回类型
         QueryCache ann = method.getAnnotation(QueryCache.class);
 
         // 获取方法里的参数
@@ -70,7 +72,7 @@ public class QueryCacheAop {
         if (StringUtil.isEmpty(cacheResult)) {
             log.debug(MessageFormat.format("缓存不存在,走数据库查询 ,存储时间 : {0} , 单位 : {1} ", time, timeUnit));
             result = pjd.proceed();
-            if(result != null){
+            if (result != null) {
                 String json = "";
                 if (ann.isWriteNullValue()) {
                     json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue);
@@ -80,16 +82,22 @@ public class QueryCacheAop {
                 stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
             }
         } else {
-            // 判断返回类型 , 返回类型为单个对象
-            if (ann.resultType() == ResultType.Object) {
-                // result = GsonUtil.getGson().fromJson(cacheResult, ann.resultClazz());
-                result = JSON.parseObject(cacheResult, ann.resultClazz());
-            }
             // 返回类型为 list 集合
-            else if (ann.resultType() == ResultType.List) {
-                // result = GsonUtil.fromJsonList(cacheResult, ann.resultClazz());
-                result = JSONArray.parseArray(cacheResult, ann.resultClazz());
+            if (Collection.class.isAssignableFrom(returnTypeClazz)) {
+                if (List.class.isAssignableFrom(returnTypeClazz)) {
+                    ResolvableType resolvableType = ResolvableType.forMethodReturnType(method);
+                    Class clazz = resolvableType.getGeneric(0).resolve();
+                    result = JSONArray.parseArray(cacheResult, clazz);
+                } else {
+                    throw new ClassCastException(MessageFormat.format
+                            ("不支持的类型:{0},缓存只支持 List 的集合类型", returnTypeClazz));
+                }
             }
+            // 判断返回类型 , 返回类型为单个对象
+            else {
+                result = JSON.parseObject(cacheResult, returnTypeClazz);
+            }
+
 
         }
         log.debug(result);
