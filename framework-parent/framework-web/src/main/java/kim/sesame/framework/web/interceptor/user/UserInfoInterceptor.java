@@ -80,7 +80,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
     }
 
     /**
-     * 根据用户进入的方式,获取sessionId, 或是 account
+     * 根据用户进入的方式,获取sessionId,表示用户表示,没有实际意义
      */
     private String getSessionId(HttpServletRequest request) {
 
@@ -103,14 +103,8 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             sessionId = casSessionId;
             log.debug(">>>>>>2 casSessionId : " + sessionId);
         } else {
-            String zuulSessionId = request.getParameter(GData.CLOUD.ZUUL_SESSION_ID);
-            if (StringUtil.isNotEmpty(zuulSessionId)) {
-                sessionId = zuulSessionId;
-                log.debug(">>>>>>2 zuulSessionId : " + sessionId);
-            } else {
-                sessionId = request.getSession().getId();
-                log.debug(">>>>>>2 requestSessionId : " + sessionId);
-            }
+            sessionId = request.getSession().getId();
+            log.debug(">>>>>>2 requestSessionId : " + sessionId);
         }
         return sessionId;
     }
