@@ -10,7 +10,6 @@ sesame.framework.shard.nodes.aaa.hosts=ip:prot,ip:prot
 sesame.framework.shard.nodes.aaa.pwds=pwd,pwd
 ```
 - 用法
-- 如果只有一个配置
 ```
 // 1 普通存值
 String res = JedisShardService.set(key, value, 2, TimeUnit.MINUTES);
