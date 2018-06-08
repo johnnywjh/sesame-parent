@@ -31,7 +31,7 @@ sesame.framework.cache.refresh-time=60
 的算法
 ```
 // 添加到缓存
-    @QueryCache(resultClazz = Student.class)
+    @QueryCache
     public Student queryDetail(String id, String name) {
         Student bean = new Student();
         bean.setId(id);
@@ -40,7 +40,7 @@ sesame.framework.cache.refresh-time=60
 
 // 缓存失效 --> 一般在缓存方法后面写上 方法名规则如下
 // 这里需要注意缓存key的运算方式
-    @QueryCache(resultClazz = Student.class)
+    @QueryCache
     public Student queryDetail_invalid(String id, String name) {
         String classPath = this.getClass().toString().replace("class ", "");
         QueryCacheAop.invalid(null, null, classPath, "queryDetail", new Object[]{id,name});
@@ -52,8 +52,6 @@ sesame.framework.cache.refresh-time=60
 2. String **keyPrefix** : 缓存key 的前缀,一般加上项目名 **无特殊要求一般不用设置** 
 3. TimeUnit **timeUnit** : 缓存失效时间类型,默认分钟  **无特殊要求一般不用设置** 
 4. int **invalidTime** : 缓存失效时间, 默认30 **无特殊要求一般不用设置** 
-5. ResultType **resultType** : 目标方法返回值类型,默认Object,当查询单个对象时不用设置,如果是查询 List<T> 就需要设置这个属性
-6. Class **resultClazz** : 方法返回类型,默认 Object.class,字符串反序列化为对象时会用到,**需要填写**
 7. boolean **isWriteNullValue** : 序列化时 , 是否写空值进去
 
 
@@ -119,4 +117,3 @@ public class CacheStudentServer extends AutoRefreshCache<Student> {
 ##### 结束,结束,结束
 ##### cache demo地址 : **[https://gitee.com/sesamekim/demo/tree/master/cache](https://gitee.com/sesamekim/demo/tree/master/cache)**
 
-#### --
