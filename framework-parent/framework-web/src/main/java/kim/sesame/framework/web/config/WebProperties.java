@@ -30,7 +30,6 @@ public class WebProperties implements InitializingBean {
     private boolean urlrewriteEnabled = false; // 是否启动 java 伪静态
     private String urlrewriteSuffix = "*.shtml"; // java伪静态的后缀名
     private String pageReplace = "~";
-    private boolean crossDomain = false;// 是否要支持跨域
 
     /**
      * 项目路径,如果采用zuul 后,这个要显示改变
