@@ -35,6 +35,14 @@ public class AbstractWebController extends AbstractController {
         return res;
     }
 
+    public Map layuiSuccuss(Object obj){
+        Map<String, Object> res = new HashMap<>();
+        res.put("code", 0);
+        res.put("msg", "");
+        res.put("data", obj);
+        return res;
+    }
+
     public void download(String fileName, String path, HttpServletResponse response) {
         try {
             // 实现文件下载
