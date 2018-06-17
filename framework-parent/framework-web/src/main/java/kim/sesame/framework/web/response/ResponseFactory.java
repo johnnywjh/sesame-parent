@@ -19,6 +19,10 @@ public class ResponseFactory {
         return Response.create().setExceptionType(AbstractController.ExceptionType.BUSINESS)
                 .setErrorCode(AbstractController.ErrorCode.BUSINESS).setMessage(message);
     }
+    public static Response notLogin(String message) {
+        return Response.create().setExceptionType(AbstractController.ExceptionType.NOT_LOGIN)
+                .setErrorCode(AbstractController.ErrorCode.NOT_LOGIN).setMessage(message);
+    }
 
     /**
      * 非法请求

@@ -49,7 +49,7 @@ public class WebUserInterceptor extends HandlerInterceptorAdapter {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
             PrintWriter out = response.getWriter();
-            out.print(ResponseFactory.illegalRequest("用户未登录, 不能访问!", reqRootUrl));
+            out.print(ResponseFactory.notLogin("用户未登录, 不能访问!,"+reqRootUrl));
 
             out.flush();
             out.close();

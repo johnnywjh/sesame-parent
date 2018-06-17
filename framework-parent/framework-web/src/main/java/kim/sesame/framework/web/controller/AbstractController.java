@@ -25,6 +25,7 @@ public abstract class AbstractController {
 
     public static interface ErrorCode {
         static final String VALIDATOR = "1000"; //数据验证错误
+        static final String NOT_LOGIN = "1001"; //用户为登录
         static final String BUSINESS = "2000"; //业务异常错误
         static final String SYSTEM = "9999"; //系统异常
         static final String NOTVALID = "1001"; //无效异常
@@ -32,6 +33,7 @@ public abstract class AbstractController {
 
     public static interface ExceptionType {
         static final String VALIDATOR = "VALIDATOR";//数据校验异常
+        static final String NOT_LOGIN = "NOT_LOGIN";//用户为登录
         static final String BUSINESS = "BUSINESS"; //业务异常
         static final String SYSTEM = "SYSTEM"; //系统异常
         static final String NOTVALID = "NOTVALID"; //无效异常
