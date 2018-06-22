@@ -64,8 +64,7 @@ public class ReLoadResourceFile extends AbstractMojo {
                     getLog().info("文件压缩成功 : " + targetPath);
 
                     // 2 解压文件到当前目录
-                    String dir = new File(targetFiles.get(i)).getPath();
-                    dir = dir.substring(0, dir.lastIndexOf("\\"));
+                    String dir = new File(targetFiles.get(i)).getParentFile().getPath();
                     ZipCompressor.unZipFiles(new File(targetPath), dir + "/");
                     getLog().info("解压到 : " + dir);
 
