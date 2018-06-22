@@ -78,7 +78,7 @@ public class ReLoadResourceFile extends AbstractMojo {
             }
             // 3 删除压缩包
             for(String s : zips){
-                FileUtil.clearFiles(new File(s));
+                new File(s).delete();
                 getLog().info(s + " , 删除成功");
             }
             getLog().info("--------------");
