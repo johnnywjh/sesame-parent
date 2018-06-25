@@ -3,10 +3,12 @@ package kim.sesame.framework.web.controller;
 
 import kim.sesame.framework.utils.StringUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +37,7 @@ public class AbstractWebController extends AbstractController {
         return res;
     }
 
-    public Map layuiSuccuss(Object obj){
+    public Map layuiSuccuss(Object obj) {
         Map<String, Object> res = new HashMap<>();
         res.put("code", 0);
         res.put("msg", "");
@@ -43,12 +45,11 @@ public class AbstractWebController extends AbstractController {
         return res;
     }
 
-    public void download(String fileName, String path, HttpServletResponse response) {
+    public void download(String fileName, String path, HttpServletRequest request, HttpServletResponse response) {
         try {
-            // 实现文件下载
-            response.setContentType("text/plain");
-            response.setHeader("Location", fileName);
-            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+
+            setDownloadResponse(fileName, request, response);
+
             OutputStream outputStream = response.getOutputStream();
             InputStream inputStream = new FileInputStream(path);
 
@@ -62,5 +63,31 @@ public class AbstractWebController extends AbstractController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setDownloadResponse(String fileName, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            fileName = getFileName(request, fileName);
+            // 实现文件下载
+            response.setContentType("text/plain");
+            response.setHeader("Location", fileName);
+            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getFileName(HttpServletRequest request, String fileName) {
+        try {
+            if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {
+                fileName = URLEncoder.encode(fileName, "UTF-8");
+            } else {
+                fileName = new String(fileName.getBytes("UTF-8"), "ISO8859-1");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fileName;
     }
 }
