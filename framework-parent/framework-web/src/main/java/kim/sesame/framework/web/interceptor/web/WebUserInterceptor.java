@@ -1,5 +1,6 @@
 package kim.sesame.framework.web.interceptor.web;
 
+import com.alibaba.fastjson.JSON;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IUser;
@@ -49,7 +50,7 @@ public class WebUserInterceptor extends HandlerInterceptorAdapter {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
             PrintWriter out = response.getWriter();
-            out.print(ResponseFactory.notLogin("用户未登录, 不能访问!,"+reqRootUrl));
+            out.print(JSON.toJSON(ResponseFactory.notLogin("用户未登录,不能访问!")));
 
             out.flush();
             out.close();

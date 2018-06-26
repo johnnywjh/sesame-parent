@@ -62,7 +62,7 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
         out.print(response);
         out.flush();
         out.close();
-        System.out.println(JSON.toJSONString(response));
+        System.out.println(JSON.toJSON(response));
         System.err.println("验证失败，非法请求..........>>" + reqRootUrl);
         return false;
 
