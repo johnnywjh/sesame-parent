@@ -24,7 +24,10 @@ public class WebProperties implements InitializingBean {
      * session 失效时间, 默认0
      */
     private int sesaionTime = 0;
-    private int userCacheTime = 60;// 单位 : 分钟
+    /**
+     * 用户登录信息在redis中的保存时间,单位 分钟,默认 10小时
+     */
+    private int userLoginTime = 600;
     private int defaultPageSize = 10;
 
     private boolean urlrewriteEnabled = false; // 是否启动 java 伪静态

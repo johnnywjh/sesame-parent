@@ -5,7 +5,7 @@ import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.cache.IUserCache;
-import kim.sesame.framework.web.cas.CasUtil;
+import kim.sesame.framework.web.cas.SsoUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IRole;
@@ -98,7 +98,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             }
         }
 
-        String casSessionId = CasUtil.getSessionId(request);
+        String casSessionId = SsoUtil.getSessionId(request);
         if (StringUtil.isNotEmpty(casSessionId)) {
             sessionId = casSessionId;
             log.debug(">>>>>>2 casSessionId : " + sessionId);

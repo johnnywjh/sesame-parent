@@ -1,12 +1,13 @@
 package kim.sesame.framework.web.cas;
 
+import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.util.CookieUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CasUtil {
+public class SsoUtil {
 
     /**
      * 将 sessionid 保存到 cookie 中
@@ -20,9 +21,10 @@ public class CasUtil {
     }
 
     public static String saveSessionIdToCookie(String sessionId, HttpServletResponse response) {
-        CasProperties cas = SpringContextUtil.getApplicationContext().getBean(CasProperties.class);
-        if (cas != null) {
-            CookieUtil.addCookie(response, cas.getSessionIdKey(), sessionId, cas.getExpirationTime());
+        SsoProperties sso = SpringContextUtil.getBean(SsoProperties.class);
+        WebProperties web = SpringContextUtil.getBean(WebProperties.class);
+        if (sso != null) {
+            CookieUtil.addCookie(response, sso.getSessionIdKey(), sessionId, web.getUserLoginTime() * 60);
             return sessionId;
         }
         return null;
@@ -35,9 +37,9 @@ public class CasUtil {
      * @return
      */
     public static String getSessionId(HttpServletRequest request) {
-        CasProperties cas = SpringContextUtil.getApplicationContext().getBean(CasProperties.class);
-        if (cas != null) {
-            String sessionId = CookieUtil.getCookieByNameToString(request, cas.getSessionIdKey());
+        SsoProperties sso = SpringContextUtil.getBean(SsoProperties.class);
+        if (sso != null) {
+            String sessionId = CookieUtil.getCookieByNameToString(request, sso.getSessionIdKey());
             return sessionId;
         }
         return null;

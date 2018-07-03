@@ -65,9 +65,41 @@ public class AbstractWebController extends AbstractController {
         }
     }
 
+    public void download(String fileName, String path, HttpServletResponse response) {
+        try {
+
+            setDownloadResponse(fileName, response);
+
+            OutputStream outputStream = response.getOutputStream();
+            InputStream inputStream = new FileInputStream(path);
+
+            byte[] b = new byte[inputStream.available()];
+            inputStream.read(b);
+            outputStream.write(b);
+
+            outputStream.flush();
+            outputStream.close();
+            inputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setDownloadResponse(String fileName, HttpServletRequest request, HttpServletResponse response) {
         try {
             fileName = getFileName(request, fileName);
+            // 实现文件下载
+            response.setContentType("text/plain");
+            response.setHeader("Location", fileName);
+            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setDownloadResponse(String fileName, HttpServletResponse response) {
+        try {
             // 实现文件下载
             response.setContentType("text/plain");
             response.setHeader("Location", fileName);

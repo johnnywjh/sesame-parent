@@ -61,7 +61,7 @@ public interface IUserCache {
 
         String key = userCacheId(sessionId);
         String value = user;
-        int time = web.getUserCacheTime();
+        int time = web.getUserLoginTime();
         System.out.println(MessageFormat.format("登录成功,添加到缓存 : [key] : {0} , [value] : {1} , [time] : {2} 分钟", key, value, time));
         stringCache.set(key, value, time, TimeUnit.MINUTES);
     }
@@ -102,7 +102,7 @@ public interface IUserCache {
             // 当获取用户编号完成之后,再存一次到缓存中,延续登录
             new Thread(() -> {
                 if (StringUtil.isNotEmpty(userCode)) {
-                    int time = web.getUserCacheTime();
+                    int time = web.getUserLoginTime();
                     stringCache.set(key, userCode, time, TimeUnit.MINUTES);
                 }
             }).start();
