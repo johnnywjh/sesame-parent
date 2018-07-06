@@ -57,9 +57,13 @@ public class DbProperties {
      * 数据库密码是否加密
      */
     private boolean encryption = false;
+    /**
+     * 数据库加密秘钥
+     */
+    private String decodeKey = "mybatis";
 
     public String decodeStr(String str) {
-        EncryptionAndDecryption ead = new EncryptionAndDecryption("mybatis");
+        EncryptionAndDecryption ead = new EncryptionAndDecryption(decodeKey);
         return ead.decodeCBC(str);
     }
 }
