@@ -24,7 +24,7 @@ public class SsoUtil {
         SsoProperties sso = SpringContextUtil.getBean(SsoProperties.class);
         WebProperties web = SpringContextUtil.getBean(WebProperties.class);
         if (sso != null) {
-            CookieUtil.addCookie(response, sso.getSessionIdKey(), sessionId, web.getUserLoginTime() * 60);
+            CookieUtil.addCookie(response, sso.getSessionIdKey(), sessionId, web.getUserLoginSaveTime() * 60);
             return sessionId;
         }
         return null;
