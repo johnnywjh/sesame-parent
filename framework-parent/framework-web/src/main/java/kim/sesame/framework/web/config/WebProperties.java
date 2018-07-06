@@ -59,6 +59,11 @@ public class WebProperties implements InitializingBean {
     private boolean interceptorLogin = false;
     private boolean interceptorAuth = false;
 
+    /**
+     * 获取用户,角色,菜单 是否加入缓存
+     */
+    private boolean userInfoCache = true;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if (StringUtil.isEmpty(this.iconPath)) {
