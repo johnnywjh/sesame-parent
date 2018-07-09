@@ -97,6 +97,11 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
                 }
             }
         }
+        sessionId = request.getParameter("sessionId");
+        if (StringUtil.isNotEmpty(sessionId)) {
+            log.debug(">>>>>>2 sessionId : " + sessionId);
+            return sessionId;
+        }
 
         String casSessionId = SsoUtil.getSessionId(request);
         if (StringUtil.isNotEmpty(casSessionId)) {
@@ -120,6 +125,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         }
         return token;
     }
+
 
     private String getClaimsKey(Claims claims, String key) {
         try {
