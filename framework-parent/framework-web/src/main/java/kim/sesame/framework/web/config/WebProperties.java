@@ -25,9 +25,14 @@ public class WebProperties implements InitializingBean {
      */
     private int sesaionTime = 0;
     /**
-     * 用户登录信息在redis中的保存时间,单位 分钟,默认 10小时
+     * 用户登录信息在redis中的保存时间,单位 分钟,默认 5小时
      */
-    private int userLoginSaveTime = 600;
+    private int userLoginSaveTime = 300;
+    /**
+     * 用户登录的key在cookie中保存的时间,单位分钟,默认30天
+     */
+    private int userCookieSaveTime = 60 * 24 * 30;
+
     private int defaultPageSize = 10;
 
     private boolean urlrewriteEnabled = false; // 是否启动 java 伪静态
