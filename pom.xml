@@ -113,6 +113,11 @@
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-rocketmq</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
                 <artifactId>framework-cache</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
