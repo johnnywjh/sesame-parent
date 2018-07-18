@@ -51,6 +51,8 @@ public class SpringContextUtil implements ApplicationContextAware {
         projectPath = env.getProperty(GData.SPRINGBOOT.contextPath);
         if (StringUtil.isNotEmpty(projectPath)) {
             SpringContextUtil.currentPath = web.getUserHome() + "/sesame_space" + projectPath;
+        } else {
+            SpringContextUtil.currentPath = web.getUserHome() + "/sesame_space";
         }
     }
 
