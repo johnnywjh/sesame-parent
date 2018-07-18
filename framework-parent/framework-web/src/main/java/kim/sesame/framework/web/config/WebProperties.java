@@ -72,7 +72,7 @@ public class WebProperties implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         if (StringUtil.isEmpty(this.iconPath)) {
-            this.iconPath = this.resource + "/ico/favicon.ico";
+            this.iconPath = this.basePath + "/ico/favicon.ico";
         }
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
     }
