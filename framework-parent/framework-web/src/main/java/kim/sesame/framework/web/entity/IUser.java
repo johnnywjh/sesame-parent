@@ -12,7 +12,7 @@ public class IUser extends BaseEntity {
     private String account;//账号,唯一
     private String name;//昵称
     private String pwd;//密码
-    private String roleCode;//角色编号
+    private String deptCode;//部门编号
     private String sex;//性别: 1 男,2 女,3 未知
     private String phone;//手机
     private String email;//邮箱
