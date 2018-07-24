@@ -39,7 +39,7 @@ public @interface QueryCache {
      *
      * @return invalidTime
      */
-    int invalidTime() default 30;
+    int invalidTime() default 0;
 
     /**
      * 序列化时 , 是否写空值进去
