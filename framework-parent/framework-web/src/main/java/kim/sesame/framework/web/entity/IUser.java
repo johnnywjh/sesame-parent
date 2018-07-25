@@ -24,5 +24,8 @@ public class IUser extends BaseEntity {
     private String isEnable;//是否允许登录 : Y/N
     private String active;//是否有效 : Y/N
     private String skin;//界面主题
+    private String staffType; //员工类型：1 内部员工，2 外包员工
+
+    private String deptName;//部门名称
 
 }
