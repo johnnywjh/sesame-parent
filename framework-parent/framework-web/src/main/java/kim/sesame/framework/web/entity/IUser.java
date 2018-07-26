@@ -26,6 +26,8 @@ public class IUser extends BaseEntity {
     private String skin;//界面主题
     private String staffType; //员工类型：1 内部员工，2 外包员工
 
+    // 非数据库字段
     private String deptName;//部门名称
+    private Integer deptLevel;//部门级别
 
 }
