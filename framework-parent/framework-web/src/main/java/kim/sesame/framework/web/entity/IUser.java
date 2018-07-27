@@ -29,5 +29,6 @@ public class IUser extends BaseEntity {
     // 非数据库字段
     private String deptName;//部门名称
     private Integer deptLevel;//部门级别
+    private String roleCode;// 最大的角色编号
 
 }
