@@ -166,6 +166,11 @@
                 <artifactId>framework-websocket</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-job</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
             <!--framework.sesame end -->
 
             <!--spring cloud -->
@@ -339,39 +344,39 @@
             </resource>
         </resources>
     </build>
-<!--
-    <licenses>
-        <license>
-            <name>The Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <name>johnny</name>
-            <email>654499437@qq.com</email>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
-    <scm>
-        <connection>scm:git:https://gitee.com/sesamekim/framework-boot.git</connection>
-        <developerConnection>scm:git:https://gitee.com/sesamekim/framework-boot.git</developerConnection>
-        <url>https://gitee.com/sesamekim/framework-boot</url>
-        <tag>v${project.version}</tag>
-    </scm>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <name>Maven Central Staging Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
--->
+    <!--
+        <licenses>
+            <license>
+                <name>The Apache License, Version 2.0</name>
+                <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            </license>
+        </licenses>
+        <developers>
+            <developer>
+                <name>johnny</name>
+                <email>654499437@qq.com</email>
+                <roles>
+                    <role>developer</role>
+                </roles>
+                <timezone>+8</timezone>
+            </developer>
+        </developers>
+        <scm>
+            <connection>scm:git:https://gitee.com/sesamekim/framework-boot.git</connection>
+            <developerConnection>scm:git:https://gitee.com/sesamekim/framework-boot.git</developerConnection>
+            <url>https://gitee.com/sesamekim/framework-boot</url>
+            <tag>v${project.version}</tag>
+        </scm>
+        <distributionManagement>
+            <snapshotRepository>
+                <id>ossrh</id>
+                <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            </snapshotRepository>
+            <repository>
+                <id>ossrh</id>
+                <name>Maven Central Staging Repository</name>
+                <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            </repository>
+        </distributionManagement>
+    -->
 </project>
