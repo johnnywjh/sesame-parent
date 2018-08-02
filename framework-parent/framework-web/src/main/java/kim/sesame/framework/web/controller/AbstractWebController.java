@@ -2,6 +2,7 @@ package kim.sesame.framework.web.controller;
 
 
 import kim.sesame.framework.utils.StringUtil;
+import org.apache.commons.logging.Log;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -121,5 +122,14 @@ public class AbstractWebController extends AbstractController {
             e.printStackTrace();
         }
         return fileName;
+    }
+
+    public void jobLogInfo(String str, StringBuffer sb, Log log) {
+        log.info(str);
+        sb.append("<p>").append(str).append("</p>");
+    }
+    public void jobLogDebug(String str, StringBuffer sb, Log log) {
+        log.debug(str);
+        sb.append("<p>").append(str).append("</p>");
     }
 }
