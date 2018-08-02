@@ -62,6 +62,7 @@ public class WebProperties implements InitializingBean {
 
     private boolean interceptorUser = false;
     private boolean interceptorLogin = false;
+    private boolean interceptorSession = false;
     private boolean interceptorAuth = false;
 
     /**
