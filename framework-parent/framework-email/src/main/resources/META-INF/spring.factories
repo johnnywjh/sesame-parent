@@ -1,6 +1,6 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-kim.sesame.framework.job.KimJobConfiguration
+kim.sesame.framework.email.service.EmailTemplate
 
 
 

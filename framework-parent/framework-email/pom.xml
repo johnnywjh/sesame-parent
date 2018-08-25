@@ -9,29 +9,24 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>framework-job</artifactId>
+    <artifactId>framework-email</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}-${project.version}</name>
-
-    <properties>
-        <xxl-job>1.9.1</xxl-job>
-    </properties>
 
     <dependencies>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>${sesame.groupId}</groupId>
             <artifactId>framework-core</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.xuxueli</groupId>
-            <artifactId>xxl-job-core</artifactId>
-            <version>${xxl-job}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
 
     </dependencies>
