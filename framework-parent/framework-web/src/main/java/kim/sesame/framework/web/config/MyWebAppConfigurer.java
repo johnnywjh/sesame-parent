@@ -27,18 +27,22 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
 
         // 初始化用户信息
         if (webProperties.isInterceptorUser()) {
-            registry.addInterceptor(new UserInfoInterceptor()).addPathPatterns("/**");
+            registry.addInterceptor(new UserInfoInterceptor()).addPathPatterns("/**")
+                    .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
         }
         // 登录校验
         if (webProperties.isInterceptorLogin()) {
-            registry.addInterceptor(new WebUserInterceptor()).addPathPatterns("/**");
+            registry.addInterceptor(new WebUserInterceptor()).addPathPatterns("/**")
+                    .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
         }
         if (webProperties.isInterceptorSession()) {
-            registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**");
+            registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**")
+                    .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
         }
         // 公钥私钥 认证
         if (webProperties.isInterceptorAuth()) {
-            registry.addInterceptor(new AuthTokenInterceptor()).addPathPatterns("/**");
+            registry.addInterceptor(new AuthTokenInterceptor()).addPathPatterns("/**")
+                    .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
         }
 
     }
