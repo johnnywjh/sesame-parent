@@ -28,13 +28,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * 使用CVS模式解决XLSX文件，可以有效解决用户模式内存溢出的问题
  * 该模式是POI官方推荐的读取大数据的模式，在用户模式下，数据量较大、Sheet较多、或者是有很多无用的空行的情况
  * ，容易出现内存溢出,用户模式读取Excel的典型代码如下： FileInputStream file=new
  * FileInputStream("c:\\test.xlsx"); Workbook wb=new XSSFWorkbook(file);
- *
  *
  * @author wenlin
  */
@@ -103,14 +103,10 @@ public class XLSXCovertCSVReader {
         /**
          * Accepts objects needed while parsing.
          *
-         * @param styles
-         *            Table of styles
-         * @param strings
-         *            Table of shared strings
-         * @param cols
-         *            Minimum number of columns to show
-         * @param target
-         *            Sink for output
+         * @param styles  Table of styles
+         * @param strings Table of shared strings
+         * @param cols    Minimum number of columns to show
+         * @param target  Sink for output
          */
         public MyXSSFSheetHandler(StylesTable styles,
                                   ReadOnlySharedStringsTable strings, int cols, PrintStream target) {
@@ -241,8 +237,8 @@ public class XLSXCovertCSVReader {
                         // 判断是否是日期格式
                         if (HSSFDateUtil.isADateFormat(this.formatIndex, n)) {
                             Double d = Double.parseDouble(n);
-                            Date date=HSSFDateUtil.getJavaDate(d);
-                            thisStr=formateDateToString(date);
+                            Date date = HSSFDateUtil.getJavaDate(d);
+                            thisStr = formateDateToString(date);
                         } else if (this.formatString != null)
                             thisStr = formatter.formatRawCellContents(
                                     Double.parseDouble(n), this.formatIndex,
@@ -344,12 +340,9 @@ public class XLSXCovertCSVReader {
     /**
      * Creates a new XLSX -> CSV converter
      *
-     * @param pkg
-     *            The XLSX package to process
-     * @param output
-     *            The PrintStream to output the CSV to
-     * @param minColumns
-     *            The minimum number of columns to output, or -1 for no minimum
+     * @param pkg        The XLSX package to process
+     * @param output     The PrintStream to output the CSV to
+     * @param minColumns The minimum number of columns to output, or -1 for no minimum
      */
     public XLSXCovertCSVReader(OPCPackage pkg, PrintStream output,
                                String sheetName, int minColumns) {
@@ -416,12 +409,9 @@ public class XLSXCovertCSVReader {
     /**
      * 读取Excel
      *
-     * @param path
-     *            文件路径
-     * @param sheetName
-     *            sheet名称
-     * @param minColumns
-     *            列总数
+     * @param path       文件路径
+     * @param sheetName  sheet名称
+     * @param minColumns 列总数
      * @return
      * @throws SAXException
      * @throws ParserConfigurationException
@@ -429,15 +419,31 @@ public class XLSXCovertCSVReader {
      * @throws IOException
      */
     public static List<String[]> readerExcel(String path, String sheetName,
-                                              int minColumns) throws IOException, OpenXML4JException,
+                                             int minColumns) throws IOException, OpenXML4JException,
             ParserConfigurationException, SAXException {
         OPCPackage p = OPCPackage.open(path, PackageAccess.READ);
         XLSXCovertCSVReader xlsx2csv = new XLSXCovertCSVReader(p, System.out,
                 sheetName, minColumns);
         List<String[]> list = xlsx2csv.process();
         p.close();
+
+        removeQuotes(list);
         return list;
     }
+
+    /**
+     * 去掉数组里的前后引号
+     *
+     * @param list
+     */
+    public static void removeQuotes(List<String[]> list) {
+        list.parallelStream().forEach(l -> {
+            for (int j = 0; j < l.length; j++) {
+                l[j] = StringUtil.removeQuotes(l[j]);
+            }
+        });
+    }
+
     public static List<String[]> readerExcel(InputStream in, String sheetName,
                                              int minColumns) throws IOException, OpenXML4JException,
             ParserConfigurationException, SAXException {
@@ -446,6 +452,7 @@ public class XLSXCovertCSVReader {
                 sheetName, minColumns);
         List<String[]> list = xlsx2csv.process();
         p.close();
+        removeQuotes(list);
         return list;
     }
 
@@ -455,9 +462,9 @@ public class XLSXCovertCSVReader {
                         "E:\\order_template.xlsx",
                         "Sheet1", 17);
         for (String[] record : list) {
-            System.out.print(Arrays.toString(record)+"\n");
+            System.out.print(Arrays.toString(record) + "\n");
         }
-        System.out.println("总条数："+list.size());
+        System.out.println("总条数：" + list.size());
     }
 
 }
