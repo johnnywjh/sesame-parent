@@ -33,7 +33,8 @@
 
         <module>framework-spring-boot</module><!--spring-boot 的一些集成 -->
 
-        <module>framework-email</module><!--分布式任务调度-->
+        <module>framework-email</module><!--邮件发送模板-->
+        <module>framework-tablelog</module><!--表操作日志-->
     </modules>
 
 

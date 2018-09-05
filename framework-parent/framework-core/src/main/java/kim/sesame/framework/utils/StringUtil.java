@@ -82,6 +82,21 @@ public class StringUtil {
         }
         return false;
     }
-
+    /**
+     * 去掉前后引号
+     */
+    public static String removeQuotes(String str) {
+        if (StringUtil.isEmpty(str)) {
+            return "";
+        }
+        int length = str.length();
+        if (length <= 2) {
+            return str;
+        }
+        if (str.substring(0, 1).equals("\"") && str.substring(length - 1, length).equals("\"")) {
+            return str.substring(1, length - 1);
+        }
+        return str;
+    }
 
 }
