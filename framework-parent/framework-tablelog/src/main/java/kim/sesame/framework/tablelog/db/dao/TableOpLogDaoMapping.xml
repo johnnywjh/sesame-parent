@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kim.sesame.framework.tablelog.db.dao.TableOpLogDao">
+
+	<sql id="fieldMapping">
+		id id,table_name tableName,pk_name pkName,pk_value pkValue,field_name fieldName,field_comment fieldComment,value_before valueBefore,value_after valueAfter,update_id updateId,update_time updateTime,update_user updateUser
+	</sql>
+	<!-- 新增   useGeneratedKeys="true" keyProperty="id" -->
+	<insert id="insert" parameterType="kim.sesame.framework.tablelog.db.bean.TableOpLog">
+		INSERT INTO table_op_log
+		(
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">id,</if>
+			<if test="tableName != null and tableName != ''">table_name,</if>
+			<if test="pkName != null and pkName != ''">pk_name,</if>
+			<if test="pkValue != null and pkValue != ''">pk_value,</if>
+			<if test="fieldName != null and fieldName != ''">field_name,</if>
+			<if test="fieldComment != null and fieldComment != ''">field_comment,</if>
+			<if test="valueBefore != null and valueBefore != ''">value_before,</if>
+			<if test="valueAfter != null and valueAfter != ''">value_after,</if>
+			<if test="updateId != null and updateId != ''">update_id,</if>
+			<if test="updateTime != null">update_time,</if>
+			<if test="updateUser != null and updateUser != ''">update_user,</if>
+		</trim>
+		)VALUES(
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">#{id},</if>
+			<if test="tableName != null and tableName != ''">#{tableName},</if>
+			<if test="pkName != null and pkName != ''">#{pkName},</if>
+			<if test="pkValue != null and pkValue != ''">#{pkValue},</if>
+			<if test="fieldName != null and fieldName != ''">#{fieldName},</if>
+			<if test="fieldComment != null and fieldComment != ''">#{fieldComment},</if>
+			<if test="valueBefore != null and valueBefore != ''">#{valueBefore},</if>
+			<if test="valueAfter != null and valueAfter != ''">#{valueAfter},</if>
+			<if test="updateId != null and updateId != ''">#{updateId},</if>
+			<if test="updateTime != null">#{updateTime},</if>
+			<if test="updateUser != null and updateUser != ''">#{updateUser},</if>
+		</trim>
+		)
+	</insert>
+	
+	<!-- 删除 -->
+	<delete id="delete"  parameterType="String">
+		DELETE FROM table_op_log where id=#{0}
+	</delete>
+		
+	<!-- 修改 -->
+	<update id="update" parameterType="kim.sesame.framework.tablelog.db.bean.TableOpLog">
+		UPDATE table_op_log SET  
+		<trim suffixOverrides=",">
+			<if test="tableName != null and tableName != ''">table_name=#{tableName},</if>
+			<if test="pkName != null and pkName != ''">pk_name=#{pkName},</if>
+			<if test="pkValue != null and pkValue != ''">pk_value=#{pkValue},</if>
+			<if test="fieldName != null and fieldName != ''">field_name=#{fieldName},</if>
+			<if test="fieldComment != null and fieldComment != ''">field_comment=#{fieldComment},</if>
+			<if test="valueBefore != null and valueBefore != ''">value_before=#{valueBefore},</if>
+			<if test="valueAfter != null and valueAfter != ''">value_after=#{valueAfter},</if>
+			<if test="updateId != null and updateId != ''">update_id=#{updateId},</if>
+			<if test="updateTime != null">update_time=#{updateTime},</if>
+			<if test="updateUser != null and updateUser != ''">update_user=#{updateUser},</if>
+		</trim>
+		where id=#{id}
+	</update>
+	
+	<!-- 查询list -->
+	<select id="searchList" resultType="kim.sesame.framework.tablelog.db.bean.TableOpLog" parameterType="kim.sesame.framework.tablelog.db.bean.TableOpLog">
+		SELECT 
+		<include refid="fieldMapping" />
+		FROM table_op_log
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id != null and id != ''"> and id=#{id}</if>
+			<if test="tableName != null and tableName != ''"> and table_name=#{tableName}</if>
+			<if test="pkName != null and pkName != ''"> and pk_name=#{pkName}</if>
+			<if test="pkValue != null and pkValue != ''"> and pk_value=#{pkValue}</if>
+			<if test="fieldName != null and fieldName != ''"> and field_name=#{fieldName}</if>
+			<if test="fieldComment != null and fieldComment != ''"> and field_comment=#{fieldComment}</if>
+			<if test="valueBefore != null and valueBefore != ''"> and value_before=#{valueBefore}</if>
+			<if test="valueAfter != null and valueAfter != ''"> and value_after=#{valueAfter}</if>
+			<if test="updateId != null and updateId != ''"> and update_id=#{updateId}</if>
+			<if test="updateTime != null"> and update_time=#{updateTime}</if>
+			<if test="updateUser != null and updateUser != ''"> and update_user=#{updateUser}</if>
+		</trim>
+		order by update_time desc
+	</select>
+	
+	<!-- 查询单个,返回bean -->	
+	<select id="search" resultType="kim.sesame.framework.tablelog.db.bean.TableOpLog" parameterType="kim.sesame.framework.tablelog.db.bean.TableOpLog">
+		SELECT
+		<include refid="fieldMapping" />
+		FROM table_op_log
+		<trim prefix="where" prefixOverrides="and">
+			<if test="id != null and id != ''"> and id=#{id}</if>
+			<if test="tableName != null and tableName != ''"> and table_name=#{tableName}</if>
+			<if test="pkName != null and pkName != ''"> and pk_name=#{pkName}</if>
+			<if test="pkValue != null and pkValue != ''"> and pk_value=#{pkValue}</if>
+			<if test="fieldName != null and fieldName != ''"> and field_name=#{fieldName}</if>
+			<if test="fieldComment != null and fieldComment != ''"> and field_comment=#{fieldComment}</if>
+			<if test="valueBefore != null and valueBefore != ''"> and value_before=#{valueBefore}</if>
+			<if test="valueAfter != null and valueAfter != ''"> and value_after=#{valueAfter}</if>
+			<if test="updateId != null and updateId != ''"> and update_id=#{updateId}</if>
+			<if test="updateTime != null"> and update_time=#{updateTime}</if>
+			<if test="updateUser != null and updateUser != ''"> and update_user=#{updateUser}</if>
+		</trim>
+	</select>
+
+
+</mapper>
