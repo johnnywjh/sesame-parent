@@ -24,12 +24,6 @@ public class TableOpProperties implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("111111111111111111111111111111111");
-        System.out.println("111111111111111111111111111111111");
-        System.out.println("111111111111111111111111111111111");
-        System.out.println("111111111111111111111111111111111");
-        System.out.println(list);
-        System.out.println("111111111111111111111111111111111");
-        System.out.println("111111111111111111111111111111111");
+
     }
 }

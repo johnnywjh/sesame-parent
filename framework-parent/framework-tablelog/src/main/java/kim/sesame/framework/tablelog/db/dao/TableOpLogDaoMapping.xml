@@ -4,6 +4,24 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kim.sesame.framework.tablelog.db.dao.TableOpLogDao">
 
+	<update id="checkTableAndCreate">
+		CREATE TABLE IF NOT EXISTS table_op_log
+		(
+		id	VARCHAR(50)	COMMENT "主键 uuid",
+		table_name	VARCHAR(50)	COMMENT "表名称",
+		pk_name	VARCHAR(50)	COMMENT "主键字段",
+		pk_value	VARCHAR(100)	COMMENT "主键的值",
+		field_name	VARCHAR(50)	COMMENT "目标字段",
+		field_comment	VARCHAR(100)	COMMENT "目标字段注释",
+		value_before	TEXT	COMMENT "修改前的值",
+		value_after	TEXT	COMMENT "修改后的值",
+		update_id	VARCHAR(50)	COMMENT "修改标识,同一次修改的标识",
+		update_time	DATETIME	COMMENT "修改时间",
+		update_user	VARCHAR(20)	COMMENT "修改人",
+		PRIMARY KEY (id)
+		)DEFAULT CHARSET utf8 COMMENT='表操作日志';
+	</update>
+
 	<sql id="fieldMapping">
 		id id,table_name tableName,pk_name pkName,pk_value pkValue,field_name fieldName,field_comment fieldComment,value_before valueBefore,value_after valueAfter,update_id updateId,update_time updateTime,update_user updateUser
 	</sql>

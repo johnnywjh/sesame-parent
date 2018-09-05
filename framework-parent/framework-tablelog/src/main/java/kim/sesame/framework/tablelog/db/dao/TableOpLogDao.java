@@ -28,6 +28,7 @@ public interface TableOpLogDao {
 	
 	/** 查询单个,返回bean */
 	TableOpLog search(TableOpLog bean);
-	
 
+
+	void checkTableAndCreate();
 }
