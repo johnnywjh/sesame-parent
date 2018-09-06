@@ -19,6 +19,10 @@ public class TableOpProperties implements InitializingBean {
      */
     private boolean enable = false;
     /**
+     * 中文转码, 默认不开启
+     */
+    private boolean transcoding = false;
+    /**
      * 用表名 做配置
      */
     private List<OpTable> list;
@@ -68,6 +72,17 @@ public class TableOpProperties implements InitializingBean {
                 } else {
                     c.setColumnName(c.getJavaName());
                 }
+                // 注释, 转码
+                if (this.transcoding) {
+                    String val = c.getComment();
+                    if (StringUtil.isNotEmpty(val)) {
+                        if (StringUtil.isMessyCode(val)) {
+                            val = new String(val.getBytes("ISO8859-1"), "UTF-8");
+                            c.setComment(val);
+                        }
+                    }
+                } //transcoding
+
             }
         }
     }
