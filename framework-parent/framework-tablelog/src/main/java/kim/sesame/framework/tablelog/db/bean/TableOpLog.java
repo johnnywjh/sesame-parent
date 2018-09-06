@@ -21,8 +21,29 @@ public class TableOpLog extends BaseEntity {
 	private String valueBefore;//修改前的值
 	private String valueAfter;//修改后的值
 	private String updateId;//修改标识,同一次修改的标识
+	private String classPath;//类路径
+	private String methodName;//方法名称
 
     // not database field ...
+//	private String pkJavaName;// 主键对应java字段
+	private String selectSql;// 记录下查询sql
 
 	public TableOpLog(){}
+
+	@Override
+	public String toString() {
+		return "TableOpLog{" +
+				"id='" + super.getId() + '\'' +
+				"tableName='" + tableName + '\'' +
+				", pkName='" + pkName + '\'' +
+				", pkValue='" + pkValue + '\'' +
+				", fieldName='" + fieldName + '\'' +
+				", fieldComment='" + fieldComment + '\'' +
+				", valueBefore='" + valueBefore + '\'' +
+				", valueAfter='" + valueAfter + '\'' +
+				", updateId='" + updateId + '\'' +
+				", classPath='" + classPath + '\'' +
+				", methodName='" + methodName + '\'' +
+				'}';
+	}
 }

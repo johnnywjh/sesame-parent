@@ -13,7 +13,7 @@ public class OpTable {
     /**
      * 实体类路径
      */
-    private String className;
+    private String classPath;
     /**
      * 主键字段, 默认值 id
      */
@@ -22,6 +22,11 @@ public class OpTable {
      * 对应的java属性, 默认值 id
      */
     private String pkJava = "id";
+
+    /**
+     * 是否同步,记录日志, 默认false
+     */
+    private boolean sync=false;
 
     /**
      * 列的集合

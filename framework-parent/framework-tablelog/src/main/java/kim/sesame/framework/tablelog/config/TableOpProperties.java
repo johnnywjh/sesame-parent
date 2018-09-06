@@ -1,7 +1,6 @@
 package kim.sesame.framework.tablelog.config;
 
 import lombok.Data;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +9,8 @@ import java.util.List;
 @Data
 @Component
 @ConfigurationProperties(prefix = "sesame.framework.tablelog")
-public class TableOpProperties implements InitializingBean {
+//@PropertySource(value="classpath:config/application.properties",encoding = "UTF-8")
+public class TableOpProperties {
 
     /**
      * 是否开启, 默认关闭
@@ -22,8 +22,18 @@ public class TableOpProperties implements InitializingBean {
     private List<OpTable> list;
 
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-
+    /**
+     * 根据类路径获取 OpTable 对象
+     */
+    public OpTable getOpTable(String classPath) {
+        OpTable obj = null;
+        for (OpTable o : this.list) {
+            if (o.getClassPath().equals(classPath)) {
+                obj = o;
+                break;
+            }
+        }
+        return obj;
     }
+
 }
