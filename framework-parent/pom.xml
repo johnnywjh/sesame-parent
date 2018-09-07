@@ -22,6 +22,7 @@
         <module>framework-rocketmq</module>
         <module>framework-websocket</module><!--websocket 模块,单机版-->
         <module>framework-websocket-cloud</module><!--websocket 模块,集群版-->
+        <module>framework-web-swagger</module><!--swagger 配置-->
 
         <module>framework-cache</module><!--缓存接口的定义-->
         <module>framework-cache-redis</module><!--缓存接口的实现- redis-->

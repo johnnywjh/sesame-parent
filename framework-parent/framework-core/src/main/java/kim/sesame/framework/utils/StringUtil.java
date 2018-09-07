@@ -1,5 +1,6 @@
 package kim.sesame.framework.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -102,6 +103,18 @@ public class StringUtil {
             return str.substring(1, length - 1);
         }
         return str;
+    }
+
+    public static String transcoding(String val) {
+        try {
+            if (isMessyCode(val)) {
+                return new String(val.getBytes("ISO8859-1"), "UTF-8");
+            }
+            return val;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /*

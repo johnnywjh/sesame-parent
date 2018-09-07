@@ -19,9 +19,9 @@ public class TableOpProperties implements InitializingBean {
      */
     private boolean enable = false;
     /**
-     * 中文转码, 默认不开启
+     * 中文转码, 默认开启
      */
-    private boolean transcoding = false;
+    private boolean transcoding = true;
     /**
      * 用表名 做配置
      */
@@ -76,10 +76,8 @@ public class TableOpProperties implements InitializingBean {
                 if (this.transcoding) {
                     String val = c.getComment();
                     if (StringUtil.isNotEmpty(val)) {
-                        if (StringUtil.isMessyCode(val)) {
-                            val = new String(val.getBytes("ISO8859-1"), "UTF-8");
-                            c.setComment(val);
-                        }
+                        val =StringUtil.transcoding(val);
+                        c.setComment(val);
                     }
                 } //transcoding
 
