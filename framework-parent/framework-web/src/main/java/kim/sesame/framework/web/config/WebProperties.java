@@ -70,6 +70,11 @@ public class WebProperties implements InitializingBean {
      */
     private boolean userInfoCache = true;
 
+    /**
+     * 开启跨域
+     */
+    private boolean enableCrossDomain = false;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if (StringUtil.isEmpty(this.iconPath)) {
