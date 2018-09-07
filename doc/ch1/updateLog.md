@@ -20,6 +20,8 @@
 7. framework-web 增加签名校验,动态tokean校验,时间控制,使用文档还没有写.懒一会
 8. framework-cache-redis 增加多redis实例支持, [#详见文档](https://gitee.com/sesamekim/framework-boot/wikis/pages?title=2.2-redis%E5%A4%9A%E5%AE%9E%E4%BE%8B%E9%85%8D%E7%BD%AE&parent=%E6%9E%B6%E6%9E%84%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8)
 9. 新增 framework-rocketmq 模块, 参考[rocketmq-externals/rocketmq-spring-boot-starter](https://github.com/apache/rocketmq-externals/tree/master/rocketmq-spring-boot-starter)
+10. 新增 framework-web-swagger, 用于开启swagger, 文档还没写
+11. 新增 framework-tablelog 用于记录某些表,某些字段, 的修改记录, 文档还没写
 
 #### 1.3 `2018-4-23 `
 1. 优化 SpringContextUtil 内上下文对象的注入方式,无需手动注入
