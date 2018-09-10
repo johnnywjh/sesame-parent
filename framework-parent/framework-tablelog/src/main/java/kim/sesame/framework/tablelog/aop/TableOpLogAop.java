@@ -119,8 +119,8 @@ public class TableOpLogAop {
             if (StringUtil.isNotEmpty(t.getSelectSql())) {
                 val = jdbcTemplate.queryForObject(t.getSelectSql(), new Object[]{val}, String.class);
             }
-            // 如果修改前后一样,那么也跳过
-            if (val.equals(of.getValue())) {
+            // 在没有查询sql的情况下, 如果修改前后一样,那么也跳过
+            if (StringUtil.isEmpty(t.getSelectSql()) && val.equals(of.getValue())) {
                 continue;
             }
             bean.setValueBefore(val.toString());
@@ -135,21 +135,27 @@ public class TableOpLogAop {
         result = pjd.proceed();
 
         // 记录修改后的值
-        logs.stream().forEach(bean -> {
+        List<TableOpLog> log_list = new ArrayList<>();
+        for (TableOpLog bean : logs) {
             String sql = "select " + bean.getFieldName() + " from " + bean.getTableName() + " where " + bean.getPkName() + "=?";
             Object val = jdbcTemplate.queryForObject(sql, new Object[]{bean.getPkValue()}, Object.class);
             if (StringUtil.isNotEmpty(bean.getSelectSql())) {
                 val = jdbcTemplate.queryForObject(bean.getSelectSql(), new Object[]{val}, String.class);
             }
             bean.setValueAfter(val.toString());
-        });
+            if (StringUtil.isNotEmpty(bean.getValueAfter()) && StringUtil.isNotEmpty(bean.getValueBefore())) {
+                if (bean.getValueAfter().equals(bean.getValueBefore()) == false) {
+                    log_list.add(bean);
+                }
+            }
+        }
 
         // 开始记录日志, 判断是否异步
         if (opTable.isSync()) {
-            insertLogs(logs);
+            insertLogs(log_list);
         } else {
             new Thread(() -> {
-                insertLogs(logs);
+                insertLogs(log_list);
             }).start();
         }
 
