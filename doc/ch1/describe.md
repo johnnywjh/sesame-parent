@@ -38,16 +38,32 @@
         <td>mybatis的基础封装</td>
     </tr>
     <tr>
+        <td>framework-rocketmq</td>
+        <td>rocketmq的一些操作</td>
+    </tr>
+    <tr>
         <td>framework-spring-boot</td>
         <td>springcloud 的封装,包含cloud,starter模块</td>
+    </tr>
+    <tr>
+        <td>framework-tablelog</td>
+        <td>记录数据库表的某些字段的修改记录,可配置</td>
     </tr>
     <tr>
         <td>framework-web</td>
         <td>web模块的封装</td>
     </tr>
     <tr>
+        <td>framework-web-swagger</td>
+        <td>swagger 的封装, 用的时候加上配置就好了</td>
+    </tr>
+    <tr>
         <td>framework-websocket</td>
-        <td>websocket推送</td>
+        <td>websocket推送---单机版</td>
+    </tr>
+    <tr>
+        <td>framework-websocket-cloud</td>
+        <td>websocket推送--集群版---未完成</td>
     </tr>
 </table>
 
