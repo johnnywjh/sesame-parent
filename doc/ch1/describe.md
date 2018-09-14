@@ -26,6 +26,10 @@
         <td>分布式事物</td>
     </tr>
     <tr>
+        <td>framework-email</td>
+        <td>简单邮件,模板邮件, 发送</td>
+    </tr>
+    <tr>
         <td>framework-lock</td>
         <td>分布式锁</td>
     </tr>
