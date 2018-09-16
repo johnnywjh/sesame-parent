@@ -17,4 +17,8 @@ public class IRole extends BaseEntity {
     private String notdele;//是否允许删除 : Y/N
     private String active;//是否有效 : Y/N
 
+    // not database field ...
+    private String roles; // 角色集合
+    private int userCount;// 用户个数
+
 }
