@@ -21,7 +21,7 @@
 		class_path varchar(500)  COMMENT '类路径',
         method_name varchar(100)  COMMENT '方法名称',
 		PRIMARY KEY (id)
-		)DEFAULT CHARSET utf8 COMMENT='表操作日志';
+		)DEFAULT CHARSET utf8 COMMENT='表操作日志'
 	</update>
 
     <sql id="fieldMapping">

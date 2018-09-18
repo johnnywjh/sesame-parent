@@ -7,6 +7,7 @@ import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IUser;
 import lombok.extern.apachecommons.CommonsLog;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +26,7 @@ import java.util.stream.Stream;
  */
 @CommonsLog
 @Service
-public class AccessoryService {
+public class AccessoryService implements InitializingBean {
 
     @SuppressWarnings("all")
     @Resource
@@ -162,9 +163,13 @@ public class AccessoryService {
             }
         }
         GMap params = GMap.newMap();
-        params.putAction("ids",sb.toString());
+        params.putAction("ids", sb.toString());
         list = accessoryDao.queryListByids(params);
         return list;
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        accessoryDao.checkTableAndCreate();
+    }
 }

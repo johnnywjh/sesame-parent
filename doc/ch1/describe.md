@@ -58,8 +58,11 @@
         <td>web模块的封装</td>
     </tr>
     <tr>
-        <td>framework-web-swagger</td>
-        <td>swagger 的封装, 用的时候加上配置就好了</td>
+        <td>framework-utils</td>
+        <td>
+            <p>framework-utils-accessory  附件上传模块</p>
+            <p>framework-utils-swagger  swagger的一些封装</p>
+        </td>
     </tr>
     <tr>
         <td>framework-websocket</td>

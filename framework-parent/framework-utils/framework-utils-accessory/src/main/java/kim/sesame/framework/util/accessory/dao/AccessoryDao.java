@@ -15,6 +15,8 @@ import java.util.List;
  @Mapper
 public interface AccessoryDao {
 
+	void checkTableAndCreate();
+
 	/** 新增  */
 	int insert(Accessory bean);
 	
