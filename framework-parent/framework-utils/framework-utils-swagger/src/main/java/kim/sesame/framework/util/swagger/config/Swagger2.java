@@ -1,4 +1,4 @@
-package kim.sesame.framework.swagger.config;
+package kim.sesame.framework.util.swagger.config;
 
 
 import kim.sesame.framework.utils.StringUtil;

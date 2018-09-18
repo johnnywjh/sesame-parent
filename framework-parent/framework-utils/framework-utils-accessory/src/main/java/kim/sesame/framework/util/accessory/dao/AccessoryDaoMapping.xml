@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kim.sesame.framework.util.accessory.dao.AccessoryDao">
+
+    <sql id="fieldMapping">
+		id id,name name,url url,type type,ex_id exId,create_time createTime,create_user createUser
+	</sql>
+    <!-- 新增   useGeneratedKeys="true" keyProperty="id" -->
+    <insert id="insert" parameterType="kim.sesame.framework.util.accessory.bean.Accessory">
+        INSERT INTO accessory
+        (
+        <trim suffixOverrides=",">
+            <if test="id != null and id != ''">id,</if>
+            <if test="name != null and name != ''">name,</if>
+            <if test="url != null and url != ''">url,</if>
+            <if test="type != null and type != ''">type,</if>
+            <if test="exId != null and exId != ''">ex_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="createUser != null and createUser != ''">create_user,</if>
+        </trim>
+        )VALUES(
+        <trim suffixOverrides=",">
+            <if test="id != null and id != ''">#{id},</if>
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="url != null and url != ''">#{url},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="exId != null and exId != ''">#{exId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="createUser != null and createUser != ''">#{createUser},</if>
+        </trim>
+        )
+    </insert>
+
+    <!-- 删除 -->
+    <delete id="delete" parameterType="String">
+		DELETE FROM accessory where id=#{0}
+	</delete>
+
+    <!-- 修改 -->
+    <update id="update" parameterType="kim.sesame.framework.util.accessory.bean.Accessory">
+        UPDATE accessory SET
+        <trim suffixOverrides=",">
+            <if test="name != null and name != ''">name=#{name},</if>
+            <if test="url != null and url != ''">url=#{url},</if>
+            <if test="type != null and type != ''">type=#{type},</if>
+            <if test="exId != null and exId != ''">ex_id=#{exId},</if>
+            <if test="createTime != null">create_time=#{createTime},</if>
+            <if test="createUser != null and createUser != ''">create_user=#{createUser},</if>
+        </trim>
+        where id=#{id}
+    </update>
+
+    <!-- 查询list -->
+    <select id="searchList" resultType="kim.sesame.framework.util.accessory.bean.Accessory"
+            parameterType="kim.sesame.framework.util.accessory.bean.Accessory">
+        SELECT
+        <include refid="fieldMapping"/>
+        FROM accessory
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id != null and id != ''">and id=#{id}</if>
+            <if test="name != null and name != ''">and name=#{name}</if>
+            <if test="url != null and url != ''">and url=#{url}</if>
+            <if test="type != null and type != ''">and type=#{type}</if>
+            <if test="exId != null and exId != ''">and ex_id=#{exId}</if>
+            <if test="createTime != null">and create_time=#{createTime}</if>
+            <if test="createUser != null and createUser != ''">and create_user=#{createUser}</if>
+        </trim>
+        order by create_time desc
+    </select>
+
+    <!-- 查询单个,返回bean -->
+    <select id="search" resultType="kim.sesame.framework.util.accessory.bean.Accessory"
+            parameterType="kim.sesame.framework.util.accessory.bean.Accessory">
+        SELECT
+        <include refid="fieldMapping"/>
+        FROM accessory
+        <trim prefix="where" prefixOverrides="and">
+            <if test="id != null and id != ''">and id=#{id}</if>
+            <if test="name != null and name != ''">and name=#{name}</if>
+            <if test="url != null and url != ''">and url=#{url}</if>
+            <if test="type != null and type != ''">and type=#{type}</if>
+            <if test="exId != null and exId != ''">and ex_id=#{exId}</if>
+            <if test="createTime != null">and create_time=#{createTime}</if>
+            <if test="createUser != null and createUser != ''">and create_user=#{createUser}</if>
+        </trim>
+    </select>
+
+    <select id="queryListByids" resultType="kim.sesame.framework.util.accessory.bean.Accessory" parameterType="kim.sesame.framework.entity.GMap">
+        SELECT
+        <include refid="fieldMapping"/>
+        FROM accessory
+        where id in ( ${ids} )
+        order by create_time desc
+    </select>
+
+
+</mapper>

@@ -1,6 +1,5 @@
 package kim.sesame.framework.utils;
 
-import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

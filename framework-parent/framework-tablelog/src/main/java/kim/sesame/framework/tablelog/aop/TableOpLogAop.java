@@ -1,6 +1,5 @@
 package kim.sesame.framework.tablelog.aop;
 
-import kim.sesame.framework.tablelog.annotation.DbOpLog;
 import kim.sesame.framework.tablelog.config.OpColumn;
 import kim.sesame.framework.tablelog.config.OpTable;
 import kim.sesame.framework.tablelog.config.TableOpProperties;
@@ -15,14 +14,12 @@ import lombok.extern.apachecommons.CommonsLog;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;

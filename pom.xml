@@ -163,7 +163,17 @@
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-web-swagger</artifactId>
+                <artifactId>framework-utils</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-utils-swagger</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-utils-accessory</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>

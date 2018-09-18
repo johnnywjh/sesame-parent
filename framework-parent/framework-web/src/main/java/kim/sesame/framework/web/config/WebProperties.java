@@ -75,11 +75,36 @@ public class WebProperties implements InitializingBean {
      */
     private boolean enableCrossDomain = false;
 
+    /**
+     * 当前系统编码
+     */
+    private String sysCode;
+    /**
+     * 超级管理员角色编号
+     */
+    private String spuerAdmin = "spuer_admin";
+
+    /**
+     * 文件上传地址
+     */
+    private String uploadUrl = "http://localhost:8072/index/upload_file";
+    /**
+     * 界面上是否显示头标识
+     */
+    private boolean showPageHeads = false;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if (StringUtil.isEmpty(this.iconPath)) {
             this.iconPath = this.basePath + "/ico/favicon.ico";
         }
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
+
+//        if (StringUtil.isEmpty(this.sysCode)) {
+//            throw new NullPointerException("请配置 sesame.framework.project.sys-code= 的值");
+//        }
+        ProjectConfig.setSysCode(this.sysCode);
+        ProjectConfig.setSpuerAdmin(this.spuerAdmin);
+        ProjectConfig.setUploadUrl(this.uploadUrl);
     }
 }

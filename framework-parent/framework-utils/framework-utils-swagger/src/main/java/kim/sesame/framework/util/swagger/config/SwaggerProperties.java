@@ -1,6 +1,5 @@
-package kim.sesame.framework.swagger.config;
+package kim.sesame.framework.util.swagger.config;
 
-import kim.sesame.framework.entity.GPage;
 import kim.sesame.framework.utils.StringUtil;
 import lombok.Data;
 import org.springframework.beans.factory.InitializingBean;
