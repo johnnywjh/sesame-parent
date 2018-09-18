@@ -5,7 +5,7 @@
 <mapper namespace="kim.sesame.framework.util.accessory.dao.AccessoryDao">
 
     <update id="checkTableAndCreate">
-		CREATE TABLE IF NOT EXISTS accessory
+		CREATE TABLE IF NOT EXISTS accessory (
           `id` varchar(50) NOT NULL DEFAULT '' COMMENT '    主键 uuid    ',
           `name` varchar(50) DEFAULT NULL COMMENT '    名称    ',
           `url` varchar(500) DEFAULT NULL COMMENT '    地址    ',
