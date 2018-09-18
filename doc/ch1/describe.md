@@ -60,8 +60,8 @@
     <tr>
         <td>framework-utils</td>
         <td>
-            <p>framework-utils-accessory  附件上传模块</p>
-            <p>framework-utils-swagger  swagger的一些封装</p>
+            <p>framework-utils-accessory : 附件上传模块</p>
+            <p>framework-utils-swagger : swagger的一些封装</p>
         </td>
     </tr>
     <tr>
