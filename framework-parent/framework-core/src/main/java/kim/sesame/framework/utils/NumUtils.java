@@ -1,5 +1,6 @@
 package kim.sesame.framework.utils;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -24,5 +25,22 @@ public class NumUtils {
 
         return sf.format(new Date());
 
+    }
+
+
+    /**
+     * 计算百分比
+     * @param count 分子
+     * @param sum 分母,总数
+     * @param num 保留几位小数
+     * @return
+     */
+    public static String rate(long count, long sum, int num) {
+        // 创建一个数值格式化对象
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        // 设置精确到小数点后2位
+        numberFormat.setMaximumFractionDigits(num);
+        String result = numberFormat.format((float) count / (float) sum * 100);
+        return result;
     }
 }
