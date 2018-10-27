@@ -2,10 +2,12 @@ package kim.sesame.framework.rocketmq.core;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.util.IOUtils;
+import org.springframework.stereotype.Component;
 
 /**
  * FastJson 序列化
  **/
+@Component
 public class FastJsonRocketMQSerializer implements RocketMQSerializer{
 
     @Override
