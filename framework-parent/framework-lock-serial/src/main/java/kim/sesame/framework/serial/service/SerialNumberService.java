@@ -53,7 +53,8 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
 
         log.info("获取Redis分布式锁：" + serialNumberRule.getCode());
         try {
-            locker.lock(lockKey);
+//            locker.lock(lockKey);
+            locker.tryFairLock(lockKey, 5L, 10L);
             log.info("Redis分布式锁加锁成功:" + lockKey);
 
             SerialNumberRuleEntity serialNumberRuleEntity = getSerialNumberRule(serialNumberRule);
@@ -63,6 +64,9 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
             serialNumberRuleEntity.setCurNum(result.getNextSequenceValue());
             serialNumberRuleDao.updateSerialNumberRule(serialNumberRuleEntity);
             return result.getSerialNumber();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         } finally {
             locker.unlock(lockKey);
             log.info("Redis分布式锁释放锁成功:" + lockKey);
