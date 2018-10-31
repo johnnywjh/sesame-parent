@@ -5,7 +5,6 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -31,8 +30,6 @@ public class MybatisConfig implements TransactionManagementConfigurer {
 	@Resource(name = "dataSource")
 	DataSource dataSource;
 
-	@Resource
-	private Environment env;
 	@Resource
 	private DbProperties druid;
 
