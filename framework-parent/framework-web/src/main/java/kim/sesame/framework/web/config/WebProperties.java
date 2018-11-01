@@ -100,9 +100,10 @@ public class WebProperties implements InitializingBean {
         }
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
 
-//        if (StringUtil.isEmpty(this.sysCode)) {
-//            throw new NullPointerException("请配置 sesame.framework.project.sys-code= 的值");
-//        }
+        if (StringUtil.isEmpty(this.sysCode)) {
+            throw new NullPointerException("请配置 sesame.framework.web.sys-code=@sysCode@");
+        }
+
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSpuerAdmin(this.spuerAdmin);
         ProjectConfig.setUploadUrl(this.uploadUrl);

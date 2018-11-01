@@ -53,6 +53,7 @@
             </activation>
             <properties>
                 <profileActive>dev</profileActive>
+                <sysCode>${artifactId}</sysCode>
             </properties>
         </profile>
         <!-- 测试环境 -->
@@ -60,6 +61,7 @@
             <id>test</id>
             <properties>
                 <profileActive>test</profileActive>
+                <sysCode>${artifactId}</sysCode>
             </properties>
         </profile>
         <!-- 生产环境 -->
@@ -67,6 +69,7 @@
             <id>prod</id>
             <properties>
                 <profileActive>prod</profileActive>
+                <sysCode>${artifactId}</sysCode>
             </properties>
         </profile>
 
@@ -250,6 +253,24 @@
                         <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
                         <nonFilteredFileExtension>svg</nonFilteredFileExtension>
                     </nonFilteredFileExtensions>
+                </configuration>
+            </plugin>
+            <!--docker 构建-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.12</version>
+                <configuration>
+                    <imageName>${project.artifactId}</imageName>
+                    <baseImage>java:8</baseImage>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
             <!--本地install  注释掉这个-->
