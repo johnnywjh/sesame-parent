@@ -103,6 +103,9 @@ public class WebProperties implements InitializingBean {
         if (StringUtil.isEmpty(this.sysCode)) {
             throw new NullPointerException("请配置 sesame.framework.web.sys-code=@sysCode@");
         }
+        if ("@sysCode@".equals(this.sysCode)) {
+            throw new NullPointerException("配置中 @sysCode@ 的值未被过滤替换, 请更新maven环境,重新启动,或者手动指定值");
+        }
 
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSpuerAdmin(this.spuerAdmin);
