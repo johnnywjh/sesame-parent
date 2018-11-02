@@ -50,7 +50,7 @@ public class SpringContextUtil implements ApplicationContextAware {
 
         projectPath = env.getProperty(GData.SPRINGBOOT.contextPath);
 
-        SpringContextUtil.currentPath = web.getUserHome() + "/ars/" + web.getSysCode();
+        SpringContextUtil.currentPath = web.getUserHome() + "/ars/" + web.getSysCode() + "/data";
 
     }
 
