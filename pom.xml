@@ -262,8 +262,8 @@
                 <version>0.4.12</version>
                 <configuration>
                     <imageName>${project.artifactId}</imageName>
-                    <baseImage>java:8</baseImage>
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
+                    <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+                    <!--<dockerHost>http://localhost:2375</dockerHost>-->
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
