@@ -41,9 +41,6 @@
         <lcn.last.version>4.1.0</lcn.last.version>
 
         <war.path>../target</war.path>
-
-        <!--docker 注册中心-->
-        <docker.reg.host></docker.reg.host>
     </properties>
 
     <!-- 环境配置 -->
@@ -264,7 +261,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.12</version>
                 <configuration>
-                    <imageName>${docker.reg.host}${project.artifactId}</imageName>
+                    <imageName>${project.artifactId}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <!--<dockerHost>http://localhost:2375</dockerHost>-->
                     <resources>
