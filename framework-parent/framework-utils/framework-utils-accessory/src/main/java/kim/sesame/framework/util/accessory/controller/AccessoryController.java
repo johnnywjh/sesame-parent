@@ -43,7 +43,7 @@ public class AccessoryController extends AbstractWebController {
 
         Map map = JSON.parseObject(s, Map.class);
         map = JSON.parseObject(map.get("result").toString(), Map.class);
-        String src = map.get("path").toString();
+        String src = map.get("src").toString();
         String fileName = file.getOriginalFilename();
 
         Accessory bean = accessoryService.add(fileName, src);
