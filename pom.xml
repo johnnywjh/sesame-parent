@@ -41,6 +41,10 @@
         <lcn.last.version>4.1.0</lcn.last.version>
 
         <war.path>../target</war.path>
+
+        <!--docker -->
+        <docker.reg.name>my.reg.cn/</docker.reg.name>
+        <docker.image.name.prefix>kim.</docker.image.name.prefix>
     </properties>
 
     <!-- 环境配置 -->
@@ -261,7 +265,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.12</version>
                 <configuration>
-                    <imageName>${project.artifactId}</imageName>
+                    <imageName>${docker.reg.name}${docker.image.name.prefix}${project.artifactId}</imageName>
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <!--<dockerHost>http://localhost:2375</dockerHost>-->
                     <resources>
