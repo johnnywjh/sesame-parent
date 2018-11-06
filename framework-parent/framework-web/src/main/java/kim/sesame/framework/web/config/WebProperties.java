@@ -52,6 +52,7 @@ public class WebProperties implements InitializingBean {
     /**
      * 文件,图片映射路径,
      * 使用场景 : 当数据库保存的是相对路径时
+     * 项目中 ProjectConfig.getFileMapping() 来获取
      */
     private String fileMapping = "";
 
@@ -110,5 +111,6 @@ public class WebProperties implements InitializingBean {
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSpuerAdmin(this.spuerAdmin);
         ProjectConfig.setUploadUrl(this.uploadUrl);
+        ProjectConfig.setFileMapping(this.fileMapping);
     }
 }
