@@ -1,11 +1,9 @@
 package kim.sesame.framework.util.accessory.service;
 
-import kim.sesame.framework.cache.annotation.QueryCache;
 import kim.sesame.framework.entity.GMap;
 import kim.sesame.framework.util.accessory.bean.Accessory;
 import kim.sesame.framework.util.accessory.dao.AccessoryDao;
 import kim.sesame.framework.utils.StringUtil;
-import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IUser;
 import lombok.extern.apachecommons.CommonsLog;
@@ -114,11 +112,11 @@ public class AccessoryService implements InitializingBean {
         accessoryDao.delete(id);
 
         //逻辑删除
-        //    Accessory bean = new Accessory();
-        //    	bean.setId(id);
-        //    	bean.setActive(GData.BOOLEAN.NO);
-        //    	bean.setUpdateTime(new Date());
-        //    	update(bean);
+//    Accessory bean = new Accessory();
+//    	bean.setId(id);
+//    	bean.setActive(GData.BOOLEAN.NO);
+//    	bean.setUpdateTime(new Date());
+//    	update(bean);
     }
 
     /**
@@ -148,7 +146,6 @@ public class AccessoryService implements InitializingBean {
      * @param ids
      * @return
      */
-    @QueryCache(invalidTime = 300)
     public List<Accessory> queryListByids(String ids) {
         List<Accessory> list = new ArrayList<>();
         if (StringUtil.isEmpty(ids)) {
@@ -168,13 +165,6 @@ public class AccessoryService implements InitializingBean {
         GMap params = GMap.newMap();
         params.putAction("ids", sb.toString());
         list = accessoryDao.queryListByids(params);
-
-        // 如果是相对路径, 就加上映射地址
-        if (StringUtil.isNotEmpty(ProjectConfig.getFileMapping())) {
-            list.stream().forEach(b -> {
-                b.setUrl(ProjectConfig.getFileMapping() + b.getUrl());
-            });
-        }
         return list;
     }
 

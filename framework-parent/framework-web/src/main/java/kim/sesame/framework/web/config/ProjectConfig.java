@@ -18,6 +18,10 @@ public class ProjectConfig {
         ProjectConfig.uploadUrl = uploadUrl;
     }
 
+    static String getFileMapping() {
+        return fileMapping;
+    }
+
     static void setFileMapping(String fileMapping) {
         ProjectConfig.fileMapping = fileMapping;
     }
@@ -32,9 +36,5 @@ public class ProjectConfig {
 
     public static String getUploadUrl() {
         return uploadUrl;
-    }
-
-    public static String getFileMapping() {
-        return fileMapping;
     }
 }
