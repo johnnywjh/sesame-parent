@@ -44,7 +44,7 @@
 
         <!--docker -->
         <docker.reg.name>my.reg.cn/</docker.reg.name>
-        <docker.image.name.prefix>kim.</docker.image.name.prefix>
+        <docker.image.name.prefix>kim-</docker.image.name.prefix>
     </properties>
 
     <!-- 环境配置 -->
