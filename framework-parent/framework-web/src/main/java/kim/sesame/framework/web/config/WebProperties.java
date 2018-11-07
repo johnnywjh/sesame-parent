@@ -35,6 +35,14 @@ public class WebProperties implements InitializingBean {
 
     private int defaultPageSize = 10;
 
+    /**
+     * 数据共享, 默认true
+     * 当设置为  true , 并且多个相同的服务部署在同一个机器上时,
+     * 那它们的 当前项目资源路径:SpringContextUtil.getCurrentPath() 会是一样的,
+     * 如果需要数据空间单独分开, 那么就设置为false, 此时会在路径后面加上一个端口号
+     */
+    private boolean dataShare = true;
+
     private boolean urlrewriteEnabled = false; // 是否启动 java 伪静态
     private String urlrewriteSuffix = "*.shtml"; // java伪静态的后缀名
     private String pageReplace = "~";
@@ -47,7 +55,7 @@ public class WebProperties implements InitializingBean {
     /**
      * 外部 javascript,css 等框架的地址
      */
-    private String resource = "http://www.sesame.kim/zy";
+    private String resource = "";
 
     /**
      * 文件,图片映射路径,

@@ -52,6 +52,14 @@ public class SpringContextUtil implements ApplicationContextAware {
 
         SpringContextUtil.currentPath = web.getUserHome() + "/ars/" + web.getSysCode() + "/data";
 
+        if (web.isDataShare() == false) {
+            // 给用用的数据添加一个端口号, 防止多个相同的应用数据感染
+            String port = env.getProperty("server.port");
+            if (StringUtil.isEmpty(port)) {
+                port = "8080";
+            }
+            SpringContextUtil.currentPath = SpringContextUtil.currentPath + "/" + port;
+        }
     }
 
     /**
