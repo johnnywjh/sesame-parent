@@ -125,6 +125,11 @@
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-rocketmq-plus</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
                 <artifactId>framework-cache</artifactId>
                 <version>${sesame.version}</version>
             </dependency>

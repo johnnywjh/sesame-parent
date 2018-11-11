@@ -20,6 +20,7 @@
         <module>framework-mybatis</module><!--mybatis 模块-->
         <module>framework-web</module><!--web 模块-->
         <module>framework-rocketmq</module>
+        <module>framework-rocketmq-plus</module>
         <module>framework-websocket</module><!--websocket 模块,单机版-->
         <module>framework-websocket-cloud</module><!--websocket 模块,集群版-->
         <module>framework-utils</module><!--swagger 配置-->
