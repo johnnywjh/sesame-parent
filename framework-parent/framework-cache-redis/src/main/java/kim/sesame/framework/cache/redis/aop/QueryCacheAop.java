@@ -75,9 +75,9 @@ public class QueryCacheAop {
             if (result != null) {
                 String json = "";
                 if (ann.isWriteNullValue()) {
-                    json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue);
+                    json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue, SerializerFeature.UseSingleQuotes);
                 } else {
-                    json = JSON.toJSONString(result);
+                    json = JSON.toJSONString(result, SerializerFeature.UseSingleQuotes);
                 }
                 stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
             }
