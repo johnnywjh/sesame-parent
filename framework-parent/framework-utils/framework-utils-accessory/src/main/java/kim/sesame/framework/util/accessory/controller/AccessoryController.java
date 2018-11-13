@@ -49,10 +49,11 @@ public class AccessoryController extends AbstractWebController {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+            log.debug("1 获取到上传文件的文件名称"+fileName);
         }else{
             fileName = file.getOriginalFilename();
+            log.debug("2 获取到上传文件的文件名称"+fileName);
         }
-        log.debug("获取到上传文件的文件名称");
 
         String s = uploadFileService.uploadFileMethod(ProjectConfig.getSysCode(), "f", file);
 
