@@ -7,8 +7,11 @@ import org.springframework.util.StringUtils;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * 日期工具类
@@ -378,4 +381,131 @@ public class DateUtils {
 
         return m.concat(d);
     }
+
+    // 获取本月的开始时间
+    public static Date getBeginDayOfMonth() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(getNowYear(), getNowMonth() - 1, 1);
+        return getDayStartTime(calendar.getTime());
+    }
+
+    // 获取本月的结束时间
+    public static Date getEndDayOfMonth() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(getNowYear(), getNowMonth() - 1, 1);
+        int day = calendar.getActualMaximum(5);
+        calendar.set(getNowYear(), getNowMonth() - 1, day);
+        return getDayEndTime(calendar.getTime());
+    }
+
+    // 获取本周的开始时间
+    @SuppressWarnings("unused")
+    public static Date getBeginDayOfWeek() {
+        Date date = new Date();
+        if (date == null) {
+            return null;
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int dayofweek = cal.get(Calendar.DAY_OF_WEEK);
+        if (dayofweek == 1) {
+            dayofweek += 7;
+        }
+        cal.add(Calendar.DATE, 2 - dayofweek);
+        return getDayStartTime(cal.getTime());
+    }
+
+
+    // 获取本周的结束时间
+    public static Date getEndDayOfWeek() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(getBeginDayOfWeek());
+        cal.add(Calendar.DAY_OF_WEEK, 6);
+        Date weekEndSta = cal.getTime();
+        return getDayEndTime(weekEndSta);
+    }
+
+
+    // 获取今年是哪一年
+    public static Integer getNowYear() {
+        Date date = new Date();
+        GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
+        gc.setTime(date);
+        return Integer.valueOf(gc.get(1));
+    }
+    // 获取本年的开始时间
+    public static Date getBeginDayOfYear() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, getNowYear());
+        cal.set(Calendar.MONTH, Calendar.JANUARY);
+        cal.set(Calendar.DATE, 1);
+        return getDayStartTime(cal.getTime());
+    }
+
+    // 获取本年的结束时间
+    public static Date getEndDayOfYear() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, getNowYear());
+        cal.set(Calendar.MONTH, Calendar.DECEMBER);
+        cal.set(Calendar.DATE, 31);
+        return getDayEndTime(cal.getTime());
+    }
+
+    // 获取某个日期的开始时间
+    public static Timestamp getDayStartTime(Date d) {
+        Calendar calendar = Calendar.getInstance();
+        if (null != d)
+            calendar.setTime(d);
+        calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return new Timestamp(calendar.getTimeInMillis());
+    }
+
+    // 获取某个日期的结束时间
+    public static Timestamp getDayEndTime(Date d) {
+        Calendar calendar = Calendar.getInstance();
+        if (null != d)
+            calendar.setTime(d);
+        calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH), 23, 59, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
+        return new Timestamp(calendar.getTimeInMillis());
+    }
+
+    // 获取本月是哪一月
+    public static int getNowMonth() {
+        Date date = new Date();
+        GregorianCalendar gc = (GregorianCalendar) Calendar.getInstance();
+        gc.setTime(date);
+        return gc.get(2) + 1;
+    }
+    /**
+     * 根据开始时间和结束时间返回时间段内的时间集合
+     *
+     * @param beginDate
+     * @param endDate
+     * @return List
+     */
+    public static List<String> getDatesBetweenTwoDate(Date beginDate, Date endDate) {
+        List<String> lDate = new ArrayList<>();
+        lDate.add(convert(beginDate,DATE_FORMAT));// 把开始时间加入集合
+        Calendar cal = Calendar.getInstance();
+        // 使用给定的 Date 设置此 Calendar 的时间
+        cal.setTime(beginDate);
+        boolean bContinue = true;
+        while (bContinue) {
+            // 根据日历的规则，为给定的日历字段添加或减去指定的时间量
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            // 测试此日期是否在指定日期之后
+            if (endDate.after(cal.getTime())) {
+                lDate.add(convert(cal.getTime(),DATE_FORMAT));
+            } else {
+                break;
+            }
+        }
+        lDate.add(convert(endDate,DATE_FORMAT));// 把结束时间加入集合
+        return lDate;
+    }
+
 }
