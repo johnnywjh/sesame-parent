@@ -25,7 +25,7 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
 
-        String[] swaggerArr = {"/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**"};
+        String[] swaggerArr = {"/error", "/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**"};
 
         // 初始化用户信息
         if (webProperties.isInterceptorUser()) {
