@@ -8,7 +8,7 @@
         <version>1.5.16.RELEASE</version>
     </parent>
 
-    <groupId>kim.sesame.framework</groupId>
+    <groupId>kim.sesame.framCorsConfiguration corsConfiguration = new CorsConfiguration();ework</groupId>
     <artifactId>sesame-parent</artifactId>
     <version>1.3.1</version><!-- sesame.version -->
     <packaging>pom</packaging>
@@ -43,7 +43,7 @@
         <war.path>../target</war.path>
 
         <!--docker config -->
-        <docker.reg.name>johnny0124/</docker.reg.name>
+        <docker.reg.name>johnnywjh/</docker.reg.name>
         <docker.image.name.prefix>kim.</docker.image.name.prefix>
     </properties>
 
