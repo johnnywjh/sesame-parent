@@ -8,7 +8,7 @@
         <version>1.5.16.RELEASE</version>
     </parent>
 
-    <groupId>kim.sesame.framCorsConfiguration corsConfiguration = new CorsConfiguration();ework</groupId>
+    <groupId>kim.sesame.framework</groupId>
     <artifactId>sesame-parent</artifactId>
     <version>1.3.1</version><!-- sesame.version -->
     <packaging>pom</packaging>
