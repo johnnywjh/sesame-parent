@@ -43,7 +43,7 @@
         <war.path>../target</war.path>
 
         <!--docker config -->
-        <docker.reg.name>my.reg.cn/</docker.reg.name>
+        <docker.reg.name>johnny0124/</docker.reg.name>
         <docker.image.name.prefix>kim.</docker.image.name.prefix>
     </properties>
 
