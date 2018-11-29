@@ -33,11 +33,21 @@ public class CloudUtils {
             JSONObject json = JSON.parseObject(res);
             JSONArray instances = json.getJSONObject("application").getJSONArray("instance");
 
-
+            String serviceUrl = null;
             for (int i = 0; i < instances.size(); i++) {
                 JSONObject instance = instances.getJSONObject(i);
                 if (instance.getString("status").equals("UP")) {
-                    urls.add(instance.getString("homePageUrl"));
+                    serviceUrl = instance.getString("homePageUrl");
+
+                    try {
+                        int urlLength = serviceUrl.length();
+                        if (serviceUrl.substring(urlLength - 1, urlLength).equals("/")) {
+                            serviceUrl = serviceUrl.substring(0, urlLength - 1);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    urls.add(serviceUrl);
                 }
             }
         } catch (Exception e) {
@@ -63,4 +73,5 @@ public class CloudUtils {
         int index = rand.nextInt(list.size());
         return list.get(index);
     }
+
 }
