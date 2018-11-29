@@ -45,6 +45,7 @@
         <!--docker config -->
         <docker.reg.name>johnnywjh/</docker.reg.name>
         <docker.image.name.prefix>kim.</docker.image.name.prefix>
+        <docker.image.tag>latest</docker.image.tag>
     </properties>
 
     <!-- 环境配置 -->
@@ -280,6 +281,9 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+                    <imageTags>
+                        <imageTag>${docker.image.tag}</imageTag>
+                    </imageTags>
                 </configuration>
             </plugin>
             <!--本地install  注释掉这个-->
