@@ -15,6 +15,7 @@
 
 	<modules>
 		<module>framework-utils-swagger</module>
+		<module>framework-utils-ssh</module>
 		<module>framework-utils-accessory</module>
 	</modules>
 
