@@ -10,10 +10,14 @@ var lockReconnect = false;//避免重复连接
 var heartBeatCheck = "heartBeatCheck";
 var heartCheck_time = 30 * 1000;//心跳检测间隔时间,毫秒
 var reconnect_time = 2 * 1000;//重连时间,毫秒
+var isprintLog = false; // 是否打印日志
 
 // createWebSocket(wsUrl, userName);
 
-function createWebSocket(wsUrl, userName) {
+function createWebSocket(wsUrl, userName, isprintLogFlag) {
+    if (isprintLogFlag != null) {
+        isprintLog = isprintLogFlag;
+    }
     try {
         if (wsUrl != null && wsUrl.length > 0
             && userName != null && userName.length > 0) {
@@ -38,7 +42,7 @@ function initEventHandle() {
     };
     ws.onopen = function () {
         ws.send(ws_user_name);
-        console.log("create ws conn success , user : " + ws_user_name);
+        printlog("create ws conn success , user : " + ws_user_name);
         //心跳检测重置
         heartCheck.reset().start();
     };
@@ -58,7 +62,7 @@ function initEventHandle() {
             }
             eval(json.method);
         } else {
-            console.log("心跳检测成功 : " + formatDate(new Date()));
+            printlog("心跳检测成功 : " + formatDate(new Date()));
         }
 
     }
@@ -85,7 +89,7 @@ var heartCheck = {
         return this;
     },
     start: function () {
-       // console.log(formatDate(new Date()) + "  心跳检测开始,间隔时间 : " + heartCheck_time / 1000 + "秒");
+        printlog(formatDate(new Date()) + "  心跳检测开始,间隔时间 : " + heartCheck_time / 1000 + "秒");
         var self = this;
         this.timeoutObj = setTimeout(function () {
             //这里发送一个心跳，后端收到后，返回一个心跳消息，
@@ -129,3 +133,9 @@ function formatDate(date, fmt) {
 function padLeftZero(str) {
     return ('00' + str).substr(str.length);
 };
+
+function printlog(msg) {
+    if(isprintLog){
+        console.log(msg);
+    }
+}
