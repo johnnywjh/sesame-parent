@@ -24,12 +24,10 @@
         <dependency>
             <groupId>${sesame.groupId}</groupId>
             <artifactId>framework-web</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>${sesame.groupId}</groupId>
             <artifactId>framework-cache-redis</artifactId>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

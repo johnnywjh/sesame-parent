@@ -2,6 +2,7 @@ package kim.sesame.framework.web.config;
 
 import kim.sesame.framework.entity.GPage;
 import kim.sesame.framework.utils.StringUtil;
+import kim.sesame.framework.web.util.IPUitl;
 import lombok.Data;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -20,6 +21,12 @@ import org.springframework.stereotype.Component;
 public class WebProperties implements InitializingBean {
 
     private String userHome = System.getProperty("user.home");
+    /**
+     * 当前机器的ip和端口信息,例如 192.168.11.100:8080
+     * 默认值在 SpringContextUtil.setApplicationContext 方法中
+     * 如果是spring cloud 项目,可以设置为 sesame.framework.web.ip-port=${spring.cloud.client.ipAddress}:${server.port}
+     */
+    private String ipPort;
     /**
      * session 失效时间, 默认0
      */
