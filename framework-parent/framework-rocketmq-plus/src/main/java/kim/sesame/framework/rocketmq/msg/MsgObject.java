@@ -1,6 +1,5 @@
 package kim.sesame.framework.rocketmq.msg;
 
-import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
 @Data

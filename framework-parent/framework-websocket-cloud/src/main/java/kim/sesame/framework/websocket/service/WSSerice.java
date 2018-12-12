@@ -13,8 +13,8 @@ import javax.websocket.Session;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @CommonsLog
@@ -22,7 +22,7 @@ public class WSSerice {
 
     public final static String WEBSOCKET_CONTROLLER_KEY = "kjxoienpxoi23pxlji,2l3i";// websocket 秘钥
     private final static String WS_REDIS_PREFIX = "ws_conn_"; //websocket 的连接
-    private final static String WS_USER_ONLINE_KEY = "ws_user_online_list"; //websocket 的用户集合
+    private final static String WS_USER_ONLINE_KEY = "ws_user_online_set"; //websocket 的用户集合
 
     private static StringRedisTemplate stringRedisTemplate = null;
     private static RedisTemplate redisTemplate = null;
@@ -64,7 +64,7 @@ public class WSSerice {
         getStringRedisTemplate().opsForValue().set(redisKey, redisValue, 1, TimeUnit.HOURS);
         log.debug(MessageFormat.format("save ws to redis success , key : {0} , value : {1}", redisKey, redisValue));
 
-        getRedisTemplate().opsForList().rightPush(WS_USER_ONLINE_KEY, userKey);
+        getRedisTemplate().opsForSet().add(WS_USER_ONLINE_KEY, userKey);
         getRedisTemplate().expire(WS_USER_ONLINE_KEY, 5, TimeUnit.HOURS);
     }
 
@@ -81,7 +81,7 @@ public class WSSerice {
         String redisKey = getWsRedisKey(userKey);
         getStringRedisTemplate().delete(redisKey);
 
-        getRedisTemplate().opsForList().remove(WS_USER_ONLINE_KEY, 0, userKey);
+        getRedisTemplate().opsForSet().remove(WS_USER_ONLINE_KEY, userKey);
     }
 
     //1
@@ -104,15 +104,16 @@ public class WSSerice {
     /**
      * 获取所有的在线用户
      */
-    public static List<String> getOnlineUser() {
-        return getRedisTemplate().opsForList().range(WS_USER_ONLINE_KEY, 0, -1);
+    public static Set<String> getOnlineUser() {
+        return getRedisTemplate().opsForSet().members(WS_USER_ONLINE_KEY);
     }
 
     /**
      * 获取所有的在线用户的个数
      */
-    public static Long getOnlineUserCount() {
-        return getRedisTemplate().opsForList().size(WS_USER_ONLINE_KEY);
+    public static Integer getOnlineUserCount() {
+        Long l = getRedisTemplate().opsForSet().size(WS_USER_ONLINE_KEY);
+        return l.intValue();
     }
 
     /**
@@ -122,9 +123,7 @@ public class WSSerice {
         GMap res = GMap.newMap();
         res.putAction("userKey", userKey);
 
-        String json = getMsgString(method, res);
-
-        sendMessageToUser(json, userKey);
+        sendMessageAll(method, res, new String[]{userKey});
     }
 
 
@@ -178,13 +177,6 @@ public class WSSerice {
         sendMessageToUser(userKey, json);
     }
 
-    /**
-     * 向所有的用户发送消息
-     *
-     * @param userKey    发送人
-     * @param methodName 前端js 方法名称
-     * @param message    消息对象
-     */
     /**
      * @param methodName  前端js 方法名称
      * @param message     消息对象

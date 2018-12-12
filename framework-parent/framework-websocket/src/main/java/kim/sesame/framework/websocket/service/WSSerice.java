@@ -60,6 +60,7 @@ public class WSSerice {
     public static Set<String> getOnlineUser() {
         return WSConnPool.keySet();
     }
+
     /**
      * 获取所有的在线用户的个数
      */
@@ -74,10 +75,7 @@ public class WSSerice {
         GMap res = GMap.newMap();
         res.putAction("userKey", userKey);
 
-        String json = getMsgString(method, res);
-
-
-        sendMessage(json, userKey);
+        sendMessageAll(method, res, new String[]{userKey});
     }
 
 
@@ -112,37 +110,21 @@ public class WSSerice {
     }
 
     /**
-     * 向所有的用户发送消息
-     *
-     * @param userKey    用户标识
-     * @param methodName 前端js 方法名称
-     * @param message    消息对象
+     * @param methodName  前端js 方法名称
+     * @param message     消息对象
+     * @param excludeUser 排除某些用户不发送
      */
-    public static void sendMessageAll(String userKey, String methodName, Object message) {
+    public static void sendMessageAll(String methodName, Object message, String[] excludeUser) {
         try {
             Session session = null;
             Set<String> keySet = WSConnPool.keySet();
             for (String key : keySet) {
-                session = WSConnPool.getSession(key);
-                if (session != null) {
-                    String json = getMsgString(methodName, message);
-                    session.getBasicRemote().sendText(json);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void sendMessage(String message, String name) {
-        try {
-            Session session = null;
-            Set<String> keySet = WSConnPool.keySet();
-            for (String key : keySet) {
-                session = WSConnPool.getSession(key);
-                if (session != null) {
-                    if (!key.equals(name)) {
-                        session.getBasicRemote().sendText(message);
+                boolean isSend = !(StringUtil.equals(key, excludeUser));
+                if (isSend) {
+                    session = WSConnPool.getSession(key);
+                    if (session != null) {
+                        String json = getMsgString(methodName, message);
+                        session.getBasicRemote().sendText(json);
                     }
                 }
             }
