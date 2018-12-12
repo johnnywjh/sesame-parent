@@ -5,6 +5,7 @@ import com.github.kevinsawicki.http.HttpRequest;
 import kim.sesame.framework.entity.GMap;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
+import kim.sesame.framework.websocket.config.WebSocketConfig;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -133,7 +134,8 @@ public class WSSerice {
      * @param userKey 用户标识
      * @param message 消息内容,处理过后的
      */
-    private static void sendMessageToUser(String userKey, String message) {
+    private static boolean sendMessageToUser(String userKey, String message) {
+        boolean flg = false;
         // 1 根据 userKey 查询和用户保存消息的连接
         String userConnIpPort = getStringRedisTemplate().opsForValue().get(getWsRedisKey(userKey));
         if (StringUtil.isNotEmpty(userConnIpPort)) {
@@ -146,6 +148,7 @@ public class WSSerice {
                     if (session != null) {
                         session.getBasicRemote().sendText(message);
                     }
+                    flg = true;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -157,11 +160,15 @@ public class WSSerice {
                 map.put("userKey", userKey);
                 map.put("message", message);
                 String res = HttpRequest.post(url).form(map).body();
+                GMap resMap = JSON.parseObject(res, GMap.class);
+                flg = resMap.getBoolean("success");
                 log.debug("send message to user 2 : " + userKey + " ,message content : " + message);
                 log.debug(res);
             }
+        } else {
+            flg = true;
         }
-
+        return flg;
     }
 
 
@@ -174,7 +181,28 @@ public class WSSerice {
      */
     public static void sendMessageToUser(String userKey, String methodName, Object message) {
         String json = getMsgString(methodName, message);
-        sendMessageToUser(userKey, json);
+
+        String res = "";// 请求结果
+        int count = 1;
+        boolean flg = false;
+        int totalCount = WebSocketConfig.getTotalCount();// 尝试总次数
+        int failRetryTime = WebSocketConfig.getFailRetryTime();//失败重试间隔时间
+        do {
+            try {
+                flg = sendMessageToUser(userKey, json);
+                if (flg) {
+                    count = totalCount + 10;
+                } else {
+                    log.debug(MessageFormat.format("第{0}次 websocket 推送失败,userKey:{1},message:{2}", count, userKey, json));
+                    count++;
+                    TimeUnit.SECONDS.sleep(failRetryTime);
+                }
+            } catch (Exception e) {
+                count++;
+                e.printStackTrace();
+            }
+        } while ((flg == false) && (count <= totalCount));
+
     }
 
     /**
