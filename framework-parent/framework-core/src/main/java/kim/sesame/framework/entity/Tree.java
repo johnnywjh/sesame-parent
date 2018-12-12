@@ -19,4 +19,6 @@ public class Tree implements java.io.Serializable {
     private boolean open; //是否展开
     private boolean chkDisabled;//是否禁用,true 禁用
     private String basicData; //自定义数据
+    private Integer level;// 等级
+    private Integer sequence;// 顺序
 }
