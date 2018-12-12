@@ -2,6 +2,7 @@ package kim.sesame.framework.websocket.service;
 
 import com.alibaba.fastjson.JSON;
 import kim.sesame.framework.entity.GMap;
+import kim.sesame.framework.utils.StringUtil;
 import lombok.extern.apachecommons.CommonsLog;
 
 import javax.websocket.Session;
@@ -33,24 +34,24 @@ public class WSSerice {
     public static void removeConn(String userKey) {
         log.debug(MessageFormat.format("user disconnect connect , user : {0}", userKey));
         WSConnPool.remove(userKey);
+
+        updateOnlineUser("lx", userKey);// 用户离线
     }
 
     //1
     public static void removeConn(Session session) {
         Session s = null;
+        String userKey = null;
         for (String key : WSConnPool.keySet()) {
             s = WSConnPool.getSession(key);
             if (session.getId().equals(s.getId())) {
-                removeConnByUserKey(key);
+                userKey = key;
                 break;
             }
         }
-    }
-
-    //2
-    private static void removeConnByUserKey(String userKey) {
-        removeConn(userKey);
-        updateOnlineUser("lx", userKey);// 用户离线
+        if (StringUtil.isNotEmpty(userKey)) {
+            removeConn(userKey);
+        }
     }
 
     /**
@@ -58,6 +59,12 @@ public class WSSerice {
      */
     public static Set<String> getOnlineUser() {
         return WSConnPool.keySet();
+    }
+    /**
+     * 获取所有的在线用户的个数
+     */
+    public static Integer getOnlineUserCount() {
+        return WSConnPool.keySet().size();
     }
 
     /**
