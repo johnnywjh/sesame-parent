@@ -185,10 +185,16 @@ public class WSSerice {
      * @param methodName 前端js 方法名称
      * @param message    消息对象
      */
-    public static void sendMessageAll(String userKey, String methodName, Object message) {
+    /**
+     * @param methodName  前端js 方法名称
+     * @param message     消息对象
+     * @param excludeUser 排除某些用户不发送
+     */
+    public static void sendMessageAll(String methodName, Object message, String[] excludeUser) {
 
         getOnlineUser().forEach(user -> {
-            if (user.equals(userKey) == false) {
+            boolean isSend = !(StringUtil.equals(user, excludeUser));
+            if (isSend) {
                 sendMessageToUser(user, methodName, message);
             }
         });

@@ -42,11 +42,16 @@ public class StringUtil {
     }
 
     public static boolean equals(String str, String[] arr) {
+        if (arr == null || arr.length == 0) {
+            return false;
+        }
         boolean flg = false;
         for (String s : arr) {
             flg = flg || equals(str, s);
+            if (flg) {
+                break;
+            }
         }
-
         return flg;
     }
 
