@@ -25,7 +25,11 @@ public class WebProperties implements InitializingBean {
      * 默认值在 SpringContextUtil.setApplicationContext 方法中
      * 如果是spring cloud 项目,可以设置为 sesame.framework.web.ip-port=${spring.cloud.client.ipAddress}:${server.port}
      */
-    private String ipPort;
+    private String currentIpPort;
+    /**
+     * 当前机器的ip, 看currentIpPort的注释信息
+     */
+    private String currentIp;
     /**
      * session 失效时间, 默认0
      */

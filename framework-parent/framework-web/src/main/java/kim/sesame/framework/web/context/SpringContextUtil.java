@@ -24,6 +24,7 @@ public class SpringContextUtil implements ApplicationContextAware {
     private static String currentPath; // 当前项目资源路径,
     private static String projectPath; // 当前项目路径
     private static String currentIpPort; // 当前项目实例
+    private static String currentIp; // 当前项目Ip
 
     @Autowired
     Environment env;
@@ -54,9 +55,10 @@ public class SpringContextUtil implements ApplicationContextAware {
 
         SpringContextUtil.currentPath = web.getUserHome() + "/ars/" + web.getSysCode() + "/data";
 
+        String port = null;
         if (web.isDataShare() == false) {
             // 给用用的数据添加一个端口号, 防止多个相同的应用数据感染
-            String port = env.getProperty("server.port");
+            port = env.getProperty("server.port");
             if (StringUtil.isEmpty(port)) {
                 port = "8080";
             }
@@ -64,10 +66,15 @@ public class SpringContextUtil implements ApplicationContextAware {
         }
 
         // 初始化当前ip信息
-        currentIpPort = web.getIpPort();
+        currentIpPort = web.getCurrentIpPort();
+        currentIp = web.getCurrentIp();
+        if (StringUtil.isEmpty(currentIp)) {
+            currentIp = Ipconfig.getInfo().getLocalip();
+            web.setCurrentIp(currentIp);
+        }
         if (StringUtil.isEmpty(currentIpPort)) {
-            currentIpPort = Ipconfig.getInfo().getLocalip() + ":" + env.getProperty("server.port");
-            web.setIpPort(currentIpPort);
+            currentIpPort = currentIp + ":" + port;
+            web.setCurrentIpPort(currentIpPort);
         }
     }
 
@@ -98,6 +105,10 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     public static String getCurrentIpPort() {
         return currentIpPort;
+    }
+
+    public static String getCurrentIp() {
+        return currentIp;
     }
 
     /**
@@ -171,7 +182,7 @@ public class SpringContextUtil implements ApplicationContextAware {
         }
         String local_project_url = "http://127.0.0.1:" + port + basePath;
         println(local_project_url);
-        String ip_project_url = "http://" + webProperties.getIpPort() + basePath;
+        String ip_project_url = "http://" + webProperties.getCurrentIpPort() + basePath;
         println(ip_project_url);
         String profile = environment.getProperty("spring.profiles.active");
         if (StringUtil.isNotEmpty(profile)) {
@@ -186,7 +197,7 @@ public class SpringContextUtil implements ApplicationContextAware {
             println(local_project_url + url);
             println(ip_project_url + url);
         }
-        println("当前应用实例 : "+webProperties.getIpPort());
+        println("当前应用实例 : " + webProperties.getCurrentIpPort());
         println("***************");
     }
 
