@@ -12,7 +12,7 @@ import java.util.List;
  * date :  2017-11-07 13:25
  * Description:用户上下文
  */
-public class UserContext {
+public final class UserContext {
 
     private final static ThreadLocal<IUser> USER_THREAD_LOCAL = new ThreadLocal<>();
     private final static ThreadLocal<String> SESSIONID = new ThreadLocal<>();

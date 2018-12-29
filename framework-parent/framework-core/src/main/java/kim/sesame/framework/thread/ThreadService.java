@@ -7,21 +7,18 @@ public class ThreadService {
     private boolean finished = false;
 
     public void execute(Runnable task) {
-        executeThread = new Thread() {
-            @Override
-            public void run() {
-                Thread runner = new Thread(task);
-                runner.setDaemon(true);
+        executeThread = new Thread(()->{
+            Thread runner = new Thread(task);
+            runner.setDaemon(true);
 
-                runner.start();
-                try {
-                    runner.join();
-                    finished = true;
-                } catch (InterruptedException e) {
-                    //e.printStackTrace();
-                }
+            runner.start();
+            try {
+                runner.join();
+                finished = true;
+            } catch (InterruptedException e) {
+                //e.printStackTrace();
             }
-        };
+        });
 
         executeThread.start();
     }

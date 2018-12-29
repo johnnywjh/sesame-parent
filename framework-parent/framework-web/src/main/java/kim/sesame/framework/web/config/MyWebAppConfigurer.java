@@ -40,8 +40,7 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         }
         // 公钥私钥 认证
         if (webProperties.isInterceptorAuth()) {
-            registry.addInterceptor(new AuthTokenInterceptor()).addPathPatterns("/**")
-                    .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
+            registry.addInterceptor(new AuthTokenInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);
         }
 
     }
