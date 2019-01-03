@@ -90,10 +90,9 @@ public class TableOpLogAop {
         }
 
         // 3.0 开始记录日志, 修改之前的
-        String userAccount = "system0000";
         IUser user = UserContext.getUserContext().getUser();
-        if(user!=null){
-            userAccount = user.getAccount();
+        if (user == null) {
+            return pjd.proceed();
         }
         String updateId = UUIDUtil.getShortUUID();
         List<TableOpLog> logs = new ArrayList<>();
@@ -127,7 +126,7 @@ public class TableOpLogAop {
             bean.setValueBefore(val.toString());
             bean.setClassPath(serviceClassPath);
             bean.setMethodName(methodName);
-            bean.initCreateAndId(userAccount);
+            bean.initCreateAndId(user.getAccount());
             bean.setUpdateId(updateId);
 
             logs.add(bean);
