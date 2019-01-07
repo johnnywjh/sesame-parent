@@ -70,9 +70,10 @@ public class AutoRefreshCache<T> implements InitializingBean {
                 }
             }
         });
-        if (Thread.currentThread().getName().equals("main")) {
-            t.setDaemon(true);
-        }
+        t.setDaemon(true);
+//        if (Thread.currentThread().getName().equals("main")) {
+//            t.setDaemon(true);
+//        }
         t.start();
     }
 

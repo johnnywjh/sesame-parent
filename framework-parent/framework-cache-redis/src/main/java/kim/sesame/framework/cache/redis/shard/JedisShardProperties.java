@@ -19,7 +19,7 @@ import java.util.Set;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "sesame.framework.shard")
+@ConfigurationProperties(prefix = "sesame.framework.redis.shard")
 public class JedisShardProperties implements InitializingBean {
 
     /**
