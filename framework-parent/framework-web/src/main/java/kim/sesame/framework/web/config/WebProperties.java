@@ -31,10 +31,6 @@ public class WebProperties implements InitializingBean {
      */
     private String currentIp;
     /**
-     * session 失效时间, 默认0
-     */
-    private int sesaionTime = 0;
-    /**
      * 用户登录信息在redis中的保存时间,单位 分钟,默认 5小时
      */
     private int userLoginSaveTime = 300;
