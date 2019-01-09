@@ -2,7 +2,6 @@ package kim.sesame.framework.web.config;
 
 import kim.sesame.framework.web.core.MyUrlRewriteFilter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,13 +27,16 @@ public class WebConfig {
 	/**
 	 * 配置sessio失效时间
 	 * @return  EmbeddedServletContainerCustomizer
+	 * ----------------------------
+	 * 这段代码只对 spring boot 1.5.x 有效,
+	 * 升级到 2.x 以后, 可以直接在配置里写 server.servlet.session.timeout=30 (分钟)
 	 */
-	@Bean
-	public EmbeddedServletContainerCustomizer containerCustomizer() {
-		return container -> {
-			container.setSessionTimeout(web.getSesaionTime() * 60);// 单位为S
-		};
-	}
+//	@Bean
+//	public EmbeddedServletContainerCustomizer containerCustomizer() {
+//		return container -> {
+//			container.setSessionTimeout(web.getSesaionTime() * 60);// 单位为S
+//		};
+//	}
 
 
 	/**

@@ -25,6 +25,11 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
+        //过滤掉静态资源
+        if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
+            return true;
+        }
+
         String reqRootUrl = req.getRequestURL().toString();
         String requestIp = "";
         try {

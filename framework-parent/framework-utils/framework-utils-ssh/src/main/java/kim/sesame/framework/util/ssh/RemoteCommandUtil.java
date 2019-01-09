@@ -3,11 +3,10 @@ package kim.sesame.framework.util.ssh;
 import ch.ethz.ssh2.Connection;
 import ch.ethz.ssh2.Session;
 import ch.ethz.ssh2.StreamGobbler;
-import lombok.extern.apachecommons.CommonsLog;
 
 import java.io.*;
 
-@CommonsLog
+//@CommonsLog
 public class RemoteCommandUtil {
 
     private static String DEFAULTCHART = "UTF-8";
@@ -26,11 +25,11 @@ public class RemoteCommandUtil {
             conn.connect();//连接
             flg = conn.authenticateWithPassword(userName, userPwd);//认证
             if (flg) {
-                log.info("=========登录成功=========" + conn);
+//                log.info("=========登录成功=========" + conn);
                 return conn;
             }
         } catch (IOException e) {
-            log.error("=========登录失败=========" + e.getMessage());
+//            log.error("=========登录失败=========" + e.getMessage());
             e.printStackTrace();
         }
         return conn;
@@ -51,16 +50,16 @@ public class RemoteCommandUtil {
                 result = processStdout(session.getStdout(), DEFAULTCHART);
                 //如果为得到标准输出为空，说明脚本执行出错了
                 if (isEmpty(result)) {
-                    log.info("得到标准输出为空,链接conn:" + conn + ",执行的命令：" + cmd);
+//                    log.info("得到标准输出为空,链接conn:" + conn + ",执行的命令：" + cmd);
                     result = processStdout(session.getStderr(), DEFAULTCHART);
                 } else {
-                    log.info("执行命令成功,链接conn:" + conn + ",执行的命令：" + cmd);
+//                    log.info("执行命令成功,链接conn:" + conn + ",执行的命令：" + cmd);
                 }
                 conn.close();
                 session.close();
             }
         } catch (IOException e) {
-            log.info("执行命令失败,链接conn:" + conn + ",执行的命令：" + cmd + "  " + e.getMessage());
+//            log.info("执行命令失败,链接conn:" + conn + ",执行的命令：" + cmd + "  " + e.getMessage());
             e.printStackTrace();
         }
         return result;
@@ -93,10 +92,10 @@ public class RemoteCommandUtil {
                 buffer.append(line + "\n");
             }
         } catch (UnsupportedEncodingException e) {
-            log.error("解析脚本出错：" + e.getMessage());
+//            log.error("解析脚本出错：" + e.getMessage());
             e.printStackTrace();
         } catch (IOException e) {
-            log.error("解析脚本出错：" + e.getMessage());
+//            log.error("解析脚本出错：" + e.getMessage());
             e.printStackTrace();
         }
         return buffer.toString();

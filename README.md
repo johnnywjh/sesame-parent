@@ -39,8 +39,8 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 #### 页面组件
 
 - chapter5 1 ：[序](doc/ch5/des.md)
-- chapter5 2 ：[模块user.js](doc/ch5/user.md)
-- chapter5 3 ：[模块web.js](doc/ch5/web.md)
+- chapter5 2 ：[模块sysuser.js](doc/ch5/user.md)
+- chapter5 3 ：[模块sysweb.js](doc/ch5/web.md)
 - chapter5 4 ：[模块verify.js](doc/ch5/verify.md)
 - chapter5 5 ：[权限标签](doc/ch5/auth.md)
 

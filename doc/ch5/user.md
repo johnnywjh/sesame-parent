@@ -1,18 +1,18 @@
 ##### 怎样使用?
 ```
 <script>
-layui.use(['user'], function () {
-    var user = layui.user;
+layui.use(['sysuser'], function () {
+    var sysuser = layui.sysuser;
 
     //......
-    console.log(user.getUser());// 打印登录后的用户信息
+    console.log(sysuser.getUser());// 打印登录后的用户信息
     
 });    
 </script>
 ```
 ###### 注意: 所有的模块都是按需加载,如果你的某个界面用不到这个模块,就不要去加载它
 
-#### 功能方法描述
+#### 功能方法描述`实际以源码为主`
 - getUser() : 登录用户的信息
 - getRole() : 登录用户的角色信息
 - initData() : 初始化用户/角色 信息到浏览器缓存中(会话数据库)

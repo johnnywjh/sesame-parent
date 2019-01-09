@@ -1,20 +1,22 @@
 ##### 怎样使用?
 ```
 <script>
-layui.use(['web'], function () {
-    var web = layui.web;
+layui.use(['sysweb'], function () {
+    var sysweb = layui.sysweb;
 
     //......
-    web.ajax(url,type,data,function(){
-        //....
-    })
+    sysweb.req({
+        url:''
+        ,data:{}
+        ,done:function(d){}
+    });
     
 });    
 </script>
 ```
 ###### 注意: 所有的模块都是按需加载,如果你的某个界面用不到这个模块,就不要去加载它
 
-#### 功能方法描述
+#### 功能方法描述`实际以源码为主`
 - url_replace(url) : 返回处理之后的url
 - ajax(url, type, data, successfn) :异步请求,你们封装了异常的处理,使用后只需操心成功后的返回
 - ajax_sync(url, type, data, successfn) : 同步请求 : 会锁住页面==> 页面下面的 javascript 必须等待回调函数处理完 才能执行

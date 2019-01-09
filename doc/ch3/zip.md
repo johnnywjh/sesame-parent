@@ -5,7 +5,7 @@
             <plugin>
                 <groupId>kim.sesame.framework</groupId>
                 <artifactId>zip</artifactId>
-                <version>${sesame.plugins.version}</version>
+                <version>${sesame.version}</version>
                 <configuration>
                     <paths>
                         <path>${project.basedir}/target/classes/com/sesame/theme</path>

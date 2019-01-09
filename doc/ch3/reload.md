@@ -4,7 +4,7 @@
             <plugin>
                 <groupId>kim.sesame.framework</groupId>
                 <artifactId>reload-resources-file</artifactId>
-                <version>${sesame.plugins.version}</version>
+                <version>${sesame.version}</version>
                 <configuration>
                     <srcFiles>
                         <srcFile>${project.basedir}/src/main/resources/static</srcFile>

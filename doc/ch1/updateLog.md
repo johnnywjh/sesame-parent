@@ -7,7 +7,7 @@
 
 #### 1.4 `孵化中`
 1. spring-boot 版本升级到 2.x,代码在分支1.4中
-2. [升级修改事项](https://gitee.com/sesamekim/framework-boot/blob/master/doc/spring-boot-2.x.md)
+2. [升级修改事项](../spring-boot-2.x.md)
 3. 2.0尝试了一下,发现对springcloud不支持,所以现在静静的等待官网更新.[参考资料](https://blog.csdn.net/wd2014610/article/details/79632219)
 
 #### 1.3.1 `2018-5-8 `

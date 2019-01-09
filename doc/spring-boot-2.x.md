@@ -37,8 +37,43 @@ import org.springframework.boot.web.server.ErrorPageRegistrar;
 import org.springframework.boot.web.server.ErrorPageRegistry;
 
 ```
+4. 下面这些依赖需要指定版本
+```
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-web</artifactId>
 
-4. 拦截器的修改
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-feign</artifactId>
+
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-ribbon</artifactId>
+
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-hystrix</artifactId>
+
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-eureka</artifactId>
+```
+
+5. sesseion 失效时间
+```
+	/**
+	 * 配置sessio失效时间
+	 * @return  EmbeddedServletContainerCustomizer
+	 * ----------------------------
+	 * 这段代码只对 spring boot 1.5.x 有效,
+	 * 升级到 2.x 以后, 可以直接在配置里写 server.servlet.session.timeout=30 (分钟)
+	 */
+//	@Bean
+//	public EmbeddedServletContainerCustomizer containerCustomizer() {
+//		return container -> {
+//			container.setSessionTimeout(web.getSesaionTime() * 60);// 单位为S
+//		};
+//	}
+
+```
+
+6. 拦截器的修改
 - 之前用的是 WebMvcConfigurerAdapter,然后发现这个类被废弃了,是应为java8 支持接口中写方法的实现,然后直接实现WebMvcConfigurer 接口,
 - 另外如果配置了拦截器 就会拦截 public,static 文件里的静态资源,分析了下原因 ,跟踪源码查看原因，是因为spring boot 2.x依赖的spring 5.x版本，相对于spring boot 1.5.x依赖的spring 4.3.x版本而言，针对资源的拦截器初始化时有区别，具体源码在WebMvcConfigurationSupport中，spring 4.3.x源码如下：
 ```
@@ -116,3 +151,33 @@ protected final Object[] getInterceptors() {
 ```
 从源码当中可以看出，使用spring 5.x时，静态资源也会执行自定义的拦截器.我找了一些排除静态资源的方法,但是没有找到,然后发现,当访问静态资源和controller里的方法,拦截方法里注入的 Object handler的类型不一样,然后就在每个拦截器的方法里加上了这样一段代码. (如果谁有更好的方法记得给我留意哈)
 ![输入图片说明](https://gitee.com/uploads/images/2018/0424/134301_e92c2af4_1599674.png "屏幕截图.png")
+
+7. FeignClient 包路径修改了
+```
+import org.springframework.cloud.netflix.feign.EnableFeignClients;  // 1.5.x
+改为
+import org.springframework.cloud.openfeign.EnableFeignClients; // 2.x
+```
+```
+import org.springframework.cloud.netflix.feign.FeignClient; // 1.5.x
+改为
+import org.springframework.cloud.openfeign.FeignClient; // 2.x
+```
+
+8. spring.cloud.client.ipAddress 无法识别
+```
+${spring.cloud.client.ipAddress} // 1.5.x
+改为
+${spring.cloud.client.ipaddress}   // 2.x
+```
+
+9. spring.config.location 意思不一样了
+```
+spring.config.location 在1.5.x 的版本表示的是 , 默认文件之外的配置
+在2.x 的时候是这样的
+＃SPRING CONFIG  - 仅使用环境属性（ConfigFileApplicationListener）
+spring.config.additional-location = ＃除默认配置之外使用的配置文件位置。
+spring.config.location = ＃配置替换默认值的文件位置。
+spring.config.name = application ＃配置文件名。
+```
+[2.x 属性配置详情](2.0.config.md)
