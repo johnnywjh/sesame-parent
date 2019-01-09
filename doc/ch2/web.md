@@ -38,7 +38,7 @@ _pom.xml
 #### 3.1 在config目录中新建application.properties文件,关键配置如下
 ```
 # 访问时 项目路径 可设置为 '/'
-server.context-path=/simple_web
+# server.context-path=/simple_web # 建议去掉这个配置,因为ip和端口就可以确保唯一了
 # 项目端口
 server.port=8080
 ```

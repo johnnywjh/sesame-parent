@@ -181,3 +181,18 @@ spring.config.location = ＃配置替换默认值的文件位置。
 spring.config.name = application ＃配置文件名。
 ```
 [2.x 属性配置详情](2.0.config.md)
+
+10. 文件上传大小限制 的配置
+```
+# Spring Boot 1.3.x 
+multipart.max-file-size=10MB
+multipart.max-request-size=100MB
+
+# Spring Boot 1.4.x and 1.5.x
+spring.http.multipart.max-file-size=10MB
+spring.http.multipart.max-request-size=100MB
+
+#Spring Boot 2.x
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=100MB
+```

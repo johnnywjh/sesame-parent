@@ -3,12 +3,15 @@
 - 代码生成工具 : [https://gitee.com/sesamekim/codeGenerate](https://gitee.com/sesamekim/codeGenerate)
 - 通用sso : [https://gitee.com/sesamekim/sso-web](https://gitee.com/sesamekim/sso-web) 
 
+#### 版本说明
+- 1.x 的版本对应 spring boot 1.5.x 
+- 2.x 的版本对应 spring boot 2.0.x
+
 #### 更新日志
 
-#### 1.4 `孵化中`
-1. spring-boot 版本升级到 2.x,代码在分支1.4中
-2. [升级修改事项](../spring-boot-2.x.md)
-3. 2.0尝试了一下,发现对springcloud不支持,所以现在静静的等待官网更新.[参考资料](https://blog.csdn.net/wd2014610/article/details/79632219)
+#### 2.0.0 `2019-1-9`
+- 依赖的spring boot 版本为2.0.7.RELEASE , spring cloud 版本为Finchley.SR2
+- [升级修改事项](../spring-boot-2.x.md)
 
 #### 1.3.1 `2018-5-8 `
 1. 废弃 AbstractUserCache 这个空实现类,采用java8 的接口 default方法

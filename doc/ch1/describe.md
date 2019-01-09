@@ -46,6 +46,10 @@
         <td>rocketmq的一些操作</td>
     </tr>
     <tr>
+            <td>framework-rocketmq-plus</td>
+            <td>rocketmq加强版,确定消息不重复消费,需要redis的支持</td>
+        </tr>
+    <tr>
         <td>framework-spring-boot</td>
         <td>springcloud 的封装,包含cloud,starter模块</td>
     </tr>
@@ -61,6 +65,7 @@
         <td>framework-utils</td>
         <td>
             <p>framework-utils-accessory : 附件上传模块</p>
+            <p>framework-utils-ssh : java 操作liunux 服务器的封装</p>
             <p>framework-utils-swagger : swagger的一些封装</p>
         </td>
     </tr>
@@ -70,7 +75,7 @@
     </tr>
     <tr>
         <td>framework-websocket-cloud</td>
-        <td>websocket推送--集群版---未完成</td>
+        <td>websocket推送--集群版</td>
     </tr>
 </table>
 

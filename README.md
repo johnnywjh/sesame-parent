@@ -4,6 +4,10 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 
 本项目对目前Web开发中常用的各个技术，通过和SpringBoot的集成,做了一些封装,详细文档如下
 
+#### 版本说明
+- 1.x 的版本对应 spring boot 1.5.x 
+- 2.x 的版本对应 spring boot 2.0.x
+
 #### 基本信息
 
 - chapter1 1 ：[更新日志](doc/ch1/updateLog.md)
@@ -48,9 +52,9 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 
 - chapter6 1 ：[服务注册与发现（Eureka、Consul）](doc/ch6/eureka.md)
 - chapter6 2 ：[微服务之间的相互调用](doc/ch6/diaoyong.md)
-- chapter6 3 ：配置中心(未完成)
-- chapter6 4 ：网关(未完成)
+- chapter6 3 ：[配置中心](https://gitee.com/sesamekim/eureka)
+- chapter6 4 ：[网关](https://gitee.com/sesamekim/gateway)
 
 #### docker
 
-- chapter7 1 ：[docker安装](doc/ch7/docker-install.md)
+- chapter7 1 ：[docker安装](http://www.runoob.com/docker/centos-docker-install.html)
