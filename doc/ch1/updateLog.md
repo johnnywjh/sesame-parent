@@ -12,8 +12,10 @@
 #### 2.0.0 `2019-1-9`
 - **优化** QueryCacha 注解 
 ```
+修改参数名称
 isWriteNullValue 改为 isWriteNullValueToJson
 1. boolean **isWriteNullValueToJson** : 序列化时 , 是否写空值进json
+新增参数
 2. boolean **isSaveNullValueToCache** : 当查询结果为 null 时,是否写入缓存(redis)中,默认 false,一般不用设置
 3. String **saveNullValueTheStr** : 当isSaveNullValueToCache=true 时, 在缓存(redis)中的值,默认"framework-cache-null"
 ```
