@@ -67,7 +67,15 @@ public class QueryCacheAop {
             time = ann.invalidTime();
             timeUnit = ann.timeUnit();
         }
-        String cacheResult = stringRedisTemplate.opsForValue().get(cacheKey);
+        String cacheResult = null;
+        // 如果redis 异常，那么就直接执行目标方法
+        try {
+            cacheResult = stringRedisTemplate.opsForValue().get(cacheKey);
+        } catch (Exception e) {
+            log.debug("redis 获取异常，直接执行目标方法");
+            e.printStackTrace();
+            return pjd.proceed();
+        }
 
         if (StringUtil.isEmpty(cacheResult)) {
             log.debug(MessageFormat.format("缓存不存在,走数据库查询 ,存储时间 : {0} , 单位 : {1} ", time, timeUnit));
@@ -79,7 +87,11 @@ public class QueryCacheAop {
                 } else {
                     json = JSON.toJSONString(result, SerializerFeature.UseSingleQuotes);
                 }
-                stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
+                try {
+                    stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         } else {
             // 返回类型为 list 集合
