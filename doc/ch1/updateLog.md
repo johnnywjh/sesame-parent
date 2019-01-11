@@ -10,6 +10,13 @@
 #### 更新日志
 
 #### 2.0.0 `2019-1-9`
+- **优化** QueryCacha 注解 
+```
+isWriteNullValue 改为 isWriteNullValueToJson
+1. boolean **isWriteNullValueToJson** : 序列化时 , 是否写空值进json
+2. boolean **isSaveNullValueToCache** : 当查询结果为 null 时,是否写入缓存(redis)中,默认 false,一般不用设置
+3. String **saveNullValueTheStr** : 当isSaveNullValueToCache=true 时, 在缓存(redis)中的值,默认"framework-cache-null"
+```
 - 依赖的spring boot 版本为2.0.7.RELEASE , spring cloud 版本为Finchley.SR2
 - [升级修改事项](../spring-boot-2.x.md)
 

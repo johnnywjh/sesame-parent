@@ -48,12 +48,13 @@ sesame.framework.cache.refresh-time=60
 
 ```
 ##### 注解里的参数
-1. String **key** : 无值,cacheKey=classPath+methodName+params . 有值,cacheKey=key+params **无特殊要求一般不用设置** 
-2. String **keyPrefix** : 缓存key 的前缀,一般加上项目名 **无特殊要求一般不用设置** 
-3. TimeUnit **timeUnit** : 缓存失效时间类型,默认分钟  **无特殊要求一般不用设置** 
-4. int **invalidTime** : 缓存失效时间, 默认30 **无特殊要求一般不用设置** 
-7. boolean **isWriteNullValue** : 序列化时 , 是否写空值进去
-
+- String **key** : 无值,cacheKey=classPath+methodName+params . 有值,cacheKey=key+params **无特殊要求一般不用设置** 
+- String **keyPrefix** : 缓存key 的前缀,一般加上项目名 **无特殊要求一般不用设置** 
+- TimeUnit **timeUnit** : 缓存失效时间类型,默认分钟  **无特殊要求一般不用设置** 
+- int **invalidTime** : 缓存失效时间, 默认30 **无特殊要求一般不用设置** 
+- boolean **isWriteNullValueToJson** : 序列化时 , 是否写空值进json
+- boolean **isSaveNullValueToCache** : 当查询结果为 null 时,是否写入缓存(redis)中,默认 false,一般不用设置
+- String **saveNullValueTheStr** : 当isSaveNullValueToCache=true 时, 在缓存(redis)中的值,默认"framework-cache-null"
 
 #### ------------------------- 这是分割线  --------------------------------------------------
 

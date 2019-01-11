@@ -42,9 +42,25 @@ public @interface QueryCache {
     int invalidTime() default 0;
 
     /**
-     * 序列化时 , 是否写空值进去
+     * 序列化时 , 是否写空值进json
      *
      * @return
      */
-    boolean isWriteNullValue() default true;
+    boolean isWriteNullValueToJson() default true;
+
+    /**
+     * 当查询结果为 null 时,是否写入缓存(redis)中
+     * 默认 false,一般不用设置
+     *
+     * @return
+     */
+    boolean isSaveNullValueToCache() default false;
+
+    /**
+     * isSaveNullValueToCache=true 时, 在缓存(redis)中的值
+     * 默认有值, 一般不用设置,有冲突时才自定义设置,并且只有在isSaveNullValueToCache=true 时才有意义
+     *
+     * @return
+     */
+    String saveNullValueTheStr() default "framework-cache-null";
 }

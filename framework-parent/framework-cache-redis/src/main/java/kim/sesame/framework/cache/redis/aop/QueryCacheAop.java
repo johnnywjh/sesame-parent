@@ -82,20 +82,41 @@ public class QueryCacheAop {
         if (StringUtil.isEmpty(cacheResult)) {
             log.debug(MessageFormat.format("缓存不存在,走数据库查询 ,存储时间 : {0} , 单位 : {1} ", time, timeUnit));
             result = pjd.proceed();
+
             if (result != null) {
                 String json = "";
-                if (ann.isWriteNullValue()) {
-                    json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue, SerializerFeature.UseSingleQuotes);
+                if (result instanceof String) {
+                    json = result.toString();
                 } else {
-                    json = JSON.toJSONString(result, SerializerFeature.UseSingleQuotes);
+                    if (ann.isWriteNullValueToJson()) {
+                        json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue, SerializerFeature.UseSingleQuotes);
+                    } else {
+                        json = JSON.toJSONString(result, SerializerFeature.UseSingleQuotes);
+                    }
                 }
                 try {
                     stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            } else {
+                // result==null
+                if (ann.isSaveNullValueToCache()) {
+                    String json = ann.saveNullValueTheStr(); // 给结果赋值,但是在获取的时候也要判断的
+                    try {
+                        stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         } else {
+            // 1. 判断结果是不是最开始写入的null 字符串,如果是, 直接返回 null
+            if (ann.isSaveNullValueToCache() && cacheResult.equals(ann.saveNullValueTheStr())) {
+                return null;
+            }
+
+            // 2. 反序列化字符串,并返回对象
             // 返回类型为 list和Set 集合
             if (Collection.class.isAssignableFrom(returnTypeClazz)) {
                 ResolvableType resolvableType = ResolvableType.forMethodReturnType(method);
@@ -115,8 +136,6 @@ public class QueryCacheAop {
             else {
                 result = JSON.parseObject(cacheResult, returnTypeClazz);
             }
-
-
         }
         log.debug(result);
         log.debug("");
