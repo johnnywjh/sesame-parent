@@ -21,7 +21,9 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -94,16 +96,19 @@ public class QueryCacheAop {
                 }
             }
         } else {
-            // 返回类型为 list 集合
+            // 返回类型为 list和Set 集合
             if (Collection.class.isAssignableFrom(returnTypeClazz)) {
+                ResolvableType resolvableType = ResolvableType.forMethodReturnType(method);
+                Class clazz = resolvableType.getGeneric(0).resolve();
+                clazz = clazz == null ? Object.class : clazz;
+
                 if (List.class.isAssignableFrom(returnTypeClazz)) {
-                    ResolvableType resolvableType = ResolvableType.forMethodReturnType(method);
-                    Class clazz = resolvableType.getGeneric(0).resolve();
-                    clazz = clazz == null ? Object.class : clazz;
                     result = JSONArray.parseArray(cacheResult, clazz);
+                } else if (Set.class.isAssignableFrom(returnTypeClazz)) {
+                    result = new HashSet<>(JSONArray.parseArray(cacheResult, clazz));
                 } else {
                     throw new ClassCastException(MessageFormat.format
-                            ("不支持的类型:{0},缓存只支持 List 的集合类型", returnTypeClazz));
+                            ("不支持的类型:{0},缓存只支持 List和Set 的集合类型", returnTypeClazz));
                 }
             }
             // 判断返回类型 , 返回类型为单个对象
