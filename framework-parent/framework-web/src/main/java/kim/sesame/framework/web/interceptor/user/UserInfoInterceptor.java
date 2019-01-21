@@ -120,8 +120,12 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
      */
     private String getToken(HttpServletRequest request) {
         String token = request.getHeader(GData.JWT.TOKEN);
+        log.debug("token 参数名称:" + GData.JWT.TOKEN);
         if (StringUtil.isEmpty(token)) {
             token = request.getParameter(GData.JWT.TOKEN);
+            log.debug("获取请求体(body)里的" + GData.JWT.TOKEN + ":" + token);
+        } else {
+            log.debug("获取请求头(head)里的" + GData.JWT.TOKEN + ":" + token);
         }
         return token;
     }
