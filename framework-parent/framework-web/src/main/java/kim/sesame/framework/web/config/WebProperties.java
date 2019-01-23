@@ -80,11 +80,6 @@ public class WebProperties implements InitializingBean {
     private boolean interceptorAuth = false;
 
     /**
-     * 获取用户,角色,菜单 是否加入缓存
-     */
-    private boolean userInfoCache = true;
-
-    /**
      * 开启跨域
      */
     private boolean enableCrossDomain = false;
