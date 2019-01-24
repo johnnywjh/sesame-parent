@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.core;
+package kim.sesame.framework.web.config;
 
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.ErrorPageRegistrar;

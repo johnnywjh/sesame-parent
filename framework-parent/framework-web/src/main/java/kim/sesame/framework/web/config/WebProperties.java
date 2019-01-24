@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  *
  * @author johnny
  * date :  2017年9月7日 下午7:20:50
- * Description:
+ * server.servlet.session.timeout=30
  */
 @Data
 @Component
@@ -49,7 +49,6 @@ public class WebProperties implements InitializingBean {
      */
     private boolean dataShare = true;
 
-    private boolean urlrewriteEnabled = false; // 是否启动 java 伪静态
     private String urlrewriteSuffix = "*.shtml"; // java伪静态的后缀名
     private String pageReplace = "~";
 
