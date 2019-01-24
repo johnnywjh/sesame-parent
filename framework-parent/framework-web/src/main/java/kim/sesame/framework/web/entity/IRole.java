@@ -21,4 +21,12 @@ public class IRole extends BaseEntity {
     private String roles; // 角色集合
     private int userCount;// 用户个数
 
+    @Override
+    public String toString() {
+        return "IRole{" +
+                "code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                ", grade=" + grade +
+                '}';
+    }
 }

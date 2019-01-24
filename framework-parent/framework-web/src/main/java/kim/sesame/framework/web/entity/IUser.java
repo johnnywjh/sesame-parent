@@ -35,4 +35,17 @@ public class IUser extends BaseEntity {
     private Integer roleGrade;// 最大的角色等级
     private List<IRole> roles;// 角色集合
 
+    @Override
+    public String toString() {
+        return "IUser{" +
+                "account='" + account + '\'' +
+                ", name='" + name + '\'' +
+                ", companyCode='" + companyCode + '\'' +
+                ", deptCode='" + deptCode + '\'' +
+                ", sex='" + sex + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", idcard='" + idcard + '\'' +
+                '}';
+    }
 }
