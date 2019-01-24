@@ -64,6 +64,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         }
         log.debug(">>>>>>3 userNo : " + userNo);
         log.debug(">>>>>>4 user : " + user);
+        log.debug(">>>>>>5 role : " + list_roles);
 
         UserContext.getUserContext().setUser(user);
         UserContext.getUserContext().setUserRole(list_roles);
