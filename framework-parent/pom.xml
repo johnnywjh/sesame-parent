@@ -26,6 +26,7 @@
         <module>framework-utils</module><!--swagger 配置-->
 
         <module>framework-cache</module><!--缓存接口的定义-->
+        <module>framework-cache-local-caffeine</module><!--本地缓存模块-->
         <module>framework-cache-redis</module><!--缓存接口的实现- redis-->
 
         <module>framework-lock</module><!--分布式锁 -->
