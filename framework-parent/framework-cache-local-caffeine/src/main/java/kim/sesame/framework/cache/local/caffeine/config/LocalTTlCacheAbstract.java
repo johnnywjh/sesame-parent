@@ -9,19 +9,18 @@ import java.util.List;
 
 /**
  * 缓存配置父类
- * 使用例子
- * --------------------------------------------------
- * @Component  // 一定要加入spring容器中
- * public class CacheImpl1 extends LocalTTlCacheAbstract {
- *     @Override
- *     protected void setConfigs() {
- *         configs = Arrays.asList(
- *                 new LocalTTLCacheEntity("userlist", 10)  // 第一个参数是 @Cacheable 注解的 value 值
- *         );
- *     }
- * }
- * --------------------------------------------------
  */
+/* 例子
+  @Component  // 一定要加入spring容器中
+  public class CacheImpl1 extends LocalTTlCacheAbstract {
+      @Override
+      protected void setConfigs() {
+          configs = Arrays.asList(
+                  new LocalTTLCacheEntity("userlist", 10)  // 第一个参数是 @Cacheable 注解的 value 值
+          );
+      }
+  }
+* */
 @CommonsLog
 @Component
 public class LocalTTlCacheAbstract implements InitializingBean {

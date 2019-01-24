@@ -62,7 +62,7 @@ public class QueryCacheAop {
         log.debug("缓存 : key = " + cacheKey);
         int time = 0;
         TimeUnit timeUnit = null;
-        if (ann.invalidTime() == 0) {
+        if (ann.invalidTime() <= 0) {
             time = queryCache.getInvalidTime();
             timeUnit = TimeUnit.MINUTES;
         } else {

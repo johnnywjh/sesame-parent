@@ -32,6 +32,10 @@ public interface IUserCache {
      * 用户角色信息在缓存里的key
      */
     String USER_ROLE_KEY = "kim.sesame.cache.user.role";
+    /**
+     * 用户菜单在缓存里的key
+     */
+    String USER_MENU_KEY = "kim.sesame.cache.user.menu";
 
     /**
      * 获取登录用户在缓存里的key

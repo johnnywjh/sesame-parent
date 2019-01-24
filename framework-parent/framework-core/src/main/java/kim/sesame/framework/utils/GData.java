@@ -105,4 +105,11 @@ public class GData {
         String ZUUL_SESSION_ID = "zuulSessionId";
     }
 
+    /**
+     * 本地缓存中的key,
+     */
+    public  static interface LOCALCACHE{
+        String WEB_CACHE_USER_INFO = "webCacheUserInfo";
+        String WEB_CACHE_USER_ROLE = "webCacheUserRole";
+    }
 }
