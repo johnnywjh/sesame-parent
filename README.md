@@ -35,7 +35,8 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 
 - chapter4 1 ：[异常和返回码](doc/ch4/err-return-code.md)
 - chapter4 2.1 ：[redis缓存组件](doc/ch4/redis.md)
-- chapter4 2.2 ：[redis多实例](doc/ch4/redis-shili.md)
+- chapter4 2.2 ：[本地TTl缓存](doc/ch4/local-redis.md)
+- chapter4 2.3 ：[redis多实例](doc/ch4/redis-shili.md)
 - chapter4 3 ：[分布式锁使用](doc/ch4/distributed-lock.md)
 - chapter4 4 ：[分布式序列号](doc/ch4/serial-number.md)
 - chapter4 5 ：[分布式事物](doc/ch4/distributed-tx.md)
