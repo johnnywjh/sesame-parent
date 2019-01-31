@@ -1,6 +1,4 @@
-> 这里引用一段spring boot 的介绍,来个开胃菜..
-- spring boot 是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Boot致力于在蓬勃发展的快速应用开发领域（rapid application development）成为领导者。
-- 我在这之上再封装了一下,让其更简单了下...
+> 一个简单的web项目
 
 ### 1 项目结构说明
 ```
@@ -14,7 +12,8 @@ src
 | | |   |-templates  // 模板 html 页面存放处
 _pom.xml 
 ```
-### 2 pom.xml 这里只介绍关键配置,其余的就略过吧
+### 2 pom.xml 这里只介绍关键配置,其余的略过
+- 创建一个maven项目 spring-boot-example-web
 
 #### 2.1 父模块坐标(后面所有的项目都有这个) 
 ```
@@ -37,9 +36,9 @@ _pom.xml
 ### 3 项目配置
 #### 3.1 在config目录中新建application.properties文件,关键配置如下
 ```
-# 访问时 项目路径 可设置为 '/'
-# server.context-path=/simple_web # 建议去掉这个配置,因为ip和端口就可以确保唯一了
-# 项目端口
+spring.profiles.active=@profileActive@
+sesame.framework.web.sys-code=@sysCode@
+
 server.port=8080
 ```
 
@@ -51,17 +50,16 @@ package com.sesame;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * 项目启动时, 运行这个main方法就好
  */
 @SpringBootApplication
-public class App {
+public class WebApp {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(App.class, args);
-
+        SpringApplication.run(WebApp.class, args);
+        SpringContextUtil.printInfo();
     }
 
 }
@@ -85,6 +83,4 @@ public class App {
 
 ![输入图片说明](https://gitee.com/uploads/images/2017/1222/213611_00e9c5aa_1599674.png "屏幕截图.png")
 
-#### simple-web代码地址 [https://gitee.com/sesamekim/demo/tree/master/simple-web](https://gitee.com/sesamekim/demo/tree/master/simple-web)
-
-
+#### 代码地址 [spring-boot-example-web](https://gitee.com/sesamekim/demo/tree/master/spring-boot-example/spring-boot-example-web)

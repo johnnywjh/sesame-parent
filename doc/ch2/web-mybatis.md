@@ -1,4 +1,5 @@
-### spring boot 作为基础,然后整合mvc 和mybaits,新建项目就不说了, 从(2.1) web项目上马直接改
+### spring boot 作为基础,然后整合mvc 和mybaits,新建项目就不说了, 从 web项目上直接改
+- 新建项目 spring-boot-example-ssm
 
 #### 1 pom.xml 中新增如下依赖
 ```
@@ -20,4 +21,4 @@ spring.datasource.username=testacc
 spring.datasource.password=123456
 ```
 
-#### 好了, 到这里就结束了,下一章会以一张测试表来讲解详细的代码结构
+#### 代码地址 [spring-boot-example-ssm](https://gitee.com/sesamekim/demo/tree/master/spring-boot-example/spring-boot-example-ssm)
