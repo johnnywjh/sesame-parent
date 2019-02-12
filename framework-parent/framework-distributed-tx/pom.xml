@@ -19,36 +19,21 @@
         https://github.com/codingapi/tx-lcn.git
     </description>
 
+    <properties>
+        <txlcn.version>5.0.1.RELEASE</txlcn.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
-            <groupId>${sesame.groupId}</groupId>
-            <artifactId>framework-mybatis</artifactId>
-            <scope>provided</scope>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+            <version>${txlcn.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>com.codingapi</groupId>
-            <artifactId>transaction-springcloud</artifactId>
-            <version>${lcn.last.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.codingapi</groupId>
-            <artifactId>tx-plugins-db</artifactId>
-            <version>${lcn.last.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+            <version>${txlcn.version}</version>
         </dependency>
 
     </dependencies>

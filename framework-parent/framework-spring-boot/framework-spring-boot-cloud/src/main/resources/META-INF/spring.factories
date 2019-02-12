@@ -1,6 +1,5 @@
 # Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-kim.sesame.framework.cloud.config.InitBeanConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=kim.sesame.framework.cloud.config.InitBeanConfig
 
 
 
