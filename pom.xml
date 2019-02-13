@@ -118,7 +118,17 @@
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-mybatis-common</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
                 <artifactId>framework-mybatis</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-mybatis-plus</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
