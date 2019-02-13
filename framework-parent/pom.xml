@@ -17,7 +17,9 @@
     <!-- 项目集合-->
     <modules>
         <module>framework-core</module> <!--核心模块,其他模块大部分要依赖这个模块-->
+        <module>framework-mybatis-common</module><!--mybatis 模块-->
         <module>framework-mybatis</module><!--mybatis 模块-->
+        <module>framework-mybatis-plus</module><!--mybatis 模块-->
         <module>framework-web</module><!--web 模块-->
         <module>framework-rocketmq</module>
         <module>framework-rocketmq-plus</module>
