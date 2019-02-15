@@ -1,81 +1,63 @@
 package kim.sesame.framework.utils;
 
-import kim.sesame.framework.entity.GMap;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by johnny on 2017/9/10.
  */
 public class ObjectUtil {
 
-	/**
-	 * http://blog.csdn.net/tarrant1/article/details/10954633
-	 *
-	 * @param obj
-	 * @return
-	 */
-	public static GMap ObjectToGMap(Object obj) {
-		GMap gMap = null;
-		try {
-			gMap = GMap.newMap();
-			Class<?> cls = obj.getClass();
-			Field[] fields = cls.getDeclaredFields();
-			for (Field field : fields) {
-				String name = field.getName();
-				String strGet = "get" + name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
-				Method methodGet = cls.getDeclaredMethod(strGet);
-				Object object = methodGet.invoke(obj);
-				Object value = object != null ? object : "";
-				gMap.put(name, value);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    /**
+     * 对象转化成Map
+     *
+     * @param obj 传入的对象
+     * @return 返回map
+     */
+    public static Map ObjectToGMap(Object obj) {
+        Map<String, Object> map = new HashMap<>();
+        try {
+            Class<?> cls = obj.getClass();
+            Field[] fields = cls.getDeclaredFields();
+            for (Field field : fields) {
+                String name = field.getName();
+                String strGet = "get" + name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
+                Method methodGet = cls.getDeclaredMethod(strGet);
+                Object object = methodGet.invoke(obj);
+                Object value = object != null ? object : "";
+                map.put(name, value);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		return gMap;
-	}
+        return map;
+    }
 
-	public static void main(String[] args) {
-		List<User> list = Arrays.asList(new User(1, "aaa"), new User(2, "bbb"));
-		List<GMap> list_map = new ArrayList<>();
-		list.forEach(bean -> {
-			list_map.add(ObjectToGMap(bean));
-		});
+    /**
+     * obj 非空校验,包含字符串的校验
+     * isNotEmpty(new Object())// true
+     * isNotEmpty("111") // ture
+     * isNotEmpty(new Date()) // ture
+     *
+     * isNotEmpty("") // false
+     * isNotEmpty(null) // false
+     */
+    public static boolean isNotEmpty(Object obj) {
+        if (obj == null || (obj instanceof String && obj.equals(""))) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
-		list_map.forEach(System.out::println);
-	}
+    /**
+     * obj 对象为空的判断,包含字符串的校验
+     */
+    public static boolean isEmpty(Object obj) {
+        return !isNotEmpty(obj);
+    }
 
-	public static class User {
-		private int id;
-		private String name;
-
-		public User() {
-		}
-
-		public User(int id, String name) {
-			this.id = id;
-			this.name = name;
-		}
-
-		public int getId() {
-			return id;
-		}
-
-		public void setId(int id) {
-			this.id = id;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-	}
 }
