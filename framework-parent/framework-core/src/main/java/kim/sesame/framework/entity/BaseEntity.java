@@ -38,23 +38,23 @@ public class BaseEntity implements IEntity {
     }
 
     public void initCreateAndId(String user, String id) {
-        this.id = id;
+        setId(id);
         initCreate(user);
     }
 
     public void initCreate(String user) {
         Date d = new Date();
-        this.createUser = user;
-        this.createTime = d;
-        this.updateUser = user;
-        this.updateTime = d;
+        setCreateUser(user);
+        setCreateTime(d);
+        setUpdateUser(user);
+        setUpdateTime(d);
     }
 
 
     public void initUpdate(String user) {
         Date d = new Date();
-        this.updateUser = user;
-        this.updateTime = d;
+        setUpdateUser(user);
+        setUpdateTime(d);
     }
 
 }
