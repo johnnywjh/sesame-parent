@@ -11,7 +11,7 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 #### 基本信息
 
 - chapter1 1 ：[更新日志](doc/ch1/updateLog.md)
-- chapter1 2 ：[环境和项目结构](doc/ch1/describe.md)
+- chapter1 2 ：[想买目录结构说明](doc/ch1/describe.md)
 - chapter1 3 ：[集成说明](doc/ch1/shuomin.md)
 - chapter1 4 ：[必备插件-lombok](doc/ch1/lombok.md)
 
@@ -40,14 +40,6 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 - chapter4 3 ：[分布式锁使用](doc/ch4/distributed-lock.md)
 - chapter4 4 ：[分布式序列号](doc/ch4/serial-number.md)
 - chapter4 5 ：[分布式事物](doc/ch4/distributed-tx.md)
-
-#### 页面组件
-
-- chapter5 1 ：[序](doc/ch5/des.md)
-- chapter5 2 ：[模块sysuser.js](doc/ch5/user.md)
-- chapter5 3 ：[模块sysweb.js](doc/ch5/web.md)
-- chapter5 4 ：[模块verify.js](doc/ch5/verify.md)
-- chapter5 5 ：[权限标签](doc/ch5/auth.md)
 
 #### 微服务实战
 

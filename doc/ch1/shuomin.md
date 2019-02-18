@@ -5,7 +5,7 @@
 - [maven仓库地址 : kim.sesame](http://search.maven.org/#search%7Cga%7C1%7Ckim.sesame)
 
 #### 下面说一下使用方式
-1. 如果是 install 源码,那怎么用都不会有问题,也建议使用这种方式 (推荐下面的方式一)
+1. 如果是 install 源码,那怎么用都不会有问题,也建议使用这种方式 (**推荐下面的方式一**)
 2. 如果直接用maven里的依赖,有两种方式
 - 方式一
 ```
