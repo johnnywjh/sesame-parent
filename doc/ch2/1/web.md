@@ -1,6 +1,6 @@
 > 一个简单的web项目
 
-### 1 项目结构说明
+### 1 项目结构说明,springboot的默认配置
 ```
 src     
 | |-main
@@ -23,7 +23,6 @@ _pom.xml
         <version>${kim.last.version}</version>
     </parent>
 ```
-#### [maven仓库](http://search.maven.org/#search%7Cga%7C1%7Ckim.sesame)
 
 #### 2.2 web项目依赖
 ```
@@ -36,9 +35,6 @@ _pom.xml
 ### 3 项目配置
 #### 3.1 在config目录中新建application.properties文件,关键配置如下
 ```
-spring.profiles.active=@profileActive@
-sesame.framework.web.sys-code=@sysCode@
-
 server.port=8080
 ```
 
@@ -83,4 +79,4 @@ public class WebApp {
 
 ![输入图片说明](https://gitee.com/uploads/images/2017/1222/213611_00e9c5aa_1599674.png "屏幕截图.png")
 
-#### 代码地址 [spring-boot-example-web](https://gitee.com/sesamekim/demo/tree/master/spring-boot-example/spring-boot-example-web)
+#### 代码地址 [spring-boot-example/spring-boot-example-web](https://gitee.com/sesamekim/demo/tree/master/spring-boot-example/spring-boot-example-web)

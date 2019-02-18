@@ -73,9 +73,21 @@ public class WebProperties implements InitializingBean {
      */
     private String iconPath;
 
+    /**
+     * 内置拦截器:用户信息信息加载
+     */
     private boolean interceptorUser = false;
+    /**
+     * 内置拦截器:拦截用户登录,非session方式
+     */
     private boolean interceptorLogin = false;
+    /**
+     * 内置拦截器:拦截用户登录 session方式
+     */
     private boolean interceptorSession = false;
+    /**
+     * 内置拦截器:接口安全签名
+     */
     private boolean interceptorAuth = false;
 
     /**
@@ -84,13 +96,13 @@ public class WebProperties implements InitializingBean {
     private boolean enableCrossDomain = false;
 
     /**
-     * 当前系统编码
+     * 当前系统编码,默认 web, 一般单机系统不需要配置
      */
-    private String sysCode;
+    private String sysCode = "web";
     /**
      * 超级管理员角色编号
      */
-    private String spuerAdmin = "spuer_admin";
+    private String spuerAdmin = "super_admin";
 
     /**
      * 文件上传地址
@@ -107,14 +119,6 @@ public class WebProperties implements InitializingBean {
             this.iconPath = this.basePath + "/resources/ico/icon.png";
         }
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
-
-        if (StringUtil.isEmpty(this.sysCode)) {
-            throw new NullPointerException("请配置 sesame.framework.web.sys-code=@sysCode@");
-        }
-        if ("@sysCode@".equals(this.sysCode)) {
-            throw new NullPointerException("配置中 @sysCode@ 的值未被过滤替换, 请更新maven环境,重新启动,或者手动指定值");
-        }
-
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSpuerAdmin(this.spuerAdmin);
         ProjectConfig.setUploadUrl(this.uploadUrl);

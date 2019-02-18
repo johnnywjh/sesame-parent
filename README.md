@@ -15,16 +15,17 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 - chapter1 3 ：[集成说明](doc/ch1/shuomin.md)
 - chapter1 4 ：[必备插件-lombok](doc/ch1/lombok.md)
 
+#### Demo [项目代码地址](https://gitee.com/sesamekim/demo)
+
 #### 快速使用
 
-- chapter2 1 ：[一个简单的web项目](doc/ch2/web.md)
-- chapter2 2 ：[dev,test,prod环境分离](doc/ch2/dev-test-prod.md)
-- chapter2 3 ：[idea热部署](doc/ch2/idea-rebushu.md)
+- chapter2 1 ：[一个简单的web项目](doc/ch2/1/web.md)
+- chapter2 2 ：[web项目默认属性配置](framework-parent/framework-web/src/main/java/kim/sesame/framework/web/config/WebProperties.java)
+- chapter2 3 ：[内置的四个拦截器](doc/ch2/1/interceptor.md)
 - chapter2 4 ：[web整合mybatis](doc/ch2/web-mybatis.md)
-- chapter2 5 ：[日志配置logback-spring.xml](doc/ch2/log.md)
 - chapter2 6 ：[代码生成工具使用](doc/ch2/code.md)
-- chapter2 7 ：[项目默认属性说明](doc/ch2/default-pro.md)
 - chapter2 8 ：[切换内嵌的服务器为jetty](doc/ch2/jetty.md)
+- chapter2 3 ：[idea热部署](doc/ch2/idea-rebushu.md)
 
 #### 自定义maven插件
 
