@@ -1,14 +1,8 @@
 package kim.sesame.framework.mybatis.config;
 
-import com.baomidou.mybatisplus.autoconfigure.MybatisPlusProperties;
-import com.baomidou.mybatisplus.core.MybatisConfiguration;
-import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.Resource;
-
-import javax.sql.DataSource;
 
 
 /**
@@ -21,14 +15,10 @@ import javax.sql.DataSource;
 @Configuration
 public class MybatisPlusConfig {
 
+    @SuppressWarnings("all")
     @Autowired
-    private DbProperties druid;
-
-    @Autowired
-    public void sqlSessionFactory(SqlSessionFactory sqlSessionFactory, MybatisPlusProperties mybatisPlusProperties) {
+    public void sqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         sqlSessionFactory.getConfiguration().setCallSettersOnNulls(true);
-
-        System.out.println(sqlSessionFactory.getConfiguration());
     }
 
 
