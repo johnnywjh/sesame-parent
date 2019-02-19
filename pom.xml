@@ -173,12 +173,17 @@
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-spring-boot-cloud</artifactId>
+                <artifactId>framework-spring-cloud-feign-eureka</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-spring-boot-starter</artifactId>
+                <artifactId>framework-spring-cloud-ribbon-eureka</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-spring-cloud-starter</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
@@ -240,6 +245,23 @@
                 <version>${spring.cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-ribbon</artifactId>
+                <version>${spring.cloud.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix</artifactId>
+                <version>${spring.cloud.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-eureka</artifactId>
+                <version>${spring.cloud.starter.version}</version>
             </dependency>
 
         </dependencies>

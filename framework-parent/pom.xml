@@ -34,7 +34,7 @@
 
         <module>framework-distributed-tx</module><!--分布式事物配置 -->
 
-        <module>framework-spring-boot</module><!--spring-boot 的一些集成 -->
+        <module>framework-spring-cloud-parent</module><!--spring-cloud 的一些集成 -->
 
         <module>framework-email</module><!--邮件发送模板-->
         <module>framework-tablelog</module><!--表操作日志-->

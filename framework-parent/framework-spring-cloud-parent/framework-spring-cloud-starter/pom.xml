@@ -4,20 +4,25 @@
 
     <parent>
         <groupId>kim.sesame.framework</groupId>
-        <artifactId>framework-parent</artifactId>
+        <artifactId>framework-spring-boot</artifactId>
         <version>2.0.0</version><!-- sesame.version -->
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>framework-spring-boot</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>framework-spring-cloud-starter</artifactId>
+    <packaging>jar</packaging>
     <name>${project.artifactId}-${project.version}</name>
 
-    <modules>
-        <module>framework-spring-boot-cloud</module><!--spring-cloud 系列 -->
-        <module>framework-spring-boot-starter</module><!--监控-->
-    </modules>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
     </build>
