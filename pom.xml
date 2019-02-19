@@ -168,11 +168,6 @@
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-spring-boot</artifactId>
-                <version>${sesame.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${sesame.groupId}</groupId>
                 <artifactId>framework-spring-cloud-feign-eureka</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
