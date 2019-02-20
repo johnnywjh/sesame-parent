@@ -4,9 +4,9 @@
 
     <parent>
         <groupId>kim.sesame.framework</groupId>
-        <artifactId>framework-spring-boot</artifactId>
+        <artifactId>framework-parent</artifactId>
         <version>2.0.0</version><!-- sesame.version -->
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>framework-spring-cloud-starter</artifactId>
