@@ -4,7 +4,7 @@
 
     <parent>
         <groupId>kim.sesame.framework</groupId>
-        <artifactId>framework-utils</artifactId>
+        <artifactId>framework-parent</artifactId>
         <version>2.0.0</version><!-- sesame.version -->
         <relativePath>../../pom.xml</relativePath>
     </parent>
