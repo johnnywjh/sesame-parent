@@ -9,7 +9,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>framework-utils</artifactId>
+	<artifactId>framework-utils-parent</artifactId>
 	<packaging>pom</packaging>
 	<name>${project.artifactId}-${project.version}</name>
 

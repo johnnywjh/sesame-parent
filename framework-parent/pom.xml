@@ -23,7 +23,7 @@
         <module>framework-rocketmq-plus</module>
         <module>framework-websocket</module><!--websocket 模块,单机版-->
         <module>framework-websocket-cloud</module><!--websocket 模块,集群版-->
-        <module>framework-utils</module><!--swagger 配置-->
+        <module>framework-utils-parent</module><!--swagger 配置-->
 
         <module>framework-cache</module><!--缓存接口的定义-->
         <module>framework-cache-local-caffeine</module><!--本地缓存模块-->
