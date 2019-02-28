@@ -1,7 +1,10 @@
 package kim.sesame.framework.utils;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 字符串
@@ -169,6 +172,20 @@ public class StringUtil {
             return false;
         }
 
+    }
+
+    /**
+     * 字符串分割成 list
+     *
+     * @param strs     待分割的字符串
+     * @param splitstr 分隔符
+     * @return
+     */
+    public static List<String> split(String strs, String splitstr) {
+        return Stream.of(strs.split(splitstr))
+                .map(String::trim).distinct()
+                .filter(StringUtil::isNotEmpty)
+                .collect(Collectors.toList());
     }
 
 }
