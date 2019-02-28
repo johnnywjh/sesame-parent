@@ -72,6 +72,10 @@ public class WebProperties implements InitializingBean {
      * 网页上icon 的图标地址
      */
     private String iconPath;
+    /**
+     * 用户默认头像
+     */
+    private String userDefaultImageUrl;
 
     /**
      * 内置拦截器:用户信息信息加载
