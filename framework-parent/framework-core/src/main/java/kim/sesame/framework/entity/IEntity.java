@@ -12,17 +12,17 @@ public interface IEntity extends Serializable {
     String getId();
     void setId(String id);
 
-     String getCreateUser();
-     void setCreateUser(String createUser);
+    default String getCreateUser(){return null;}
+    default void setCreateUser(String createUser){}
 
-     Date getCreateTime();
-     void setCreateTime(Date createTime);
+    default Date getCreateTime(){return null;}
+    default void setCreateTime(Date createTime){}
 
-     String getUpdateUser();
-     void setUpdateUser(String updateUser);
+    default String getUpdateUser(){return null;}
+    default void setUpdateUser(String updateUser){}
 
-     Date getUpdateTime();
-     void setUpdateTime(Date updateTime);
+    default Date getUpdateTime(){return null;}
+    default void setUpdateTime(Date updateTime){}
 
 
      default void initCreateAndId(String user) {
