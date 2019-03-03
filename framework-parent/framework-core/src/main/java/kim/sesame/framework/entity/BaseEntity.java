@@ -3,14 +3,14 @@ package kim.sesame.framework.entity;
 import kim.sesame.framework.utils.UUIDUtil;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
+
 /**
- * 基础实体
- *
- * @author johnny
+ * 基础实体的父类,主要给 mybatis 使用
  */
 @Data
-public class BaseEntity implements IEntity {
+public class BaseEntity implements Serializable {
 
     /**
      * 主键
