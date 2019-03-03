@@ -2,11 +2,7 @@ package kim.sesame.framework.web.entity;
 
 
 import kim.sesame.framework.entity.BaseEntity;
-import kim.sesame.framework.entity.IEntity;
 import lombok.Data;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * 角色实体接口
