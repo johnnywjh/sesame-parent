@@ -8,8 +8,12 @@
 - 2.x 的版本对应 spring boot 2.0.x
 
 #### 更新日志
+#### 2.0.1 `2019-3-3 孵化中`
+- mybatis-plus继承实体接口的修改,BaseEntity类和IEntity接口对应两种不同的方式
 
 #### 2.0.0 `2019-1-9`
+- 整体目录发生大的变化,不兼容之前的版本
+- 新增mybatis-plus 模块
 - 本地缓存模块新增**framework-cache-local-caffeine**  [#详见文档](../ch4/local-redis.md)
 - **优化** QueryCacha 注解 
 ```
