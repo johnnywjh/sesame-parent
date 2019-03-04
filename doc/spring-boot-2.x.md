@@ -196,3 +196,9 @@ spring.http.multipart.max-request-size=100MB
 spring.servlet.multipart.max-file-size=10MB
 spring.servlet.multipart.max-request-size=100MB
 ```
+
+11. rocket-mq的配置
+```
+spring.rocketmq.name-server=  1.x的写法
+spring.rocketmq.nameServer=  2.x 的写法
+```
