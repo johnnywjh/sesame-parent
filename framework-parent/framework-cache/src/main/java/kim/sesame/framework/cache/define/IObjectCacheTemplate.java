@@ -10,5 +10,5 @@ public interface IObjectCacheTemplate {
 
     void set(String key, Object value, long timeout, TimeUnit unit);
 
-    void delete(String key);
+    Boolean delete(String key);
 }

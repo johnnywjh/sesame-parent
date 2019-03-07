@@ -26,8 +26,8 @@ public class ObjectCacheTemplateImpl implements IObjectCacheTemplate {
     }
 
     @Override
-    public void delete(String key) {
-        redisTemplate.delete(key);
+    public Boolean delete(String key) {
+        return redisTemplate.delete(key);
     }
 
 }

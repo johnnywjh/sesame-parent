@@ -19,7 +19,7 @@ public interface IUserCache {
     /**
      * 子类在spring 容器中的注册名字
      */
-   // String USER_LOGIN_BEAN = "user_cache_bean";
+    // String USER_LOGIN_BEAN = "user_cache_bean";
     /**
      * 登录后,用户账号在缓存中的key
      */
@@ -81,7 +81,9 @@ public interface IUserCache {
             throw new NullPointerException("请实现 IStringCacheTemplate 接口");
         }
         String key = userCacheId(sessionId);
-        stringCache.delete(key);
+        boolean res = stringCache.delete(key);
+        res = stringCache.delete(key);
+        res = stringCache.delete(key);
     }
 
     /**
