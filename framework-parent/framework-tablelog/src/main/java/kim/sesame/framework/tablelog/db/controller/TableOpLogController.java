@@ -3,7 +3,7 @@ package kim.sesame.framework.tablelog.db.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import kim.sesame.framework.entity.GPage;
-import kim.sesame.framework.mybatis.uitl.PageUtil;
+import kim.sesame.framework.mybatis.utils.PageUtil;
 import kim.sesame.framework.tablelog.db.bean.TableOpLog;
 import kim.sesame.framework.tablelog.db.service.TableOpLogService;
 import kim.sesame.framework.utils.StringUtil;

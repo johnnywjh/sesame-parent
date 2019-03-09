@@ -1,9 +1,9 @@
-package kim.sesame.framework.mybatis.uitl;
+package kim.sesame.framework.mybatis.utils;
 
-import com.github.pagehelper.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import kim.sesame.framework.entity.GPage;
 
-public class PageUtil {
+public class PagePlusUtil {
 
     public static GPage recount(Page pages) {
         return recount(null, pages);
@@ -13,11 +13,11 @@ public class PageUtil {
         if (gPage == null) {
             gPage = new GPage();
         }
-        gPage.setPageNum(pages.getPageNum());
-        gPage.setPageSize(pages.getPageSize());
+        gPage.setPageNum((int) pages.getCurrent());
+        gPage.setPageSize((int) pages.getSize());
         gPage.setTotal(pages.getTotal());
-        gPage.setPages(pages.getPages());
-        gPage.setCount(pages.isCount());
+        gPage.setPages((int) pages.getPages());
+        gPage.setCount(pages.isSearchCount());
         return gPage;
     }
 
