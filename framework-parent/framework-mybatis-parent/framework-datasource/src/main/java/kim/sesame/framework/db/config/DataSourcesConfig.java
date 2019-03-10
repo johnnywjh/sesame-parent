@@ -23,55 +23,54 @@ import java.sql.SQLException;
 @Configuration
 public class DataSourcesConfig {
 
-	@Resource
-	private DbProperties db;
+    @Resource
+    private DbProperties db;
 
-	/**
-	 * db初始化
-	 *
-	 * @author johnny
-	 * date :  2017年6月12日 上午11:26:03
-	 * @return 11
-	 * @throws SQLException
-	 *             DruidDataSource
-	 */
-	@Bean(name="dataSource")
-	@ConfigurationProperties(prefix="spring.datasource")
-	@ConditionalOnProperty(prefix = "sesame.framework.db", name = "enabled", havingValue = "true")
-	public DruidDataSource dataSource(){
-		return new DruidDataSource();
-	}
+    /**
+     * db初始化
+     *
+     * @return 11
+     * @throws SQLException DruidDataSource
+     * @author johnny
+     * date :  2017年6月12日 上午11:26:03
+     */
+    @Bean(name = "dataSource")
+    @ConfigurationProperties(prefix = "spring.datasource")
+    @ConditionalOnProperty(prefix = "sesame.framework.db", name = "druid-enabled", havingValue = "true", matchIfMissing = true)
+    public DruidDataSource dataSource() {
+        return new DruidDataSource();
+    }
 
-	/**
-	 * db监控
-	 *
-	 * @return
-	 */
-	@Bean
-	@ConditionalOnProperty(prefix = "sesame.framework.db", name = "druid-enabled", havingValue = "true")
-	public ServletRegistrationBean dbServlet() {
-		ServletRegistrationBean reg = new ServletRegistrationBean();
-		reg.setServlet(new StatViewServlet());
-		reg.addUrlMappings("/db/*");
-		// -- reg.addInitParameter("allow", "127.0.0.1");
-		// -- reg.addInitParameter("deny","");
-		reg.addInitParameter("loginUsername", db.getDruidLoginName());
-		reg.addInitParameter("loginPassword", db.getDruidLoginPwd());
-		return reg;
-	}
+    /**
+     * db监控
+     *
+     * @return
+     */
+    @Bean
+    @ConditionalOnProperty(prefix = "sesame.framework.db", name = "druid-monitor-enabled", havingValue = "true")
+    public ServletRegistrationBean dbServlet() {
+        ServletRegistrationBean reg = new ServletRegistrationBean();
+        reg.setServlet(new StatViewServlet());
+        reg.addUrlMappings("/db/*");
+        // -- reg.addInitParameter("allow", "127.0.0.1");
+        // -- reg.addInitParameter("deny","");
+        reg.addInitParameter("loginUsername", db.getDruidLoginName());
+        reg.addInitParameter("loginPassword", db.getDruidLoginPwd());
+        return reg;
+    }
 
-	/**
-	 * db监控过滤
-	 *
-	 * @return
-	 */
-	@Bean
-	@ConditionalOnProperty(prefix = "sesame.framework.db", name = "druid-enabled", havingValue = "true")
-	public FilterRegistrationBean filterRegistrationBean() {
-		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-		filterRegistrationBean.setFilter(new WebStatFilter());
-		filterRegistrationBean.addUrlPatterns("/*");
-		filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/db/*");
-		return filterRegistrationBean;
-	}
+    /**
+     * db监控过滤
+     *
+     * @return
+     */
+    @Bean
+    @ConditionalOnProperty(prefix = "sesame.framework.db", name = "druid-monitor-enabled", havingValue = "true")
+    public FilterRegistrationBean filterRegistrationBean() {
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+        filterRegistrationBean.setFilter(new WebStatFilter());
+        filterRegistrationBean.addUrlPatterns("/*");
+        filterRegistrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/db/*");
+        return filterRegistrationBean;
+    }
 }

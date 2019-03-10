@@ -18,11 +18,11 @@ public class DbProperties {
     /**
      * 是否开启 druid 数据源加载方式
      */
-    private boolean enabled = true;
+    private boolean druidEnabled = true;
     /**
      * 是否开启 druid 监控
      */
-    private boolean druidEnabled = false;
+    private boolean druidMonitorEnabled = false;
     private String druidLoginName = "admin";
     private String druidLoginPwd = "123456";
 
