@@ -11,6 +11,10 @@
 #### 2.0.1 `2019-3-3 孵化中`
 - mybatis-plus继承实体接口的修改,BaseEntity类和IEntity接口对应两种不同的方式
 - 优化druid的加载方式
+```
+# 关闭 druid 数据源连接池
+sesame.framework.db.druid-enabled=false
+```
 
 #### 2.0.0 `2019-1-9`
 - 整体目录发生大的变化,不兼容之前的版本
