@@ -1,4 +1,4 @@
-package kim.sesame.framework.mybatis.utils;
+package kim.sesame.framework.db.utils;
 
 import com.github.pagehelper.Page;
 import kim.sesame.framework.entity.GPage;

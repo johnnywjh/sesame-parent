@@ -96,7 +96,7 @@
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
-                <version>1.1.2</version>
+                <version>1.1.14</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -118,7 +118,7 @@
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-mybatis-common</artifactId>
+                <artifactId>framework-datasource</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>

@@ -1,4 +1,4 @@
-package kim.sesame.framework.mybatis.dao;
+package kim.sesame.framework.db.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

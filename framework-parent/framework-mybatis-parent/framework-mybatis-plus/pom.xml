@@ -28,7 +28,7 @@
 
 		<dependency>
 			<groupId>${sesame.groupId}</groupId>
-			<artifactId>framework-mybatis-common</artifactId>
+			<artifactId>framework-datasource</artifactId>
 		</dependency>
 
 	</dependencies>

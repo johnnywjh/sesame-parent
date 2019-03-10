@@ -21,11 +21,12 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class MybatisConfig{
+
 	@Resource(name = "dataSource")
 	DataSource dataSource;
 
 	@Resource
-	private DbProperties druid;
+	private MybatisProperties mybatisProperties;
 
 	/**
 	 * 可以通过这个类,详细配置mybatis
@@ -41,7 +42,7 @@ public class MybatisConfig{
 		// 添加XML目录
 		ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		try {
-			bean.setMapperLocations(resolver.getResources(druid.getMapperPath()));
+			bean.setMapperLocations(resolver.getResources(mybatisProperties.getMapperPath()));
 			
 			org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
 			configuration.setCallSettersOnNulls(true);
@@ -52,16 +53,5 @@ public class MybatisConfig{
 			throw new RuntimeException("sqlSessionFactory init fail", e);
 		}
 	}
-
-	/**
-	 * 用于实际查询的sql工具,传统dao开发形式可以使用这个,基于mapper代理则不需要注入
-	 * 
-	 * @param sqlSessionFactory
-	 * @return
-	 */
-//	@Bean(name = "sqlSessionTemplate")
-//	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
-//		return new SqlSessionTemplate(sqlSessionFactory);
-//	}
 
 }

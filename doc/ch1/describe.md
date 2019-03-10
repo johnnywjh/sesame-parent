@@ -40,7 +40,7 @@
     <tr>
         <td>framework-mybatis-parent</td>
         <td>
-            <p>framework-mybatis-common : mybatis的基础封装,公共部分</p>
+            <p>framework-datasource : 数据源加载</p>
             <p>framework-mybatis : 原生的mybatis 的封装</p>
             <p>framework-mybatis-plus : mp 的一些基础封装</p>
         </td>

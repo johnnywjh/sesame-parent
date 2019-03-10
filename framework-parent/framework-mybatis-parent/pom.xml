@@ -15,7 +15,7 @@
     <name>${project.artifactId}-${project.version}</name>
 
     <modules>
-        <module>framework-mybatis-common</module><!--mybatis 模块-->
+        <module>framework-datasource</module>
         <module>framework-mybatis</module><!--mybatis 模块-->
         <module>framework-mybatis-plus</module><!--mybatis 模块-->
     </modules>

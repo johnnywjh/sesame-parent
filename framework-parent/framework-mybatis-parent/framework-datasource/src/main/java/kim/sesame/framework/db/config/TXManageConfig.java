@@ -1,4 +1,4 @@
-package kim.sesame.framework.mybatis.config;
+package kim.sesame.framework.db.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
