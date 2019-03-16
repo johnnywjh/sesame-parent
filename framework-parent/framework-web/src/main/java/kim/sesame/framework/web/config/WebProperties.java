@@ -107,11 +107,6 @@ public class WebProperties implements InitializingBean {
      * 超级管理员角色编号
      */
     private String spuerAdmin = "super_admin";
-
-    /**
-     * 文件上传地址
-     */
-    private String uploadUrl = "http://localhost:8072/index/upload_file";
     /**
      * 界面上是否显示头标识
      */
@@ -125,6 +120,5 @@ public class WebProperties implements InitializingBean {
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSuperAdmin(this.spuerAdmin);
-        ProjectConfig.setUploadUrl(this.uploadUrl);
     }
 }

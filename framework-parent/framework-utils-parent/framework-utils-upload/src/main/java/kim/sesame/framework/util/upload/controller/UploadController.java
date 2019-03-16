@@ -1,10 +1,9 @@
-package kim.sesame.framework.web.upload.controller;
+package kim.sesame.framework.util.upload.controller;
 
-import com.alibaba.fastjson.JSON;
+import kim.sesame.framework.util.upload.service.UploadService;
 import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.controller.AbstractWebController;
 import kim.sesame.framework.web.response.Response;
-import kim.sesame.framework.web.upload.service.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,17 +13,14 @@ import java.util.Map;
 
 
 /**
- * 功能描述：上传文件 控制层
- *
- * @author 01122649-吴志飞
- * @create on 2018-07-13 9:19
- * @since V1.0.0
+ * 文件上传控制层
  */
 @RestController
 @RequestMapping("/upload")
-public class UploadFileController extends AbstractWebController {
-    @Autowired
-    private UploadFileService uploadFileService;
+public class UploadController extends AbstractWebController {
+
+    @Autowired(required = false)
+    private UploadService uploadService;
 
     /**
      * 普通文件上传
@@ -35,8 +31,8 @@ public class UploadFileController extends AbstractWebController {
      */
     @RequestMapping("/file")
     public Response uploadFile(String moduleName, MultipartFile file) {
-        String s = uploadFileService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
-        return JSON.parseObject(s, Response.class);
+        String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
+        return returnSuccess(src);
     }
 
     /**
@@ -47,11 +43,8 @@ public class UploadFileController extends AbstractWebController {
      */
     @RequestMapping("/layfile")
     public Map layfile(MultipartFile file) {
-        String s = uploadFileService.uploadFileMethod(ProjectConfig.getSysCode(), "e", file);
-
-        Map map = JSON.parseObject(s, Map.class);
-        map = JSON.parseObject(map.get("result").toString(), Map.class);
-        return layuiUpload(map.get("src").toString());
+        String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), "e", file);
+        return layuiUpload(src);
     }
 
 

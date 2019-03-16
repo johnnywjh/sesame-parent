@@ -1,4 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 kim.sesame.framework.web.WebConfiguration,\
-kim.sesame.framework.web.upload.service.UploadFileService
+kim.sesame.framework.web.upload.service.AAAAAAAAAAA

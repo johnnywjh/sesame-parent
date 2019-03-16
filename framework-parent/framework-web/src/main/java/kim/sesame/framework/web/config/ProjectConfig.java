@@ -3,7 +3,6 @@ package kim.sesame.framework.web.config;
 public class ProjectConfig {
     private static String sysCode;
     private static String superAdmin;
-    private static String uploadUrl;
 
     static void setSysCode(String sysCode) {
         ProjectConfig.sysCode = sysCode;
@@ -11,10 +10,6 @@ public class ProjectConfig {
 
     static void setSuperAdmin(String superAdmin) {
         ProjectConfig.superAdmin = superAdmin;
-    }
-
-    static void setUploadUrl(String uploadUrl) {
-        ProjectConfig.uploadUrl = uploadUrl;
     }
 
     public static String getSysCode() {
@@ -25,7 +20,4 @@ public class ProjectConfig {
         return superAdmin;
     }
 
-    public static String getUploadUrl() {
-        return uploadUrl;
-    }
 }
