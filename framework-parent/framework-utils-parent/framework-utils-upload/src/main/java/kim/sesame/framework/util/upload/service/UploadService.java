@@ -9,13 +9,11 @@ public interface UploadService {
 
     /**
      * 文件上传
-     * @param sysCode 系统编号
+     *
+     * @param sysCode    系统编号
      * @param moduleName 模块名称,或者编号
-     * @param file 文件流
+     * @param file       文件流
      * @return 返回文件地址
      */
-    default String uploadFileMethod(String sysCode, String moduleName, MultipartFile file) {
-
-        return null;
-    }
+    String uploadFileMethod(String sysCode, String moduleName, MultipartFile file);
 }
