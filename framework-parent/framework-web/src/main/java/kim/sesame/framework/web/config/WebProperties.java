@@ -124,7 +124,7 @@ public class WebProperties implements InitializingBean {
         }
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
         ProjectConfig.setSysCode(this.sysCode);
-        ProjectConfig.setSpuerAdmin(this.spuerAdmin);
+        ProjectConfig.setSuperAdmin(this.spuerAdmin);
         ProjectConfig.setUploadUrl(this.uploadUrl);
     }
 }
