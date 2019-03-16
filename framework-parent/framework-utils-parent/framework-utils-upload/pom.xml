@@ -19,11 +19,6 @@
             <groupId>${sesame.groupId}</groupId>
             <artifactId>framework-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${sesame.groupId}</groupId>
-            <artifactId>framework-mybatis</artifactId>
-        </dependency>
-
 
     </dependencies>
     <build>
