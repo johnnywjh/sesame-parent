@@ -1,9 +1,10 @@
-package kim.sesame.framework.util.upload.controller;
+package kim.sesame.framework.web.upload.controller;
 
-import kim.sesame.framework.util.upload.service.UploadService;
+import com.alibaba.fastjson.JSON;
 import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.controller.AbstractWebController;
 import kim.sesame.framework.web.response.Response;
+import kim.sesame.framework.web.upload.service.UploadFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,14 +14,17 @@ import java.util.Map;
 
 
 /**
- * 文件上传控制层
+ * 功能描述：上传文件 控制层
+ *
+ * @author 01122649-吴志飞
+ * @create on 2018-07-13 9:19
+ * @since V1.0.0
  */
 @RestController
 @RequestMapping("/upload")
-public class UploadController extends AbstractWebController {
-
+public class UploadFileController extends AbstractWebController {
     @Autowired
-    private UploadService uploadService;
+    private UploadFileService uploadFileService;
 
     /**
      * 普通文件上传
@@ -31,8 +35,8 @@ public class UploadController extends AbstractWebController {
      */
     @RequestMapping("/file")
     public Response uploadFile(String moduleName, MultipartFile file) {
-        String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
-        return returnSuccess(src);
+        String s = uploadFileService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
+        return JSON.parseObject(s, Response.class);
     }
 
     /**
@@ -43,8 +47,11 @@ public class UploadController extends AbstractWebController {
      */
     @RequestMapping("/layfile")
     public Map layfile(MultipartFile file) {
-        String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), "e", file);
-        return layuiUpload(src);
+        String s = uploadFileService.uploadFileMethod(ProjectConfig.getSysCode(), "e", file);
+
+        Map map = JSON.parseObject(s, Map.class);
+        map = JSON.parseObject(map.get("result").toString(), Map.class);
+        return layuiUpload(map.get("src").toString());
     }
 
 
