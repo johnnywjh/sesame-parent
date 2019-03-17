@@ -6,6 +6,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Data
 @Component
 @ConfigurationProperties(prefix = "sesame.framework.swagger")
@@ -23,7 +25,7 @@ public class SwaggerProperties implements InitializingBean {
     /**
      * swagger的扫描路径
      */
-    private String basePackage;
+    private List<String> basePackages;
 
     private String title;
     private String description;
@@ -43,7 +45,7 @@ public class SwaggerProperties implements InitializingBean {
         if (this.enable == false) {
             return;
         }
-        if (StringUtil.isEmpty(basePackage)) {
+        if (basePackages == null || basePackages.size() == 0) {
             throw new NullPointerException("如果开启swagger, 请配置扫描路径");
         }
     }
