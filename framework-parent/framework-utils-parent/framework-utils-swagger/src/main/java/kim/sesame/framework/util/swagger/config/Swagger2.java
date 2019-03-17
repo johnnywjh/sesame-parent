@@ -1,12 +1,16 @@
 package kim.sesame.framework.util.swagger.config;
 
 
+import com.google.common.base.Function;
+import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.controller.ISwagger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -25,43 +29,75 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ConditionalOnProperty(prefix = "sesame.framework.swagger", name = "enable", havingValue = "true")
 public class Swagger2 implements ISwagger {
 
+    // 定义分隔符,配置Swagger多包
+    private static final String splitor = ";";
+
     @SuppressWarnings("all")
     @Autowired
-    private SwaggerProperties swaggerProperties;
+    private SwaggerProperties swagger;
 
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage(swaggerProperties.getBasePackage())) // 扫描的路径
+                .apis(basePackage(swagger.getBasePackage()))
+                //                .apis(RequestHandlerSelectors.basePackage(swagger.getBasePackage())) // 扫描的路径
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         ApiInfoBuilder bean = new ApiInfoBuilder();
-        if (StringUtil.isNotEmpty(swaggerProperties.getTitle())) {
-            String val = swaggerProperties.getTitle();
+        if (StringUtil.isNotEmpty(swagger.getTitle())) {
+            String val = swagger.getTitle();
             val = StringUtil.transcoding(val);
             bean.title(val);
         }
-        if (StringUtil.isNotEmpty(swaggerProperties.getDescription())) {
-            String val = swaggerProperties.getDescription();
+        if (StringUtil.isNotEmpty(swagger.getDescription())) {
+            String val = swagger.getDescription();
             val = StringUtil.transcoding(val);
             bean.description(val);
         }
-        if (StringUtil.isNotEmpty(swaggerProperties.getTermsOfServiceUrl())) {
-            bean.termsOfServiceUrl(swaggerProperties.getTermsOfServiceUrl());
+        if (StringUtil.isNotEmpty(swagger.getTermsOfServiceUrl())) {
+            bean.termsOfServiceUrl(swagger.getTermsOfServiceUrl());
         }
-        if (StringUtil.isNotEmpty(swaggerProperties.getVersion())) {
-            bean.version(swaggerProperties.getVersion());
+        if (StringUtil.isNotEmpty(swagger.getVersion())) {
+            bean.version(swagger.getVersion());
         }
-        if (swaggerProperties.getContact() != null) {
-            bean.contact(new Contact(swaggerProperties.getContact().getName(), swaggerProperties.getContact().getUrl(), swaggerProperties.getContact().getEmail()));
+        if (swagger.getContact() != null) {
+            bean.contact(new Contact(swagger.getContact().getName(), swagger.getContact().getUrl(), swagger.getContact().getEmail()));
         }
 
         return bean.build();
     }
 
+
+    /**
+     * 重写basePackage方法，使能够实现多包访问，复制贴上去
+     * @author  teavamc
+     * @date 2019/1/26
+     * @param [basePackage]
+     * @return com.google.common.base.Predicate<springfox.documentation.RequestHandler>
+     */
+    public static Predicate<RequestHandler> basePackage(final String basePackage) {
+        return input -> declaringClass(input).transform(handlerPackage(basePackage)).or(true);
+    }
+
+    private static Function<Class<?>, Boolean> handlerPackage(final String basePackage)     {
+        return input -> {
+            // 循环判断匹配
+            for (String strPackage : basePackage.split(splitor)) {
+                boolean isMatch = input.getPackage().getName().startsWith(strPackage);
+                if (isMatch) {
+                    return true;
+                }
+            }
+            return false;
+        };
+    }
+
+    private static Optional<? extends Class<?>> declaringClass(RequestHandler input) {
+        return Optional.fromNullable(input.declaringClass());
+    }
 }
