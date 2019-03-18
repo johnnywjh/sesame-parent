@@ -183,7 +183,7 @@ public class SpringContextUtil implements ApplicationContextAware {
         String local_project_url = "http://127.0.0.1:" + port + basePath;
         println(local_project_url);
         String ip_project_url = "http://" + webProperties.getCurrentIpPort() + basePath;
-        println(ip_project_url);
+//        println(ip_project_url);
         String profile = environment.getProperty("spring.profiles.active");
         if (StringUtil.isNotEmpty(profile)) {
             println("当前激活的环境文件:" + profile);
@@ -193,9 +193,8 @@ public class SpringContextUtil implements ApplicationContextAware {
         println("当前项目资源路径:SpringContextUtil.getCurrentPath() : " + getCurrentPath());
         ISwagger iSwagger = SpringContextUtil.getBean(ISwagger.class);
         if (iSwagger != null) {
-            String url = "/swagger-ui.html";
-            println(local_project_url + url);
-            println(ip_project_url + url);
+            println(local_project_url + "/docs.html");
+            println(local_project_url + "/swagger-ui.html");
         }
         println("当前应用实例 : " + webProperties.getCurrentIpPort());
         println("***************");

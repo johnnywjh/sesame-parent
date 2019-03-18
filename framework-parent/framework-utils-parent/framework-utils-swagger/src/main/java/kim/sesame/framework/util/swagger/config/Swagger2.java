@@ -30,9 +30,6 @@ import java.util.List;
 @ConditionalOnProperty(prefix = "sesame.framework.swagger", name = "enable", havingValue = "true")
 public class Swagger2 implements ISwagger {
 
-    // 定义分隔符,配置Swagger多包
-    private static final String splitor = ";";
-
     @SuppressWarnings("all")
     @Autowired
     private SwaggerProperties swagger;
