@@ -63,16 +63,19 @@ public class AuthTokenUtils {
      */
     public static boolean isValid(String publicToken, String authToken) throws Exception {
         if (StringUtil.isEmpty(publicToken)) {
+            log.debug("接口认证失败: publicToken 为空");
             return false;
         }
         // 1.根据公钥获取私钥对象
         AuthProperties auth = SpringContextUtil.getBean(AuthProperties.class);
         AuthProperties.AuthToken tokean = auth.getAuthToken().get(publicToken);
         if (tokean == null) {
+            log.debug("接口认证失败: publicToken=" + publicToken + " 没有找到");
             return false;
         }
         // 如果配置关闭了,那么不允许访问
-        if(!tokean.isEnable()){
+        if (!tokean.isEnable()) {
+            log.debug("接口认证失败: publicToken=" + publicToken + " 已经被禁用");
             return false;
         }
 
@@ -85,6 +88,8 @@ public class AuthTokenUtils {
             if (localAuthToken.equals(authToken)) {
                 log.debug(MessageFormat.format("token : {0} ,认证成功,{1}", publicToken, tokean.getRemark()));
                 return true;
+            }else{
+                log.debug("接口认证失败: 公钥和私钥不正确,或者已经超时");
             }
         }
         return false;
