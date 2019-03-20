@@ -71,6 +71,10 @@ public class AuthTokenUtils {
         if (tokean == null) {
             return false;
         }
+        // 如果配置关闭了,那么不允许访问
+        if(!tokean.isEnable()){
+            return false;
+        }
 
         // 获取私钥
         String privateToken = tokean.getPrivateToken();

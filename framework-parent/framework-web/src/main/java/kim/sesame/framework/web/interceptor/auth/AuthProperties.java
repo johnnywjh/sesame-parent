@@ -43,6 +43,10 @@ public class AuthProperties implements InitializingBean {
     @Data
     public static class AuthToken {
         /**
+         * 是否开启
+         */
+        private boolean enable = true;
+        /**
          * 私钥
          */
         private String privateToken;
