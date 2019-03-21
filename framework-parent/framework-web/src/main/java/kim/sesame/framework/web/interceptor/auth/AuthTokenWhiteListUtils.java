@@ -24,6 +24,9 @@ public class AuthTokenWhiteListUtils {
      * @return boolean  返回类型
      */
     public static boolean isValid(String srcIp) {
+        if (whiteList == null || whiteList.size() == 0) {
+            return false;
+        }
         if (!whiteList.contains(srcIp)) {
             for (String whIp : whiteList) {
                 if (whIp.contains("*")) {

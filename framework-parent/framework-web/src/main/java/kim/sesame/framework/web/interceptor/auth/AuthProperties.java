@@ -1,6 +1,7 @@
 package kim.sesame.framework.web.interceptor.auth;
 
 import lombok.Data;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ import java.util.Set;
  */
 @Data
 @Component
+@CommonsLog
 @ConfigurationProperties(prefix = "sesame.framework.auth")
 public class AuthProperties implements InitializingBean {
 
@@ -34,6 +36,11 @@ public class AuthProperties implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         AuthTokenWhiteListUtils.setWhiteList(ipWhiteList);
+        if (authToken != null) {
+            log.info("----- 公钥列表 -------------------------------");
+            log.info("public_key : " + authToken.keySet());
+            log.info("------------------------------------");
+        }
     }
 
     /**
