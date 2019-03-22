@@ -131,6 +131,8 @@ public class QueryCacheAop {
                     throw new ClassCastException(MessageFormat.format
                             ("不支持的类型:{0},缓存只支持 List和Set 的集合类型", returnTypeClazz));
                 }
+            } else if (returnTypeClazz == String.class) {
+                result = cacheResult;
             }
             // 判断返回类型 , 返回类型为单个对象
             else {
