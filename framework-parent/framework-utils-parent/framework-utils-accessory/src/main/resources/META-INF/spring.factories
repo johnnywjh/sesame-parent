@@ -1,4 +1,0 @@
-# Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-kim.sesame.framework.util.accessory.AccessoryConfiguration,\
-kim.sesame.framework.util.accessory.service.AccessoryService

@@ -203,7 +203,7 @@
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-utils-accessory</artifactId>
+                <artifactId>framework-utils-sms</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>

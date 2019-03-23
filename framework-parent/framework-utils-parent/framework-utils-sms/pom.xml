@@ -9,22 +9,15 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>framework-utils-accessory</artifactId>
+    <artifactId>framework-utils-sms</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}-${project.version}</name>
 
     <dependencies>
-
         <dependency>
             <groupId>${sesame.groupId}</groupId>
-            <artifactId>framework-web</artifactId>
+            <artifactId>framework-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${sesame.groupId}</groupId>
-            <artifactId>framework-mybatis</artifactId>
-        </dependency>
-
-
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
