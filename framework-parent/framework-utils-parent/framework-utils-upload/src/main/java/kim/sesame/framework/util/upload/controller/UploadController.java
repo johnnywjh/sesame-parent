@@ -4,6 +4,7 @@ import kim.sesame.framework.util.upload.service.UploadService;
 import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.controller.AbstractWebController;
 import kim.sesame.framework.web.response.Response;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import java.util.Map;
 /**
  * 文件上传控制层
  */
+@CommonsLog
 @RestController
 @RequestMapping("/upload")
 public class UploadController extends AbstractWebController {
@@ -32,6 +34,7 @@ public class UploadController extends AbstractWebController {
     @RequestMapping("/file")
     public Response uploadFile(String moduleName, MultipartFile file) {
         String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
+        log.info("文件上传结果 src:"+src);
         return returnSuccess(src);
     }
 
@@ -44,6 +47,7 @@ public class UploadController extends AbstractWebController {
     @RequestMapping("/layfile")
     public Map layfile(MultipartFile file) {
         String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), "e", file);
+        log.info("文件上传结果 src:"+src);
         return layuiUpload(src);
     }
 
