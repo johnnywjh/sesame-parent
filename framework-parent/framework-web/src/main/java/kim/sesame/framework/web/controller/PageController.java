@@ -4,6 +4,7 @@ import kim.sesame.framework.entity.GMap;
 import kim.sesame.framework.utils.DateUtils;
 import kim.sesame.framework.utils.Ipconfig;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
+import kim.sesame.framework.web.annotation.IgnoreReqLogPrint;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.response.Response;
 import lombok.extern.apachecommons.CommonsLog;
@@ -32,6 +33,7 @@ public class PageController extends AbstractWebController {
     /**
      * 加载界面
      */
+    @IgnoreReqLogPrint
     @IgnoreLoginCheck
     @RequestMapping("/{uriPath}")
     public String index(@PathVariable("uriPath") String uriPath, HttpServletRequest request, ModelMap modelMap) {
@@ -43,6 +45,7 @@ public class PageController extends AbstractWebController {
         return uriPath;
     }
 
+    @IgnoreReqLogPrint
     @IgnoreLoginCheck
     @RequestMapping("/error")
     public String page404(String e, ModelMap modelMap) {
@@ -50,7 +53,7 @@ public class PageController extends AbstractWebController {
         return "error";
     }
 
-
+    @IgnoreReqLogPrint
     @IgnoreLoginCheck
     @ResponseBody
     @RequestMapping("/date")

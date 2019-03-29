@@ -1,6 +1,7 @@
 package kim.sesame.framework.web.config;
 
 import kim.sesame.framework.web.interceptor.auth.AuthTokenInterceptor;
+import kim.sesame.framework.web.interceptor.reqlog.PrintReqLogInterceptor;
 import kim.sesame.framework.web.interceptor.user.UserInfoInterceptor;
 import kim.sesame.framework.web.interceptor.web.SessionInterceptor;
 import kim.sesame.framework.web.interceptor.web.WebUserInterceptor;
@@ -27,6 +28,10 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
 
         String[] swaggerArr = {"/error", "/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**","/docs.html"};
 
+        // 打印请求日志
+        if(webProperties.isInterceptorPrintReqLog()){
+            registry.addInterceptor(new PrintReqLogInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);
+        }
         // 初始化用户信息
         if (webProperties.isInterceptorUser()) {
             registry.addInterceptor(new UserInfoInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);
