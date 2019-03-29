@@ -20,11 +20,6 @@ import java.util.Map;
 public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
 
     /**
-     * 开启线程打印
-     */
-    public static boolean enableThreadProint = false;
-
-    /**
      * 打印请求里的日志
      */
     @Override
@@ -41,13 +36,7 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
             }
         }
 
-        if (enableThreadProint) {
-            new Thread(() -> {
-                logPrintln(request, response);
-            }).start();
-        } else {
-            logPrintln(request, response);
-        }
+        logPrintln(request, response);
 
         return true;
     }
@@ -55,12 +44,8 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
     private void logPrintln(HttpServletRequest request, HttpServletResponse response) {
         try {
             StringBuilder msg = new StringBuilder();
-            if(enableThreadProint){
-                msg.append("Inbound Message \n--------- new thread print -------------------\n");
-            }else{
-                msg.append("Inbound Message\n----------------------------\n");
-            }
 
+            msg.append("Inbound Message\n----------------------------\n");
             msg.append("Address: ").append(request.getRequestURL()).append("\n");
             msg.append("ClientIp: ").append(IPUitl.getRemortIP(request)).append("\n");
             msg.append("QueryString: ").append(request.getQueryString()).append("\n");

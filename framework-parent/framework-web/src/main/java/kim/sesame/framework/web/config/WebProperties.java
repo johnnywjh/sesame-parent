@@ -82,7 +82,6 @@ public class WebProperties implements InitializingBean {
      * 内置拦截器:打印请求日志
      */
     private boolean interceptorPrintReqLog = false;
-    private boolean interceptorPrintReqLogEnableThread = false;// 开启线程打印,不阻塞请求
     /**
      * 内置拦截器:用户信息信息加载
      */
@@ -126,7 +125,5 @@ public class WebProperties implements InitializingBean {
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSuperAdmin(this.spuerAdmin);
-
-        PrintReqLogInterceptor.enableThreadProint = this.interceptorPrintReqLogEnableThread;
     }
 }
