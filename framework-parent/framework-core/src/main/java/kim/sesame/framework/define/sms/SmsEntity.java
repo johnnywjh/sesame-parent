@@ -9,6 +9,7 @@ import java.util.Date;
 public class SmsEntity extends NoticeEntity {
 
     private String phone;//手机号
+    private String smsSign;//签名
     private String templateCode;//模板编号
     private String templateParam;//模板参数,发送内容
     private Date sendTime;//发送时间

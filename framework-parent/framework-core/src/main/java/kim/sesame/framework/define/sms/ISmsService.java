@@ -13,4 +13,19 @@ public interface ISmsService {
      */
     boolean sendMessage(SmsEntity smsEntity);
 
+    /**
+     * 发送短信验证码
+     * @param phone 手机号,必填
+     * @param time 失效时间,可为空
+     * @return
+     */
+    boolean sendVifCode(String phone, Integer time);
+
+    /**
+     * 校验短信验证码
+     * @param phone 手机号,必填
+     * @param vifCode 验证码,必填
+     * @return
+     */
+    boolean checkSmsVifCode(String phone, String vifCode);
 }

@@ -2,8 +2,6 @@ package kim.sesame.framework.define.notice;
 
 /**
  * 通知业务接口
- *
- * @param <T>
  */
 public interface INoticeService {
 
