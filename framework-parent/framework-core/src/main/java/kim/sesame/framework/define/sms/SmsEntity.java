@@ -18,6 +18,7 @@ public class SmsEntity extends NoticeEntity {
 
     public SmsEntity(String phone) {
         this.phone = phone;
+        this.sendTime = new Date();
     }
 
     public SmsEntity(String phone, String templateCode, String templateParam) {
