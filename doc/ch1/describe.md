@@ -68,7 +68,6 @@
     <tr>
         <td>framework-utils</td>
         <td>
-            <p>framework-utils-sms : 短信模块</p>
             <p>framework-utils-ssh : java 操作liunux 服务器的封装</p>
             <p>framework-utils-swagger : swagger的一些封装</p>
         </td>

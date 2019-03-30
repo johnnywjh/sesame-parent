@@ -88,9 +88,9 @@
 
             <!-- java伪静态 -->
             <dependency>
-                <groupId>org.tuckey</groupId>
-                <artifactId>urlrewritefilter</artifactId>
-                <version>4.0.4</version>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.6</version>
             </dependency>
             <!-- 阿里数据池 -->
             <dependency>
@@ -199,11 +199,6 @@
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
                 <artifactId>framework-utils-upload</artifactId>
-                <version>${sesame.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-utils-sms</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
