@@ -16,6 +16,10 @@ public class SmsEntity extends NoticeEntity {
     public SmsEntity() {
     }
 
+    public SmsEntity(String phone) {
+        this.phone = phone;
+    }
+
     public SmsEntity(String phone, String templateCode, String templateParam) {
         this.phone = phone;
         this.templateCode = templateCode;
