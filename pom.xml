@@ -86,7 +86,6 @@
     <dependencyManagement>
         <dependencies>
 
-            <!-- java伪静态 -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
