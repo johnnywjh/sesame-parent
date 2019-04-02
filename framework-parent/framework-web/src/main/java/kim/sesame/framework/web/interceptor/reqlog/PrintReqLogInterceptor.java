@@ -52,7 +52,6 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         if (LogProintContext.getLogProintContext().getIsIgnore()) {
-            LogProintContext.getLogProintContext().setIsIgnore(false);
             log.info(getResData(response));
         }
         // 清理线程数据
@@ -88,20 +87,15 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
     private String getResData(HttpServletResponse response) {
         StringBuilder msg = new StringBuilder();
         try {
-
             msg.append("Outbound Message\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
             msg.append(response.toString().replace("\r\n", "\t")).append("\n");
-
             Response res = LogProintContext.getLogProintContext().getResponse();
 
             if (res != null) {
                 msg.append(res.toString()).append("\n");
                 msg.append(JSONObject.toJSONString(res)).append("\n");
             }
-
             msg.append("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-
-            log.info(msg.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
