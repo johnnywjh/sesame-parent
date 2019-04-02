@@ -3,6 +3,7 @@ package kim.sesame.framework.web.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import kim.sesame.framework.entity.GPage;
+import kim.sesame.framework.web.context.LogProintContext;
 import lombok.Data;
 
 /**
@@ -39,7 +40,9 @@ public class Response<T> implements java.io.Serializable {
     /*----------------       构建方法    --------------*/
     /*------------------------------------------------*/
     public static Response create() {
-        return new Response();
+        Response response = new Response();
+        LogProintContext.getLogProintContext().setResponse(response);
+        return response;
     }
 
     public Response setSuccess(boolean success) {
@@ -61,12 +64,14 @@ public class Response<T> implements java.io.Serializable {
         this.message = message;
         return this;
     }
+
     public Response setResult(T result) {
-        this.result=result;
+        this.result = result;
         return this;
     }
+
     public Response setPage(GPage page) {
-        this.page=page;
+        this.page = page;
         return this;
     }
 

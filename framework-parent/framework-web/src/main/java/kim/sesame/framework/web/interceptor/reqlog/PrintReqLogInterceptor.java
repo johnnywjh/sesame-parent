@@ -2,6 +2,8 @@ package kim.sesame.framework.web.interceptor.reqlog;
 
 import com.alibaba.fastjson.JSONObject;
 import kim.sesame.framework.web.annotation.IgnoreReqLogPrint;
+import kim.sesame.framework.web.context.LogProintContext;
+import kim.sesame.framework.web.response.Response;
 import kim.sesame.framework.web.util.IPUitl;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -20,7 +22,7 @@ import java.util.Map;
 public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
 
     /**
-     * 打印请求里的日志
+     * 请求之前
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -36,14 +38,30 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
             }
         }
 
-        logPrintln(request, response);
+        log.info(getReqData(request));
+        LogProintContext.getLogProintContext().setIsIgnore(true);
 
         return true;
     }
 
-    private void logPrintln(HttpServletRequest request, HttpServletResponse response) {
+    /**
+     * controller 里的方法处理完之后
+     *
+     * @throws Exception
+     */
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        if (LogProintContext.getLogProintContext().getIsIgnore()) {
+            LogProintContext.getLogProintContext().setIsIgnore(false);
+            log.info(getResData(response));
+        }
+        // 清理线程数据
+        LogProintContext.getLogProintContext().clean();
+    }
+
+    private String getReqData(HttpServletRequest request) {
+        StringBuilder msg = new StringBuilder();
         try {
-            StringBuilder msg = new StringBuilder();
 
             msg.append("Inbound Message\n----------------------------\n");
             msg.append("Address: ").append(request.getRequestURL()).append("\n");
@@ -61,10 +79,34 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
             msg.append("params: ").append(JSONObject.toJSONString(params)).append("\n");
             msg.append("----------------------------------------------");
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return msg.toString();
+    }
+
+    private String getResData(HttpServletResponse response) {
+        StringBuilder msg = new StringBuilder();
+        try {
+
+            msg.append("Outbound Message\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            msg.append(response.toString().replace("\r\n", "\t")).append("\n");
+
+            Response res = LogProintContext.getLogProintContext().getResponse();
+
+            if (res != null) {
+                msg.append(res.toString()).append("\n");
+                msg.append(JSONObject.toJSONString(res)).append("\n");
+            }
+
+            msg.append("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+
             log.info(msg.toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return msg.toString();
     }
+
 
 }

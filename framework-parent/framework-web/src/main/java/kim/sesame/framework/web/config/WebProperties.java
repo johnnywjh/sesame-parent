@@ -2,7 +2,6 @@ package kim.sesame.framework.web.config;
 
 import kim.sesame.framework.entity.GPage;
 import kim.sesame.framework.utils.StringUtil;
-import kim.sesame.framework.web.interceptor.reqlog.PrintReqLogInterceptor;
 import lombok.Data;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
