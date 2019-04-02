@@ -62,7 +62,8 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
         StringBuilder msg = new StringBuilder();
         try {
 
-            msg.append("Inbound Message\n----------------------------\n");
+            msg.append("Inbound Message\n\n");
+            msg.append(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
             msg.append("Address: ").append(request.getRequestURL()).append("\n");
             msg.append("ClientIp: ").append(IPUitl.getRemortIP(request)).append("\n");
 //            msg.append("QueryString: ").append(request.getQueryString()).append("\n");
@@ -76,7 +77,7 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
                 params.put(s, request.getParameter(s));
             }
             msg.append("params: ").append(JSONObject.toJSONString(params)).append("\n");
-            msg.append("----------------------------------------------");
+            msg.append(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,7 +88,8 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
     private String getResData(HttpServletResponse response) {
         StringBuilder msg = new StringBuilder();
         try {
-            msg.append("Outbound Message\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
+            msg.append("Outbound Message\n\n");
+            msg.append("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
             msg.append(response.toString().replace("\r\n", "\t")).append("\n");
             Response res = LogProintContext.getLogProintContext().getResponse();
 
@@ -95,7 +97,7 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
                 msg.append(res.toString()).append("\n");
                 msg.append(JSONObject.toJSONString(res)).append("\n");
             }
-            msg.append("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+            msg.append("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
