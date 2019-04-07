@@ -45,12 +45,9 @@ public class Response<T> implements java.io.Serializable {
         Response response = new Response();
 
         LogProintContext logProintContext = LogProintContext.getLogProintContext();
-        Optional.ofNullable(logProintContext).ifPresent(l -> {
-            if (l.getIsIgnore()) {
-                l.setResponse(response);
-            }
-        });
-
+        if (logProintContext != null && logProintContext.getIsIgnore()) {
+            logProintContext.setResponse(response);
+        }
         return response;
     }
 

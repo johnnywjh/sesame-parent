@@ -26,7 +26,17 @@ public final class LogProintContext {
 
     /*-------------------------------------------------------*/
     public Boolean getIsIgnore() {
-        return IGNORE.get();
+        Boolean flg = null;
+        try {
+            flg = IGNORE.get();
+        } catch (Exception e) {
+            //e.printStackTrace();
+            return false;
+        }
+        if (flg == null) {
+            flg = false;
+        }
+        return flg;
     }
 
     public Response getResponse() {
