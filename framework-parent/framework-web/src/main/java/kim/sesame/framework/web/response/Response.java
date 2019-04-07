@@ -6,6 +6,8 @@ import kim.sesame.framework.entity.GPage;
 import kim.sesame.framework.web.context.LogProintContext;
 import lombok.Data;
 
+import java.util.Optional;
+
 /**
  * Web 返回结果
  *
@@ -41,9 +43,14 @@ public class Response<T> implements java.io.Serializable {
     /*------------------------------------------------*/
     public static Response create() {
         Response response = new Response();
-        if (LogProintContext.getLogProintContext().getIsIgnore()) {
-            LogProintContext.getLogProintContext().setResponse(response);
-        }
+
+        LogProintContext logProintContext = LogProintContext.getLogProintContext();
+        Optional.ofNullable(logProintContext).ifPresent(l -> {
+            if (l.getIsIgnore()) {
+                l.setResponse(response);
+            }
+        });
+
         return response;
     }
 
