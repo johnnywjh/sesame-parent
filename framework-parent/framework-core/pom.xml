@@ -14,13 +14,13 @@
 	<name>${project.artifactId}-${project.version}</name>
 
 	<dependencies>
-
+		<!--
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		-->
 		<!-- 网络框架请求 -->
 		<dependency>
 			<groupId>com.github.kevinsawicki</groupId>
