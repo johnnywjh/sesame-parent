@@ -3,6 +3,7 @@ package kim.sesame.framework.web.controller;
 import kim.sesame.framework.entity.GPage;
 import kim.sesame.framework.exception.BusinessException;
 import kim.sesame.framework.utils.StringUtil;
+import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.response.Response;
 import kim.sesame.framework.web.security.exception.AccessNotAllowException;
 import kim.sesame.framework.web.security.exception.FunctionNotValidException;
@@ -89,7 +90,7 @@ public abstract class AbstractController {
         //参数校验异常
         if (exception instanceof IllegalArgumentException) {
             String errorCode = ErrorCode.BUSINESS;
-            return Response.create().setExceptionType(ExceptionType.BUSINESS).setErrorCode(errorCode).setMessage(exception.getMessage());
+            return Response.create().setExceptionType(ExceptionType.BUSINESS).setErrorCode(errorCode).setMessage(getExceptionMessage(exception));
         }
         //数据验证异常
         else if (exception instanceof DataValidatorException) {
@@ -117,9 +118,21 @@ public abstract class AbstractController {
         }
         //系统异常
         else {
-            return Response.create().setExceptionType(ExceptionType.SYSTEM).setErrorCode(ErrorCode.SYSTEM).setMessage(exception.getMessage());
+            return Response.create().setExceptionType(ExceptionType.SYSTEM).setErrorCode(ErrorCode.SYSTEM).setMessage(getExceptionMessage(exception));
         }
     }
 
-
+    /**
+     * 判断是否是 debug 模式,如果是就返回异常的详细信息
+     *
+     * @param e
+     * @return
+     */
+    public String getExceptionMessage(Exception e) {
+        String message = ProjectConfig.getSystemExceptionMessage();
+        if (ProjectConfig.isDebug()) {
+            message = e.getMessage();
+        }
+        return message;
+    }
 }
