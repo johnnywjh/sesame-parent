@@ -21,4 +21,12 @@ public class IUser extends BaseEntity {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public String getUserAccountAndName() {
+        return getUserAccountAndName(" ");
+    }
+
+    public String getUserAccountAndName(String s) {
+        return getAccount() + s + getName();
+    }
 }
