@@ -17,8 +17,8 @@ public class IUser extends BaseEntity {
     public String toString() {
         return "IUser{" +
                 "id='" + super.getId() + '\'' +
-                "account='" + account + '\'' +
-                ", name='" + name + '\'' +
+                "account='" + getAccount() + '\'' +
+                ", name='" + getName() + '\'' +
                 '}';
     }
 
