@@ -14,6 +14,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * 发送邮件
@@ -40,13 +41,16 @@ public class EmailTemplate {
      */
     public void sendSimpleMail(String[] to, String subject, String text) {
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(emailProperties.getUsername());
-        message.setTo(to);
-        message.setSubject(subject);
-        message.setText(text);
+        // 简单发送, 收件人显示的是邮箱号码
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setFrom(emailProperties.getUsername());
+//        message.setTo(to);
+//        message.setSubject(subject);
+//        message.setText(text);
+//        mailSender.send(message);
 
-        mailSender.send(message);
+        // 把发件人变成昵称发送
+        sendSimpleEmail(to, subject, text, false);
     }
 
     /**
@@ -57,6 +61,19 @@ public class EmailTemplate {
      * @param text    内容
      */
     public void sendSimpleHtml(String[] to, String subject, String text) {
+        sendSimpleEmail(to, subject, text, true);
+    }
+
+    /**
+     * 发送简单邮件的通用方法
+     *
+     * @param to      发送给谁
+     * @param subject 主题
+     * @param text    内容
+     * @param html    是否是html代码内容
+     * @param consumer  发送之前可以添加附件
+     */
+    public void sendSimpleEmail(String[] to, String subject, String text, boolean html, Consumer<MimeMessageHelper> consumer) {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
 
@@ -64,14 +81,20 @@ public class EmailTemplate {
             setNickName(helper);
             helper.setTo(to);
             helper.setSubject(subject);
-            helper.setText(text, true);
+            helper.setText(text, html);
 
+            consumer.accept(helper);
 //        FileSystemResource file = new FileSystemResource(new File("weixin.jpg"));
 //        helper.addInline("weixin", file);
             mailSender.send(mimeMessage);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendSimpleEmail(String[] to, String subject, String text, boolean html) {
+        sendSimpleEmail(to, subject, text, true, helper -> {
+        });
     }
 
     /**
@@ -110,11 +133,13 @@ public class EmailTemplate {
 
 
     public void sendTemplateHtml(String to, String subject, String filePath, Map<String, Object> model) {
-        sendTemplateHtml( new String[]{to}, subject, filePath, model);
+        sendTemplateHtml(new String[]{to}, subject, filePath, model);
     }
+
     public void sendSimpleHtml(String to, String subject, String text) {
         sendSimpleHtml(new String[]{to}, subject, text);
     }
+
     public void sendSimpleMail(String to, String subject, String text) {
         sendSimpleMail(new String[]{to}, subject, text);
     }
