@@ -31,6 +31,11 @@ public class GPage implements java.io.Serializable {
      */
     private boolean count = true;
 
+    /**
+     * 是否查询全部,是 就代表不分页
+     */
+    private boolean queryAll = false;
+
     public GPage() {
     }
 
