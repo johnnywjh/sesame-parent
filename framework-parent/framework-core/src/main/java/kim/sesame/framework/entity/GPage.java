@@ -32,9 +32,9 @@ public class GPage implements java.io.Serializable {
     private boolean count = true;
 
     /**
-     * 是否查询全部,是 就代表不分页
+     * 是否分页,默认ture,架构不会使用这个字段,可以自己看情况使用
      */
-    private boolean queryAll = false;
+    private boolean pageflag = true;
 
     public GPage() {
     }
