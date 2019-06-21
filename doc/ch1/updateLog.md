@@ -8,7 +8,11 @@
 - 2.x 的版本对应 spring boot 2.0.x
 
 #### 更新日志
-#### 2.0.1 `2019-3-3 孵化中`
+#### 2.0.2 `2019-06-21 孵化中`
+- 删除自己编写的excel工具类, 采用[alibaba/easyexcel](https://github.com/alibaba/easyexcel)
+
+#### 2.0.1 `2019-06-21`
+- 优化部分核心代码
 - mybatis-plus继承实体接口的修改,BaseEntity类和IEntity接口对应两种不同的方式
 - 优化druid的加载方式
 ```
