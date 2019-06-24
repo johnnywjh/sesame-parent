@@ -19,6 +19,7 @@ public class GData {
 
     public static interface JWT {
         String SESSION_ID = "jwt_session_id";
+        String USER_ACCOUNT = "user_account";
         String TOKEN = "accessToken";
     }
 

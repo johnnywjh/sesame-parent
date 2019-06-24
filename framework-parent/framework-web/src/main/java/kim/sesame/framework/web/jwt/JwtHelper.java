@@ -71,7 +71,7 @@ public class JwtHelper {
             claims.put(GData.JWT.SESSION_ID, sessionId);
         }
         if (StringUtil.isNotEmpty(account)) {
-            claims.put("account", account);
+            claims.put(GData.JWT.USER_ACCOUNT, account);
         }
         return createJWT(claims);
     }

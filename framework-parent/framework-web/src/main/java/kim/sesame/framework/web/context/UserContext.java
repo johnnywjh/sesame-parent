@@ -16,6 +16,7 @@ public final class UserContext {
 
     private final static ThreadLocal<IUser> USER_THREAD_LOCAL = new ThreadLocal<>();
     private final static ThreadLocal<String> SESSIONID = new ThreadLocal<>();
+    private final static ThreadLocal<String> ACCOUNT = new ThreadLocal<>();
     private final static ThreadLocal<List<IRole>> USER_ROLE = new ThreadLocal<>();
     private final static ThreadLocal<Object> USER_DATA = new ThreadLocal<>();
 
@@ -53,6 +54,14 @@ public final class UserContext {
     public void setUserSessionId(String sessionId) {
         SESSIONID.set(sessionId);
     }
+    /*-------------------------------------------------------*/
+    public String getCurrentLoginUserAccount() {
+        return ACCOUNT.get();
+    }
+
+    public void setCurrentLoginUserAccount(String userAccount) {
+        ACCOUNT.set(userAccount);
+    }
 
     /*-------------------------------------------------------*/
     public List<IRole> getUserRole() {
@@ -87,5 +96,6 @@ public final class UserContext {
         SESSIONID.remove();
         USER_ROLE.remove();
         USER_DATA.remove();
+        ACCOUNT.remove();
     }
 }

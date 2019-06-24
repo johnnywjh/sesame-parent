@@ -123,6 +123,14 @@ public class WebProperties implements InitializingBean {
      */
     private boolean showPageHeads = false;
 
+    /**
+     * 启用jwt用户账号体系,默认不开启
+     * 开启后,jwt字符串传入的用户账号生效
+     * 适用于小程序,app 永久登录
+     * 谨慎开启,建议同时开启jwt的过期时间
+     */
+    private static boolean enableJwtUserAccount = false;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         if (StringUtil.isEmpty(this.iconPath)) {

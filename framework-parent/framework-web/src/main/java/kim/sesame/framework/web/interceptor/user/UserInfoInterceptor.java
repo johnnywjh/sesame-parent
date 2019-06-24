@@ -6,6 +6,7 @@ import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.cas.SsoUtil;
+import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IRole;
@@ -52,9 +53,14 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             }
         }
         String userNo = null;
-//        IUserCache userCache = (IUserCache) SpringContextUtil.getBean(IUserCache.USER_LOGIN_BEAN);
         IUserCache userCache = SpringContextUtil.getBean(IUserCache.class);
-        userNo = userCache.getUserNo(sessionId); // 用户账号
+
+        if (ProjectConfig.isEnableJwtUserAccount()) {
+            userNo = UserContext.getUserContext().getCurrentLoginUserAccount();
+        } else {
+            userNo = userCache.getUserNo(sessionId); // 用户账号
+            UserContext.getUserContext().setCurrentLoginUserAccount(userNo);
+        }
 
         IUser user = null;
         List<IRole> list_roles = null;
@@ -91,6 +97,13 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         if (StringUtil.isNotEmpty(token)) {
             Claims claims = JwtHelper.parseJWT(token);
             if (claims != null) {
+
+                // 获取jwt中当前登录的用户账号
+                if (ProjectConfig.isEnableJwtUserAccount()) {
+                    String userAccount = getClaimsKey(claims, GData.JWT.USER_ACCOUNT);
+                    UserContext.getUserContext().setCurrentLoginUserAccount(userAccount);
+                }
+
                 sessionId = getClaimsKey(claims, GData.JWT.SESSION_ID);
                 if (StringUtil.isNotEmpty(sessionId)) {
                     log.debug(">>>>>>2 token_session : " + sessionId);

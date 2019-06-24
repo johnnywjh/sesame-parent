@@ -1,10 +1,11 @@
 package kim.sesame.framework.web.config;
 
 public class ProjectConfig {
-    private static String sysCode;
-    private static String superAdmin;
-    private static boolean debug;
-    private static String systemExceptionMessage;
+    private static String sysCode;// 系统编号
+    private static String superAdmin;// 超级管理员用户账号
+    private static boolean debug;// 是否debug模式
+    private static String systemExceptionMessage;// 系统异常消息
+    private static boolean enableJwtUserAccount;// 启用jwt用户账号体系
 
     static void setSysCode(String sysCode) {
         ProjectConfig.sysCode = sysCode;
@@ -13,6 +14,19 @@ public class ProjectConfig {
     static void setSuperAdmin(String superAdmin) {
         ProjectConfig.superAdmin = superAdmin;
     }
+
+    static void setDebug(boolean debug) {
+        ProjectConfig.debug = debug;
+    }
+
+    static void setSystemExceptionMessage(String systemExceptionMessage) {
+        ProjectConfig.systemExceptionMessage = systemExceptionMessage;
+    }
+
+    static void setEnableJwtUserAccount(boolean enableJwtUserAccount) {
+        ProjectConfig.enableJwtUserAccount = enableJwtUserAccount;
+    }
+    /*---------------------------*/
 
     public static String getSysCode() {
         return sysCode;
@@ -26,15 +40,11 @@ public class ProjectConfig {
         return debug;
     }
 
-    public static void setDebug(boolean debug) {
-        ProjectConfig.debug = debug;
-    }
-
     public static String getSystemExceptionMessage() {
         return systemExceptionMessage;
     }
-
-    public static void setSystemExceptionMessage(String systemExceptionMessage) {
-        ProjectConfig.systemExceptionMessage = systemExceptionMessage;
+    public static boolean isEnableJwtUserAccount() {
+        return enableJwtUserAccount;
     }
+
 }
