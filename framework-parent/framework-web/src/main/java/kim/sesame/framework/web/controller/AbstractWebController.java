@@ -114,7 +114,7 @@ public class AbstractWebController extends AbstractController {
      * @param request req
      * @param response res
      */
-    public void excelTableExport(String fileName, List list, Class clazz, HttpServletRequest request, HttpServletResponse response) {
+    public void tableDataExport(String fileName, List list, Class clazz, HttpServletRequest request, HttpServletResponse response) {
         try {
 
             setDownloadResponse(fileName, request, response);
