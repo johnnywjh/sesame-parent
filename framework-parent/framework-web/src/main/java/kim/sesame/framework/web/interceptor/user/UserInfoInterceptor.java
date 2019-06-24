@@ -63,17 +63,17 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         }
 
         IUser user = null;
-        List<IRole> list_roles = null;
+//        List<IRole> list_roles = null;// 这里不加载用户角色,改为在使用的时候加载
         if (StringUtil.isNotEmpty(userNo)) {
             user = userCache.getUserCache(userNo);
-            list_roles = userCache.getUserRoles(userNo);
+//            list_roles = userCache.getUserRoles(userNo);
         }
         log.debug(">>>>>>3 userNo : " + userNo);
         log.debug(">>>>>>4 user : " + user);
-        log.debug(">>>>>>5 role : " + list_roles);
+//        log.debug(">>>>>>5 role : " + list_roles);
 
         UserContext.getUserContext().setUser(user);
-        UserContext.getUserContext().setUserRole(list_roles);
+//        UserContext.getUserContext().setUserRole(list_roles);
 
         return true;
     }

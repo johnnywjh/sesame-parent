@@ -1,5 +1,6 @@
 package kim.sesame.framework.web.context;
 
+import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
 
@@ -54,6 +55,7 @@ public final class UserContext {
     public void setUserSessionId(String sessionId) {
         SESSIONID.set(sessionId);
     }
+
     /*-------------------------------------------------------*/
     public String getCurrentLoginUserAccount() {
         return ACCOUNT.get();
@@ -69,7 +71,12 @@ public final class UserContext {
     }
 
     public <T> T getUserRole(Class<T> objectType) {
-        return (T) USER_ROLE.get();
+        if (getUserRole() == null) {
+            IUserCache userCache = SpringContextUtil.getBean(IUserCache.class);
+            List<IRole> list_roles = userCache.getUserRoles(getCurrentLoginUserAccount());
+            setUserRole(list_roles);
+        }
+        return (T) getUserRole();
     }
 
     public void setUserRole(List roles) {
