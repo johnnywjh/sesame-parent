@@ -108,10 +108,11 @@ public class AbstractWebController extends AbstractController {
 
     /**
      * 表格数据导出
+     *
      * @param fileName 下载的文件名
-     * @param list 数据
-     * @param clazz 数据类型
-     * @param request req
+     * @param list     数据
+     * @param clazz    数据类型
+     * @param request  req
      * @param response res
      */
     public void tableDataExport(String fileName, List list, Class clazz, HttpServletRequest request, HttpServletResponse response) {
@@ -120,7 +121,15 @@ public class AbstractWebController extends AbstractController {
             setDownloadResponse(fileName, request, response);
 
             OutputStream outputStream = response.getOutputStream();
-            ExcelWriter writer = new ExcelWriter(outputStream, ExcelTypeEnum.XLSX);
+
+            ExcelTypeEnum excelTypeEnum = ExcelTypeEnum.XLSX;
+            if (StringUtil.isNotEmpty(fileName)) {
+                if (fileName.endsWith(".xls")) {
+                    excelTypeEnum = ExcelTypeEnum.XLS;
+                }
+            }
+
+            ExcelWriter writer = new ExcelWriter(outputStream, excelTypeEnum);
             Sheet sheet1 = new Sheet(1, 0, clazz);
             writer.write(list, sheet1);
 
