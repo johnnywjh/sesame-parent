@@ -14,12 +14,20 @@ public class IUser implements IEntity {
     private String name;//昵称
     private String pwd;//密码
 
+//    private String pwdVersion;// 密码版本
+    public String getPwdVersion() {
+        return "";
+    }
+    public void setPwdVersion(String pwdVersion) {
+    }
+
     @Override
     public String toString() {
         return "IUser{" +
                 "id='" + getId() + '\'' +
-                "account='" + getAccount() + '\'' +
+                ", account='" + getAccount() + '\'' +
                 ", name='" + getName() + '\'' +
+                ", pwdVersion='" + getPwdVersion() + '\'' +
                 '}';
     }
 
