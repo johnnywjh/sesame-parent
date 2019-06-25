@@ -9,7 +9,6 @@ import kim.sesame.framework.web.cas.SsoUtil;
 import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
-import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
 import kim.sesame.framework.web.jwt.JwtHelper;
 import lombok.extern.apachecommons.CommonsLog;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * 用户信息拦截和设置

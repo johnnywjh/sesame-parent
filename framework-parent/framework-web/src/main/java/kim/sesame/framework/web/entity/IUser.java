@@ -1,14 +1,15 @@
 package kim.sesame.framework.web.entity;
 
-import kim.sesame.framework.entity.BaseEntity;
+import kim.sesame.framework.entity.IEntity;
 import lombok.Data;
 
 /**
  * 用户实体
  */
 @Data
-public class IUser extends BaseEntity {
+public class IUser implements IEntity {
 
+    private String id;
     private String account;//账号,唯一
     private String name;//昵称
     private String pwd;//密码
@@ -16,7 +17,7 @@ public class IUser extends BaseEntity {
     @Override
     public String toString() {
         return "IUser{" +
-                "id='" + super.getId() + '\'' +
+                "id='" + getId() + '\'' +
                 "account='" + getAccount() + '\'' +
                 ", name='" + getName() + '\'' +
                 '}';
