@@ -6,7 +6,6 @@ import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.cas.SsoUtil;
-import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IUser;
@@ -38,7 +37,8 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         String requestUrl = request.getRequestURL().toString();
         log.debug(">>>>>>1 requestUrl : " + requestUrl);
 
-        String sessionId = getSessionId(request);
+        JwtUser jwtUser  = parentReqData(request);
+        String sessionId = jwtUser.getSessionId();
         UserContext.getUserContext().setUserSessionId(sessionId);
 
         // 1.方法名称上有忽略注解的==>直接放行
@@ -50,28 +50,33 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
                 }
             }
         }
+
         String userNo = null;
         IUserCache userCache = SpringContextUtil.getBean(IUserCache.class);
 
-        if (ProjectConfig.isEnableJwtUserAccount()) {
-            userNo = UserContext.getUserContext().getCurrentLoginUserAccount();
+        if (jwtUser.isAccLoad()) {
+            userNo = jwtUser.getUserAccount();
         } else {
             userNo = userCache.getUserNo(sessionId); // 用户账号
-            UserContext.getUserContext().setCurrentLoginUserAccount(userNo);
         }
+        UserContext.getUserContext().setCurrentLoginUserAccount(userNo);
 
         IUser user = null;
-//        List<IRole> list_roles = null;// 这里不加载用户角色,改为在使用的时候加载
         if (StringUtil.isNotEmpty(userNo)) {
             user = userCache.getUserCache(userNo);
-//            list_roles = userCache.getUserRoles(userNo);
+
+            // 如果jwt传入的是 用户账号, 需要校验密码版本
+            // 修改密码后记得要清理用户缓存,不然密码版本一直会校验失败
+            if (jwtUser.isAccLoad() && user != null) {
+                if (!jwtUser.getPwdVersion().equals(user.getPwdVersion())) {
+                    user = null;
+                }
+            }
         }
         log.debug(">>>>>>3 userNo : " + userNo);
         log.debug(">>>>>>4 user : " + user);
-//        log.debug(">>>>>>5 role : " + list_roles);
 
         UserContext.getUserContext().setUser(user);
-//        UserContext.getUserContext().setUserRole(list_roles);
 
         return true;
     }
@@ -85,10 +90,11 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
     }
 
     /**
-     * 根据用户进入的方式,获取sessionId,表示用户表示,没有实际意义
+     * 解析用户请求数据
      */
-    private String getSessionId(HttpServletRequest request) {
+    private JwtUser parentReqData(HttpServletRequest request) {
 
+        JwtUser jwtUser = new JwtUser();
         String sessionId = null;
 
         String token = getToken(request);
@@ -96,34 +102,37 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             Claims claims = JwtHelper.parseJWT(token);
             if (claims != null) {
 
-                // 获取jwt中当前登录的用户账号
-                if (ProjectConfig.isEnableJwtUserAccount()) {
-                    String userAccount = getClaimsKey(claims, GData.JWT.USER_ACCOUNT);
-                    UserContext.getUserContext().setCurrentLoginUserAccount(userAccount);
+                // 获取jwt中当前登录的用户信息
+                Object userAccount = getClaimsKey(claims, GData.JWT.USER_ACCOUNT);
+                jwtUser.setUserAccount(userAccount != null ? userAccount.toString() : null);
+
+                Object pwdVersion = getClaimsKey(claims, GData.JWT.PWD_VERSION);
+                jwtUser.setPwdVersion(pwdVersion != null ? pwdVersion.toString() : null);
+
+                Object accLoad = getClaimsKey(claims, GData.JWT.ACC_LOAD);
+                if (accLoad != null) {
+                    jwtUser.setAccLoad((Boolean) accLoad);
                 }
 
-                sessionId = getClaimsKey(claims, GData.JWT.SESSION_ID);
-                if (StringUtil.isNotEmpty(sessionId)) {
-                    log.debug(">>>>>>2 token_session : " + sessionId);
-                    return sessionId;
+                Object sessionObj = getClaimsKey(claims, GData.JWT.SESSION_ID);
+                if (sessionObj != null) {
+                    sessionId = sessionObj.toString();
+                }
+            }
+        } else {
+            sessionId = request.getParameter("sessionId");
+            if (StringUtil.isEmpty(sessionId)) {
+                String casSessionId = SsoUtil.getSessionId(request);
+                if (StringUtil.isNotEmpty(casSessionId)) {
+                    sessionId = casSessionId;
+                } else {
+                    sessionId = request.getSession().getId();
                 }
             }
         }
-        sessionId = request.getParameter("sessionId");
-        if (StringUtil.isNotEmpty(sessionId)) {
-            log.debug(">>>>>>2 sessionId : " + sessionId);
-            return sessionId;
-        }
 
-        String casSessionId = SsoUtil.getSessionId(request);
-        if (StringUtil.isNotEmpty(casSessionId)) {
-            sessionId = casSessionId;
-            log.debug(">>>>>>2 casSessionId : " + sessionId);
-        } else {
-            sessionId = request.getSession().getId();
-            log.debug(">>>>>>2 requestSessionId : " + sessionId);
-        }
-        return sessionId;
+        jwtUser.setSessionId(sessionId);
+        return jwtUser;
     }
 
     /**
@@ -144,9 +153,9 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
     }
 
 
-    private String getClaimsKey(Claims claims, String key) {
+    private Object getClaimsKey(Claims claims, String key) {
         try {
-            return claims.get(key).toString();
+            return claims.get(key);
         } catch (Exception e) {
             return null;
         }

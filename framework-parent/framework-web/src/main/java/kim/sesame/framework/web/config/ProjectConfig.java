@@ -5,7 +5,6 @@ public class ProjectConfig {
     private static String superAdmin;// 超级管理员用户账号
     private static boolean debug;// 是否debug模式
     private static String systemExceptionMessage;// 系统异常消息
-    private static boolean enableJwtUserAccount;// 启用jwt用户账号体系
 
     static void setSysCode(String sysCode) {
         ProjectConfig.sysCode = sysCode;
@@ -23,9 +22,6 @@ public class ProjectConfig {
         ProjectConfig.systemExceptionMessage = systemExceptionMessage;
     }
 
-    static void setEnableJwtUserAccount(boolean enableJwtUserAccount) {
-        ProjectConfig.enableJwtUserAccount = enableJwtUserAccount;
-    }
     /*---------------------------*/
 
     public static String getSysCode() {
@@ -42,9 +38,6 @@ public class ProjectConfig {
 
     public static String getSystemExceptionMessage() {
         return systemExceptionMessage;
-    }
-    public static boolean isEnableJwtUserAccount() {
-        return enableJwtUserAccount;
     }
 
 }

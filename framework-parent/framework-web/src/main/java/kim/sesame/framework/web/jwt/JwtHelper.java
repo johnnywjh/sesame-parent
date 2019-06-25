@@ -62,10 +62,14 @@ public class JwtHelper {
     }
 
     public static String getJwtUser(String sessionId) {
-        return getJwtUser(sessionId, null);
+        return getJwtUser(sessionId, null, null, false);
     }
 
-    public static String getJwtUser(String sessionId, String account) {
+    public static String getJwtUser(String account, String pwdVersion) {
+        return getJwtUser(null, account, pwdVersion, true);
+    }
+
+    private static String getJwtUser(String sessionId, String account, String pwdVersion, boolean accLoad) {
         Map<String, Object> claims = new HashMap<>();
         if (StringUtil.isNotEmpty(sessionId)) {
             claims.put(GData.JWT.SESSION_ID, sessionId);
@@ -73,6 +77,11 @@ public class JwtHelper {
         if (StringUtil.isNotEmpty(account)) {
             claims.put(GData.JWT.USER_ACCOUNT, account);
         }
+        if (StringUtil.isNotEmpty(pwdVersion)) {
+            claims.put(GData.JWT.PWD_VERSION, pwdVersion);
+        }
+        claims.put(GData.JWT.ACC_LOAD, accLoad);
+
         return createJWT(claims);
     }
 }
