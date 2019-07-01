@@ -34,11 +34,11 @@ public class GData {
         /**
          * 超级管理员用户账号
          */
-        String SPUER_ADMIN_USER = "spuer_admin";
+        String SPUER_ADMIN_USER = "super_admin";
         /**
          * 超级管理员角色编号
          */
-        String SPUER_ADMIN_ROLE = "spuer_admin";
+        String SPUER_ADMIN_ROLE = "super_admin";
         /**
          * 管理员用户账号
          */
