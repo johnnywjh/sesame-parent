@@ -94,7 +94,6 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
             Response res = LogProintContext.getLogProintContext().getResponse();
 
             if (res != null) {
-                msg.append(res.toString()).append("\n");
                 msg.append(JSONObject.toJSONString(res)).append("\n");
             }
             msg.append("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
