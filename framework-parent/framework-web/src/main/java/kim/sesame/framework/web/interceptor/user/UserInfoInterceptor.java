@@ -34,10 +34,8 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
 
-        String requestUrl = request.getRequestURL().toString();
-        log.debug(">>>>>>1 requestUrl : " + requestUrl);
-
-        JwtUser jwtUser  = parentReqData(request);
+        JwtUser jwtUser = parentReqData(request);
+        log.debug("解析用户认证数据:" + jwtUser);
         String sessionId = jwtUser.getSessionId();
         UserContext.getUserContext().setUserSessionId(sessionId);
 

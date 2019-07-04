@@ -16,4 +16,13 @@ public class JwtUser {
     private String userAccount;
     private String pwdVersion;
 
+    @Override
+    public String toString() {
+        return "JwtUser{" +
+                "sessionId='" + sessionId + '\'' +
+                ", accLoad=" + accLoad +
+                ", userAccount='" + userAccount + '\'' +
+                ", pwdVersion='" + pwdVersion + '\'' +
+                '}';
+    }
 }
