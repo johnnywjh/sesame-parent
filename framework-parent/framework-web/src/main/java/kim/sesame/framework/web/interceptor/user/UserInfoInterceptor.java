@@ -129,6 +129,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
 
         if (sessionId == null || sessionId == "") {
             sessionId = request.getSession().getId();
+            log.debug("无法获取请求里的sessionId,强制生成sessionId : " + sessionId);
         }
         jwtUser.setSessionId(sessionId);
         return jwtUser;
@@ -142,7 +143,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         String token = request.getHeader(GData.JWT.TOKEN);
         if (StringUtil.isEmpty(token)) {
             token = request.getParameter(GData.JWT.TOKEN);
-            if (StringUtil.isEmpty(token)) {
+            if (StringUtil.isNotEmpty(token)) {
                 log.debug("获取请求体(body)里的" + GData.JWT.TOKEN + ":" + token);
             }
         } else {
