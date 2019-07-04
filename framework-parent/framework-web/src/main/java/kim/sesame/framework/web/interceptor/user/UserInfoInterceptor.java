@@ -123,12 +123,13 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
                 String casSessionId = SsoUtil.getSessionId(request);
                 if (StringUtil.isNotEmpty(casSessionId)) {
                     sessionId = casSessionId;
-                } else {
-                    sessionId = request.getSession().getId();
                 }
             }
         }
 
+        if (sessionId == null || sessionId == "") {
+            sessionId = request.getSession().getId();
+        }
         jwtUser.setSessionId(sessionId);
         return jwtUser;
     }
