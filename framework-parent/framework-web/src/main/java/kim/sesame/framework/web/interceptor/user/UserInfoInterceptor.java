@@ -71,8 +71,8 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
                 }
             }
         }
-        log.debug(">>>>>>3 userNo : " + userNo);
-        log.debug(">>>>>>4 user : " + user);
+        log.debug(">>>>>> 登录的用户账号 : " + userNo);
+        log.debug(">>>>>> 登录的用户实体 : " + user);
 
         UserContext.getUserContext().setUser(user);
 
