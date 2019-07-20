@@ -30,6 +30,7 @@ public class WebSocketService {
         } else {
             // 不是心跳消息,接受用户标识,保存用户信息
             WSSerice.addConn(message, session);
+            log.info(MessageFormat.format("已成功建立连接,user_key", message));
         }
     }
 
