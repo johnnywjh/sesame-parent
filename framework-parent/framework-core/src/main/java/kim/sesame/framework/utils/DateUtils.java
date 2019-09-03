@@ -351,6 +351,28 @@ public class DateUtils {
         return minutes;
     }
 
+    /**
+     * 获取间隔时间的字符串 天, 小时
+     * @return
+     */
+    public static String getDayHourDiff(Date startTime, Date endTime) {
+        if (startTime == null || endTime == null) {
+            return "";
+        }
+        StringBuffer sb = new StringBuffer();
+        Long d = getTimeDiff(startTime, endTime);
+        Long h = getHourDiff(startTime, endTime);
+        if (d != 0) {
+            sb.append(d).append("天");
+        }
+        if (h != 0) {
+            long h2 = h % 24;
+            if (h2 != 0) {
+                sb.append(h2).append("小时");
+            }
+        }
+        return sb.toString();
+    }
 
     private static Long getDiff(Date startTime, Date endTime, long l) {
         Long diff = null;
