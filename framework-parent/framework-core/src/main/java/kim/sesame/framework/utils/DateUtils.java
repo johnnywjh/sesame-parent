@@ -318,14 +318,23 @@ public class DateUtils {
      */
     public static Long getTimeDiff(Date startTime, Date endTime) {
         Long days = null;
-
-        Calendar c = Calendar.getInstance();
-        c.setTime(startTime);
-        long l_s = c.getTimeInMillis();
-        c.setTime(endTime);
-        long l_e = c.getTimeInMillis();
-        days = (l_e - l_s) / 86400000;
+        long l = 1000L * 60 * 60 * 24;
+        days = getDiff(startTime, endTime, l);
         return days;
+    }
+
+    /**
+     * 返回两个时间的相差小时
+     *
+     * @param startTime 对比的开始时间
+     * @param endTime   对比的结束时间
+     * @return 相差分钟数
+     */
+    public static Long getHourDiff(Date startTime, Date endTime) {
+        Long hour = null;
+        long l = 1000L * 60 * 60;
+        hour = getDiff(startTime, endTime, l);
+        return hour;
     }
 
     /**
@@ -337,14 +346,22 @@ public class DateUtils {
      */
     public static Long getMinuteDiff(Date startTime, Date endTime) {
         Long minutes = null;
+        long l = 1000L * 60;
+        minutes = getDiff(startTime, endTime, l);
+        return minutes;
+    }
+
+
+    private static Long getDiff(Date startTime, Date endTime, long l) {
+        Long diff = null;
 
         Calendar c = Calendar.getInstance();
         c.setTime(startTime);
         long l_s = c.getTimeInMillis();
         c.setTime(endTime);
         long l_e = c.getTimeInMillis();
-        minutes = (l_e - l_s) / (1000L * 60);
-        return minutes;
+        diff = (l_e - l_s) / l;
+        return diff;
     }
 
     /**
@@ -429,6 +446,7 @@ public class DateUtils {
         gc.setTime(date);
         return Integer.valueOf(gc.get(1));
     }
+
     // 获取本年的开始时间
     public static Date getBeginDayOfYear() {
         Calendar cal = Calendar.getInstance();
@@ -476,6 +494,7 @@ public class DateUtils {
         gc.setTime(date);
         return gc.get(2) + 1;
     }
+
     /**
      * 根据开始时间和结束时间返回时间段内的时间集合
      *
@@ -485,7 +504,7 @@ public class DateUtils {
      */
     public static List<String> getDatesBetweenTwoDate(Date beginDate, Date endDate) {
         List<String> lDate = new ArrayList<>();
-        lDate.add(convert(beginDate,DATE_FORMAT));// 把开始时间加入集合
+        lDate.add(convert(beginDate, DATE_FORMAT));// 把开始时间加入集合
         Calendar cal = Calendar.getInstance();
         // 使用给定的 Date 设置此 Calendar 的时间
         cal.setTime(beginDate);
@@ -495,12 +514,12 @@ public class DateUtils {
             cal.add(Calendar.DAY_OF_MONTH, 1);
             // 测试此日期是否在指定日期之后
             if (endDate.after(cal.getTime())) {
-                lDate.add(convert(cal.getTime(),DATE_FORMAT));
+                lDate.add(convert(cal.getTime(), DATE_FORMAT));
             } else {
                 break;
             }
         }
-        lDate.add(convert(endDate,DATE_FORMAT));// 把结束时间加入集合
+        lDate.add(convert(endDate, DATE_FORMAT));// 把结束时间加入集合
         return lDate;
     }
 
