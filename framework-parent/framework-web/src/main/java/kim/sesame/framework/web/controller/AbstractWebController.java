@@ -1,9 +1,8 @@
 package kim.sesame.framework.web.controller;
 
 
-import com.alibaba.excel.ExcelWriter;
-import com.alibaba.excel.metadata.Sheet;
-import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import kim.sesame.framework.utils.StringUtil;
 import org.apache.commons.logging.Log;
 
@@ -116,26 +115,47 @@ public class AbstractWebController extends AbstractController {
      * @param response res
      */
     public void tableDataExport(String fileName, List list, Class clazz, HttpServletRequest request, HttpServletResponse response) {
+//        try {
+//
+//            setDownloadResponse(fileName, request, response);
+//
+//            OutputStream outputStream = response.getOutputStream();
+//
+//            ExcelTypeEnum excelTypeEnum = ExcelTypeEnum.XLSX;
+//            if (StringUtil.isNotEmpty(fileName)) {
+//                if (fileName.endsWith(".xls")) {
+//                    excelTypeEnum = ExcelTypeEnum.XLS;
+//                }
+//            }
+//            // 这里 需要指定写用哪个class去读
+//            ExcelWriter excelWriter = EasyExcel.write(outputStream, clazz)
+//                    .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
+//                    .build();
+//            WriteSheet writeSheet = EasyExcel.writerSheet("0").build();
+//            excelWriter.write(list, writeSheet);
+//
+//            excelWriter.write(list, writeSheet);
+//
+///// 千万别忘记finish 会帮忙关闭流
+//            excelWriter.finish();
+//
+//            outputStream.flush();
+//            outputStream.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
         try {
+            // 这里注意 有同学反应下载的文件名不对。这个时候 请别使用swagger 他会有影响
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+            fileName = URLEncoder.encode(fileName, "UTF-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+            EasyExcel.write(response.getOutputStream(), clazz)
+                    .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
+                    .sheet("1").doWrite(list);
 
-            setDownloadResponse(fileName, request, response);
-
-            OutputStream outputStream = response.getOutputStream();
-
-            ExcelTypeEnum excelTypeEnum = ExcelTypeEnum.XLSX;
-            if (StringUtil.isNotEmpty(fileName)) {
-                if (fileName.endsWith(".xls")) {
-                    excelTypeEnum = ExcelTypeEnum.XLS;
-                }
-            }
-
-            ExcelWriter writer = new ExcelWriter(outputStream, excelTypeEnum);
-            Sheet sheet1 = new Sheet(1, 0, clazz);
-            writer.write(list, sheet1);
-
-            writer.finish();
-            outputStream.flush();
-            outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
