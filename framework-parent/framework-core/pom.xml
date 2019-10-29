@@ -21,6 +21,11 @@
 			<scope>test</scope>
 		</dependency>
 		-->
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
 		<!-- 网络框架请求 -->
 		<dependency>
 			<groupId>com.github.kevinsawicki</groupId>

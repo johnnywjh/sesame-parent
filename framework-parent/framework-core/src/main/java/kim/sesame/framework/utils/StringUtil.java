@@ -18,6 +18,7 @@ public class StringUtil {
     /**
      * string 非空校验
      */
+    @Deprecated
     public static boolean isNotEmpty(Object obj) {
         if (obj == null || obj.equals("")) {
             return false;
@@ -29,6 +30,7 @@ public class StringUtil {
     /**
      * string 对象为空的判断
      */
+    @Deprecated
     public static boolean isEmpty(Object obj) {
         return !isNotEmpty(obj);
     }
@@ -69,6 +71,7 @@ public class StringUtil {
         return Integer.parseInt(one + "" + two);
     }
 
+    @Deprecated
     public static boolean isBlank(String str) {
         int length;
         if ((str == null) || ((length = str.length()) == 0)) {
@@ -82,6 +85,7 @@ public class StringUtil {
         return true;
     }
 
+    @Deprecated
     public static boolean isNotBlank(String str) {
         int length;
         if ((str == null) || ((length = str.length()) == 0)) {
@@ -181,11 +185,12 @@ public class StringUtil {
      * @param splitstr 分隔符
      * @return
      */
-    public static List<String> split(String strs, String splitstr) {
-        return Stream.of(strs.split(splitstr))
-                .map(String::trim).distinct()
-                .filter(StringUtil::isNotEmpty)
-                .collect(Collectors.toList());
-    }
+//    @Deprecated
+//    public static List<String> split(String strs, String splitstr) {
+//        return Stream.of(strs.split(splitstr))
+//                .map(String::trim).distinct()
+//                .filter(StringUtil::isNotEmpty)
+//                .collect(Collectors.toList());
+//    }
 
 }
