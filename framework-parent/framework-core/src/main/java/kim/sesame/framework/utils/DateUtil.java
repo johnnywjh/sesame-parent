@@ -142,7 +142,6 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * eg. 2018-06-11 13:31:31 return 2018-06-11 00:00:00
      * @param localDate
      * @return
-     * @author wf
      */
     public static Date getDateBeginTime(LocalDate localDate) {
         LocalDateTime localDateTime = LocalDateTime.of(localDate, LocalTime.MIN);
@@ -155,7 +154,6 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * eg. 2018-06-11 13:31:31 return 2018-06-11 23:59:59.999999999
      * @param localDate
      * @return
-     * @author wf
      */
     public static Date getDateEndTime(LocalDate localDate) {
         LocalDateTime localDateTime = LocalDateTime.of(localDate, LocalTime.MAX);
@@ -180,7 +178,6 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * eg. 2018-06-11 13:31:31 return 2018-06-01 00:00:00
      * @param localDate
      * @return
-     * @author wf
      */
     public static Date getMonthFirstDay(LocalDate localDate) {
         LocalDate firstDate = localDate.with(TemporalAdjusters.firstDayOfMonth());
@@ -192,7 +189,6 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * eg. 2018-06-11 13:31:31 return 2018-06-30 23:59:59.999999999
      * @param localDate
      * @return
-     * @author wf
      */
     public static Date getMonthLastDay(LocalDate localDate) {
         LocalDate firstDate = localDate.with(TemporalAdjusters.lastDayOfMonth());
