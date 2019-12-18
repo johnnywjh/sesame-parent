@@ -50,9 +50,8 @@ public class Ipconfig {
             //System.out.println("本机名称是："+ localname);
             //System.out.println("本机的ip是 ："+localip);
 
-            InetAddress ia1 = InetAddress.getLocalHost();//获取本地IP对象
-            //System.out.println("MAC ......... "+getMACAddress(ia1));
-            bean.setMac(getMACAddress(ia1));
+//            InetAddress ia1 = InetAddress.getLocalHost();//获取本地IP对象
+//            bean.setMac(getMACAddress(ia1));
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
