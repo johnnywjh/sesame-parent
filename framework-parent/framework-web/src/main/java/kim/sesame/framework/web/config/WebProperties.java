@@ -126,7 +126,7 @@ public class WebProperties implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         if (StringUtil.isEmpty(this.iconPath)) {
-            this.iconPath = this.basePath + "/ico/icon.png";
+            this.iconPath = this.basePath + "/icon/icon.png";
         }
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
         ProjectConfig.setSysCode(this.sysCode);
