@@ -1,7 +1,7 @@
 package kim.sesame.framework.email.service;
 
 import freemarker.template.Template;
-import kim.sesame.framework.utils.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -150,7 +150,7 @@ public class EmailTemplate {
      */
     private void setNickName(MimeMessageHelper helper) {
         try {
-            if (StringUtil.isNotEmpty(emailProperties.getSendNickname())) {
+            if (StringUtils.isNotEmpty(emailProperties.getSendNickname())) {
                 helper.setFrom(new InternetAddress(emailProperties.getUsername(), emailProperties.getSendNickname(), "UTF-8"));
             } else {
                 helper.setFrom(emailProperties.getUsername());

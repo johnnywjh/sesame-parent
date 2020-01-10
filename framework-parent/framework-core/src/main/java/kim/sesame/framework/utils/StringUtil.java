@@ -1,10 +1,9 @@
 package kim.sesame.framework.utils;
 
-import java.util.List;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 字符串
@@ -14,26 +13,6 @@ import java.util.stream.Stream;
  * Description:
  */
 public class StringUtil {
-
-    /**
-     * string 非空校验
-     */
-    @Deprecated
-    public static boolean isNotEmpty(Object obj) {
-        if (obj == null || obj.equals("")) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * string 对象为空的判断
-     */
-    @Deprecated
-    public static boolean isEmpty(Object obj) {
-        return !isNotEmpty(obj);
-    }
 
     /**
      * 两个字符串之间的比较
@@ -103,7 +82,7 @@ public class StringUtil {
      * 去掉前后引号
      */
     public static String removeQuotes(String str) {
-        if (StringUtil.isEmpty(str)) {
+        if (StringUtils.isEmpty(str)) {
             return "";
         }
         int length = str.length();

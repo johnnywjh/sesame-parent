@@ -2,10 +2,10 @@ package kim.sesame.framework.web.context;
 
 import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.utils.Ipconfig;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.controller.ISwagger;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
@@ -57,7 +57,7 @@ public class SpringContextUtil implements ApplicationContextAware {
 
         String port = null;
         port = env.getProperty("server.port");
-        if (StringUtil.isEmpty(port)) {
+        if (StringUtils.isEmpty(port)) {
             port = "8080";
         }
         if (web.isDataShare() == false) {
@@ -68,11 +68,11 @@ public class SpringContextUtil implements ApplicationContextAware {
         // 初始化当前ip信息
         currentIpPort = web.getCurrentIpPort();
         currentIp = web.getCurrentIp();
-        if (StringUtil.isEmpty(currentIp)) {
+        if (StringUtils.isEmpty(currentIp)) {
             currentIp = Ipconfig.getInfo().getLocalip();
             web.setCurrentIp(currentIp);
         }
-        if (StringUtil.isEmpty(currentIpPort)) {
+        if (StringUtils.isEmpty(currentIpPort)) {
             currentIpPort = currentIp + ":" + port;
             web.setCurrentIpPort(currentIpPort);
         }
@@ -173,7 +173,7 @@ public class SpringContextUtil implements ApplicationContextAware {
         Environment environment = getApplicationContext().getEnvironment();
         WebProperties webProperties = getBean(WebProperties.class);
         String port = environment.getProperty("server.port");
-        if (StringUtil.isEmpty(port)) {
+        if (StringUtils.isEmpty(port)) {
             port = "8080";
         }
         String basePath = environment.getProperty(GData.SPRINGBOOT.contextPath);
@@ -185,7 +185,7 @@ public class SpringContextUtil implements ApplicationContextAware {
         String ip_project_url = "http://" + webProperties.getCurrentIpPort() + basePath;
 //        println(ip_project_url);
         String profile = environment.getProperty("spring.profiles.active");
-        if (StringUtil.isNotEmpty(profile)) {
+        if (StringUtils.isNotEmpty(profile)) {
             println("当前激活的环境文件:" + profile);
         } else {
             println("当前激活的环境文件: 无 ,如有需要请配置 spring.profiles.active=@profileActive@");

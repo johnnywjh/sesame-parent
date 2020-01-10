@@ -2,7 +2,6 @@ package kim.sesame.framework.web.interceptor.user;
 
 import io.jsonwebtoken.Claims;
 import kim.sesame.framework.utils.GData;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.cas.SsoUtil;
@@ -11,6 +10,7 @@ import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IUser;
 import kim.sesame.framework.web.jwt.JwtHelper;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -60,7 +60,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         UserContext.getUserContext().setCurrentLoginUserAccount(userNo);
 
         IUser user = null;
-        if (StringUtil.isNotEmpty(userNo)) {
+        if (StringUtils.isNotEmpty(userNo)) {
             user = userCache.getUserCache(userNo);
 
             // 如果jwt传入的是 用户账号, 需要校验密码版本
@@ -96,7 +96,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         String sessionId = null;
 
         String token = getToken(request);
-        if (StringUtil.isNotEmpty(token)) {
+        if (StringUtils.isNotEmpty(token)) {
             Claims claims = JwtHelper.parseJWT(token);
             if (claims != null) {
 
@@ -119,9 +119,9 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             }
         } else {
             sessionId = request.getParameter("sessionId");
-            if (StringUtil.isEmpty(sessionId)) {
+            if (StringUtils.isEmpty(sessionId)) {
                 String casSessionId = SsoUtil.getSessionId(request);
-                if (StringUtil.isNotEmpty(casSessionId)) {
+                if (StringUtils.isNotEmpty(casSessionId)) {
                     sessionId = casSessionId;
                 }
             }
@@ -141,9 +141,9 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
      */
     private String getToken(HttpServletRequest request) {
         String token = request.getHeader(GData.JWT.TOKEN);
-        if (StringUtil.isEmpty(token)) {
+        if (StringUtils.isEmpty(token)) {
             token = request.getParameter(GData.JWT.TOKEN);
-            if (StringUtil.isNotEmpty(token)) {
+            if (StringUtils.isNotEmpty(token)) {
                 log.debug("获取请求体(body)里的" + GData.JWT.TOKEN + ":" + token);
             }
         } else {

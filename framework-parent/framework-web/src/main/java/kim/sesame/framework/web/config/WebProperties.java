@@ -1,8 +1,8 @@
 package kim.sesame.framework.web.config;
 
 import kim.sesame.framework.entity.GPage;
-import kim.sesame.framework.utils.StringUtil;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -125,7 +125,7 @@ public class WebProperties implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if (StringUtil.isEmpty(this.iconPath)) {
+        if (StringUtils.isEmpty(this.iconPath)) {
             this.iconPath = this.basePath + "/icon/icon.png";
         }
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;

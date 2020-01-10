@@ -5,12 +5,12 @@ import kim.sesame.framework.tablelog.config.OpTable;
 import kim.sesame.framework.tablelog.config.TableOpProperties;
 import kim.sesame.framework.tablelog.db.bean.TableOpLog;
 import kim.sesame.framework.tablelog.db.service.TableOpLogService;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.utils.UUIDUtil;
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IUser;
 import lombok.Data;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -116,11 +116,11 @@ public class TableOpLogAop {
             Object val = jdbcTemplate.queryForObject(sql, new Object[]{bean.getPkValue()}, Object.class);
 
             bean.setSelectSql(t.getSelectSql());
-            if (StringUtil.isNotEmpty(t.getSelectSql())) {
+            if (StringUtils.isNotEmpty(t.getSelectSql())) {
                 val = jdbcTemplate.queryForObject(t.getSelectSql(), new Object[]{val}, String.class);
             }
             // 在没有查询sql的情况下, 如果修改前后一样,那么也跳过
-            if (StringUtil.isEmpty(t.getSelectSql()) && val.equals(of.getValue())) {
+            if (StringUtils.isEmpty(t.getSelectSql()) && val.equals(of.getValue())) {
                 continue;
             }
             bean.setValueBefore(val.toString());
@@ -139,11 +139,11 @@ public class TableOpLogAop {
         for (TableOpLog bean : logs) {
             String sql = "select " + bean.getFieldName() + " from " + bean.getTableName() + " where " + bean.getPkName() + "=?";
             Object val = jdbcTemplate.queryForObject(sql, new Object[]{bean.getPkValue()}, Object.class);
-            if (StringUtil.isNotEmpty(bean.getSelectSql())) {
+            if (StringUtils.isNotEmpty(bean.getSelectSql())) {
                 val = jdbcTemplate.queryForObject(bean.getSelectSql(), new Object[]{val}, String.class);
             }
             bean.setValueAfter(val.toString());
-            if (StringUtil.isNotEmpty(bean.getValueAfter()) && StringUtil.isNotEmpty(bean.getValueBefore())) {
+            if (StringUtils.isNotEmpty(bean.getValueAfter()) && StringUtils.isNotEmpty(bean.getValueBefore())) {
                 if (bean.getValueAfter().equals(bean.getValueBefore()) == false) {
                     log_list.add(bean);
                 }

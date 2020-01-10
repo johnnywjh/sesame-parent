@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import kim.sesame.framework.entity.GMap;
 import kim.sesame.framework.utils.StringUtil;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.websocket.Session;
 import java.io.IOException;
@@ -49,7 +50,7 @@ public class WSSerice {
                 break;
             }
         }
-        if (StringUtil.isNotEmpty(userKey)) {
+        if (StringUtils.isNotEmpty(userKey)) {
             removeConn(userKey);
         }
     }

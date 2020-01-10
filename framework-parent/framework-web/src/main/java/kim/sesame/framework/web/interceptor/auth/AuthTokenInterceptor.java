@@ -1,11 +1,11 @@
 package kim.sesame.framework.web.interceptor.auth;
 
 import com.alibaba.fastjson.JSON;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.annotation.IgnoreAuthCheck;
 import kim.sesame.framework.web.response.Response;
 import kim.sesame.framework.web.response.ResponseFactory;
 import kim.sesame.framework.web.util.IPUitl;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -41,7 +41,7 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
 
             // 2.验证白名单用户,如果是白名单用户则直接放行
             requestIp = IPUitl.getRemortIP(req);
-            if (StringUtil.isNotEmpty(requestIp)) {
+            if (StringUtils.isNotEmpty(requestIp)) {
                 if (AuthTokenWhiteListUtils.isValid(requestIp)) {
                     System.out.println(requestIp + ";白名单用户，执行放行。");
                     return true;
@@ -49,7 +49,7 @@ public class AuthTokenInterceptor extends HandlerInterceptorAdapter {
                     // 验证动态口令
                     String publicToken = req.getHeader(AuthTokenUtils.PUBLIC_TOKEN_KEY);//公钥
                     String dynamicToken = req.getHeader(AuthTokenUtils.DYNAMIC_TOKEN_KEY);//动态tokean
-                    if (StringUtil.isNotEmpty(publicToken) && StringUtil.isNotEmpty(dynamicToken)) {
+                    if (StringUtils.isNotEmpty(publicToken) && StringUtils.isNotEmpty(dynamicToken)) {
                         if (AuthTokenUtils.isValid(publicToken, dynamicToken)) {
                             return true;
                         }

@@ -7,6 +7,7 @@ import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.websocket.config.WebSocketConfig;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
@@ -96,7 +97,7 @@ public class WSSerice {
                 break;
             }
         }
-        if (StringUtil.isNotEmpty(userKey)) {
+        if (StringUtils.isNotEmpty(userKey)) {
             removeConn(userKey);
         }
     }
@@ -138,7 +139,7 @@ public class WSSerice {
         boolean flg = false;
         // 1 根据 userKey 查询和用户保存消息的连接
         String userConnIpPort = getStringRedisTemplate().opsForValue().get(getWsRedisKey(userKey));
-        if (StringUtil.isNotEmpty(userConnIpPort)) {
+        if (StringUtils.isNotEmpty(userConnIpPort)) {
             // 2 判断是不是当前应用
             if (userConnIpPort.equals(SpringContextUtil.getCurrentIpPort())) {
                 // 2.1 是当前应用, 本地推送

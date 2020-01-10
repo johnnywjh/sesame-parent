@@ -6,9 +6,9 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import kim.sesame.framework.cache.annotation.QueryCache;
 import kim.sesame.framework.cache.redis.config.QueryCacheProperties;
 import kim.sesame.framework.cache.redis.server.CacheServer;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -79,7 +79,7 @@ public class QueryCacheAop {
             return pjd.proceed();
         }
 
-        if (StringUtil.isEmpty(cacheResult)) {
+        if (StringUtils.isEmpty(cacheResult)) {
             log.debug(MessageFormat.format("缓存不存在,走数据库查询 ,存储时间 : {0} , 单位 : {1} ", time, timeUnit));
             result = pjd.proceed();
 
@@ -150,10 +150,10 @@ public class QueryCacheAop {
     private static String getCacheKey(String key, String prefix, String classPath, String methodName, Object... params) {
         StringBuffer sb = new StringBuffer();
 
-        if (StringUtil.isNotEmpty(key)) {
+        if (StringUtils.isNotEmpty(key)) {
             sb.append(key);
         } else {
-            if (StringUtil.isNotEmpty(prefix)) {
+            if (StringUtils.isNotEmpty(prefix)) {
                 sb.append(prefix).append("_");
             }
             sb.append(classPath).append(".").append(methodName);

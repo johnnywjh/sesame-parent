@@ -6,6 +6,7 @@ import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.controller.ISwagger;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -47,20 +48,20 @@ public class Swagger2 implements ISwagger {
 
     private ApiInfo apiInfo() {
         ApiInfoBuilder bean = new ApiInfoBuilder();
-        if (StringUtil.isNotEmpty(swagger.getTitle())) {
+        if (StringUtils.isNotEmpty(swagger.getTitle())) {
             String val = swagger.getTitle();
             val = StringUtil.transcoding(val);
             bean.title(val);
         }
-        if (StringUtil.isNotEmpty(swagger.getDescription())) {
+        if (StringUtils.isNotEmpty(swagger.getDescription())) {
             String val = swagger.getDescription();
             val = StringUtil.transcoding(val);
             bean.description(val);
         }
-        if (StringUtil.isNotEmpty(swagger.getTermsOfServiceUrl())) {
+        if (StringUtils.isNotEmpty(swagger.getTermsOfServiceUrl())) {
             bean.termsOfServiceUrl(swagger.getTermsOfServiceUrl());
         }
-        if (StringUtil.isNotEmpty(swagger.getVersion())) {
+        if (StringUtils.isNotEmpty(swagger.getVersion())) {
             bean.version(swagger.getVersion());
         }
         if (swagger.getContact() != null) {

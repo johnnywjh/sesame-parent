@@ -2,8 +2,8 @@ package kim.sesame.framework.tablelog.db.service;
 
 import kim.sesame.framework.tablelog.db.bean.TableOpLog;
 import kim.sesame.framework.tablelog.db.dao.TableOpLogDao;
-import kim.sesame.framework.utils.StringUtil;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -82,7 +82,7 @@ public class TableOpLogService implements InitializingBean {
     @Transactional(rollbackFor = Exception.class)
     public int delete(String ids) {
 
-        List<String> list_id = Stream.of(ids.split(",")).map(String::trim).distinct().filter(StringUtil::isNotEmpty).collect(Collectors.toList());
+        List<String> list_id = Stream.of(ids.split(",")).map(String::trim).distinct().filter(StringUtils::isNotEmpty).collect(Collectors.toList());
         list_id.stream().forEach(this::deleteById);
 
         return list_id.size();

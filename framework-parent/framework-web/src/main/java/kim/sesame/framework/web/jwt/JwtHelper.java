@@ -5,8 +5,8 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import kim.sesame.framework.utils.GData;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
@@ -71,13 +71,13 @@ public class JwtHelper {
 
     private static String getJwtUser(String sessionId, String account, String pwdVersion, boolean accLoad) {
         Map<String, Object> claims = new HashMap<>();
-        if (StringUtil.isNotEmpty(sessionId)) {
+        if (StringUtils.isNotEmpty(sessionId)) {
             claims.put(GData.JWT.SESSION_ID, sessionId);
         }
-        if (StringUtil.isNotEmpty(account)) {
+        if (StringUtils.isNotEmpty(account)) {
             claims.put(GData.JWT.USER_ACCOUNT, account);
         }
-        if (StringUtil.isNotEmpty(pwdVersion)) {
+        if (StringUtils.isNotEmpty(pwdVersion)) {
             claims.put(GData.JWT.PWD_VERSION, pwdVersion);
         }
         claims.put(GData.JWT.ACC_LOAD, accLoad);

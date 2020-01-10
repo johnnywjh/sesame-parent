@@ -1,9 +1,9 @@
 package kim.sesame.framework.web.init;
 
 import kim.sesame.framework.utils.GData;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.config.WebProperties;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.Resource;
@@ -44,9 +44,9 @@ public class WebInit extends HttpServlet implements ServletContextListener {
         ServletContext application = arg0.getServletContext();
 
         // 1 项目当前路径
-        if (StringUtil.isEmpty(web.getBasePath())) {
+        if (StringUtils.isEmpty(web.getBasePath())) {
             String context_path = env.getProperty(GData.SPRINGBOOT.contextPath);
-            if (StringUtil.isEmpty(context_path)) {
+            if (StringUtils.isEmpty(context_path)) {
                 context_path = "";
             }
             application.setAttribute("basePath", context_path);

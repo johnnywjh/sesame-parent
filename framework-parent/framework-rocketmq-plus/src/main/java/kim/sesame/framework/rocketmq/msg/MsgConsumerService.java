@@ -3,8 +3,8 @@ package kim.sesame.framework.rocketmq.msg;
 import com.alibaba.fastjson.JSON;
 import kim.sesame.framework.lock.service.DistributedLocker;
 import kim.sesame.framework.utils.Argument;
-import kim.sesame.framework.utils.StringUtil;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -91,7 +91,7 @@ public class MsgConsumerService {
         String result = stringRedisTemplate.opsForValue().get(redisKey);
 
         String name = Thread.currentThread().getName();
-        if (StringUtil.isEmpty(result)) {
+        if (StringUtils.isEmpty(result)) {
             log.debug(MessageFormat.format("{0}尝试获取锁,key : {1}", name, lockKey));
             try {
                 //2 获取分布式锁

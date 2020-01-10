@@ -3,7 +3,7 @@ package kim.sesame.framework.web.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
-import kim.sesame.framework.utils.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class AbstractWebController extends AbstractController {
     public Map layuiUpload(String src, String name) {
         Map<String, Object> map = new HashMap<>();
         map.put("src", src);
-        if (StringUtil.isNotEmpty(name)) {
+        if (StringUtils.isNotEmpty(name)) {
             map.put("name", name);
         }
         Map<String, Object> res = new HashMap<>();

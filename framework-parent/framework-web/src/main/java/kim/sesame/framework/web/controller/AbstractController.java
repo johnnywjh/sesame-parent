@@ -2,7 +2,6 @@ package kim.sesame.framework.web.controller;
 
 import kim.sesame.framework.entity.GPage;
 import kim.sesame.framework.exception.BusinessException;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.response.Response;
 import kim.sesame.framework.web.security.exception.AccessNotAllowException;
@@ -10,6 +9,7 @@ import kim.sesame.framework.web.security.exception.FunctionNotValidException;
 import kim.sesame.framework.web.security.exception.UserNotLoginException;
 import kim.sesame.framework.web.validator.exception.DataValidatorException;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -95,25 +95,25 @@ public abstract class AbstractController {
         //数据验证异常
         else if (exception instanceof DataValidatorException) {
             String errorCode = ((DataValidatorException) exception).getErrorCode();
-            errorCode = StringUtil.isEmpty(errorCode) ? ErrorCode.VALIDATOR : errorCode;
+            errorCode = StringUtils.isEmpty(errorCode) ? ErrorCode.VALIDATOR : errorCode;
             return Response.create().setExceptionType(ExceptionType.VALIDATOR).setErrorCode(errorCode).setMessage(exception.getMessage());
         }
         //业务异常
         else if (exception instanceof BusinessException) {
             String errorCode = ((BusinessException) exception).getErrorCode();
-            errorCode = StringUtil.isEmpty(errorCode) ? ErrorCode.BUSINESS : errorCode;
+            errorCode = StringUtils.isEmpty(errorCode) ? ErrorCode.BUSINESS : errorCode;
             return Response.create().setExceptionType(ExceptionType.BUSINESS).setErrorCode(errorCode).setMessage(exception.getMessage());
         }
         //权限不足
         else if (exception instanceof AccessNotAllowException) {
             String errorCode = ((AccessNotAllowException) exception).getErrorCode();
-            errorCode = StringUtil.isEmpty(errorCode) ? ErrorCode.VALIDATOR : errorCode;
+            errorCode = StringUtils.isEmpty(errorCode) ? ErrorCode.VALIDATOR : errorCode;
             return Response.create().setExceptionType(ExceptionType.VALIDATOR).setErrorCode(errorCode).setMessage("权限不足!");
         }
         // 功能无效==>交互异常
         else if (exception instanceof FunctionNotValidException) {
             String errorCode = ((AccessNotAllowException) exception).getErrorCode();
-            errorCode = StringUtil.isEmpty(errorCode) ? ErrorCode.NOTVALID : errorCode;
+            errorCode = StringUtils.isEmpty(errorCode) ? ErrorCode.NOTVALID : errorCode;
             return Response.create().setExceptionType(ExceptionType.NOTVALID).setErrorCode(errorCode).setMessage(exception.getMessage());
         }
         //系统异常

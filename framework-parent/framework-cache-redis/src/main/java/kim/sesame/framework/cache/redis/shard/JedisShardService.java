@@ -1,6 +1,6 @@
 package kim.sesame.framework.cache.redis.shard;
 
-import kim.sesame.framework.utils.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import redis.clients.jedis.ShardedJedis;
 import redis.clients.jedis.ShardedJedisPool;
 
@@ -164,7 +164,7 @@ public class JedisShardService {
      * 获取  jedis对象
      */
     public static ShardedJedis getJedis(String mapKey) {
-        if (StringUtil.isEmpty(mapKey)) {
+        if (StringUtils.isEmpty(mapKey)) {
             vifNull();
             return jedisPool.getResource();
         } else {

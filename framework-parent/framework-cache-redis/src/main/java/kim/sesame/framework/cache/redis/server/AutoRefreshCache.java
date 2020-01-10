@@ -3,8 +3,8 @@ package kim.sesame.framework.cache.redis.server;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import kim.sesame.framework.utils.StringUtil;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
@@ -117,7 +117,7 @@ public class AutoRefreshCache<T> implements InitializingBean {
                 }
             } else {
                 String cacheResult = stringRedisTemplate.opsForValue().get(getKey());
-                if (StringUtil.isNotEmpty(cacheResult)) {
+                if (StringUtils.isNotEmpty(cacheResult)) {
                     return JSONArray.parseArray(cacheResult, clazz);
                 } else {
                     return null;

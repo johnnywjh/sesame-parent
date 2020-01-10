@@ -1,7 +1,7 @@
 package kim.sesame.framework.cache.redis.shard;
 
-import kim.sesame.framework.utils.StringUtil;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.pool2.impl.BaseObjectPoolConfig;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.springframework.beans.factory.InitializingBean;
@@ -98,7 +98,7 @@ public class JedisShardProperties implements InitializingBean {
             int port = 0;
             String pwd = null;
             for (int i = 0; i < hosts.size(); i++) {
-                if (StringUtil.isEmpty(hosts.get(i))) {
+                if (StringUtils.isEmpty(hosts.get(i))) {
                     continue;
                 }
                 Host h = new Host(hosts, pwds, i);
@@ -106,14 +106,14 @@ public class JedisShardProperties implements InitializingBean {
                 if (jedisNode.getConnectionTimeout() > 0) {
                     shardInfo.setConnectionTimeout(jedisNode.getConnectionTimeout());
                 }
-                if (StringUtil.isNotEmpty(h.getPwd())) {
+                if (StringUtils.isNotEmpty(h.getPwd())) {
                     shardInfo.setPassword(h.getPwd());
                 }
                 infoList.add(shardInfo);
             }
             // 判断key的算法
             ShardedJedisPool shardedJedisPool = null;
-            if (StringUtil.isNotEmpty(jedisNode.getKeyAlgo()) && jedisNode.getKeyAlgo().toUpperCase().equals("MD5")) {
+            if (StringUtils.isNotEmpty(jedisNode.getKeyAlgo()) && jedisNode.getKeyAlgo().toUpperCase().equals("MD5")) {
                 shardedJedisPool = new ShardedJedisPool(poolConfig, infoList, Hashing.MD5);
             } else {
                 shardedJedisPool = new ShardedJedisPool(poolConfig, infoList);

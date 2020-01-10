@@ -2,6 +2,7 @@ package kim.sesame.framework.tablelog.config;
 
 import kim.sesame.framework.utils.StringUtil;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -59,8 +60,8 @@ public class TableOpProperties implements InitializingBean {
                 continue;
             }
             for (OpColumn c : columnList) {
-                boolean flg_db = StringUtil.isNotEmpty(c.getColumnName());
-                boolean flg_java = StringUtil.isNotEmpty(c.getJavaName());
+                boolean flg_db = StringUtils.isNotEmpty(c.getColumnName());
+                boolean flg_java = StringUtils.isNotEmpty(c.getJavaName());
                 if (flg_db && flg_java) {
                     continue;
                 }
@@ -75,7 +76,7 @@ public class TableOpProperties implements InitializingBean {
                 // 注释, 转码
                 if (this.transcoding) {
                     String val = c.getComment();
-                    if (StringUtil.isNotEmpty(val)) {
+                    if (StringUtils.isNotEmpty(val)) {
                         val =StringUtil.transcoding(val);
                         c.setComment(val);
                     }

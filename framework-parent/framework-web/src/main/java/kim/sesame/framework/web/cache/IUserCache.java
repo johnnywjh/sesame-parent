@@ -1,11 +1,11 @@
 package kim.sesame.framework.web.cache;
 
 import kim.sesame.framework.cache.define.IStringCacheTemplate;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.entity.IRole;
 import kim.sesame.framework.web.entity.IUser;
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -107,7 +107,7 @@ public interface IUserCache {
             String userCode = stringCache.get(key);
             // 当获取用户编号完成之后,再存一次到缓存中,延续登录
             new Thread(() -> {
-                if (StringUtil.isNotEmpty(userCode)) {
+                if (StringUtils.isNotEmpty(userCode)) {
                     int time = web.getUserLoginSaveTime();
                     stringCache.set(key, userCode, time, TimeUnit.MINUTES);
                 }

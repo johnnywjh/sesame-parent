@@ -1,8 +1,9 @@
 package kim.sesame.framework.lock.config;
+
 import kim.sesame.framework.lock.service.DistributedLocker;
 import kim.sesame.framework.lock.service.impl.RedissonLock;
 import kim.sesame.framework.lock.util.RedissLockUtil;
-import kim.sesame.framework.utils.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -38,7 +39,7 @@ public class RedissonAutoConfiguration {
                 .setMasterConnectionPoolSize(redssionProperties.getMasterConnectionPoolSize())
                 .setSlaveConnectionPoolSize(redssionProperties.getSlaveConnectionPoolSize());
 
-        if(StringUtil.isNotEmpty(redssionProperties.getPassword())) {
+        if(StringUtils.isNotEmpty(redssionProperties.getPassword())) {
             serverConfig.setPassword(redssionProperties.getPassword());
         }
         return Redisson.create(config);
@@ -57,7 +58,7 @@ public class RedissonAutoConfiguration {
                 .setConnectionPoolSize(redssionProperties.getConnectionPoolSize())
                 .setConnectionMinimumIdleSize(redssionProperties.getConnectionMinimumIdleSize());
 
-        if(StringUtil.isNotEmpty(redssionProperties.getPassword())) {
+        if(StringUtils.isNotEmpty(redssionProperties.getPassword())) {
             serverConfig.setPassword(redssionProperties.getPassword());
         }
 

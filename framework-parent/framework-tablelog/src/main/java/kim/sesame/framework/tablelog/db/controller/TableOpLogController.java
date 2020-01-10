@@ -6,10 +6,10 @@ import kim.sesame.framework.db.utils.PageUtil;
 import kim.sesame.framework.entity.GPage;
 import kim.sesame.framework.tablelog.db.bean.TableOpLog;
 import kim.sesame.framework.tablelog.db.service.TableOpLogService;
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.controller.AbstractWebController;
 import kim.sesame.framework.web.response.Response;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -73,7 +73,7 @@ public class TableOpLogController extends AbstractWebController {
 	public Response save(TableOpLog bean) {
 		//IUser user = UserContext.getUserContext().getUser();
 		int res = 0;
-        if (StringUtil.isNotEmpty(bean.getId())) {
+        if (StringUtils.isNotEmpty(bean.getId())) {
             // 主键不为空, 修改数据
             bean.initUpdate("");
             res = tableOpLogService.update(bean);

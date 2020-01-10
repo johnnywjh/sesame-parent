@@ -1,9 +1,9 @@
 package kim.sesame.framework.web.interceptor.auth;
 
-import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.util.FileUtil;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
@@ -62,7 +62,7 @@ public class AuthTokenUtils {
      * @throws Exception
      */
     public static boolean isValid(String publicToken, String authToken) throws Exception {
-        if (StringUtil.isEmpty(publicToken)) {
+        if (StringUtils.isEmpty(publicToken)) {
             log.debug("接口认证失败: publicToken 为空");
             return false;
         }
