@@ -1,5 +1,7 @@
 package kim.sesame.framework.utils;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -8,7 +10,7 @@ import java.util.Map;
 /**
  * Created by johnny on 2017/9/10.
  */
-public class ObjectUtil {
+public class ObjectUtil extends ObjectUtils {
 
     /**
      * 对象转化成Map
@@ -34,30 +36,6 @@ public class ObjectUtil {
         }
 
         return map;
-    }
-
-    /**
-     * obj 非空校验,包含字符串的校验
-     * isNotEmpty(new Object())// true
-     * isNotEmpty("111") // ture
-     * isNotEmpty(new Date()) // ture
-     *
-     * isNotEmpty("") // false
-     * isNotEmpty(null) // false
-     */
-    public static boolean isNotEmpty(Object obj) {
-        if (obj == null || (obj instanceof String && obj.equals(""))) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    /**
-     * obj 对象为空的判断,包含字符串的校验
-     */
-    public static boolean isEmpty(Object obj) {
-        return !isNotEmpty(obj);
     }
 
 }
