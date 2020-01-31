@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>${sesame.groupId}</groupId>
-            <artifactId>framework-mybatis</artifactId>
+            <artifactId>framework-mybatis-plus</artifactId>
         </dependency>
 
     </dependencies>
