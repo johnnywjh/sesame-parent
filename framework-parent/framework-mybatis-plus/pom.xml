@@ -19,12 +19,23 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>kim.sesame.framework</groupId>
+			<artifactId>framework-core</artifactId>
+		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
  		<dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.0.7.1</version>
         </dependency>
+		<!-- http://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.10</version>
+		</dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -34,16 +45,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-		<!-- http://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper-spring-boot-starter</artifactId>
-			<version>1.2.10</version>
-		</dependency>
-		<dependency>
-			<groupId>kim.sesame.framework</groupId>
-			<artifactId>framework-core</artifactId>
-		</dependency>
+
+
 
 	</dependencies>
 	<build>
