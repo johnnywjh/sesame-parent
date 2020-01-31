@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>kim.sesame.framework</groupId>
 		<artifactId>framework-parent</artifactId>
-		<version>2.0.2</version><!-- sesame.version -->
-		<relativePath>../../pom.xml</relativePath>
+		<version>2.0.3</version><!-- sesame.version -->
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>framework-datasource</artifactId>
+	<artifactId>framework-mybatis-plus</artifactId>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}-${project.version}</name>
 
@@ -19,22 +19,12 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<dependency>
-			<groupId>${sesame.groupId}</groupId>
-			<artifactId>framework-core</artifactId>
-		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- 阿里数据池 -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-		</dependency>
+ 		<dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.0.7.1</version>
+        </dependency>
 
 		<dependency>
 			<groupId>mysql</groupId>
@@ -49,6 +39,10 @@
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.2.10</version>
+		</dependency>
+		<dependency>
+			<groupId>kim.sesame.framework</groupId>
+			<artifactId>framework-core</artifactId>
 		</dependency>
 
 	</dependencies>

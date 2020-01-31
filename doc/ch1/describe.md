@@ -38,12 +38,8 @@
         <td>分布式序列号的生成</td>
     </tr>
     <tr>
-        <td>framework-mybatis-parent</td>
-        <td>
-            <p>framework-datasource : 数据源加载</p>
-            <p>framework-mybatis : 原生的mybatis 的封装</p>
-            <p>framework-mybatis-plus : mp 的一些基础封装</p>
-        </td>
+        <td>framework-mybatis-plus</td>
+        <td>mp 的一些基础封装</td>
     </tr>
     <tr>
         <td>framework-rocketmq</td>

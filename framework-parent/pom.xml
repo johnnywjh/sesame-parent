@@ -5,19 +5,19 @@
     <parent>
         <groupId>kim.sesame.framework</groupId>
         <artifactId>sesame-parent</artifactId>
-        <version>2.0.2</version><!-- sesame.version -->
+        <version>2.0.3</version><!-- sesame.version -->
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>framework-parent</artifactId>
-    <version>2.0.2</version><!-- sesame.version -->
+    <version>2.0.3</version><!-- sesame.version -->
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
 
     <!-- 项目集合-->
     <modules>
         <module>framework-core</module> <!--核心模块,其他模块大部分要依赖这个模块-->
-        <module>framework-mybatis-parent</module><!--mybatis 模块-->
+        <module>framework-mybatis-plus</module><!--mybatis 模块-->
         <module>framework-web</module><!--web 模块-->
         <module>framework-rocketmq</module>
         <module>framework-rocketmq-plus</module>

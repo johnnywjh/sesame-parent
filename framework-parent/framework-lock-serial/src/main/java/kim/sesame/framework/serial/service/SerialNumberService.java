@@ -1,6 +1,5 @@
 package kim.sesame.framework.serial.service;
 
-import kim.sesame.framework.db.dao.BaseDao;
 import kim.sesame.framework.lock.service.DistributedLocker;
 import kim.sesame.framework.serial.dao.SerialNumberRuleDao;
 import kim.sesame.framework.serial.define.ISerialNumberService;
@@ -33,8 +32,6 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
     @SuppressWarnings("all")
     @Autowired
     private SerialNumberRuleDao serialNumberRuleDao;
-    @Autowired
-    private BaseDao baseDao;
 
     @Autowired
     private DistributedLocker locker;
