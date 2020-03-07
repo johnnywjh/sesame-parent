@@ -20,7 +20,7 @@
     </description>
 
     <properties>
-        <txlcn.version>5.0.1.RELEASE</txlcn.version>
+        <txlcn.version>5.0.2.RELEASE</txlcn.version>
     </properties>
 
     <dependencies>
