@@ -19,16 +19,16 @@
         <module>framework-cache</module>
         <module>framework-web</module>
         <module>framework-mybatis-plus</module>
-
         <module>framework-cache-redis</module>
         <module>framework-cache-local-caffeine</module>
         <module>framework-email</module>
         <module>framework-rocketmq</module>
-<!--        <module>framework-rocketmq-plus</module>-->
+        <module>framework-rocketmq-plus</module>
         <module>framework-utils-parent</module>
         <module>framework-websocket</module>
         <module>framework-websocket-cloud</module>
-
+        <module>framework-lock</module>
+        <module>framework-lock-serial</module>
     </modules>
 
 

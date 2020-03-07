@@ -34,7 +34,6 @@
         <dependency>
             <groupId>${sesame.groupId}</groupId>
             <artifactId>framework-web</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>

@@ -31,9 +31,6 @@
         -->
         <mysql.version>8.0.19</mysql.version>
 
-        <!-- https://mvnrepository.com/artifact/com.codingapi/transaction-springcloud -->
-        <lcn.last.version>4.1.0</lcn.last.version>
-
         <!--docker config -->
         <docker.reg.name>johnnywjh/</docker.reg.name>
         <docker.image.name.prefix>kim.</docker.image.name.prefix>
@@ -98,17 +95,43 @@
 
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
-                <artifactId>framework-utils-parent</artifactId>
-                <version>${sesame.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${sesame.groupId}</groupId>
                 <artifactId>framework-websocket</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
                 <groupId>${sesame.groupId}</groupId>
                 <artifactId>framework-websocket-cloud</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-lock</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-lock-serial</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-utils-parent</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-utils-ssh</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-utils-swagger</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${sesame.groupId}</groupId>
+                <artifactId>framework-utils-upload</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
 

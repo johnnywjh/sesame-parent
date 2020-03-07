@@ -23,10 +23,10 @@
             <groupId>${sesame.groupId}</groupId>
             <artifactId>framework-rocketmq</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>${sesame.groupId}</groupId>-->
-<!--            <artifactId>framework-lock</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>${sesame.groupId}</groupId>
+            <artifactId>framework-lock</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
