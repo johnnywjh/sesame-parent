@@ -32,13 +32,12 @@
         </dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
-		<!--
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.2.13</version>
 		</dependency>
-		-->
+
 
 		<dependency>
 			<groupId>mysql</groupId>
