@@ -1,14 +1,18 @@
 #### 其他项目地址
 - demo 项目地址 : [https://gitee.com/sesamekim/demo](https://gitee.com/sesamekim/demo)
-- 代码生成工具 : [https://gitee.com/sesamekim/codeGenerate](https://gitee.com/sesamekim/codeGenerate)
-- 通用sso : [https://gitee.com/sesamekim/sso-web](https://gitee.com/sesamekim/sso-web) 
-
-#### 版本说明
-- 1.x 的版本对应 spring boot 1.5.x 
-- 2.x 的版本对应 spring boot 2.0.x
+- 代码生成工具 : [https://code.sesame.kim](https://code.sesame.kim) 
 
 #### 更新日志
-#### 2.0.2 `2019-06-21 孵化中`
+#### 2.1 `2020-03-07`
+- 更改的仓库的名称,地址也发生的变化
+- 架构升级 spring-boot:2.x , mybatis-plus:3.3.1
+- 去掉了 tablelog , springcloud 模块
+
+#### 2.0.3 `2019-12-10`
+- 删除和整理 mybatis 模块,只留下 mybatis-plus模块
+- 优化 部分工具类
+
+#### 2.0.2 `2019-06-21`
 - 删除自己编写的excel工具类, 采用[alibaba/easyexcel](https://github.com/alibaba/easyexcel)
 
 #### 2.0.1 `2019-06-21`

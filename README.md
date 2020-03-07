@@ -4,10 +4,6 @@ Spring Boot 现在已经成为Java 开发领域的一颗璀璨明珠，它本身
 
 本项目对目前Web开发中常用的各个技术，通过和SpringBoot的集成,做了一些封装,详细文档如下
 
-#### 版本说明
-- 1.x 的版本对应 spring boot 1.5.x 
-- 2.x 的版本对应 spring boot 2.0.x
-
 #### 基本信息
 
 - chapter1 1 ：[更新日志](doc/ch1/updateLog.md)
