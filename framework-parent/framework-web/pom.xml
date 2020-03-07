@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>kim.sesame.framework</groupId>
 		<artifactId>framework-parent</artifactId>
-		<version>2.0.3</version><!-- sesame.version -->
+		<version>2.1.0</version><!-- sesame.version -->
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -19,6 +19,7 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>${sesame.groupId}</groupId>
 			<artifactId>framework-core</artifactId>
@@ -42,7 +43,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${spring.boot.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>

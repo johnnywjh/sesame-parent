@@ -5,62 +5,34 @@
     <parent>
         <groupId>kim.sesame.framework</groupId>
         <artifactId>sesame-parent</artifactId>
-        <version>2.0.3</version><!-- sesame.version -->
+        <version>2.1.0</version><!-- sesame.version -->
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>framework-parent</artifactId>
-    <version>2.0.3</version><!-- sesame.version -->
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
 
     <!-- 项目集合-->
     <modules>
-        <module>framework-core</module> <!--核心模块,其他模块大部分要依赖这个模块-->
-        <module>framework-mybatis-plus</module><!--mybatis 模块-->
-        <module>framework-web</module><!--web 模块-->
+        <module>framework-core</module>
+        <module>framework-cache</module>
+        <module>framework-web</module>
+        <module>framework-mybatis-plus</module>
+
+        <module>framework-cache-redis</module>
+        <module>framework-cache-local-caffeine</module>
+        <module>framework-email</module>
         <module>framework-rocketmq</module>
-        <module>framework-rocketmq-plus</module>
-        <module>framework-websocket</module><!--websocket 模块,单机版-->
-        <module>framework-websocket-cloud</module><!--websocket 模块,集群版-->
-        <module>framework-utils-parent</module><!--swagger 配置-->
+<!--        <module>framework-rocketmq-plus</module>-->
+        <module>framework-utils-parent</module>
+        <module>framework-websocket</module>
+        <module>framework-websocket-cloud</module>
 
-        <module>framework-cache</module><!--缓存接口的定义-->
-        <module>framework-cache-local-caffeine</module><!--本地缓存模块-->
-        <module>framework-cache-redis</module><!--缓存接口的实现- redis-->
-
-        <module>framework-lock</module><!--分布式锁 -->
-        <module>framework-lock-serial</module><!--分布式序列,依赖 [ framework-lock ] -->
-
-        <module>framework-distributed-tx</module><!--分布式事物配置 -->
-
-        <module>framework-spring-cloud-parent</module><!--spring-cloud 的一些集成 -->
-
-        <module>framework-email</module><!--邮件发送模板-->
-        <module>framework-tablelog</module><!--表操作日志-->
     </modules>
 
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <plugins>
-
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
-        </plugins>
-
     </build>
 </project>
