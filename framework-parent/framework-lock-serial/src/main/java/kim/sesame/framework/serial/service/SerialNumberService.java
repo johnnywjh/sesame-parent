@@ -6,7 +6,7 @@ import kim.sesame.framework.serial.define.ISerialNumberService;
 import kim.sesame.framework.serial.define.SerialNumberRule;
 import kim.sesame.framework.serial.entity.SerialNumberRuleEntity;
 import kim.sesame.framework.utils.Argument;
-import kim.sesame.framework.utils.DateUtils;
+import kim.sesame.framework.utils.DateUtil;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,12 +118,13 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
         // 是否需要时间
         if (serialNumberRule.isNeedTime()) {
             // 如果对于上一个已生成的编号已跨天，需重置对应的sequence
-            String currentDate = DateUtils.convert(
-                    serialNumberRuleEntity.getCurTime(),
-                    DateUtils.DATE_FORMAT);
-            String nowDate = DateUtils.convert(
-                    Calendar.getInstance().getTime(), DateUtils.DATE_FORMAT);
-            Long differDayNum = DateUtils.getTimeDiff(currentDate, nowDate);
+//            String currentDate = DateUtil.dateToString(
+//                    serialNumberRuleEntity.getCurTime(),
+//                    DateUtil.DATE_FORMATTER);
+//
+//            String nowDate = DateUtil.dateToString(
+//                    Calendar.getInstance().getTime(), DateUtil.DATE_FORMATTER);
+            Long differDayNum = DateUtil.getDaysDiff(serialNumberRuleEntity.getCurTime(), new Date());
             if (differDayNum > 0) {
                 resetNo = true;
             }
@@ -134,7 +135,7 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
         }
         // 时间前缀
         if (serialNumberRule.isNeedTime()) {
-            newCode.append(DateUtils.convert(Calendar.getInstance().getTime(), serialNumberRule.getTimeFormat()));
+            newCode.append(DateUtil.dateToString(Calendar.getInstance().getTime(), serialNumberRule.getTimeFormat()));
         }
         // 分隔符
         if (serialNumberRule.isNeedDelimiter()) {

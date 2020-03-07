@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>kim.sesame.framework</groupId>
 		<artifactId>framework-parent</artifactId>
-		<version>2.0.3</version><!-- sesame.version -->
+		<version>2.1.0</version><!-- sesame.version -->
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -13,6 +13,11 @@
 	<name>${project.artifactId}-${project.version}</name>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>${sesame.groupId}</groupId>
+			<artifactId>framework-core</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
