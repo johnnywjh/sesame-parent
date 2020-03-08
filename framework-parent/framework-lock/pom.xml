@@ -19,20 +19,10 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
+			<groupId>com.zengtengpeng</groupId>
+			<artifactId>redisson-spring-boot-starter</artifactId>
+			<version>1.0.4</version>
 		</dependency>
-		<dependency>
-			<groupId>${sesame.groupId}</groupId>
-			<artifactId>framework-core</artifactId>
-		</dependency>
-
-		<dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson</artifactId>
-			<version>3.12.3</version>
-        </dependency>
 
 	</dependencies>
 	<build>

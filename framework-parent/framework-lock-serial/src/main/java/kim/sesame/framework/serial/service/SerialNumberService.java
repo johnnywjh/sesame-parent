@@ -1,6 +1,6 @@
 package kim.sesame.framework.serial.service;
 
-import kim.sesame.framework.lock.service.DistributedLocker;
+import com.zengtengpeng.annotation.Lock;
 import kim.sesame.framework.serial.dao.SerialNumberRuleDao;
 import kim.sesame.framework.serial.define.ISerialNumberService;
 import kim.sesame.framework.serial.define.SerialNumberRule;
@@ -33,10 +33,6 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
     @Autowired
     private SerialNumberRuleDao serialNumberRuleDao;
 
-    @Autowired
-    private DistributedLocker locker;
-
-
     @Override
     public void afterPropertiesSet() throws Exception {
         serialNumberRuleDao.check_notExistsCreate();
@@ -44,16 +40,10 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Lock(keys = "#serialNumberRule.code",keyConstant = LOCK_KEY_PREFIX)
     public String generateSerialNumber(SerialNumberRule serialNumberRule, String... params) {
         Argument.notNull(serialNumberRule, "序号规则不能为空!");
-        String lockKey = LOCK_KEY_PREFIX + serialNumberRule.getCode();
-
-        log.info("获取Redis分布式锁：" + serialNumberRule.getCode());
         try {
-//            locker.lock(lockKey);
-            locker.tryFairLock(lockKey, 5L, 10L);
-            log.info("Redis分布式锁加锁成功:" + lockKey);
-
             SerialNumberRuleEntity serialNumberRuleEntity = getSerialNumberRule(serialNumberRule);
             SerialNumberEntry result = spliceSerialNumber(serialNumberRule,
                     serialNumberRuleEntity, true, params);
@@ -64,11 +54,7 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            locker.unlock(lockKey);
-            log.info("Redis分布式锁释放锁成功:" + lockKey);
         }
-
     }
 
     /**

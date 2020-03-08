@@ -1,7 +1,7 @@
 package kim.sesame.framework.rocketmq.msg;
 
 import com.alibaba.fastjson.JSON;
-import kim.sesame.framework.lock.service.DistributedLocker;
+import com.zengtengpeng.annotation.Lock;
 import kim.sesame.framework.utils.Argument;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang3.StringUtils;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.text.MessageFormat;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
@@ -20,8 +19,6 @@ import java.util.function.Consumer;
 @CommonsLog
 public class MsgConsumerService {
 
-    @Autowired
-    private DistributedLocker locker;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
@@ -87,30 +84,26 @@ public class MsgConsumerService {
 
         // 1. 判断消息有没有被消费过
         String lockKey = getRedisKey(mo.getId(), consumerGroupName);
-        String redisKey = "redis_"+lockKey;
+        String redisKey = "redis_" + lockKey;
         String result = stringRedisTemplate.opsForValue().get(redisKey);
 
         String name = Thread.currentThread().getName();
         if (StringUtils.isEmpty(result)) {
-            log.debug(MessageFormat.format("{0}尝试获取锁,key : {1}", name, lockKey));
             try {
-                //2 获取分布式锁
-                Long timeout = 20L;
-                locker.tryLock(lockKey, 10L, timeout);
-                log.debug(MessageFormat.format("{0}获取锁成功,key : {1}, 锁过期时间 {2} 秒", name, lockKey, timeout));
-                //3 消费消息
-                consumer.accept(mo.getMsg());
-
-                // 4 往reids中存入消息
-                stringRedisTemplate.opsForValue().set(redisKey, "ok", keyTime, TimeUnit.HOURS);
-
+                lock(lockKey, consumer, mo, redisKey, keyTime);
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                locker.unlock(lockKey);
-                log.debug(MessageFormat.format("{0} unlock success ,key : {1}", name, lockKey));
             }
         }
+    }
+
+    @Lock(keys = "#key", keyConstant = "_redis")
+    public void lock(String key, Consumer<String> consumer, MsgObject mo, String redisKey, long keyTime) {
+        //3 消费消息
+        consumer.accept(mo.getMsg());
+
+        // 4 往reids中存入消息
+        stringRedisTemplate.opsForValue().set(redisKey, "ok", keyTime, TimeUnit.HOURS);
     }
 
     private String getRedisKey(String msgObject, String consumerGroupName) {
