@@ -12,10 +12,6 @@
 	<packaging>jar</packaging>
 	<name>${project.artifactId}-${project.version}</name>
 
-	<properties>
-		<curator.client.version>2.11.1</curator.client.version>
-	</properties>
-
 	<dependencies>
 
 		<dependency>
