@@ -201,38 +201,53 @@
                 </configuration>
             </plugin>
 
-            <!--本地install  注释掉这个-->
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>${gpg.version}</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
-            <!--
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.3</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
-            -->
-
         </plugins>
+
+        <!--插件定义,被继承-->
+        <pluginManagement>
+            <plugins>
+                <!--自定义插件:重新加载资源文件-->
+                <plugin>
+                    <groupId>kim.sesame.framework</groupId>
+                    <artifactId>reload-resources-file</artifactId>
+                    <version>${sesame.version}</version>
+                    <configuration>
+                        <srcFiles>
+                            <srcFile>${project.basedir}/src/main/resources/public</srcFile>
+                            <srcFile>${project.basedir}/src/main/resources/static</srcFile>
+                            <srcFile>${project.basedir}/src/main/resources/templates</srcFile>
+                        </srcFiles>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>reloadResourcesFile</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--自定义插件:打包时压缩指定目录-->
+                <plugin>
+                    <groupId>kim.sesame.framework</groupId>
+                    <artifactId>zip</artifactId>
+                    <version>${sesame.version}</version>
+                    <configuration>
+                        <paths>
+                            <path>${project.basedir}/target/classes/com/sesame/theme</path>
+                        </paths>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>zip</goal>
+                            </goals>
+                            <phase>compile</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
 
         <!-- 开启资源过滤 -->
         <resources>
@@ -256,39 +271,4 @@
         </resources>
     </build>
 
-    <!--
-        <licenses>
-            <license>
-                <name>The Apache License, Version 2.0</name>
-                <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            </license>
-        </licenses>
-        <developers>
-            <developer>
-                <name>johnny</name>
-                <email>654499437@qq.com</email>
-                <roles>
-                    <role>developer</role>
-                </roles>
-                <timezone>+8</timezone>
-            </developer>
-        </developers>
-        <scm>
-            <connection>scm:git:https://gitee.com/sesamekim/framework-boot.git</connection>
-            <developerConnection>scm:git:https://gitee.com/sesamekim/framework-boot.git</developerConnection>
-            <url>https://gitee.com/sesamekim/framework-boot</url>
-            <tag>v${project.version}</tag>
-        </scm>
-        <distributionManagement>
-            <snapshotRepository>
-                <id>ossrh</id>
-                <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            </snapshotRepository>
-            <repository>
-                <id>ossrh</id>
-                <name>Maven Central Staging Repository</name>
-                <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-            </repository>
-        </distributionManagement>
-    -->
 </project>
