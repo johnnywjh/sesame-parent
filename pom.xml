@@ -249,7 +249,7 @@
             </plugins>
         </pluginManagement>
 
-        <!-- 开启资源过滤 -->
+        <!-- 开启资源过滤
         <resources>
             <resource>
                 <directory>${project.basedir}/src/main/resources</directory>
@@ -269,6 +269,7 @@
                 </includes>
             </resource>
         </resources>
+         -->
     </build>
 
 </project>
