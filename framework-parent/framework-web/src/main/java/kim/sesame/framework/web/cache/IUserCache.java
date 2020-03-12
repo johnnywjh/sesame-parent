@@ -8,6 +8,7 @@ import kim.sesame.framework.web.entity.IUser;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -16,10 +17,6 @@ import java.util.concurrent.TimeUnit;
  **/
 public interface IUserCache {
 
-    /**
-     * 子类在spring 容器中的注册名字
-     */
-    // String USER_LOGIN_BEAN = "user_cache_bean";
     /**
      * 登录后,用户账号在缓存中的key
      */
@@ -120,6 +117,16 @@ public interface IUserCache {
     }
 
     /**
+     * 获取用户角色信息
+     *
+     * @param userNo 用户账号
+     * @return 用户角色信息的集合
+     */
+    default List<IRole> getUserRoles(String userNo) {
+        return new ArrayList<>();
+    }
+
+    /**
      * 获取用户对象
      *
      * @param userNo 用户账号
@@ -128,10 +135,10 @@ public interface IUserCache {
     IUser getUserCache(String userNo);
 
     /**
-     * 获取用户角色信息
+     * 清楚用户的缓存,一般注销用户或者重新登录之后需要
      *
-     * @param userNo 用户账号
-     * @return 用户角色信息的集合
+     * @param userNo
      */
-    List<IRole> getUserRoles(String userNo);
+    default void clearUserCache(String userNo) {
+    }
 }
