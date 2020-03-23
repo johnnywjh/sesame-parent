@@ -12,6 +12,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServlet;
+import java.text.MessageFormat;
 import java.util.Date;
 
 /**
@@ -39,8 +40,7 @@ public class WebInit extends HttpServlet implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
         System.out.println();
-        log.info("");
-        log.info("************服务器启动执行方法***************");
+        log.info("************************************");
         ServletContext application = arg0.getServletContext();
 
         // 1 项目当前路径
@@ -64,14 +64,12 @@ public class WebInit extends HttpServlet implements ServletContextListener {
         application.setAttribute("iconPath", web.getIconPath());
         application.setAttribute("v", new Date().getTime());
 
-        log.info("basePath : " + application.getAttribute("basePath"));
-        log.info("resource : " + application.getAttribute("resource"));
-        log.info("fileMapping : " + application.getAttribute("fileMapping"));
-        log.info("iconPath : " + application.getAttribute("iconPath"));
-        log.info("v : " + application.getAttribute("v"));
-
-        log.info("************服务器启动执行方法结束***************");
-        log.info("");
+        log.info(MessageFormat.format("basePath:{0} , resource:{1} , fileMapping:{2} , iconPath:{3} , v:{4}",
+                application.getAttribute("basePath"), application.getAttribute("resource")
+                , application.getAttribute("fileMapping"), application.getAttribute("iconPath")
+                , application.getAttribute("v")
+        ));
+        log.info("************************************");
         System.out.println();
     }
 
