@@ -116,5 +116,6 @@ public class GData {
     public  static interface LOCALCACHE{
         String WEB_CACHE_USER_INFO = "webCacheUserInfo";
         String WEB_CACHE_USER_ROLE = "webCacheUserRole";
+        String WEB_CACHE_USER_MENU = "webCacheUserMenu";
     }
 }
