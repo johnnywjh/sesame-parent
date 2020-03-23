@@ -39,7 +39,7 @@ public class WebInit extends HttpServlet implements ServletContextListener {
     // 服务器启动时执行
     @Override
     public void contextInitialized(ServletContextEvent arg0) {
-        System.out.println();
+//        System.out.println();
         log.info("************************************");
         ServletContext application = arg0.getServletContext();
 
@@ -62,7 +62,7 @@ public class WebInit extends HttpServlet implements ServletContextListener {
         application.setAttribute("defaultPageSize", web.getDefaultPageSize());
         application.setAttribute("pageReplace", web.getPageReplace());
         application.setAttribute("iconPath", web.getIconPath());
-        application.setAttribute("v", new Date().getTime());
+        application.setAttribute("v", new Date().getTime()+"");
 
         log.info(MessageFormat.format("basePath:{0} , resource:{1} , fileMapping:{2} , iconPath:{3} , v:{4}",
                 application.getAttribute("basePath"), application.getAttribute("resource")
@@ -70,7 +70,7 @@ public class WebInit extends HttpServlet implements ServletContextListener {
                 , application.getAttribute("v")
         ));
         log.info("************************************");
-        System.out.println();
+//        System.out.println();
     }
 
 }
