@@ -1,6 +1,7 @@
 package kim.sesame.framework.web.interceptor.reqlog;
 
 import com.alibaba.fastjson.JSONObject;
+import kim.sesame.framework.utils.DateUtil;
 import kim.sesame.framework.web.annotation.IgnoreReqLogPrint;
 import kim.sesame.framework.web.context.LogProintContext;
 import kim.sesame.framework.web.response.Response;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +41,7 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
         }
 
         log.info(getReqData(request));
+        LogProintContext.getLogProintContext().setStartTime(new Date());
         LogProintContext.getLogProintContext().setIsIgnore(true);
 
         return true;
@@ -51,6 +54,8 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        LogProintContext.getLogProintContext().setEndTime(new Date());
+
         if (LogProintContext.getLogProintContext().getIsIgnore()) {
             log.info(getResData(response));
         }
@@ -64,7 +69,7 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
 
             msg.append("Inbound Message\n\n");
             msg.append(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
-            msg.append("Address: ").append(request.getRequestURL()).append("\n");
+            msg.append("Address: ").append(request.getMethod()).append("\t").append(request.getRequestURL()).append("\n");
             msg.append("ClientIp: ").append(IPUitl.getRemortIP(request)).append("\n");
 //            msg.append("QueryString: ").append(request.getQueryString()).append("\n");
             msg.append("Encoding: ").append(request.getCharacterEncoding()).append("\n");
@@ -90,7 +95,9 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
         try {
             msg.append("Outbound Message\n\n");
             msg.append("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n");
-            msg.append(response.toString().replace("\r\n", "\t")).append("\n");
+//            msg.append(response.toString().replace("\r\n", "\t")).append("\n");
+            double t = LogProintContext.getLogProintContext().getTimeConsuming();
+            msg.append("接口耗时:").append(t).append(" 秒,当前时间:").append(DateUtil.dateToString(new Date(), null)).append("\n");
             Response res = LogProintContext.getLogProintContext().getResponse();
 
             if (res != null) {

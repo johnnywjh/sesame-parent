@@ -2,6 +2,8 @@ package kim.sesame.framework.web.context;
 
 import kim.sesame.framework.web.response.Response;
 
+import java.util.Date;
+
 /**
  * 日志打印上下文对象
  */
@@ -9,6 +11,8 @@ public final class LogProintContext {
 
     private final static ThreadLocal<Boolean> IGNORE = new ThreadLocal<>();
     private final static ThreadLocal<Response> RESPONSE = new ThreadLocal<>();
+    private final static ThreadLocal<Date> START_TIME = new ThreadLocal<>();
+    private final static ThreadLocal<Date> END_TIME = new ThreadLocal<>();
 
     //构造器私有化
     private LogProintContext() {
@@ -52,10 +56,28 @@ public final class LogProintContext {
         RESPONSE.set(response);
     }
 
+    public void setStartTime(Date startTime) {
+        START_TIME.set(startTime);
+    }
+
+    public void setEndTime(Date endTime) {
+        END_TIME.set(endTime);
+    }
+
+    /**
+     * 返回接口耗时, 秒
+     */
+    public double getTimeConsuming() {
+        long t1 = START_TIME.get().getTime();
+        long t2 = END_TIME.get().getTime();
+        return ((double) (t2 - t1)) / 1000;
+    }
 
     /*-------------------------------------------------------*/
     public void clean() {
         IGNORE.remove();
         RESPONSE.remove();
+        START_TIME.remove();
+        END_TIME.remove();
     }
 }
