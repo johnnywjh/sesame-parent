@@ -64,9 +64,19 @@ public class WebInit extends HttpServlet implements ServletContextListener {
         application.setAttribute("iconPath", web.getIconPath());
         application.setAttribute("v", new Date().getTime()+"");
 
-        log.info(MessageFormat.format("basePath:{0} , resource:{1} , fileMapping:{2} , iconPath:{3} , v:{4}",
-                application.getAttribute("basePath"), application.getAttribute("resource")
-                , application.getAttribute("fileMapping"), application.getAttribute("iconPath")
+        // 当前的环境 spring.profiles.active
+        String profilesActive = env.getProperty("spring.profiles.active");
+        if (StringUtils.isEmpty(profilesActive)) {
+            profilesActive = "";
+        }
+        application.setAttribute("profilesActive", profilesActive);
+
+        log.info(MessageFormat.format("basePath:{0} , profilesActive:{1} , resource:{2} , fileMapping:{3} , iconPath:{4} , v:{5}",
+                application.getAttribute("basePath")
+                , application.getAttribute("profilesActive")
+                , application.getAttribute("resource")
+                , application.getAttribute("fileMapping"
+                ), application.getAttribute("iconPath")
                 , application.getAttribute("v")
         ));
         log.info("************************************");
