@@ -7,7 +7,6 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.codehaus.plexus.util.FileUtils;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 @Mojo(name = "reloadResourcesFile")
