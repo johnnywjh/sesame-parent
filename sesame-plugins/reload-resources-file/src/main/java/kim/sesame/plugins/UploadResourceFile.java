@@ -35,7 +35,6 @@ public class UploadResourceFile extends AbstractMojo {
         if (srcFiles != null && srcFiles.size() > 0) {
 
             getLog().info("--------------");
-            List<String> zips = new ArrayList<>();
             try {
                 for (int i = 0; i < srcFiles.size(); i++) {
                     diffAndCover(new File(srcFiles.get(i)));
