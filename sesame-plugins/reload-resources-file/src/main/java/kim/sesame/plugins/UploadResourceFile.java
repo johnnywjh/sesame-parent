@@ -18,12 +18,16 @@ public class UploadResourceFile extends AbstractMojo {
      */
     @Parameter
     private List<String> srcFiles;
-
     /**
-     * 目标文件夹
+     * 后缀
      */
     @Parameter
-    private boolean updateAll = false;
+    private List<String> suffixs;
+    /**
+     * 直接更新全部
+     */
+    @Parameter
+    private Boolean updateAll = false;
 
     @Override
     public void execute() throws MojoExecutionException {
@@ -59,19 +63,26 @@ public class UploadResourceFile extends AbstractMojo {
             String srcPath = file.getAbsolutePath();  // 源代码文件目录
             String targetPath = srcPath.replace("src/main/resources", "target/classes")
                     .replace("src\\main\\resources", "target\\classes");
-            File targetFile = new File(targetPath);
+
+            boolean isSuffix = true; // 后缀校验是否通过
+            if (suffixs != null && suffixs.size() > 0) {
+                String suffix = srcPath.substring(srcPath.lastIndexOf("."));
+                isSuffix = suffixs.contains(suffix);
+            }
 
             try {
-                if (updateAll) {
-                    FileUtils.copyFile(file, targetFile);
-                    getLog().info("文件更新:" + srcPath);
-                } else {
-                    if (file.length() != targetFile.length()) {
+                if (isSuffix) {
+                    File targetFile = new File(targetPath);
+                    if (updateAll) {
                         FileUtils.copyFile(file, targetFile);
                         getLog().info("文件更新:" + srcPath);
+                    } else {
+                        if (file.length() != targetFile.length()) {
+                            FileUtils.copyFile(file, targetFile);
+                            getLog().info("文件更新:" + srcPath);
+                        }
                     }
                 }
-
             } catch (Exception e) {
                 getLog().error(e.getMessage());
             }
