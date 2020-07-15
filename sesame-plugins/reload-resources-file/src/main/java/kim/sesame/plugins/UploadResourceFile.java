@@ -19,12 +19,12 @@ public class UploadResourceFile extends AbstractMojo {
     @Parameter
     private List<String> srcFiles;
     /**
-     * 后缀
+     * 要处理的文件后缀. 不设置就不做控制
      */
     @Parameter
     private List<String> suffixs;
     /**
-     * 直接更新全部
+     * 直接更新全部. false:对比文件差异, true:直接更新所有文件
      */
     @Parameter
     private Boolean updateAll = false;
