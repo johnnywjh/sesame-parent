@@ -17,7 +17,6 @@
     <modules>
         <module>zip</module>
         <module>reload-resources-file</module>
-        <module>reload-resources-zip</module>
     </modules>
 
     <dependencyManagement>
