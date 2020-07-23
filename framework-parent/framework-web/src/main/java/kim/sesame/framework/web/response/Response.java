@@ -29,6 +29,9 @@ public class Response<T> implements java.io.Serializable {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private GPage page;
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Object other; //其他信息
+
     public Response() {
         this.success = false;
         this.exceptionType = "";
@@ -76,6 +79,10 @@ public class Response<T> implements java.io.Serializable {
 
     public Response setPage(GPage page) {
         this.page = page;
+        return this;
+    }
+    public Response setOther(Object other) {
+        this.other = other;
         return this;
     }
 
