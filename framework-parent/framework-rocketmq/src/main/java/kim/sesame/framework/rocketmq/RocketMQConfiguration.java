@@ -17,7 +17,7 @@ import java.util.Optional;
 /**
  * RocketMQ 自动装载
  * 官网地址 :  https://github.com/rocketmq/rocketmq-spring-boot-starter
- * 以前的参考项目 : https://github.com/apache/rocketmq-externals/tree/master/rocketmq-spring-boot-starter
+ * 官方网站: https://mvnrepository.com/artifact/org.apache.rocketmq/rocketmq-spring-boot-starter
  */
 @Configuration
 @ComponentScan
