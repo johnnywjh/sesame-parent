@@ -34,6 +34,16 @@ public final class UserContext {
         return ContextHolder.userContext;
     }
 
+    /**
+     * 手动设置一个上下文用户,一般用于job任务
+     */
+    public void setInitValue(String account, String name) {
+        IUser user = new IUser();
+        user.setAccount(account);
+        user.setName(name);
+        setUser(user);
+    }
+
     /*-------------------------------------------------------*/
     public IUser getUser() {
         return USER_THREAD_LOCAL.get();
