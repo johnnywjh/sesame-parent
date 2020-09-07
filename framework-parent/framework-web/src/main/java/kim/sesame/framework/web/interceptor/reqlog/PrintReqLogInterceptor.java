@@ -70,9 +70,9 @@ public class PrintReqLogInterceptor extends HandlerInterceptorAdapter {
             msg.append("Inbound Message\n\n");
             msg.append(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
             msg.append("Address: ").append(request.getMethod()).append("\t").append(request.getRequestURL()).append("\n");
-            msg.append("ClientIp: ").append(IPUitl.getRemortIP(request)).append("\n");
+            msg.append("ClientIp: ").append(IPUitl.getRemortIP(request)).append("\t");
 //            msg.append("QueryString: ").append(request.getQueryString()).append("\n");
-            msg.append("Encoding: ").append(request.getCharacterEncoding()).append("\n");
+            msg.append("Encoding: ").append(request.getCharacterEncoding()).append("\t");
             msg.append("Content-Type: ").append(request.getContentType()).append("\n");
             msg.append("Headers: ").append(new ServletServerHttpRequest(request).getHeaders()).append("\n");
 
