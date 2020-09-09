@@ -65,7 +65,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
 
             // 如果jwt传入的是 用户账号, 需要校验密码版本
             // 修改密码后记得要清理用户缓存,不然密码版本一直会校验失败
-            if (jwtUser.isAccLoad() && user != null) {
+            if (jwtUser.isAccLoad() && jwtUser.isComparePwdVersion() && user != null) {
                 if (!jwtUser.getPwdVersion().equals(user.getPwdVersion())) {
                     user = null;
                 }
@@ -110,6 +110,10 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
                 Object accLoad = getClaimsKey(claims, GData.JWT.ACC_LOAD);
                 if (accLoad != null) {
                     jwtUser.setAccLoad((Boolean) accLoad);
+                }
+                Object comparePwdVersion = getClaimsKey(claims, GData.JWT.COMPARE_PWD_VERSION);
+                if (comparePwdVersion != null) {
+                    jwtUser.setComparePwdVersion((Boolean) comparePwdVersion);
                 }
 
                 Object sessionObj = getClaimsKey(claims, GData.JWT.SESSION_ID);

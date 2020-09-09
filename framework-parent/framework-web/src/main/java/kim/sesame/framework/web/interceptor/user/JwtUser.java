@@ -15,6 +15,10 @@ public class JwtUser {
     private boolean accLoad = false;
     private String userAccount;
     private String pwdVersion;
+    /**
+     * 是否边角密码版本号, 默认不比较
+     */
+    private boolean comparePwdVersion = false;
 
     @Override
     public String toString() {
@@ -22,6 +26,7 @@ public class JwtUser {
                 "sessionId='" + sessionId + '\'' +
                 ", accLoad=" + accLoad +
                 ", userAccount='" + userAccount + '\'' +
+                ", comparePwdVersion='" + comparePwdVersion + '\'' +
                 ", pwdVersion='" + pwdVersion + '\'' +
                 '}';
     }
