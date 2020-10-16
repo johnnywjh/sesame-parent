@@ -1,6 +1,7 @@
 package kim.sesame.framework.util.upload.controller;
 
 import kim.sesame.framework.util.upload.service.UploadService;
+import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.controller.AbstractWebController;
 import kim.sesame.framework.web.response.Response;
@@ -31,6 +32,7 @@ public class UploadController extends AbstractWebController {
      * @param file       文件流
      * @return
      */
+    @IgnoreLoginCheck(isLoadUser = true)
     @RequestMapping("/file")
     public Response uploadFile(String moduleName, MultipartFile file) {
         String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
@@ -44,6 +46,7 @@ public class UploadController extends AbstractWebController {
      * @param file 文件流
      * @return
      */
+    @IgnoreLoginCheck(isLoadUser = true)
     @RequestMapping("/layfile")
     public Map layfile(MultipartFile file) {
         String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), "e", file);
