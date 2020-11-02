@@ -10,43 +10,64 @@ import java.util.Date;
  */
 public interface IEntity extends Serializable {
     String getId();
+
     void setId(String id);
 
-    default String getCreateUser(){return null;}
-    default void setCreateUser(String createUser){}
+    default String getCreateUser() {
+        return null;
+    }
 
-    default Date getCreateTime(){return null;}
-    default void setCreateTime(Date createTime){}
+    default void setCreateUser(String createUser) {
+    }
 
-    default String getModifyUser(){return null;}
-    default void setModifyUser(String updateUser){}
+    default Date getCreateTime() {
+        return null;
+    }
 
-    default Date getModifyTime(){return null;}
-    default void setModifyTime(Date updateTime){}
+    default void setCreateTime(Date createTime) {
+    }
 
+    default String getModifyUser() {
+        return null;
+    }
 
-     default void initCreateAndId(String user) {
-         initCreateAndId(user, UUIDUtil.getShortUUID());
-     }
+    default void setModifyUser(String updateUser) {
+    }
 
-     default void initCreateAndId(String user, String id) {
-         setId(id);
-         initCreate(user);
-     }
+    default Date getModifyTime() {
+        return null;
+    }
 
-     default void initCreate(String user) {
-         Date d = new Date();
-         setCreateUser(user);
-         setCreateTime(d);
-         setModifyUser(user);
-         setModifyTime(d);
-     }
+    default void setModifyTime(Date updateTime) {
+    }
 
 
-     default void initModify(String user) {
-         Date d = new Date();
-         setModifyUser(user);
-         setModifyTime(d);
-     }
+    default void initCreateAndId(String user) {
+        initCreateAndId(user, UUIDUtil.getShortUUID());
+    }
+
+    default void initCreateAndId(String user, String id) {
+        setId(id);
+        initCreate(user);
+    }
+
+    default void initCreate(String user) {
+        Date d = new Date();
+        setCreateUser(user);
+        setCreateTime(d);
+        setModifyUser(user);
+        setModifyTime(d);
+    }
+
+    @Deprecated
+    default void initUpdate(String user) {
+        initModify(user);
+    }
+
+    default void initModify(String user) {
+        Date d = new Date();
+        setModifyUser(user);
+        setModifyTime(d);
+    }
 
 }
