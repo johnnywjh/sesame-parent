@@ -18,11 +18,11 @@ public interface IEntity extends Serializable {
     default Date getCreateTime(){return null;}
     default void setCreateTime(Date createTime){}
 
-    default String getUpdateUser(){return null;}
-    default void setUpdateUser(String updateUser){}
+    default String getModifyUser(){return null;}
+    default void setModifyUser(String updateUser){}
 
-    default Date getUpdateTime(){return null;}
-    default void setUpdateTime(Date updateTime){}
+    default Date getModifyTime(){return null;}
+    default void setModifyTime(Date updateTime){}
 
 
      default void initCreateAndId(String user) {
@@ -38,15 +38,15 @@ public interface IEntity extends Serializable {
          Date d = new Date();
          setCreateUser(user);
          setCreateTime(d);
-         setUpdateUser(user);
-         setUpdateTime(d);
+         setModifyUser(user);
+         setModifyTime(d);
      }
 
 
      default void initUpdate(String user) {
          Date d = new Date();
-         setUpdateUser(user);
-         setUpdateTime(d);
+         setModifyUser(user);
+         setModifyTime(d);
      }
 
 }
