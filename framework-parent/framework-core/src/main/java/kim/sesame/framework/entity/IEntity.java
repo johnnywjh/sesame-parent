@@ -43,7 +43,7 @@ public interface IEntity extends Serializable {
      }
 
 
-     default void initUpdate(String user) {
+     default void initModify(String user) {
          Date d = new Date();
          setModifyUser(user);
          setModifyTime(d);
