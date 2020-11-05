@@ -1,5 +1,6 @@
 package kim.sesame.framework.serial.dao;
 
+import kim.sesame.framework.serial.config.SerrialProperties;
 import kim.sesame.framework.serial.entity.SerialNumberRuleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,10 +19,12 @@ public class SerialNumberRuleDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    SerrialProperties serrialProperties;
 
     /* 检查表 如果不存在就创建 */
     public void check_notExistsCreate() {
-        String sql = " CREATE TABLE  IF NOT EXISTS `sys_serial_number_rule` (    " +
+        String sql = " CREATE TABLE  IF NOT EXISTS " + serrialProperties.getTableName() + " (    " +
                 "          `code` VARCHAR(50) NOT NULL COMMENT '编码',    " +
                 "          `name` VARCHAR(400) NOT NULL COMMENT '名称',    " +
                 "          `cur_time` DATETIME NOT NULL COMMENT '当前时间',    " +
@@ -36,16 +39,16 @@ public class SerialNumberRuleDao {
         SerialNumberRuleEntity entity = null;
         try {
             String sql = "SELECT     code code,name name,cur_time curTime,cur_num curNum " +
-                    "        FROM sys_serial_number_rule    " +
+                    "        FROM " + serrialProperties.getTableName() +
                     "        WHERE CODE = '" + code + "' for update ";
 
             List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
-            if(list.size()>0){
+            if (list.size() > 0) {
                 Map map = list.get(0);
                 entity = new SerialNumberRuleEntity();
                 entity.setCode(map.get("code").toString());
                 entity.setName(map.get("name").toString());
-                entity.setCurTime((Date)map.get("curTime"));
+                entity.setCurTime((Date) map.get("curTime"));
                 BigDecimal bd = (BigDecimal) map.get("curNum");
                 entity.setCurNum(bd.longValue());
             }
@@ -57,7 +60,7 @@ public class SerialNumberRuleDao {
 
     /* 新增序号信息*/
     public void addSerialNumberRule(SerialNumberRuleEntity bean) {
-        String sql = " INSERT INTO sys_serial_number_rule " +
+        String sql = " INSERT INTO  " + serrialProperties.getTableName() +
                 " (code,name,cur_time,cur_num) values " +
                 " (?,?,?,?)";
         jdbcTemplate.update(sql, new Object[]{
@@ -67,7 +70,7 @@ public class SerialNumberRuleDao {
 
     /* 更新序号信息*/
     public void updateSerialNumberRule(SerialNumberRuleEntity bean) {
-        String sql = "UPDATE sys_serial_number_rule    " +
+        String sql = "UPDATE     " + serrialProperties.getTableName() +
                 "        SET    " +
                 "        cur_time = ?,    " +
                 "        cur_num = ?    " +
