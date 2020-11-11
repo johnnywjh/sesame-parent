@@ -48,8 +48,8 @@ public class FixedUserInterceptor extends HandlerInterceptorAdapter {
             UserContext.getUserContext().setCurrentLoginUserAccount(userNo);
             IUser user = userCache.getUserCache(userNo);
 
-            log.debug(">>>>>> 登录的用户账号 : " + userNo);
-            log.debug(">>>>>> 登录的用户实体 : " + user);
+            log.debug(">>>>>> 固定登录的用户账号 : " + userNo);
+            log.debug(">>>>>> 固定登录的用户实体 : " + user);
 
             UserContext.getUserContext().setUser(user);
         }
