@@ -2,6 +2,7 @@ package kim.sesame.framework.web.config;
 
 import kim.sesame.framework.web.interceptor.auth.AuthTokenInterceptor;
 import kim.sesame.framework.web.interceptor.reqlog.PrintReqLogInterceptor;
+import kim.sesame.framework.web.interceptor.user.FixedUserInterceptor;
 import kim.sesame.framework.web.interceptor.user.UserInfoInterceptor;
 import kim.sesame.framework.web.interceptor.web.SessionInterceptor;
 import kim.sesame.framework.web.interceptor.web.WebUserInterceptor;
@@ -26,16 +27,21 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
 
-        String[] swaggerArr = {"/error", "/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**","/docs.html"};
+        String[] swaggerArr = {"/error", "/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**", "/docs.html"};
 
         // 打印请求日志
-        if(webProperties.isInterceptorPrintReqLog()){
+        if (webProperties.isInterceptorPrintReqLog()) {
             registry.addInterceptor(new PrintReqLogInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);
         }
-        // 初始化用户信息
-        if (webProperties.isInterceptorUser()) {
-            registry.addInterceptor(new UserInfoInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);
+        if (webProperties.isFixedUserEnable()) {
+            registry.addInterceptor(new FixedUserInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);
+        } else {
+            // 初始化用户信息
+            if (webProperties.isInterceptorUser()) {
+                registry.addInterceptor(new UserInfoInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);
+            }
         }
+
         // 登录校验
         if (webProperties.isInterceptorLogin()) {
             registry.addInterceptor(new WebUserInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);

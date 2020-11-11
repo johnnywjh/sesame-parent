@@ -1,9 +1,6 @@
 package kim.sesame.framework.serial.config;
 
-import kim.sesame.framework.entity.GPage;
 import lombok.Data;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 

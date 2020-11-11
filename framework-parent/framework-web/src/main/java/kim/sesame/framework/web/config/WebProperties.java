@@ -93,6 +93,11 @@ public class WebProperties implements InitializingBean {
      */
     private boolean interceptorUser = false;
     /**
+     * 内置拦截器:固定用户信息用
+     */
+    private boolean fixedUserEnable = false;
+    private String fixedUserAccount;
+    /**
      * 内置拦截器:拦截用户登录,非session方式
      */
     private boolean interceptorLogin = false;
