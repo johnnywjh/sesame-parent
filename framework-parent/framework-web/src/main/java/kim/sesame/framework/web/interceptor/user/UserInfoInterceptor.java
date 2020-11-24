@@ -39,6 +39,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         String sessionId = jwtUser.getSessionId();
         UserContext.getUserContext().setUserSessionId(sessionId);
 
+        // 忽略
         if(request.getMethod().equals("OPTIONS")){
             return true;
         }

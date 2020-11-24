@@ -29,6 +29,7 @@ public class WebUserInterceptor extends HandlerInterceptorAdapter {
         if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
             return true;
         }
+        // 忽略
         if(request.getMethod().equals("OPTIONS")){
             return true;
         }
