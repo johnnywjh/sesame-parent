@@ -39,6 +39,10 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         String sessionId = jwtUser.getSessionId();
         UserContext.getUserContext().setUserSessionId(sessionId);
 
+        if(request.getMethod().equals("OPTIONS")){
+            return true;
+        }
+
         // 1.方法名称上有忽略注解的==>直接放行
         if (handler instanceof HandlerMethod) {
             HandlerMethod method = (HandlerMethod) handler;

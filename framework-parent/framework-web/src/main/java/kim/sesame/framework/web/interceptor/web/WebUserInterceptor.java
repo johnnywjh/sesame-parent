@@ -29,6 +29,9 @@ public class WebUserInterceptor extends HandlerInterceptorAdapter {
         if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
             return true;
         }
+        if(request.getMethod().equals("OPTIONS")){
+            return true;
+        }
 
         if (handler instanceof HandlerMethod) {
             HandlerMethod method = (HandlerMethod) handler;
