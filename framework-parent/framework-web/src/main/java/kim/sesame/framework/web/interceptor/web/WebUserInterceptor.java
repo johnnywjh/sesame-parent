@@ -24,13 +24,12 @@ public class WebUserInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
-        //过滤掉静态资源
-        if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
-            return true;
-        }
         // 忽略
         if(request.getMethod().equals("OPTIONS")){
+            return true;
+        }
+        //过滤掉静态资源
+        if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
             return true;
         }
 

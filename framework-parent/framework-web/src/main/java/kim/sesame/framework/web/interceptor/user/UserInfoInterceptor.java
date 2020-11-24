@@ -28,6 +28,10 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // 忽略
+        if(request.getMethod().equals("OPTIONS")){
+            return true;
+        }
 
         //过滤掉静态资源
         if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
@@ -38,11 +42,6 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         log.debug("解析用户认证数据:" + jwtUser);
         String sessionId = jwtUser.getSessionId();
         UserContext.getUserContext().setUserSessionId(sessionId);
-
-        // 忽略
-        if(request.getMethod().equals("OPTIONS")){
-            return true;
-        }
 
         // 1.方法名称上有忽略注解的==>直接放行
         if (handler instanceof HandlerMethod) {
