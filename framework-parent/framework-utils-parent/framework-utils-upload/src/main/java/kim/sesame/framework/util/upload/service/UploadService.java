@@ -2,6 +2,8 @@ package kim.sesame.framework.util.upload.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.InputStream;
+
 /**
  * 文件上传业务接口
  */
@@ -16,4 +18,8 @@ public interface UploadService {
      * @return 返回文件地址
      */
     String uploadFileMethod(String sysCode, String moduleName, MultipartFile file);
+
+    default String uploadFileMethod(String sysCode, String moduleName, InputStream in,String type) {
+        return "";
+    }
 }
