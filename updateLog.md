@@ -3,7 +3,13 @@
 - 代码生成工具 : [https://code.sesame.kim](https://code.sesame.kim) 
 
 #### 更新日志
+#### 2.2.0 `2021-01-25`
+- 优化文件上传组件
+- 升级springboot,mybatisplus,pageHelp的版本
+
 #### 2.1 `2020-03-07`
+- 提供配置固定获取登录用户的信息
+- web拦截器允许OPTIONS类型的请求直接公国
 - 更改的仓库的名称,地址也发生的变化
 - 架构升级 spring-boot:2.x , mybatis-plus:3.3.1
 - 去掉了 tablelog , springcloud 模块
