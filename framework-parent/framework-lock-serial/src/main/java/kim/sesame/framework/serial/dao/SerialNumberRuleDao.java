@@ -24,14 +24,16 @@ public class SerialNumberRuleDao {
 
     /* 检查表 如果不存在就创建 */
     public void check_notExistsCreate() {
-        String sql = " CREATE TABLE  IF NOT EXISTS " + serrialProperties.getTableName() + " (    " +
-                "          `code` VARCHAR(50) NOT NULL COMMENT '编码',    " +
-                "          `name` VARCHAR(400) NOT NULL COMMENT '名称',    " +
-                "          `cur_time` DATETIME NOT NULL COMMENT '当前时间',    " +
-                "          `cur_num` DECIMAL(18,0) NOT NULL COMMENT '当前序号',    " +
-                "          PRIMARY KEY (`code`)    " +
-                "        ) DEFAULT CHARSET=utf8mb4 COMMENT='序列号表'";
-        jdbcTemplate.execute(sql);
+        if(serrialProperties.isEnableCheck()){
+            String sql = " CREATE TABLE  IF NOT EXISTS " + serrialProperties.getTableName() + " (    " +
+                    "          `code` VARCHAR(50) NOT NULL COMMENT '编码',    " +
+                    "          `name` VARCHAR(400) NOT NULL COMMENT '名称',    " +
+                    "          `cur_time` DATETIME NOT NULL COMMENT '当前时间',    " +
+                    "          `cur_num` DECIMAL(18,0) NOT NULL COMMENT '当前序号',    " +
+                    "          PRIMARY KEY (`code`)    " +
+                    "        ) DEFAULT CHARSET=utf8mb4 COMMENT='序列号表'";
+            jdbcTemplate.execute(sql);
+        }
     }
 
     /* 根据code查询序号实体并添加悲观锁 */
