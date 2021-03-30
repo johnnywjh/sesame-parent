@@ -2,6 +2,7 @@ package kim.sesame.framework.serial.dao;
 
 import kim.sesame.framework.serial.config.SerrialProperties;
 import kim.sesame.framework.serial.entity.SerialNumberRuleEntity;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ import java.util.Map;
 /**
  * 序列号Dao
  **/
+@CommonsLog
 @Component
 public class SerialNumberRuleDao {
 
@@ -24,7 +26,8 @@ public class SerialNumberRuleDao {
 
     /* 检查表 如果不存在就创建 */
     public void check_notExistsCreate() {
-        if(serrialProperties.isEnableCheck()){
+        if(serrialProperties.getEnableCheck()){
+            log.info("start create table");
             String sql = " CREATE TABLE  IF NOT EXISTS " + serrialProperties.getTableName() + " (    " +
                     "          `code` VARCHAR(50) NOT NULL COMMENT '编码',    " +
                     "          `name` VARCHAR(400) NOT NULL COMMENT '名称',    " +
@@ -33,6 +36,8 @@ public class SerialNumberRuleDao {
                     "          PRIMARY KEY (`code`)    " +
                     "        ) DEFAULT CHARSET=utf8mb4 COMMENT='序列号表'";
             jdbcTemplate.execute(sql);
+        }else{
+            log.info("not create table");
         }
     }
 

@@ -19,7 +19,7 @@ public class SerrialProperties {
     /**
      * 是否启动检查
      */
-    private boolean enableCheck = false;
+    private Boolean enableCheck = false;
 
     /**
      * 序列化表的表名 默认 t_bse_serial_number_rule
