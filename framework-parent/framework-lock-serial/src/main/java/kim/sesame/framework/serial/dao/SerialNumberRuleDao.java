@@ -26,8 +26,8 @@ public class SerialNumberRuleDao {
 
     /* 检查表 如果不存在就创建 */
     public void check_notExistsCreate() {
-        if(serrialProperties.getEnableCheck()){
-            log.info("start create table");
+        if (serrialProperties.getEnableCheck()) {
+            log.info("start create table " + serrialProperties.getTableName());
             String sql = " CREATE TABLE  IF NOT EXISTS " + serrialProperties.getTableName() + " (    " +
                     "          `code` VARCHAR(50) NOT NULL COMMENT '编码',    " +
                     "          `name` VARCHAR(400) NOT NULL COMMENT '名称',    " +
@@ -36,8 +36,8 @@ public class SerialNumberRuleDao {
                     "          PRIMARY KEY (`code`)    " +
                     "        ) DEFAULT CHARSET=utf8mb4 COMMENT='序列号表'";
             jdbcTemplate.execute(sql);
-        }else{
-            log.info("not create table");
+        } else {
+//            log.info("not create table");
         }
     }
 
