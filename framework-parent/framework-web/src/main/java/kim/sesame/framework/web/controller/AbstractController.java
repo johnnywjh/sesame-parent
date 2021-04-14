@@ -24,6 +24,11 @@ import java.util.List;
 @CommonsLog
 public abstract class AbstractController {
 
+    //单例 普通的成功用公用的对象
+    private static class ContextSuccess {
+        private final static Response SUCCESS = Response.create().setSuccess(true);
+    }
+
     public static interface ErrorCode {
         static final String VALIDATOR = "1000"; //数据验证错误
         static final String NOT_LOGIN = "1001"; //用户为登录
@@ -43,7 +48,8 @@ public abstract class AbstractController {
     //    @Autowired(required = false)*****
     //    private ILogExceptionWriter logExceptionWriter;
     public Response returnSuccess() {
-        return Response.create().setSuccess(true);
+//        return Response.create().setSuccess(true);
+        return ContextSuccess.SUCCESS;
     }
 
     public Response returnSuccess(Object result) {
