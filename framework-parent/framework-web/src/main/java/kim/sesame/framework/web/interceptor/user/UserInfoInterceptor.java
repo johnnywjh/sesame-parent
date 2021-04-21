@@ -9,6 +9,7 @@ import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
 import kim.sesame.framework.web.entity.IUser;
 import kim.sesame.framework.web.jwt.JwtHelper;
+import kim.sesame.framework.web.util.IPUitl;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -37,6 +38,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
             return true;
         }
+        UserContext.getUserContext().setIp(IPUitl.getRemortIP(request));
 
         JwtUser jwtUser = parentReqData(request);
         log.debug("解析用户认证数据:" + jwtUser);

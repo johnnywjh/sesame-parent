@@ -18,6 +18,7 @@ public final class UserContext {
     private final static ThreadLocal<IUser> USER_THREAD_LOCAL = new ThreadLocal<>();
     private final static ThreadLocal<String> SESSIONID = new ThreadLocal<>();
     private final static ThreadLocal<String> ACCOUNT = new ThreadLocal<>();
+    private final static ThreadLocal<String> IP = new ThreadLocal<>();
     private final static ThreadLocal<List<IRole>> USER_ROLE = new ThreadLocal<>();
     private final static ThreadLocal<Object> USER_DATA = new ThreadLocal<>();
 
@@ -55,6 +56,15 @@ public final class UserContext {
 
     public void setUser(IUser user) {
         USER_THREAD_LOCAL.set(user);
+    }
+
+    /*-------------------------------------------------------*/
+    public String getIp() {
+        return IP.get();
+    }
+
+    public void setIp(String ip) {
+        IP.set(ip);
     }
 
     /*-------------------------------------------------------*/
@@ -114,5 +124,6 @@ public final class UserContext {
         USER_ROLE.remove();
         USER_DATA.remove();
         ACCOUNT.remove();
+        IP.remove();
     }
 }
