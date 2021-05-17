@@ -3,6 +3,9 @@
 - 代码生成工具 : [https://code.sesame.kim](https://code.sesame.kim) 
 
 #### 更新日志
+#### 2.3.0 `准备中`
+- 准备替换掉本地缓存组件
+
 #### 2.2.0 `2021-01-25`
 - 优化文件上传组件
 - 升级springboot,mybatisplus,pageHelp的版本
