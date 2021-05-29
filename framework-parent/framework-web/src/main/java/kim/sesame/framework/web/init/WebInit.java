@@ -45,11 +45,7 @@ public class WebInit extends HttpServlet implements ServletContextListener {
 
         // 1 项目当前路径
         if (StringUtils.isEmpty(web.getBasePath())) {
-            String context_path = env.getProperty(GData.SPRINGBOOT.contextPath);
-            if (StringUtils.isEmpty(context_path)) {
-                context_path = "";
-            }
-            application.setAttribute("basePath", context_path);
+            application.setAttribute("basePath", "");
         } else {
             application.setAttribute("basePath", web.getBasePath());
         }
