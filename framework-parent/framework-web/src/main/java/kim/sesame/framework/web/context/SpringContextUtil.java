@@ -1,6 +1,5 @@
 package kim.sesame.framework.web.context;
 
-import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.utils.Ipconfig;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.controller.ISwagger;
@@ -22,7 +21,6 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
     private static String currentPath; // 当前项目资源路径,
-    private static String projectPath; // 当前项目路径
     private static String currentIpPort; // 当前项目实例
     private static String currentIp; // 当前项目Ip
 
@@ -50,8 +48,6 @@ public class SpringContextUtil implements ApplicationContextAware {
         SpringContextUtil.applicationContext = applicationContext;
 
         //初始化当前项目资源路径
-
-        projectPath = env.getProperty(GData.SPRINGBOOT.contextPath);
 
         SpringContextUtil.currentPath = web.getUserHome() + "/ars/" + web.getSysCode() + "/data";
 
@@ -97,10 +93,6 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     public static String getCurrentPath() {
         return currentPath;
-    }
-
-    public static String getProjectPath() {
-        return projectPath;
     }
 
     public static String getCurrentIpPort() {
@@ -176,13 +168,10 @@ public class SpringContextUtil implements ApplicationContextAware {
         if (StringUtils.isEmpty(port)) {
             port = "8080";
         }
-        String basePath = environment.getProperty(GData.SPRINGBOOT.contextPath);
-        if (basePath == null) {
-            basePath = "";
-        }
-        String local_project_url = "http://127.0.0.1:" + port + basePath;
+
+        String local_project_url = "http://127.0.0.1:" + port;
         println(local_project_url);
-        String ip_project_url = "http://" + webProperties.getCurrentIpPort() + basePath;
+        String ip_project_url = "http://" + webProperties.getCurrentIpPort();
 //        println(ip_project_url);
         String profile = environment.getProperty("spring.profiles.active");
         if (StringUtils.isNotEmpty(profile)) {
