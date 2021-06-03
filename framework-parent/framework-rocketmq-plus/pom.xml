@@ -16,15 +16,15 @@
     <dependencies>
 
         <dependency>
-            <groupId>${sesame.groupId}</groupId>
+            <groupId>kim.sesame.framework</groupId>
             <artifactId>framework-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>${sesame.groupId}</groupId>
+            <groupId>kim.sesame.framework</groupId>
             <artifactId>framework-rocketmq</artifactId>
         </dependency>
         <dependency>
-            <groupId>${sesame.groupId}</groupId>
+            <groupId>kim.sesame.framework</groupId>
             <artifactId>framework-lock</artifactId>
         </dependency>
 

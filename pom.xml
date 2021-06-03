@@ -16,7 +16,6 @@
     <description></description>
 
     <properties>
-        <sesame.groupId>kim.sesame.framework</sesame.groupId>
         <sesame.version>2.2.0</sesame.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -46,91 +45,91 @@
         <dependencies>
 
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-core</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-cache</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-web</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-mybatis-plus</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-cache-redis</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-cache-local-caffeine</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-email</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-rocketmq</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-rocketmq-plus</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-websocket</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-websocket-cloud</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-lock</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-lock-serial</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-utils-parent</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-utils-ssh</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-utils-swagger</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
-                <groupId>${sesame.groupId}</groupId>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-utils-upload</artifactId>
                 <version>${sesame.version}</version>
             </dependency>

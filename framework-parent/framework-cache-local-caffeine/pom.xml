@@ -18,7 +18,7 @@
 
         <!--框架web 依赖-->
         <dependency>
-            <groupId>${sesame.groupId}</groupId>
+            <groupId>kim.sesame.framework</groupId>
             <artifactId>framework-core</artifactId>
         </dependency>
 

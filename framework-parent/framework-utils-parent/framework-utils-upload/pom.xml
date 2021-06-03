@@ -16,7 +16,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>${sesame.groupId}</groupId>
+            <groupId>kim.sesame.framework</groupId>
             <artifactId>framework-web</artifactId>
         </dependency>
 
