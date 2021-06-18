@@ -1,10 +1,8 @@
-#### 其他项目地址
-- demo 项目地址 : [https://gitee.com/sesamekim/demo](https://gitee.com/sesamekim/demo)
-- 代码生成工具 : [https://code.sesame.kim](https://code.sesame.kim) 
 
 #### 更新日志
-#### 2.3.0 `准备中`
-- 准备替换掉本地缓存组件
+#### 2.3.0 `2021-06-18`
+- 去掉PageHelp分页组件,因为兼容性问题.
+- 整理mybatisplus的分页插件
 
 #### 2.2.0 `2021-01-25`
 - 优化文件上传组件

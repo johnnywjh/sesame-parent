@@ -12,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class MyBatisPlusConfiguration {
 
+    // #mybatis-plus.mapper-locations=classpath*:**/dao/*DaoMapping.xml
+    // mybatis-plus.mapper-locations=classpath:/mapper/**/*.xml
+
     /**
      * mybatis-plus分页插件
      */
@@ -19,4 +22,6 @@ public class MyBatisPlusConfiguration {
     public PaginationInterceptor paginationInterceptor() {
         return new PaginationInterceptor();
     }
+
+
 }
