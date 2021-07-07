@@ -13,6 +13,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import java.net.InetAddress;
 import java.util.Map;
 
 @Component
@@ -65,7 +66,12 @@ public class SpringContextUtil implements ApplicationContextAware {
         currentIpPort = web.getCurrentIpPort();
         currentIp = web.getCurrentIp();
         if (StringUtils.isEmpty(currentIp)) {
-            currentIp = Ipconfig.getInfo().getLocalip();
+            try {
+                currentIp = InetAddress.getLocalHost().getHostAddress();
+            } catch (Exception e) {
+                e.printStackTrace();
+                currentIp = Ipconfig.getInfo().getLocalip();
+            }
             web.setCurrentIp(currentIp);
         }
         if (StringUtils.isEmpty(currentIpPort)) {
