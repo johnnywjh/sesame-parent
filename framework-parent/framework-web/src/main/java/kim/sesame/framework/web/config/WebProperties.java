@@ -36,6 +36,8 @@ public class WebProperties implements InitializingBean {
     private String currentIpPort;
     /**
      * 当前机器的ip, 看currentIpPort的注释信息
+     * current-ip=${spring.cloud.client.ipaddress}
+     * sesame.framework.web.current-ip=${current-ip}
      */
     private String currentIp;
     /**
