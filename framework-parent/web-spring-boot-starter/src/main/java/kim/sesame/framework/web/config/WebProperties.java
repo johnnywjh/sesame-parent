@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "sesame.framework.web")
+@ConfigurationProperties(prefix = "kim.web")
 public class WebProperties implements InitializingBean {
 
     private String userHome = System.getProperty("user.home");

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "sesame.framework.jwt")
+@ConfigurationProperties(prefix = "kim.jwt")
 public class JWTProperties {
 
     /**

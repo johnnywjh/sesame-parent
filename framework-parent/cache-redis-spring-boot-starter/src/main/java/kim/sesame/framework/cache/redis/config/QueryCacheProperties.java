@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  **/
 @Data
 @Component
-@ConfigurationProperties(prefix = "sesame.framework.cache")
+@ConfigurationProperties(prefix = "kim.cache")
 public class QueryCacheProperties {
     /**
      * 定时失效缓存,全局配置

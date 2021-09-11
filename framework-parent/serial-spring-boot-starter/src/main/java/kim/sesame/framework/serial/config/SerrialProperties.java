@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Component
-@ConfigurationProperties(prefix = "sesame.framework.serial")
+@ConfigurationProperties(prefix = "kim.serial")
 public class SerrialProperties {
 
     /**

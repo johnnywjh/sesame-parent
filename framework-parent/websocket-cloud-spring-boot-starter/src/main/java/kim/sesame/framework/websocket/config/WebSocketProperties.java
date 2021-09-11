@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  **/
 @Data
 @Component
-@ConfigurationProperties(prefix = "sesame.framework.ws")
+@ConfigurationProperties(prefix = "kim.ws")
 public class WebSocketProperties implements InitializingBean {
     /**
      * 尝试次数, 默认5次

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "sesame.framework.swagger")
+@ConfigurationProperties(prefix = "kim.swagger")
 public class SwaggerProperties implements InitializingBean {
 
     /**
