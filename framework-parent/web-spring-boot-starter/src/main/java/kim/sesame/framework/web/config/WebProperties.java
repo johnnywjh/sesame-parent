@@ -93,7 +93,7 @@ public class WebProperties implements InitializingBean {
         if (StringUtils.isEmpty(this.iconPath)) {
             this.iconPath = this.basePath + "/icon/icon.png";
         }
-        GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
+//        GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSuperAdmin(this.spuerAdmin);
         ProjectConfig.setDebug(debug);

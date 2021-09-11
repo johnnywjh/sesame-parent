@@ -5,19 +5,19 @@ import kim.sesame.framework.entity.GPage;
 
 public class PagePlusUtil {
 
-    public static GPage recount(Page pages) {
-        return recount(null, pages);
+    public static GPage toGpage(Page page) {
+        return toGpage(null, page);
     }
 
-    public static GPage recount(GPage gPage, Page pages) {
+    public static GPage toGpage(GPage gPage, Page page) {
         if (gPage == null) {
             gPage = new GPage();
         }
-        gPage.setPageNum((int) pages.getCurrent());
-        gPage.setPageSize((int) pages.getSize());
-        gPage.setTotal(pages.getTotal());
-        gPage.setPages((int) pages.getPages());
-        gPage.setCount(pages.isSearchCount());
+        gPage.setCurrent(page.getCurrent());
+        gPage.setSize(page.getSize());
+        gPage.setTotal(page.getTotal());
+        gPage.setPages(page.getPages());
+        gPage.setSearchCount(page.isSearchCount());
         return gPage;
     }
 
