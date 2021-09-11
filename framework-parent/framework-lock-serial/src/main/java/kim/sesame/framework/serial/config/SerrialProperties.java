@@ -6,9 +6,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * 系统默认属性
- *
- * @author johnny
- * date :  2017年9月7日 下午7:20:50
  * server.servlet.session.timeout=30
  */
 @Data

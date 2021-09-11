@@ -2,22 +2,11 @@ package kim.sesame.framework.utils;
 
 /**
  * 系统常量
- *
- * @author johnny
- * date :  2017年4月16日 下午4:14:34
- * Description: 特殊的常量建议在子项目中复制一份, 并修改java类名
+ * 特殊的常量建议在子项目中复制一份, 并修改java类名
  */
 public class GData {
 
-    public static interface SPRINGBOOT {
-        /**
-         * spirng boot 1.x : server.context-path
-         * spirng boot 2.x : server.servlet.context-path
-         */
-//        String contextPath = "server.servlet.context-path";
-    }
-
-    public static interface JWT {
+    public interface JWT {
         String SESSION_ID = "jwt_session_id";
 
         String ACC_LOAD = "acc_load";
@@ -26,33 +15,6 @@ public class GData {
         String COMPARE_PWD_VERSION = "compare_pwd_version";
 
         String TOKEN = "accessToken";
-    }
-
-    /**
-     * 系统常量
-     */
-    public static interface SYS {
-        /**
-         * 超级管理员用户账号
-         */
-        String SUPER_ADMIN_USER = "super_admin";
-        /**
-         * 超级管理员角色编号
-         */
-        String SUPER_ADMIN_ROLE = "super_admin";
-        /**
-         * 管理员用户账号
-         */
-        String ADMIN_USER = "admin";
-        /**
-         * 管理员角色编号
-         */
-        String ADMIN_ROLE = "admin";
-
-        /**
-         * 默认头像,好像有点丑
-         */
-        String DEFAULT_TX_IMG = "http://www.sesame.kim/images/default_tx.png";
     }
 
     /**
@@ -86,7 +48,7 @@ public class GData {
     /**
      * 性别 : 1 男,2 女,3 未知
      */
-    public static interface SEX {
+    public interface SEX {
         /**
          * 1 男
          */
@@ -102,21 +64,12 @@ public class GData {
     }
 
     /**
-     * spring cloud 里的常量
-     */
-    public static interface CLOUD {
-        /**
-         * zuul 里的sessionid 的key
-         */
-        String ZUUL_SESSION_ID = "zuulSessionId";
-    }
-
-    /**
      * 本地缓存中的key,
      */
-    public  static interface LOCALCACHE{
+    public interface LOCALCACHE {
         String WEB_CACHE_USER_INFO = "webCacheUserInfo";
         String WEB_CACHE_USER_ROLE = "webCacheUserRole";
         String WEB_CACHE_USER_MENU = "webCacheUserMenu";
     }
+
 }

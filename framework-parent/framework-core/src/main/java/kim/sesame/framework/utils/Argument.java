@@ -21,10 +21,7 @@ import java.util.Map;
 
 /**
 * Description: 校验参数类
-*
 */
-
-	
 public final class Argument {
     
     private Argument() {}

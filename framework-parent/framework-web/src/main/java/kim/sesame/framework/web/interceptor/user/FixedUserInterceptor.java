@@ -5,7 +5,7 @@ import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
-import kim.sesame.framework.web.entity.IUser;
+import kim.sesame.framework.entity.IUser;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

@@ -1,16 +1,12 @@
 package kim.sesame.framework.web.context;
 
 import kim.sesame.framework.web.cache.IUserCache;
-import kim.sesame.framework.web.entity.IRole;
-import kim.sesame.framework.web.entity.IUser;
+import kim.sesame.framework.entity.IUser;
 
 import java.util.List;
 
 /**
  * UserContext
- *
- * @author johnny
- * date :  2017-11-07 13:25
  * Description:用户上下文
  */
 public final class UserContext {
@@ -19,8 +15,7 @@ public final class UserContext {
     private final static ThreadLocal<String> SESSIONID = new ThreadLocal<>();
     private final static ThreadLocal<String> ACCOUNT = new ThreadLocal<>();
     private final static ThreadLocal<String> IP = new ThreadLocal<>();
-    private final static ThreadLocal<List<IRole>> USER_ROLE = new ThreadLocal<>();
-    private final static ThreadLocal<Object> USER_DATA = new ThreadLocal<>();
+    private final static ThreadLocal<Object> USER_DATA = new ThreadLocal<>(); // 存放其他信息
 
     //构造器私有化
     private UserContext() {
@@ -86,24 +81,6 @@ public final class UserContext {
     }
 
     /*-------------------------------------------------------*/
-    public List<IRole> getUserRole() {
-        return USER_ROLE.get();
-    }
-
-    public <T> T getUserRole(Class<T> objectType) {
-        if (getUserRole() == null) {
-            IUserCache userCache = SpringContextUtil.getBean(IUserCache.class);
-            List<IRole> list_roles = userCache.getUserRoles(getCurrentLoginUserAccount());
-            setUserRole(list_roles);
-        }
-        return (T) getUserRole();
-    }
-
-    public void setUserRole(List roles) {
-        USER_ROLE.set(roles);
-    }
-
-    /*-------------------------------------------------------*/
     public Object getData() {
         return USER_DATA.get();
     }
@@ -121,7 +98,6 @@ public final class UserContext {
     public void clean() {
         USER_THREAD_LOCAL.remove();
         SESSIONID.remove();
-        USER_ROLE.remove();
         USER_DATA.remove();
         ACCOUNT.remove();
         IP.remove();

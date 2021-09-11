@@ -1,24 +1,21 @@
 package kim.sesame.framework.web.config;
 
-import kim.sesame.framework.web.interceptor.auth.AuthTokenInterceptor;
 import kim.sesame.framework.web.interceptor.reqlog.PrintReqLogInterceptor;
 import kim.sesame.framework.web.interceptor.user.FixedUserInterceptor;
 import kim.sesame.framework.web.interceptor.user.UserInfoInterceptor;
 import kim.sesame.framework.web.interceptor.web.SessionInterceptor;
 import kim.sesame.framework.web.interceptor.web.WebUserInterceptor;
 import kim.sesame.framework.web.util.StringToDateConverter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.annotation.Resource;
-
 @Configuration
 public class MyWebAppConfigurer implements WebMvcConfigurer {
 
-    @SuppressWarnings("all")
-    @Resource
+    @Autowired
     private WebProperties webProperties;
 
     @Override
@@ -48,10 +45,6 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
         }
         if (webProperties.isInterceptorSession()) {
             registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);
-        }
-        // 公钥私钥 认证
-        if (webProperties.isInterceptorAuth()) {
-            registry.addInterceptor(new AuthTokenInterceptor()).addPathPatterns("/**").excludePathPatterns(swaggerArr);
         }
 
     }

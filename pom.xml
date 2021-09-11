@@ -46,6 +46,11 @@
 
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
+                <artifactId>framework-define</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>kim.sesame.framework</groupId>
                 <artifactId>framework-core</artifactId>
                 <version>${sesame.version}</version>
             </dependency>

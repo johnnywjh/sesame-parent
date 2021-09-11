@@ -1,7 +1,6 @@
 package kim.sesame.framework.websocket.service;
 
 import com.alibaba.fastjson.JSON;
-import kim.sesame.framework.entity.GMap;
 import kim.sesame.framework.utils.StringUtil;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang3.StringUtils;
@@ -9,6 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 import javax.websocket.Session;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @CommonsLog
@@ -73,8 +74,8 @@ public class WSSerice {
      * 更新在线用户: sx(上线),lx(离线)
      */
     public static void updateOnlineUser(String method, String userKey) {
-        GMap res = GMap.newMap();
-        res.putAction("userKey", userKey);
+        Map res = new HashMap();
+        res.put("userKey", userKey);
 
         sendMessageAll(method, res, new String[]{userKey});
     }
@@ -135,8 +136,8 @@ public class WSSerice {
     }
 
     public static String getMsgString(String methodName, Object params) {
-        GMap gmap = GMap.newMap();
-        gmap.putAction("method", methodName + "(" + JSON.toJSONString(params) + ")");
+        Map gmap = new HashMap();
+        gmap.put("method", methodName + "(" + JSON.toJSONString(params) + ")");
 
         return JSON.toJSONString(gmap);
     }

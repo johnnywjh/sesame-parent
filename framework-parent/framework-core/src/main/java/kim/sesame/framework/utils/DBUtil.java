@@ -4,11 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- * s数据库连接处理
- * 
- * @author johnny
- * date :  2016年10月28日 下午9:40:44
- * Description:
+ * 数据库连接处理
  */
 public class DBUtil {
 	public static Connection getConn(String driver, String url, String name, String pwd) {

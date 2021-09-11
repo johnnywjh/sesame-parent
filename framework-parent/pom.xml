@@ -15,6 +15,7 @@
 
     <!-- 项目集合-->
     <modules>
+        <module>framework-define</module>
         <module>framework-core</module>
         <module>framework-cache</module>
         <module>framework-web</module>

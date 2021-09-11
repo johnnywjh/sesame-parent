@@ -1,4 +1,4 @@
-package kim.sesame.framework.utils;
+package kim.sesame.framework.encryption;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,18 +10,12 @@ import java.nio.file.StandardOpenOption;
 
 /**
  * 图片和图片base64字符串转化
- * 
- * @author johnny
- * date :  2017年9月2日 下午8:58:48
  * Description:  jdk 1.8
  */
 public class ImgBase64 {
 
 	/**
 	 * 图片地址转化成Base64字符串 jdk1.8
-	 * 
-	 * @author johnny
-	 * date :  2017年9月2日 下午8:46:49
 	 * @param imgFile 图片在磁盘的地址
 	 * @return String str
 	 */
@@ -46,9 +40,6 @@ public class ImgBase64 {
 
 	/**
 	 * 图片byte转化成Base64字符串 jdk1.8
-	 * 
-	 * @author johnny
-	 * date :  2017年9月2日 下午8:47:40
 	 * @param imageContents 图片的二进制数组
 	 * @return String imgstr
 	 */

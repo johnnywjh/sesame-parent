@@ -1,6 +1,5 @@
 package kim.sesame.framework.serial.entity;
 
-import kim.sesame.framework.entity.BaseEntity;
 import lombok.Data;
 
 import java.util.Date;
@@ -9,7 +8,8 @@ import java.util.Date;
  * 序列号实体
  **/
 @Data
-public class SerialNumberRuleEntity extends BaseEntity {
+public class SerialNumberRuleEntity {
+    private String id;
     /**编码*/
     private String code;
     /**名称*/

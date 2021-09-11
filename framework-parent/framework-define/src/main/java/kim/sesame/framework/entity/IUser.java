@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.entity;
+package kim.sesame.framework.entity;
 
 import kim.sesame.framework.entity.IEntity;
 import lombok.Data;

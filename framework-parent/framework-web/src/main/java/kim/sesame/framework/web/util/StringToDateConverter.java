@@ -1,6 +1,6 @@
 package kim.sesame.framework.web.util;
 
-import kim.sesame.framework.utils.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 
 import java.text.ParseException;
@@ -9,8 +9,6 @@ import java.util.Date;
 
 /**
  * String 转换成 日期
- * @author johnny
- * date :  2017年9月6日 下午8:59:32
  * Description:
  */
 public class StringToDateConverter implements Converter<String, Date> {
@@ -29,18 +27,18 @@ public class StringToDateConverter implements Converter<String, Date> {
 
     @Override
     public Date convert(String source) {
-		if (StringUtil.isNotBlank(source)) {
-			try {
-				if (source.length() > 10 && source.charAt(10) == 'T') {
-					source = source.replace('T', ' '); // 去掉j'T'
-				}
-				SimpleDateFormat dateFormat = new SimpleDateFormat(StringUtil.isNotBlank(datePattern) ? datePattern : (source.length() == 10 ? DATE_FROMAT : DATE_TIME_FORMAT));
-				dateFormat.setLenient(false);
-				return dateFormat.parse(source);
-			} catch (ParseException e) {
-				throw new IllegalArgumentException("invalid date format. Please use this pattern\"" + datePattern + "\"");
-			}
-		}
+        if (StringUtils.isNotEmpty(source)) {
+            try {
+                if (source.length() > 10 && source.charAt(10) == 'T') {
+                    source = source.replace('T', ' '); // 去掉j'T'
+                }
+                SimpleDateFormat dateFormat = new SimpleDateFormat(StringUtils.isNotEmpty(datePattern) ? datePattern : (source.length() == 10 ? DATE_FROMAT : DATE_TIME_FORMAT));
+                dateFormat.setLenient(false);
+                return dateFormat.parse(source);
+            } catch (ParseException e) {
+                throw new IllegalArgumentException("invalid date format. Please use this pattern\"" + datePattern + "\"");
+            }
+        }
         return null;
     }
 }

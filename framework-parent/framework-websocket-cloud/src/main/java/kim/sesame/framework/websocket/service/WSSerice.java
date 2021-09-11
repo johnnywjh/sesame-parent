@@ -2,7 +2,6 @@ package kim.sesame.framework.websocket.service;
 
 import com.alibaba.fastjson.JSON;
 import com.github.kevinsawicki.http.HttpRequest;
-import kim.sesame.framework.entity.GMap;
 import kim.sesame.framework.utils.StringUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.websocket.config.WebSocketConfig;
@@ -122,8 +121,8 @@ public class WSSerice {
      * 更新在线用户: sx(上线),lx(离线)
      */
     public static void updateOnlineUser(String method, String userKey) {
-        GMap res = GMap.newMap();
-        res.putAction("userKey", userKey);
+        Map res = new HashMap();
+        res.put("userKey", userKey);
 
         sendMessageAll(method, res, new String[]{userKey});
     }
@@ -161,8 +160,8 @@ public class WSSerice {
                 map.put("userKey", userKey);
                 map.put("message", message);
                 String res = HttpRequest.post(url).form(map).body();
-                GMap resMap = JSON.parseObject(res, GMap.class);
-                flg = resMap.getBoolean("success");
+                Map resMap = JSON.parseObject(res, Map.class);
+                flg = (boolean) resMap.get("success");
                 log.debug("send message to user 2 : " + userKey + " ,message content : " + message);
                 log.debug(res);
             }
@@ -222,8 +221,8 @@ public class WSSerice {
     }
 
     public static String getMsgString(String methodName, Object params) {
-        GMap gmap = GMap.newMap();
-        gmap.putAction("method", methodName + "(" + JSON.toJSONString(params) + ")");
+        Map gmap = new HashMap();
+        gmap.put("method", methodName + "(" + JSON.toJSONString(params) + ")");
 
         return JSON.toJSONString(gmap);
     }

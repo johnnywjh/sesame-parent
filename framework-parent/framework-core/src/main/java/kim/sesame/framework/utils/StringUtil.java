@@ -7,18 +7,12 @@ import java.util.regex.Pattern;
 
 /**
  * 字符串
- *
- * @author johnny
- * date :  2016年2月23日 上午10:43:55
  * Description:
  */
 public class StringUtil {
 
     /**
      * 两个字符串之间的比较
-     *
-     * @author johnny
-     * date :  2016年9月29日 下午5:12:44
      */
     public static boolean equals(String str, String str2) {
 
@@ -48,34 +42,6 @@ public class StringUtil {
      */
     public static Integer joint2Int(int one, int two) {
         return Integer.parseInt(one + "" + two);
-    }
-
-    @Deprecated
-    public static boolean isBlank(String str) {
-        int length;
-        if ((str == null) || ((length = str.length()) == 0)) {
-            return true;
-        }
-        for (int i = 0; i < length; i++) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Deprecated
-    public static boolean isNotBlank(String str) {
-        int length;
-        if ((str == null) || ((length = str.length()) == 0)) {
-            return false;
-        }
-        for (int i = 0; i < length; i++) {
-            if (!Character.isWhitespace(str.charAt(i))) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**

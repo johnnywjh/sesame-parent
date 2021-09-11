@@ -2,10 +2,8 @@ package kim.sesame.framework.exception;
 
 /**
  * 交互异常
- * @author johnny
  * Description: 所有的由框架各个层互相调用产生的解析、转换、调用接口错误导致的错误统称交互异常
  * 交互异常与应用异常的最明显区别是：应用异常是业务逻辑错误，需要业务方法进行Try..Catch
- * date :  2017/10/23 20:14
  */
 public abstract class GeneralException extends RuntimeException implements IException {
 

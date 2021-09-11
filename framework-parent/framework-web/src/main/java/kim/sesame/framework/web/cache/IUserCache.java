@@ -1,15 +1,12 @@
 package kim.sesame.framework.web.cache;
 
 import kim.sesame.framework.cache.define.IStringCacheTemplate;
+import kim.sesame.framework.entity.IUser;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.context.SpringContextUtil;
-import kim.sesame.framework.web.entity.IRole;
-import kim.sesame.framework.web.entity.IUser;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -114,16 +111,6 @@ public interface IUserCache {
             e.printStackTrace();
             return null;
         }
-    }
-
-    /**
-     * 获取用户角色信息
-     *
-     * @param userNo 用户账号
-     * @return 用户角色信息的集合
-     */
-    default List<IRole> getUserRoles(String userNo) {
-        return new ArrayList<>();
     }
 
     /**

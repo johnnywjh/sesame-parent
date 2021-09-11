@@ -21,7 +21,6 @@ import java.util.Map;
 public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
-    private static String currentPath; // 当前项目资源路径,
     private static String currentIpPort; // 当前项目实例
     private static String currentIp; // 当前项目Ip
 
@@ -48,18 +47,10 @@ public class SpringContextUtil implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) {
         SpringContextUtil.applicationContext = applicationContext;
 
-        //初始化当前项目资源路径
-
-        SpringContextUtil.currentPath = web.getUserHome() + "/ars/" + web.getSysCode() + "/data";
-
         String port = null;
         port = env.getProperty("server.port");
         if (StringUtils.isEmpty(port)) {
             port = "8080";
-        }
-        if (web.isDataShare() == false) {
-            // 给用用的数据添加一个端口号, 防止多个相同的应用数据感染
-            SpringContextUtil.currentPath = SpringContextUtil.currentPath + "/" + port;
         }
 
         // 初始化当前ip信息
@@ -95,10 +86,6 @@ public class SpringContextUtil implements ApplicationContextAware {
 
         DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) getApplicationContext().getAutowireCapableBeanFactory();
         beanFactory.registerBeanDefinition(beanName, beanDefinitionBuilder.getBeanDefinition());
-    }
-
-    public static String getCurrentPath() {
-        return currentPath;
     }
 
     public static String getCurrentIpPort() {
@@ -185,7 +172,6 @@ public class SpringContextUtil implements ApplicationContextAware {
         } else {
             println("当前激活的环境文件: 无 ,如有需要请配置 spring.profiles.active=@profileActive@");
         }
-        println("当前项目资源路径:SpringContextUtil.getCurrentPath() : " + getCurrentPath());
         ISwagger iSwagger = SpringContextUtil.getBean(ISwagger.class);
         if (iSwagger != null) {
             println(local_project_url + "/docs.html");

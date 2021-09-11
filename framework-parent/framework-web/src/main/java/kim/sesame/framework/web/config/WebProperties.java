@@ -9,9 +9,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * 系统默认属性
- *
- * @author johnny
- * date :  2017年9月7日 下午7:20:50
  * server.servlet.session.timeout=30
  */
 @Data
@@ -51,40 +48,7 @@ public class WebProperties implements InitializingBean {
 
     private int defaultPageSize = 10;
 
-    /**
-     * 数据共享, 默认true
-     * 当设置为  true , 并且多个相同的服务部署在同一个机器上时,
-     * 那它们的 当前项目资源路径:SpringContextUtil.getCurrentPath() 会是一样的,
-     * 如果需要数据空间单独分开, 那么就设置为false, 此时会在路径后面加上一个端口号
-     */
-    private boolean dataShare = true;
-
     private String pageReplace = "~";
-
-    /**
-     * 项目路径,如果采用zuul 后,这个要显示改变
-     */
-    private String basePath = "";
-
-    /**
-     * 外部 javascript,css 等框架的地址
-     */
-    private String resource = "";
-
-    /**
-     * 文件,图片映射路径,
-     * 使用场景 : 当数据库保存的是相对路径时
-     */
-    private String fileMapping = "";
-
-    /**
-     * 网页上icon 的图标地址
-     */
-    private String iconPath;
-    /**
-     * 用户默认头像
-     */
-    private String userDefaultImageUrl;
 
     /**
      * 内置拦截器:打印请求日志
@@ -107,10 +71,6 @@ public class WebProperties implements InitializingBean {
      * 内置拦截器:拦截用户登录 session方式
      */
     private boolean interceptorSession = false;
-    /**
-     * 内置拦截器:接口安全签名
-     */
-    private boolean interceptorAuth = false;
 
     /**
      * 开启跨域
@@ -125,16 +85,10 @@ public class WebProperties implements InitializingBean {
      * 超级管理员角色编号
      */
     private String spuerAdmin = "super_admin";
-    /**
-     * 界面上是否显示头标识
-     */
-    private boolean showPageHeads = false;
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        if (StringUtils.isEmpty(this.iconPath)) {
-            this.iconPath = this.basePath + "/icon/icon.png";
-        }
+
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSuperAdmin(this.spuerAdmin);

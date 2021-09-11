@@ -4,9 +4,6 @@ import kim.sesame.framework.web.controller.AbstractController;
 
 /**
  * 各种相应实例的封装
- *
- * @author johnny
- * date :  2017/12/4 20:09
  */
 public class ResponseFactory {
     /**

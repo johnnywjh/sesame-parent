@@ -59,11 +59,6 @@ public interface IEntity extends Serializable {
         setModifyTime(d);
     }
 
-    @Deprecated
-    default void initUpdate(String user) {
-        initModify(user);
-    }
-
     default void initModify(String user) {
         Date d = new Date();
         setModifyUser(user);

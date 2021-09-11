@@ -1,13 +1,12 @@
 package kim.sesame.framework.web.interceptor.user;
 
 import io.jsonwebtoken.Claims;
+import kim.sesame.framework.entity.IUser;
 import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.cache.IUserCache;
-import kim.sesame.framework.web.cas.SsoUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
-import kim.sesame.framework.web.entity.IUser;
 import kim.sesame.framework.web.jwt.JwtHelper;
 import kim.sesame.framework.web.util.IPUitl;
 import lombok.extern.apachecommons.CommonsLog;
@@ -38,7 +37,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         if (handler instanceof org.springframework.web.servlet.resource.ResourceHttpRequestHandler) {
             return true;
         }
-        UserContext.getUserContext().setIp(IPUitl.getRemortIP(request));
+        UserContext.getUserContext().setIp(IPUitl.getIp(request));
 
         JwtUser jwtUser = parentReqData(request);
         log.debug("解析用户认证数据:" + jwtUser);
@@ -129,12 +128,6 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             }
         } else {
             sessionId = request.getParameter("sessionId");
-            if (StringUtils.isEmpty(sessionId)) {
-                String casSessionId = SsoUtil.getSessionId(request);
-                if (StringUtils.isNotEmpty(casSessionId)) {
-                    sessionId = casSessionId;
-                }
-            }
         }
 
         if (sessionId == null || sessionId == "") {
