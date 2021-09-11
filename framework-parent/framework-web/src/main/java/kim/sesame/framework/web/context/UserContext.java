@@ -1,9 +1,6 @@
 package kim.sesame.framework.web.context;
 
-import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.entity.IUser;
-
-import java.util.List;
 
 /**
  * UserContext
