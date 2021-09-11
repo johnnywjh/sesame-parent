@@ -1,6 +1,5 @@
 package kim.sesame.framework.web.init;
 
-import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.web.config.WebProperties;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang3.StringUtils;

@@ -1,6 +1,5 @@
 package kim.sesame.framework.web.config;
 
-import kim.sesame.framework.entity.GPage;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;

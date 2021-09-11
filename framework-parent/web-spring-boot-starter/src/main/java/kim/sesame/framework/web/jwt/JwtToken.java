@@ -1,9 +1,12 @@
 package kim.sesame.framework.web.jwt;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import kim.sesame.framework.utils.GData;
+import kim.sesame.framework.web.context.SpringContextUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
@@ -14,58 +17,89 @@ import java.util.concurrent.TimeUnit;
 
 public class JwtToken {
 
-    //默认秘钥
-    private static final String DEFAULT_SECRET="springcloudalibaba";
-
-    /***
-     * 创建Jwt令牌
-     * 秘钥：secret
-     * 载荷:dataMap(Map)
-     */
-    public static String createToken(Map<String,Object> dataMap){
-        return createToken(dataMap,null);
+    public static String getJwtUser(String sessionId) {
+        return getJwtUser(sessionId, null, null, false);
     }
+
+    public static String getJwtUser(String account, String pwdVersion) {
+        return getJwtUser(null, account, pwdVersion, true);
+    }
+
+    private static String getJwtUser(String sessionId, String account, String pwdVersion, boolean accLoad) {
+        Map<String, Object> claims = new HashMap<>();
+        if (StringUtils.isNotEmpty(sessionId)) {
+            claims.put(GData.JWT.SESSION_ID, sessionId);
+        }
+        if (StringUtils.isNotEmpty(account)) {
+            claims.put(GData.JWT.USER_ACCOUNT, account);
+        }
+        if (StringUtils.isNotEmpty(pwdVersion)) {
+            claims.put(GData.JWT.PWD_VERSION, pwdVersion);
+        }
+        claims.put(GData.JWT.ACC_LOAD, accLoad);
+
+        return createToken(claims);
+    }
+
     /***
      * 创建Jwt令牌
      * 秘钥：secret
      * 载荷:dataMap(Map)
      */
-    public static String createToken(Map<String,Object> dataMap, String secret){
-        //确认秘钥
-        if(StringUtils.isEmpty(secret)){
-            secret = DEFAULT_SECRET;
-        }
+    public static String createToken(Map<String, Object> dataMap) {
+        return createToken(dataMap, null);
+    }
 
+    /***
+     * 创建Jwt令牌
+     * 秘钥：secret
+     * 载荷:dataMap(Map)
+     */
+    public static String createToken(Map<String, Object> dataMap, String secret) {
+        JWTProperties jwt = SpringContextUtil.getBean(JWTProperties.class);
+        //确认秘钥
+        if (StringUtils.isEmpty(secret)) {
+            secret = jwt.getSecret();
+        }
         //确认签名算法
         Algorithm algorithm = Algorithm.HMAC256(secret);
 
         //jwt令牌创建
-        return
-        JWT.create()
-                .withClaim("body",dataMap)  //自定义载荷
-                .withIssuer("GP")   //签发者
-                .withSubject("JWT令牌")   //主题
-                .withAudience("member") //接收方
-                .withExpiresAt(new Date(System.currentTimeMillis()+3600000))    //过期时间
-                .withNotBefore(new Date(System.currentTimeMillis()+1000))       //1秒后才能使用
+        JWTCreator.Builder builder = JWT.create()
+                .withClaim("body", dataMap)  //自定义载荷
+                .withIssuer(jwt.getIss())   //签发者
+                .withSubject(jwt.getSub())   //主题
+                .withAudience(jwt.getAud()) //接收方
+//                .withExpiresAt(new Date(System.currentTimeMillis() + 3600000))    //过期时间
+                .withNotBefore(new Date(System.currentTimeMillis() + 1000))       //1秒后才能使用
                 .withIssuedAt(new Date())   //签发时间
-                .withJWTId(UUID.randomUUID().toString().replace("-",""))    //唯一标识符
-                .sign(algorithm);
+                .withJWTId(UUID.randomUUID().toString().replace("-", ""));    //唯一标识符
+
+        if (jwt.getInvalidSecond() > 0) {
+            long nowMillis = System.currentTimeMillis();
+            Date now = new Date(nowMillis);
+            long expMillis = nowMillis + jwt.getInvalidSecond() * 1000;
+            Date exp = new Date(expMillis);
+            builder.withExpiresAt(new Date(System.currentTimeMillis() + 3600000));    //过期时间
+        }
+        return builder.sign(algorithm);
     }
 
     /****
      * 令牌解析
      */
-    public static Map<String,Object> parseToken(String token){
-        return parseToken(token,null);
+    public static Map<String, Object> parseToken(String token) {
+        return parseToken(token, null);
     }
+
     /****
      * 令牌解析
      */
-    public static Map<String,Object> parseToken(String token,String secret){
+    public static Map<String, Object> parseToken(String token, String secret) {
+        JWTProperties jwtProperties = SpringContextUtil.getBean(JWTProperties.class);
         //确认秘钥
-        if(StringUtils.isEmpty(secret)){
-            secret = DEFAULT_SECRET;
+        if (StringUtils.isEmpty(secret)) {
+            secret = jwtProperties.getSecret();
         }
 
         //确认签名算法
@@ -80,9 +114,9 @@ public class JwtToken {
 
     public static void main(String[] args) throws InterruptedException {
         //创建令牌
-        Map<String,Object> dataMap = new HashMap<String,Object>();
-        dataMap.put("name","zhangsan");
-        dataMap.put("address","湖南");
+        Map<String, Object> dataMap = new HashMap<String, Object>();
+        dataMap.put("name", "zhangsan");
+        dataMap.put("address", "湖南");
 
         //创建令牌
         String token = createToken(dataMap);
