@@ -9,39 +9,47 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>framework-rocketmq-plus</artifactId>
+    <artifactId>cache-redis-spring-boot-starter</artifactId>
     <packaging>jar</packaging>
     <name>${project.artifactId}-${project.version}</name>
 
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
             <groupId>kim.sesame.framework</groupId>
             <artifactId>framework-core</artifactId>
         </dependency>
+
         <dependency>
             <groupId>kim.sesame.framework</groupId>
-            <artifactId>framework-rocketmq</artifactId>
+            <artifactId>framework-cache</artifactId>
         </dependency>
+
         <dependency>
             <groupId>kim.sesame.framework</groupId>
-            <artifactId>lock-spring-boot-starter</artifactId>
+            <artifactId>web-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.lettuce</groupId>
-                    <artifactId>lettuce-core</artifactId>
-                </exclusion>
-            </exclusions>
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>io.lettuce</groupId>-->
+<!--                    <artifactId>lettuce-core</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>redis.clients</groupId>-->
+<!--            <artifactId>jedis</artifactId>-->
+<!--        </dependency>-->
 
     </dependencies>
 

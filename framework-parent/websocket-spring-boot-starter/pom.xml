@@ -9,7 +9,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>framework-websocket</artifactId>
+	<artifactId>websocket-spring-boot-starter</artifactId>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}-${project.version}</name>
 

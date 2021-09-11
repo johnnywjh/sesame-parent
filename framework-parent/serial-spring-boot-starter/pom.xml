@@ -8,7 +8,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>framework-lock-serial</artifactId>
+	<artifactId>serial-spring-boot-starter</artifactId>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}-${project.version}</name>
 
@@ -25,8 +25,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>kim.sesame.framework</groupId>
-			<artifactId>lock-spring-boot-starter</artifactId>
+			<groupId>com.zengtengpeng</groupId>
+			<artifactId>redisson-spring-boot-starter</artifactId>
+			<version>1.0.7</version>
 		</dependency>
 
 	</dependencies>

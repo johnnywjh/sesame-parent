@@ -70,12 +70,12 @@
 
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
-                <artifactId>framework-cache-redis</artifactId>
+                <artifactId>cache-redis-spring-boot-starter</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
-                <artifactId>framework-cache-local-caffeine</artifactId>
+                <artifactId>cache-local-caffeine-spring-boot-starter</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
 
@@ -84,25 +84,15 @@
                 <artifactId>email-spring-boot-starter</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
-            <dependency>
-                <groupId>kim.sesame.framework</groupId>
-                <artifactId>framework-rocketmq</artifactId>
-                <version>${sesame.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>kim.sesame.framework</groupId>
-                <artifactId>framework-rocketmq-plus</artifactId>
-                <version>${sesame.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
-                <artifactId>framework-websocket</artifactId>
+                <artifactId>websocket-spring-boot-starter</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
-                <artifactId>framework-websocket-cloud</artifactId>
+                <artifactId>websocket-cloud-spring-boot-starter</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
             <dependency>
@@ -112,7 +102,7 @@
             </dependency>
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
-                <artifactId>framework-lock-serial</artifactId>
+                <artifactId>serial-spring-boot-starter</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
 
