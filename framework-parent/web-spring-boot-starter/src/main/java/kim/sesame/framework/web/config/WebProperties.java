@@ -2,6 +2,7 @@ package kim.sesame.framework.web.config;
 
 import kim.sesame.framework.entity.GPage;
 import lombok.Data;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -45,8 +46,9 @@ public class WebProperties implements InitializingBean {
      */
     private int userCookieSaveTime = 60 * 24 * 30;
 
+    private String basePath;
+    private String iconPath;
     private int defaultPageSize = 10;
-
     private String pageReplace = "~";
 
     /**
@@ -88,10 +90,14 @@ public class WebProperties implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
 
+        if (StringUtils.isEmpty(this.iconPath)) {
+            this.iconPath = this.basePath + "/icon/icon.png";
+        }
         GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSuperAdmin(this.spuerAdmin);
         ProjectConfig.setDebug(debug);
         ProjectConfig.setSystemExceptionMessage(systemExceptionMessage);
+
     }
 }

@@ -1,10 +1,14 @@
 package kim.sesame.framework.mybatis;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import javax.sql.DataSource;
 
 /**
  * 自动扫描
@@ -15,6 +19,15 @@ public class MyBatisPlusConfiguration {
 
     // #mybatis-plus.mapper-locations=classpath*:**/dao/*DaoMapping.xml
     // mybatis-plus.mapper-locations=classpath:/mapper/**/*.xml
+
+    /****
+     * 获取数据源对象 DruidDataSource
+     */
+//    @Bean
+//    @ConfigurationProperties(prefix = "spring.datasource")
+//    public DataSource druidDataSource(){
+//        return new DruidDataSource();
+//    }
 
     /**
      * 新的分页插件,一缓和二缓遵循mybatis的规则,

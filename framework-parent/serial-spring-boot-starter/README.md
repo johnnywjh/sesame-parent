@@ -3,7 +3,7 @@
 配置
 ```
 # 默认表名, 
-sesame.framework.serial.table-name=t_bse_serial_number_rule
+kim.serial.table-name=t_bse_serial_number_rule
 ```
 
 写一个类继承SerialNumberRule
