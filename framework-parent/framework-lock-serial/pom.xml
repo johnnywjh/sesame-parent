@@ -26,7 +26,7 @@
 
 		<dependency>
 			<groupId>kim.sesame.framework</groupId>
-			<artifactId>framework-lock</artifactId>
+			<artifactId>lock-spring-boot-starter</artifactId>
 		</dependency>
 
 	</dependencies>

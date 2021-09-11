@@ -13,11 +13,11 @@ public class GPage implements java.io.Serializable {
     /**
      * 页码，从1开始
      */
-    private int pageNum = 1;
+    private long pageNum = 1;
     /**
      * 页面大小
      */
-    private int pageSize = DEFAULT_PAGE_SIZE;
+    private long pageSize = DEFAULT_PAGE_SIZE;
     /**
      * 总数
      */
@@ -25,7 +25,7 @@ public class GPage implements java.io.Serializable {
     /**
      * 总页数
      */
-    private int pages;
+    private long pages;
     /**
      * 包含count查询
      */
@@ -39,14 +39,14 @@ public class GPage implements java.io.Serializable {
     public GPage() {
     }
 
-    public void setPageNum(int pageNum) {
+    public void setPageNum(long pageNum) {
         if (pageNum <= 0) {
             pageNum = 1;
         }
         this.pageNum = pageNum;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(long pageSize) {
         if (pageSize <= 0) {
             pageSize = DEFAULT_PAGE_SIZE;
         }

@@ -23,7 +23,7 @@
         <!--框架web 依赖-->
         <dependency>
             <groupId>kim.sesame.framework</groupId>
-            <artifactId>framework-web</artifactId>
+            <artifactId>web-spring-boot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>kim.sesame.framework</groupId>

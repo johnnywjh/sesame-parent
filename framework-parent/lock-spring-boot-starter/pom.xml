@@ -8,24 +8,25 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>framework-lock</artifactId>
+	<artifactId>lock-spring-boot-starter</artifactId>
 	<packaging>jar</packaging>
 	<name>${project.artifactId}-${project.version}</name>
 
 	<dependencies>
 
-		<!-- https://www.oschina.net/p/redisson-spring-boot-starter -->
+		<!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson-spring-boot-starter</artifactId>
+			<version>3.16.2</version>
+		</dependency>
+
+
+		<!-- https://www.oschina.net/p/redisson-spring-boot-starter
 		<dependency>
 			<groupId>com.zengtengpeng</groupId>
 			<artifactId>redisson-spring-boot-starter</artifactId>
 			<version>1.0.7</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter
-		<dependency>
-			<groupId>org.redisson</groupId>
-			<artifactId>redisson-spring-boot-starter</artifactId>
-			<version>3.15.4</version>
 		</dependency>
 		-->
 
