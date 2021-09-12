@@ -8,7 +8,7 @@ public class MD5 {
      * MD5方法
      * @param text 明文
      * @return 密文
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     public static String md5(String text) throws Exception {
         //加密后的字符串
@@ -21,7 +21,7 @@ public class MD5 {
      * @param text 明文
      * @param key 盐
      * @return 密文
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     public static String md5(String text, String key) throws Exception {
         //加密后的字符串
@@ -35,7 +35,7 @@ public class MD5 {
      * @param key 密钥/盐
      * @param md5 密文
      * @return true/false
-     * @throws Exception
+     * @throws Exception 抛出异常
      */
     public static boolean verify(String text, String key, String md5) throws Exception {
         //根据传入的密钥进行验证

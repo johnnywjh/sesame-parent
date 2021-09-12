@@ -14,7 +14,7 @@ public class AESUtil {
      * @param buffer:密文/明文
      * @param appsecret:秘钥
      * @param mode:加密/解密模式  1 加密  2 解密
-     * @return
+     * @throws Exception 抛出异常
      */
     public static byte[] encryptAndDecrypt(byte[] buffer,String appsecret,Integer mode) throws Exception{
         //1:加载加密解密算法处理对象（包含算法、秘钥管理）
@@ -33,45 +33,45 @@ public class AESUtil {
         return cipher.doFinal(buffer);
     }
 
-    /***
-     * 加密解密测试
-     * 128/192/256
-     */
-    public static void main2(String[] args) throws Exception{
-        String txt = "SpringCloud Alibaba";
-        String appsecret="aaaaaaaaaaaaaaaa";
-        Integer mode=1;
-
-        //加密
-        byte[] bytes = encryptAndDecrypt(txt.getBytes("UTF-8"), appsecret, mode);
-        String encode = Base64Util.encode(bytes);
-        System.out.println(encode);
-
-        //解密 ->解码Base64->解密
-        byte[] decode = encryptAndDecrypt(Base64Util.decode(encode), appsecret, 2);
-        System.out.println(new String(decode, "UTF-8"));
-
-    }
-
-    /***
-     * 加密解密测试
-     * 128/192/256
-     */
-    public static void main1(String[] args) throws Exception{
-        String txt = "SpringCloud Alibaba";
-        String appsecret="aaaaaaaaaaaaaaaa";
-        appsecret = MD5.md5(appsecret);
-        System.out.println(appsecret);
-        Integer mode=1;
-
-        //加密
-        byte[] bytes = encryptAndDecrypt(txt.getBytes("UTF-8"), appsecret, mode);
-        String encode = Base64Util.encode(bytes);
-        System.out.println(encode);
-
-        //解密 ->解码Base64->解密
-        byte[] decode = encryptAndDecrypt(Base64Util.decode(encode), appsecret, 2);
-        System.out.println(new String(decode, "UTF-8"));
-
-    }
+//    /***
+//     * 加密解密测试
+//     * 128/192/256
+//     */
+//    public static void main2(String[] args) throws Exception{
+//        String txt = "SpringCloud Alibaba";
+//        String appsecret="aaaaaaaaaaaaaaaa";
+//        Integer mode=1;
+//
+//        //加密
+//        byte[] bytes = encryptAndDecrypt(txt.getBytes("UTF-8"), appsecret, mode);
+//        String encode = Base64Util.encode(bytes);
+//        System.out.println(encode);
+//
+//        //解密 ->解码Base64->解密
+//        byte[] decode = encryptAndDecrypt(Base64Util.decode(encode), appsecret, 2);
+//        System.out.println(new String(decode, "UTF-8"));
+//
+//    }
+//
+//    /***
+//     * 加密解密测试
+//     * 128/192/256
+//     */
+//    public static void main1(String[] args) throws Exception{
+//        String txt = "SpringCloud Alibaba";
+//        String appsecret="aaaaaaaaaaaaaaaa";
+//        appsecret = MD5.md5(appsecret);
+//        System.out.println(appsecret);
+//        Integer mode=1;
+//
+//        //加密
+//        byte[] bytes = encryptAndDecrypt(txt.getBytes("UTF-8"), appsecret, mode);
+//        String encode = Base64Util.encode(bytes);
+//        System.out.println(encode);
+//
+//        //解密 ->解码Base64->解密
+//        byte[] decode = encryptAndDecrypt(Base64Util.decode(encode), appsecret, 2);
+//        System.out.println(new String(decode, "UTF-8"));
+//
+//    }
 }

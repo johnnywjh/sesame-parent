@@ -7,7 +7,7 @@ public class Base64Util {
     /***
      * 普通解密操作
      * @param encodedText：密文
-     * @return
+     * @return 返回字节数组
      */
     public static byte[] decode(String encodedText){
         final Base64.Decoder decoder = Base64.getDecoder();
@@ -16,8 +16,8 @@ public class Base64Util {
 
     /***
      * 普通加密操作
-     * @param data
-     * @return
+     * @param data 数据
+     * @return 返回str
      */
     public static String encode(byte[] data){
         final Base64.Encoder encoder = Base64.getEncoder();
@@ -26,8 +26,6 @@ public class Base64Util {
 
     /***
      * 解密操作
-     * @param encodedText
-     * @return
      */
     public static byte[] decodeURL(String encodedText){
         final Base64.Decoder decoder = Base64.getUrlDecoder();
@@ -36,8 +34,6 @@ public class Base64Util {
 
     /***
      * 加密操作
-     * @param data
-     * @return
      */
     public static String encodeURL(byte[] data){
         final Base64.Encoder encoder = Base64.getUrlEncoder();

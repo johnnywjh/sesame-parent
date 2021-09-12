@@ -14,7 +14,7 @@
 
 	<dependencies>
 
-		<!-- https://mvnrepository.com/artifact/org.redisson/redisson-spring-boot-starter -->
+		<!--  -->
 
 		<dependency>
 			<groupId>com.zengtengpeng</groupId>
@@ -22,12 +22,10 @@
 			<version>1.0.7</version>
 		</dependency>
 
-		<!-- https://www.oschina.net/p/redisson-spring-boot-starter
-	<dependency>
-			<groupId>org.redisson</groupId>
-			<artifactId>redisson-spring-boot-starter</artifactId>
-			<version>3.16.2</version>
-		</dependency>
+		<!--
+
+
+
 		-->
 
 

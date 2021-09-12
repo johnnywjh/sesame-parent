@@ -88,7 +88,6 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * 比较两个时间相差的天数
      * @param beginDate
      * @param endDate
-     * @return
      */
     public static Long getDaysDiff(LocalDate beginDate,LocalDate endDate) {
         return endDate.toEpochDay()-beginDate.toEpochDay();
@@ -96,9 +95,6 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 比较两个时间相差的天数
-     * @param startDate
-     * @param endDate
-     * @return
      */
     public static Long getDaysDiff(Date startDate, Date endDate) {
         LocalDate beginTime =  DateUtil.getDateToLocalDate(startDate);
@@ -110,7 +106,6 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * 获取相差月份时的时间
      * @param date 日期
      * @param month 距date 相差月份 正数加 负数减
-     * @return
      */
     public static String getMonthByDate(Date date,int month,String formatter) {
         if (StringUtils.isEmpty(formatter)) {
@@ -123,7 +118,6 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * 获取相差月份时的时间
      * @param date 日期
      * @param month 距date 相差月份 正数加 负数减
-     * @return
      */
     public static Date getDifferInByDate(Date date,int month) {
         if (date == null) {
