@@ -1,12 +1,13 @@
 package kim.sesame.framework.web.interceptor.user;
 
+import io.jsonwebtoken.Claims;
 import kim.sesame.framework.entity.IUser;
 import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
-import kim.sesame.framework.web.jwt.JwtToken;
+import kim.sesame.framework.web.jwt.JwtHelper;
 import kim.sesame.framework.web.util.IPUitl;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 /**
  * 用户信息拦截和设置
@@ -102,7 +102,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
 
         String token = getToken(request);
         if (StringUtils.isNotEmpty(token)) {
-            Map<String, Object> claims =  JwtToken.parseToken(token);
+            Claims claims = JwtHelper.parseJWT(token);
             if (claims != null) {
 
                 // 获取jwt中当前登录的用户信息
@@ -156,7 +156,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
     }
 
 
-    private Object getClaimsKey(Map<String, Object> claims, String key) {
+    private Object getClaimsKey(Claims claims, String key) {
         try {
             return claims.get(key);
         } catch (Exception e) {
