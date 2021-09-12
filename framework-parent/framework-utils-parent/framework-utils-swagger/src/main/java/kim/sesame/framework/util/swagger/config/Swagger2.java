@@ -72,14 +72,7 @@ public class Swagger2 implements ISwagger {
     }
 
 
-    /**
-     * 重写basePackage方法，使能够实现多包访问，复制贴上去
-     *
-     * @param basePackages
-     * @return com.google.common.base.Predicate<springfox.documentation.RequestHandler>
-     * @author teavamc
-     * @date 2019/1/26
-     */
+    // 重写basePackage方法，使能够实现多包访问，复制贴上去
     public static Predicate<RequestHandler> basePackage(final List<String> basePackages) {
         return input -> declaringClass(input).transform(handlerPackage(basePackages)).or(true);
     }

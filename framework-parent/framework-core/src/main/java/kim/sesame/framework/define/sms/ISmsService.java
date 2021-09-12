@@ -17,6 +17,7 @@ public interface ISmsService {
      * 发送短信验证码
      * @param phone 手机号,必填
      * @param time 失效时间,可为空
+     * @return  true/false
      */
     boolean sendVifCode(String phone, Integer time);
 
@@ -24,6 +25,7 @@ public interface ISmsService {
      * 校验短信验证码
      * @param phone 手机号,必填
      * @param vifCode 验证码,必填
+     * @return  true/false
      */
     boolean checkSmsVifCode(String phone, String vifCode);
 }

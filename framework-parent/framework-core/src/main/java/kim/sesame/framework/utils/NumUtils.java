@@ -33,7 +33,7 @@ public class NumUtils {
      * @param count 分子
      * @param sum 分母,总数
      * @param num 保留几位小数
-     * @return
+     * @return string
      */
     public static String rate(long count, long sum, int num) {
         // 创建一个数值格式化对象

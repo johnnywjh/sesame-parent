@@ -26,6 +26,8 @@ public class Base64Util {
 
     /***
      * 解密操作
+     * @param  encodedText encoded
+     * @return  byte
      */
     public static byte[] decodeURL(String encodedText){
         final Base64.Decoder decoder = Base64.getUrlDecoder();
@@ -34,6 +36,8 @@ public class Base64Util {
 
     /***
      * 加密操作
+     * @param data data
+     * @return  string
      */
     public static String encodeURL(byte[] data){
         final Base64.Encoder encoder = Base64.getUrlEncoder();

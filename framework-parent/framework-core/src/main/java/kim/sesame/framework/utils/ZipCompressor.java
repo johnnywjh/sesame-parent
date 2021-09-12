@@ -104,6 +104,7 @@ public class ZipCompressor {
      * 解压后的文件名，和之前一致
      * @param zipFile   待解压的zip文件
      * @param descDir   指定目录
+     * @throws IOException 抛出异常
      */
     @SuppressWarnings("rawtypes")
     public static void unZipFiles(File zipFile, String descDir) throws IOException {

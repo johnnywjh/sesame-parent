@@ -13,6 +13,9 @@ public class StringUtil {
 
     /**
      * 两个字符串之间的比较
+     * @param str str
+     * @param str2 str2
+     * @return  true/false
      */
     public static boolean equals(String str, String str2) {
 
@@ -46,6 +49,8 @@ public class StringUtil {
 
     /**
      * 去掉前后引号
+     * @param str str
+     * @return string
      */
     public static String removeQuotes(String str) {
         if (StringUtils.isEmpty(str)) {

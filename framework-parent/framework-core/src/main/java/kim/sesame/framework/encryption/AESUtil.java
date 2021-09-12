@@ -15,6 +15,7 @@ public class AESUtil {
      * @param appsecret:秘钥
      * @param mode:加密/解密模式  1 加密  2 解密
      * @throws Exception 抛出异常
+     * @return  byte
      */
     public static byte[] encryptAndDecrypt(byte[] buffer,String appsecret,Integer mode) throws Exception{
         //1:加载加密解密算法处理对象（包含算法、秘钥管理）

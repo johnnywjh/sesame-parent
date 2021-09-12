@@ -43,6 +43,7 @@ public class RandomUtils {
 
     /**
      * 生成四位数据的随机数
+     * @return string
      */
     public static String getFourRandom() {
         return getFourRandom(4);
@@ -61,6 +62,7 @@ public class RandomUtils {
 
     /**
      * 仿微信的uuid生成QRCode的uuid
+     * @return string
      */
     public static String getQRCodeUuid() {
         return getStringRandom(10) + "==";
