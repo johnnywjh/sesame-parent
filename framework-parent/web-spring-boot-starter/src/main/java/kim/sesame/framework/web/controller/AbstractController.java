@@ -93,7 +93,7 @@ public abstract class AbstractController {
         //参数校验异常
         if (exception instanceof IllegalArgumentException) {
             String errorCode = ErrorCode.BUSINESS;
-            return Response.create().setExceptionType(ExceptionType.BUSINESS).setErrorCode(errorCode).setMessage(getExceptionMessage(exception));
+            return Response.create().setExceptionType(ExceptionType.BUSINESS).setErrorCode(errorCode).setMessage(exception.getMessage());
         }
         //数据验证异常
         else if (exception instanceof DataValidatorException) {
