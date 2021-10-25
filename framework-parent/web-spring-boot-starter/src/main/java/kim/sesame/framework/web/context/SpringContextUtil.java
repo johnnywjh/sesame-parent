@@ -186,7 +186,7 @@ public class SpringContextUtil implements ApplicationContextAware {
             println(local_project_url + "/swagger-ui.html");
         }
 //        println("当前应用实例 : " + webProperties.getCurrentIpPort());
-        println("ymt.web.testkey=" + webProperties.getTestkey());
+        println("web.testkey=" + webProperties.getTestkey());
         println("***************");
     }
 
