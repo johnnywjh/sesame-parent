@@ -21,6 +21,7 @@ import java.util.Map;
 public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
+    private static String currentPath; // 当前项目资源路径,
     private static String currentIpPort; // 当前项目实例
     private static String currentIp; // 当前项目Ip
     private static String env;// 当前环境
@@ -47,6 +48,9 @@ public class SpringContextUtil implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
         SpringContextUtil.applicationContext = applicationContext;
+
+        //初始化当前项目资源路径
+        SpringContextUtil.currentPath = web.getUserHome() + "/ars/" + web.getSysCode() + "/data";
 
         String port = null;
         port = environment.getProperty("server.port");
@@ -95,6 +99,10 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     public static String getCurrentIp() {
         return currentIp;
+    }
+
+    public static String getCurrentPath() {
+        return currentPath;
     }
 
     public static String getEnv() {
@@ -180,6 +188,7 @@ public class SpringContextUtil implements ApplicationContextAware {
         } else {
             println("当前激活的环境文件: 无 ,如有需要请配置 spring.profiles.active=@profileActive@");
         }
+        println("当前项目资源路径:SpringContextUtil.getCurrentPath() : " + getCurrentPath());
         ISwagger iSwagger = SpringContextUtil.getBean(ISwagger.class);
         if (iSwagger != null) {
             println(local_project_url + "/docs.html");
