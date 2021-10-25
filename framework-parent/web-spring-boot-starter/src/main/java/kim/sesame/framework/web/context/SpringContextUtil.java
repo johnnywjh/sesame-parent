@@ -23,9 +23,10 @@ public class SpringContextUtil implements ApplicationContextAware {
     private static ApplicationContext applicationContext;
     private static String currentIpPort; // 当前项目实例
     private static String currentIp; // 当前项目Ip
+    private static String env;// 当前环境
 
     @Autowired
-    Environment env;
+    Environment environment;
     @Autowired
     WebProperties web;
 
@@ -48,7 +49,7 @@ public class SpringContextUtil implements ApplicationContextAware {
         SpringContextUtil.applicationContext = applicationContext;
 
         String port = null;
-        port = env.getProperty("server.port");
+        port = environment.getProperty("server.port");
         if (StringUtils.isEmpty(port)) {
             port = "8080";
         }
@@ -94,6 +95,13 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     public static String getCurrentIp() {
         return currentIp;
+    }
+
+    public static String getEnv() {
+        if (StringUtils.isEmpty(env)) {
+            env = applicationContext.getBean(Environment.class).getProperty("spring.profiles.active");
+        }
+        return env;
     }
 
     /**
@@ -166,7 +174,7 @@ public class SpringContextUtil implements ApplicationContextAware {
         println(local_project_url);
         String ip_project_url = "http://" + webProperties.getCurrentIpPort();
 //        println(ip_project_url);
-        String profile = environment.getProperty("spring.profiles.active");
+        String profile = SpringContextUtil.getEnv();
         if (StringUtils.isNotEmpty(profile)) {
             println("当前激活的环境文件:" + profile);
         } else {
@@ -177,7 +185,8 @@ public class SpringContextUtil implements ApplicationContextAware {
             println(local_project_url + "/docs.html");
             println(local_project_url + "/swagger-ui.html");
         }
-        println("当前应用实例 : " + webProperties.getCurrentIpPort());
+//        println("当前应用实例 : " + webProperties.getCurrentIpPort());
+        println("ymt.web.testkey=" + webProperties.getTestkey());
         println("***************");
     }
 

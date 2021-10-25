@@ -138,4 +138,10 @@ public abstract class AbstractController {
         }
         return message;
     }
+
+    public static void main(String[] args) {
+        String authProductName = "12346789";
+        authProductName = authProductName.equals("") == false && authProductName.length() > 8 ? authProductName.substring(0, 4) + "..." + authProductName.substring(authProductName.length() - 4) : authProductName;
+        System.out.println(authProductName);
+    }
 }

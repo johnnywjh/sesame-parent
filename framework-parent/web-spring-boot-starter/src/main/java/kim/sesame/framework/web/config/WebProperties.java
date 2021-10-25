@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "kim.web")
 public class WebProperties implements InitializingBean {
 
+    private String testkey = "";
+
     private String userHome = System.getProperty("user.home");
     /**
      * 是否debug 模式,用于屏蔽向前端返回系统异常的详细信息
@@ -89,9 +91,11 @@ public class WebProperties implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
 
-        if (StringUtils.isEmpty(this.iconPath)) {
+        if (StringUtils.isEmpty(this.iconPath))
+            this.basePath = "";
+        if (StringUtils.isEmpty(this.iconPath))
             this.iconPath = this.basePath + "/icon/icon.png";
-        }
+
 //        GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
         ProjectConfig.setSysCode(this.sysCode);
         ProjectConfig.setSuperAdmin(this.spuerAdmin);
