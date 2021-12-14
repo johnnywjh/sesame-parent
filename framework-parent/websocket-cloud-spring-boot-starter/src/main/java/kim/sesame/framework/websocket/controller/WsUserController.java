@@ -1,6 +1,6 @@
 package kim.sesame.framework.websocket.controller;
 
-import kim.sesame.framework.exception.BusinessException;
+import kim.sesame.framework.exception.BizException;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.controller.AbstractWebController;
 import kim.sesame.framework.web.response.Response;
@@ -23,7 +23,7 @@ public class WsUserController extends AbstractWebController {
     @RequestMapping("/to")
     public Response to(String wsKey, String userKey, String message) {
         if (WSSerice.WEBSOCKET_CONTROLLER_KEY.equals(wsKey) == false) {
-            throw new BusinessException("方法验证失败");
+            throw new BizException("方法验证失败");
         }
         try {
             log.debug("send message to user http : " + userKey + " ,message content : " + message);

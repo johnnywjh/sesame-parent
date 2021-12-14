@@ -1,7 +1,7 @@
 package kim.sesame.framework.web.response;
 
-
 import com.fasterxml.jackson.annotation.JsonInclude;
+import kim.sesame.framework.define.entity.ErrorCodeFactory;
 import kim.sesame.framework.entity.GPage;
 import kim.sesame.framework.web.context.LogProintContext;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class Response<T> implements java.io.Serializable {
     /* 异常类型 */
     private String exceptionType;
     /* 状态码 */
-    private String errorCode;
+    private int code;
     /* 信息 */
     private String message;
     /* 返回结果 */
@@ -32,7 +32,7 @@ public class Response<T> implements java.io.Serializable {
     public Response() {
         this.success = false;
         this.exceptionType = "";
-        this.errorCode = "";
+        this.code = 0;
         this.message = "";
     }
 
@@ -51,6 +51,7 @@ public class Response<T> implements java.io.Serializable {
 
     public Response setSuccess(boolean success) {
         this.success = success;
+        this.code = ErrorCodeFactory.SUCCESS.getCode();
         return this;
     }
 
@@ -59,8 +60,8 @@ public class Response<T> implements java.io.Serializable {
         return this;
     }
 
-    public Response setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
+    public Response setCode(int code) {
+        this.code = code;
         return this;
     }
 
@@ -88,7 +89,7 @@ public class Response<T> implements java.io.Serializable {
         return "Response{" +
                 "success=" + success +
                 ", exceptionType='" + exceptionType + '\'' +
-                ", errorCode='" + errorCode + '\'' +
+                ", code='" + code + '\'' +
                 ", message='" + message + '\'' +
                 ", result=" + result +
                 '}';

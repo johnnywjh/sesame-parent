@@ -1,17 +1,14 @@
 package kim.sesame.framework.exception;
 
 
+import kim.sesame.framework.define.entity.ErrorCode;
+
 /**
  * 异常接口
  */
 public interface IException {
 
-    String getErrorCode();
+    ErrorCode getErrorCode();
 
-    String getNativeMessage();
-
-    void setErrorArguments(Object... objects);
-
-    Object[] getErrorArguments();
-
+    String getMessage();
 }
