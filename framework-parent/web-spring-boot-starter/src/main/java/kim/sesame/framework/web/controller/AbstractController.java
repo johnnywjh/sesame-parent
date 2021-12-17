@@ -1,8 +1,8 @@
 package kim.sesame.framework.web.controller;
 
-import kim.sesame.framework.define.entity.ErrorCode;
-import kim.sesame.framework.define.entity.ErrorCodeFactory;
+import kim.sesame.framework.define.entity.ErrorCodeEnum;
 import kim.sesame.framework.entity.GPage;
+import kim.sesame.framework.entity.IErrorCode;
 import kim.sesame.framework.exception.IException;
 import kim.sesame.framework.web.config.ProjectConfig;
 import kim.sesame.framework.web.response.Response;
@@ -17,6 +17,7 @@ import java.util.List;
  **/
 @CommonsLog
 public abstract class AbstractController {
+
     //单例 普通的成功用公用的对象
     private static class ContextSuccess {
         private final static Response SUCCESS = Response.create().setSuccess(true);
@@ -67,13 +68,13 @@ public abstract class AbstractController {
         log.error(exception.getMessage(), exception);
 
         if (exception instanceof IException) {
-            ErrorCode ece = ((IException) exception).getErrorCode();
-            return Response.create().setExceptionType(ece.getName()).setCode(ece.getCode()).setMessage(exception.getMessage());
+            IErrorCode ece = ((IException) exception).getErrorCodeEnum();
+            return Response.create().setExceptionType(ece.name()).setCode(ece.getCode()).setMessage(exception.getMessage());
         }
         //系统异常
         else {
-            ErrorCode ece = ErrorCodeFactory.SYSTEMERR;
-            return Response.create().setExceptionType(ece.getName()).setCode(ece.getCode()).setMessage(getExceptionMessage(exception));
+            IErrorCode ece = ErrorCodeEnum.SYSTEMERR;
+            return Response.create().setExceptionType(ece.name()).setCode(ece.getCode()).setMessage(getExceptionMessage(exception));
         }
     }
 

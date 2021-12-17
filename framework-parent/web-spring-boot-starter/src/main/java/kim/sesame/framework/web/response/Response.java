@@ -1,7 +1,7 @@
 package kim.sesame.framework.web.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import kim.sesame.framework.define.entity.ErrorCodeFactory;
+import kim.sesame.framework.define.entity.ErrorCodeEnum;
 import kim.sesame.framework.entity.GPage;
 import kim.sesame.framework.web.context.LogProintContext;
 import lombok.Data;
@@ -51,7 +51,7 @@ public class Response<T> implements java.io.Serializable {
 
     public Response setSuccess(boolean success) {
         this.success = success;
-        this.code = ErrorCodeFactory.SUCCESS.getCode();
+        this.code = ErrorCodeEnum.SUCCESS.getCode();
         return this;
     }
 

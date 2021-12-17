@@ -1,7 +1,6 @@
 package kim.sesame.framework.web.response;
 
-import kim.sesame.framework.define.entity.ErrorCode;
-import kim.sesame.framework.define.entity.ErrorCodeFactory;
+import kim.sesame.framework.define.entity.ErrorCodeEnum;
 
 /**
  * 各种相应实例的封装
@@ -15,12 +14,12 @@ public class ResponseFactory {
      * @return Response
      */
     public static Response loginFailure(String message) {
-        ErrorCode ece = ErrorCodeFactory.BUSINESS;
-        return Response.create().setExceptionType(ece.getName()).setCode(ece.getCode()).setMessage(message);
+        ErrorCodeEnum ece = ErrorCodeEnum.BUSINESS;
+        return Response.create().setExceptionType(ece.name()).setCode(ece.getCode()).setMessage(message);
     }
     public static Response notLogin(String message) {
-        ErrorCode ece = ErrorCodeFactory.NOT_LOGIN;
-        return Response.create().setExceptionType(ece.getName()).setCode(ece.getCode()).setMessage(message);
+        ErrorCodeEnum ece = ErrorCodeEnum.NOT_LOGIN;
+        return Response.create().setExceptionType(ece.name()).setCode(ece.getCode()).setMessage(message);
     }
 
 

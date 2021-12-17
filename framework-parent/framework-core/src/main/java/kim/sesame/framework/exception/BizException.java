@@ -1,7 +1,7 @@
 package kim.sesame.framework.exception;
 
-import kim.sesame.framework.define.entity.ErrorCode;
-import kim.sesame.framework.define.entity.ErrorCodeFactory;
+import kim.sesame.framework.define.entity.ErrorCodeEnum;
+import kim.sesame.framework.entity.IErrorCode;
 
 /**
  * 业务异常基类
@@ -10,38 +10,36 @@ public class BizException extends RuntimeException implements IException {
 
     private static final long serialVersionUID = 1937263904748419090L;
 
-    private ErrorCode errorCode;
+    private IErrorCode errorCodeEnum;
 
     public BizException(String msg) {
-        this(ErrorCodeFactory.BUSINESS, msg);
+        this(ErrorCodeEnum.BUSINESS, msg);
+    }
+    public BizException(IErrorCode errorCodeEnum, String msg) {
+        this(errorCodeEnum, msg, null);
+    }
+    public BizException(IErrorCode errorCodeEnum, Throwable cause) {
+        this(errorCodeEnum, errorCodeEnum.getMessage(), cause);
     }
 
-    public BizException(ErrorCode errorCode, String msg) {
-        this(errorCode, msg, null);
-    }
-
-    public BizException(ErrorCode errorCode, Throwable cause) {
-        this(errorCode, errorCode.getMessage(), cause);
-    }
-
-    public BizException(ErrorCode errorCode) {
-        this(errorCode, errorCode.getMessage(), null);
+    public BizException(IErrorCode errorCodeEnum) {
+        this(errorCodeEnum, errorCodeEnum.getMessage(), null);
     }
 
     public BizException(String msg, Throwable cause) {
-        this(ErrorCodeFactory.BUSINESS, msg, cause);
+        this(ErrorCodeEnum.BUSINESS, msg, cause);
     }
 
-    public BizException(ErrorCode errorCode, String msg, Throwable cause) {
+    public BizException(IErrorCode errorCodeEnum, String msg, Throwable cause) {
         super(msg, cause);
-        if (errorCode == null) {
+        if (errorCodeEnum == null) {
             throw new IllegalArgumentException("errorCode is null");
         }
-        this.errorCode = errorCode;
+        this.errorCodeEnum = errorCodeEnum;
     }
 
-    public ErrorCode getErrorCode() {
-        return errorCode;
+    public IErrorCode getErrorCodeEnum() {
+        return errorCodeEnum;
     }
 
 }
