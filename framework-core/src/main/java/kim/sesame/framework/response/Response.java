@@ -1,7 +1,6 @@
 package kim.sesame.framework.response;
 
 import kim.sesame.framework.define.entity.ErrorCodeEnum;
-import kim.sesame.framework.entity.GPage;
 import lombok.Data;
 
 /**
