@@ -10,13 +10,13 @@
 
     <groupId>kim.sesame.framework</groupId>
     <artifactId>sesame-parent</artifactId>
-    <version>2.3.0</version><!-- sesame.version -->
+    <version>2.4.0</version><!-- sesame.version -->
     <packaging>pom</packaging>
     <name>${project.artifactId}-${project.version}</name>
     <description></description>
 
     <properties>
-        <sesame.version>2.3.0</sesame.version>
+        <sesame.version>2.4.0</sesame.version>
         <spring-boot.version>2.4.11</spring-boot.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -32,9 +32,23 @@
         <docker.image.tag>latest</docker.image.tag>
     </properties>
 
+    <!-- 项目集合-->
     <modules>
-        <module>framework-parent</module>
-        <module>sesame-plugins</module>
+        <module>cache-redis-spring-boot-starter</module>
+        <module>cache-local-caffeine-spring-boot-starter</module>
+        <module>email-spring-boot-starter</module>
+
+        <module>framework-define</module>
+        <module>framework-core</module>
+        <module>framework-cache</module>
+        <module>framework-utils-parent</module>
+
+        <module>lock-spring-boot-starter</module>
+        <module>mybatis-plus-spring-boot-starter</module>
+        <module>serial-spring-boot-starter</module>
+        <module>web-spring-boot-starter</module>
+        <module>websocket-spring-boot-starter</module>
+        <module>websocket-cloud-spring-boot-starter</module>
     </modules>
 
     <dependencyManagement>
