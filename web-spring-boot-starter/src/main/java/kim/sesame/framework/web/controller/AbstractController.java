@@ -44,9 +44,9 @@ public abstract class AbstractController {
         return Response.create().setSuccess(true).setResult(list).setMessage(msg);
     }
 
-    public Response returnSuccess(List list, GPage gPage) {
-        return Response.create().setSuccess(true).setResult(list).setPage(gPage);
-    }
+//    public Response returnSuccess(List list, GPage gPage) {
+//        return Response.create().setSuccess(true).setResult(list).setPage(gPage);
+//    }
 
 
 //    @ExceptionHandler(UserNotLoginException.class)
