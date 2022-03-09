@@ -58,7 +58,7 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
         IUserCache userCache = SpringContextUtil.getBean(IUserCache.class);
 
         if (jwtUser.isAccLoad()) {
-            userNo = jwtUser.getUserAccount();
+            userNo = jwtUser.getAccount();
         } else {
             userNo = userCache.getUserNo(sessionId); // 用户账号
         }
@@ -106,8 +106,11 @@ public class UserInfoInterceptor extends HandlerInterceptorAdapter {
             if (claims != null) {
 
                 // 获取jwt中当前登录的用户信息
-                Object userAccount = getClaimsKey(claims, GData.JWT.USER_ACCOUNT);
-                jwtUser.setUserAccount(userAccount != null ? userAccount.toString() : null);
+                Object userAccount = getClaimsKey(claims, GData.JWT.ACCOUNT);
+                jwtUser.setAccount(userAccount != null ? userAccount.toString() : null);
+
+                Object name = getClaimsKey(claims, GData.JWT.NAME);
+                jwtUser.setName(name != null ? name.toString() : null);
 
                 Object pwdVersion = getClaimsKey(claims, GData.JWT.PWD_VERSION);
                 jwtUser.setPwdVersion(pwdVersion != null ? pwdVersion.toString() : null);

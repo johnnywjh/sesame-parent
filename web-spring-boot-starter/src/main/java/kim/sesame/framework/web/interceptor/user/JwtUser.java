@@ -13,7 +13,8 @@ public class JwtUser {
      * 直接用账号加载用户信息,userAccount和pwdVersion必须不为空
      */
     private boolean accLoad = false;
-    private String userAccount;
+    private String account;
+    private String name;
     private String pwdVersion;
     /**
      * 是否边角密码版本号, 默认不比较
@@ -25,7 +26,8 @@ public class JwtUser {
         return "JwtUser{" +
                 "sessionId='" + sessionId + '\'' +
                 ", accLoad=" + accLoad +
-                ", userAccount='" + userAccount + '\'' +
+                ", account='" + account + '\'' +
+                ", name='" + name + '\'' +
                 ", comparePwdVersion='" + comparePwdVersion + '\'' +
                 ", pwdVersion='" + pwdVersion + '\'' +
                 '}';
