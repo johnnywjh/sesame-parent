@@ -1,9 +1,7 @@
-package kim.sesame.framework.web.response;
+package kim.sesame.framework.response;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import kim.sesame.framework.define.entity.ErrorCodeEnum;
 import kim.sesame.framework.entity.GPage;
-import kim.sesame.framework.web.context.LogProintContext;
 import lombok.Data;
 
 /**
@@ -23,11 +21,7 @@ public class Response<T> implements java.io.Serializable {
     /* 返回结果 */
     private T result;
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private GPage page;
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Object other; //其他信息
+//    private Object other; //其他信息
 
     public Response() {
         this.success = false;
@@ -40,13 +34,7 @@ public class Response<T> implements java.io.Serializable {
     /*----------------       构建方法    --------------*/
     /*------------------------------------------------*/
     public static Response create() {
-        Response response = new Response();
-
-        LogProintContext logProintContext = LogProintContext.getLogProintContext();
-        if (logProintContext != null && logProintContext.getIsIgnore()) {
-            logProintContext.setResponse(response);
-        }
-        return response;
+        return new Response();
     }
 
     public Response setSuccess(boolean success) {
@@ -75,14 +63,14 @@ public class Response<T> implements java.io.Serializable {
         return this;
     }
 
-    public Response setPage(GPage page) {
-        this.page = page;
-        return this;
-    }
-    public Response setOther(Object other) {
-        this.other = other;
-        return this;
-    }
+//    public Response setPage(GPage page) {
+//        this.page = page;
+//        return this;
+//    }
+//    public Response setOther(Object other) {
+//        this.other = other;
+//        return this;
+//    }
 
     @Override
     public String toString() {

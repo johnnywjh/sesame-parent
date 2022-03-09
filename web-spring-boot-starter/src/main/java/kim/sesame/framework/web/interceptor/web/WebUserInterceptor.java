@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import kim.sesame.framework.entity.IUser;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.context.UserContext;
-import kim.sesame.framework.web.response.ResponseFactory;
+import kim.sesame.framework.response.ResponseFactory;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

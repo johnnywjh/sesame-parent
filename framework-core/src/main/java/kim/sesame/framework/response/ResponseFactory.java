@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.response;
+package kim.sesame.framework.response;
 
 import kim.sesame.framework.define.entity.ErrorCodeEnum;
 

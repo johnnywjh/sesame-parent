@@ -1,6 +1,6 @@
 package kim.sesame.framework.web.context;
 
-import kim.sesame.framework.web.response.Response;
+import kim.sesame.framework.response.Response;
 
 import java.util.Date;
 
