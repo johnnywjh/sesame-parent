@@ -3,7 +3,6 @@ package kim.sesame.framework.web.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,39 +11,13 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Web controller基类
  **/
 public class AbstractWebController extends AbstractController {
 
-    public Map layuiUpload(String src) {
-        return layuiUpload(src, null);
-    }
-
-    public Map layuiUpload(String src, String name) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("src", src);
-        if (StringUtils.isNotEmpty(name)) {
-            map.put("name", name);
-        }
-        Map<String, Object> res = new HashMap<>();
-        res.put("code", 0);
-        res.put("msg", "");
-        res.put("data", map);
-        return res;
-    }
-
-    public Map layuiSuccuss(Object obj) {
-        Map<String, Object> res = new HashMap<>();
-        res.put("code", 0);
-        res.put("msg", "");
-        res.put("data", obj);
-        return res;
-    }
 
     public void download(String fileName, String path, HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -112,35 +85,6 @@ public class AbstractWebController extends AbstractController {
      * @param response res
      */
     public void tableDataExport(String fileName, List list, Class clazz, HttpServletRequest request, HttpServletResponse response) {
-//        try {
-//
-//            setDownloadResponse(fileName, request, response);
-//
-//            OutputStream outputStream = response.getOutputStream();
-//
-//            ExcelTypeEnum excelTypeEnum = ExcelTypeEnum.XLSX;
-//            if (StringUtil.isNotEmpty(fileName)) {
-//                if (fileName.endsWith(".xls")) {
-//                    excelTypeEnum = ExcelTypeEnum.XLS;
-//                }
-//            }
-//            // 这里 需要指定写用哪个class去读
-//            ExcelWriter excelWriter = EasyExcel.write(outputStream, clazz)
-//                    .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
-//                    .build();
-//            WriteSheet writeSheet = EasyExcel.writerSheet("0").build();
-//            excelWriter.write(list, writeSheet);
-//
-//            excelWriter.write(list, writeSheet);
-//
-///// 千万别忘记finish 会帮忙关闭流
-//            excelWriter.finish();
-//
-//            outputStream.flush();
-//            outputStream.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
         try {
             // 这里注意 有同学反应下载的文件名不对。这个时候 请别使用swagger 他会有影响

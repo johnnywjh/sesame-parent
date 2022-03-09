@@ -32,6 +32,15 @@ public class Response<T> implements java.io.Serializable {
     /*------------------------------------------------*/
     /*----------------       构建方法    --------------*/
     /*------------------------------------------------*/
+
+    public static Response returnSuccess() {
+        return Response.create().setSuccess(true);
+    }
+
+    public static Response returnSuccess(Object result) {
+        return Response.create().setSuccess(true).setResult(result);
+    }
+
     public static Response create() {
         return new Response();
     }
