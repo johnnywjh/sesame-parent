@@ -15,7 +15,7 @@ import java.util.Set;
  */
 public abstract class AbstractRequest extends PrintFriendliness {
 
-    private static final long serialVersionUID = -4848830183604183658L;
+    private static final long serialVersionUID = 1L;
 
     private static Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
 

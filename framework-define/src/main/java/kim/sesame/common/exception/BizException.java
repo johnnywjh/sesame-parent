@@ -8,7 +8,7 @@ import kim.sesame.common.response.ErrorCodeEnum;
  */
 public class BizException extends RuntimeException implements IException {
 
-    private static final long serialVersionUID = 1937263904748419090L;
+    private static final long serialVersionUID = 1L;
 
     private IErrorCode errorCodeEnum;
 
