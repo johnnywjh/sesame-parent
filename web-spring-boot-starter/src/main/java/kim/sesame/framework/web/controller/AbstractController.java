@@ -4,7 +4,7 @@ import kim.sesame.common.entity.IErrorCode;
 import kim.sesame.common.exception.IException;
 import kim.sesame.common.response.ErrorCodeEnum;
 import kim.sesame.common.response.Response;
-import kim.sesame.common.response.ResponseFactory;
+import kim.sesame.common.response.ResponseBuild;
 import kim.sesame.framework.web.config.ProjectConfig;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,7 +20,7 @@ public abstract class AbstractController {
 
 
     public Response returnSuccess() {
-        return ResponseFactory.ContextSuccess.SUCCESS;
+        return ResponseBuild.ContextSuccess.SUCCESS;
     }
 
     public Response returnSuccess(Object result) {

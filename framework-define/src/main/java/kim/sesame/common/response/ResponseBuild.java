@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 各种相应实例的封装
  */
-public class ResponseFactory {
+public class ResponseBuild {
 
     //单例 普通的成功用公用的对象
     public static class ContextSuccess {

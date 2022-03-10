@@ -2,7 +2,7 @@ package kim.sesame.framework.web.interceptor.web;
 
 import com.alibaba.fastjson.JSON;
 import kim.sesame.common.entity.IUser;
-import kim.sesame.common.response.ResponseFactory;
+import kim.sesame.common.response.ResponseBuild;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.context.UserContext;
 import org.springframework.web.method.HandlerMethod;
@@ -53,7 +53,7 @@ public class WebUserInterceptor extends HandlerInterceptorAdapter {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
             PrintWriter out = response.getWriter();
-            out.print(JSON.toJSON(ResponseFactory.notLogin("用户未登录,不能访问!")));
+            out.print(JSON.toJSON(ResponseBuild.notLogin("用户未登录,不能访问!")));
 
             out.flush();
             out.close();
