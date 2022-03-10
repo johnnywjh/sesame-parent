@@ -1,6 +1,7 @@
 package kim.sesame.framework.utils;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -9,7 +10,8 @@ import java.net.NetworkInterface;
  * 获取本机ip地址和相关信息
  * Ipconfig ip = Ipconfig.getInfo();
  */
-@Data
+@Setter
+@Getter
 public class Ipconfig {
 
     /**

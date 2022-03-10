@@ -1,7 +1,7 @@
 package kim.sesame.framework.web.cache;
 
-import kim.sesame.framework.cache.define.IStringCacheTemplate;
 import kim.sesame.common.entity.IUser;
+import kim.sesame.framework.cache.define.IStringCacheTemplate;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import org.apache.commons.lang3.StringUtils;

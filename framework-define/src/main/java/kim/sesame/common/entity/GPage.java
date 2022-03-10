@@ -1,11 +1,13 @@
 package kim.sesame.common.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 返回page
  */
-@Data
+@Setter
+@Getter
 public class GPage implements java.io.Serializable {
 
     /**

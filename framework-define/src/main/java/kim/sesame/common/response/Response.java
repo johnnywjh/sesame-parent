@@ -1,11 +1,13 @@
 package kim.sesame.common.response;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Web 返回结果
  */
-@Data
+@Setter
+@Getter
 public class Response<T> implements java.io.Serializable {
 
     /* 是否成功 */

@@ -1,11 +1,13 @@
 package kim.sesame.common.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 用户实体
  */
-@Data
+@Setter
+@Getter
 public class IUser implements IEntity {
 
     private String id;
