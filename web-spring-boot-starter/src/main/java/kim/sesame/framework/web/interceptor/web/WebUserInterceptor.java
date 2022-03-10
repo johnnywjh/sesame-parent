@@ -1,8 +1,8 @@
 package kim.sesame.framework.web.interceptor.web;
 
 import com.alibaba.fastjson.JSON;
-import kim.sesame.framework.entity.IUser;
-import kim.sesame.framework.response.ResponseFactory;
+import kim.sesame.common.entity.IUser;
+import kim.sesame.common.response.ResponseFactory;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.context.UserContext;
 import org.springframework.web.method.HandlerMethod;

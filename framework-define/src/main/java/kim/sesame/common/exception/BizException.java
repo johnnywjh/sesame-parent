@@ -1,7 +1,7 @@
-package kim.sesame.framework.exception;
+package kim.sesame.common.exception;
 
-import kim.sesame.framework.define.entity.ErrorCodeEnum;
-import kim.sesame.framework.entity.IErrorCode;
+import kim.sesame.common.entity.IErrorCode;
+import kim.sesame.common.response.ErrorCodeEnum;
 
 /**
  * 业务异常基类

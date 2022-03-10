@@ -1,6 +1,6 @@
 package kim.sesame.framework.web.context;
 
-import kim.sesame.framework.entity.IUser;
+import kim.sesame.common.entity.IUser;
 
 /**
  * UserContext

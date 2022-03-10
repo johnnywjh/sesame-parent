@@ -1,7 +1,7 @@
 package kim.sesame.framework.web.interceptor.user;
 
 import io.jsonwebtoken.Claims;
-import kim.sesame.framework.entity.IUser;
+import kim.sesame.common.entity.IUser;
 import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.cache.IUserCache;

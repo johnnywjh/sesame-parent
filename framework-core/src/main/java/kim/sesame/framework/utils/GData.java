@@ -33,38 +33,6 @@ public class GData {
     }
 
     /**
-     * 是否标识: Y 是,N 否
-     */
-    public static interface BOOLEAN {
-        /**
-         * Y 是
-         */
-        String YES = "Y";
-        /**
-         * N 否
-         */
-        String NO = "N";
-    }
-
-    /**
-     * 性别 : 1 男,2 女,3 未知
-     */
-    public interface SEX {
-        /**
-         * 1 男
-         */
-        String MAN = "1";
-        /**
-         * 2 女
-         */
-        String WOMAN = "2";
-        /**
-         * 3 未知
-         */
-        String NONE = "3";
-    }
-
-    /**
      * 本地缓存中的key,
      */
     public interface LOCALCACHE {

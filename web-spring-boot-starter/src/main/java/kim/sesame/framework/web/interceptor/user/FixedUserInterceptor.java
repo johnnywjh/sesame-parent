@@ -1,6 +1,6 @@
 package kim.sesame.framework.web.interceptor.user;
 
-import kim.sesame.framework.entity.IUser;
+import kim.sesame.common.entity.IUser;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.config.WebProperties;

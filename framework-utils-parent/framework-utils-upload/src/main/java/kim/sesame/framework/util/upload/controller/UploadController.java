@@ -1,6 +1,6 @@
 package kim.sesame.framework.util.upload.controller;
 
-import kim.sesame.framework.response.Response;
+import kim.sesame.common.response.Response;
 import kim.sesame.framework.util.upload.service.UploadService;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.config.ProjectConfig;
@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Map;
 
 
 /**

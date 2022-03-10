@@ -1,4 +1,4 @@
-package kim.sesame.framework.entity;
+package kim.sesame.common.entity;
 
 /**
  * 响应错误码的抽象解耦,  只能枚举继承

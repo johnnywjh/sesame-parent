@@ -1,7 +1,7 @@
 package kim.sesame.framework.web.interceptor.reqlog;
 
 import com.alibaba.fastjson.JSONObject;
-import kim.sesame.framework.response.Response;
+import kim.sesame.common.response.Response;
 import kim.sesame.framework.utils.DateUtil;
 import kim.sesame.framework.web.annotation.IgnoreReqLogPrint;
 import kim.sesame.framework.web.context.LogProintContext;

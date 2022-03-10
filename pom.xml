@@ -26,6 +26,9 @@
         <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
         -->
+        <easyexcel.version>3.0.5</easyexcel.version>
+        <fastjson.version>1.2.79</fastjson.version>
+        <jwt.version>3.18.3</jwt.version>
 
         <!--docker config -->
         <docker.image.name>testimagename</docker.image.name>

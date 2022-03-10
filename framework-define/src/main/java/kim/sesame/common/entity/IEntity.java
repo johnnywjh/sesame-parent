@@ -1,6 +1,6 @@
-package kim.sesame.framework.entity;
+package kim.sesame.common.entity;
 
-import kim.sesame.framework.utils.UUIDUtil;
+import kim.sesame.common.utils.UUIDUtil;
 
 import java.io.Serializable;
 import java.util.Date;

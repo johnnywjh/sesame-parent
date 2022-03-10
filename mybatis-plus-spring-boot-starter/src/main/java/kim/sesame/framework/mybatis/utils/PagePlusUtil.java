@@ -1,7 +1,7 @@
 package kim.sesame.framework.mybatis.utils;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import kim.sesame.framework.entity.GPage;
+import kim.sesame.common.entity.GPage;
 
 public class PagePlusUtil {
 

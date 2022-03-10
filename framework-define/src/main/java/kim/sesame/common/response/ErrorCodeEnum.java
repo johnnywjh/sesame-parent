@@ -1,6 +1,6 @@
-package kim.sesame.framework.define.entity;
+package kim.sesame.common.response;
 
-import kim.sesame.framework.entity.IErrorCode;
+import kim.sesame.common.entity.IErrorCode;
 
 /**
  * 响应状态枚举

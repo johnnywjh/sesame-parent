@@ -1,4 +1,4 @@
-package kim.sesame.framework.entity;
+package kim.sesame.common.entity;
 
 import lombok.Data;
 
@@ -12,13 +12,7 @@ public class IUser implements IEntity {
     private String account;//账号,唯一
     private String name;//昵称
     private String pwd;//密码
-
-//    private String pwdVersion;// 密码版本
-    public String getPwdVersion() {
-        return "";
-    }
-    public void setPwdVersion(String pwdVersion) {
-    }
+    private String pwdVersion;// 密码版本
 
     @Override
     public String toString() {

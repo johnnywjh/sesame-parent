@@ -1,9 +1,10 @@
 package kim.sesame.framework.web.controller;
 
-import kim.sesame.framework.define.entity.ErrorCodeEnum;
-import kim.sesame.framework.entity.IErrorCode;
-import kim.sesame.framework.exception.IException;
-import kim.sesame.framework.response.Response;
+import kim.sesame.common.response.ErrorCodeEnum;
+import kim.sesame.common.entity.IErrorCode;
+import kim.sesame.common.exception.IException;
+import kim.sesame.common.response.Response;
+import kim.sesame.common.response.ResponseFactory;
 import kim.sesame.framework.web.config.ProjectConfig;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,14 +18,9 @@ import java.util.List;
 @CommonsLog
 public abstract class AbstractController {
 
-    //单例 普通的成功用公用的对象
-    private static class ContextSuccess {
-        private final static Response SUCCESS = Response.create().setSuccess(true);
-    }
 
     public Response returnSuccess() {
-//        return Response.create().setSuccess(true);
-        return ContextSuccess.SUCCESS;
+        return ResponseFactory.ContextSuccess.SUCCESS;
     }
 
     public Response returnSuccess(Object result) {
