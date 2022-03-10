@@ -40,19 +40,5 @@ public class UploadController extends AbstractWebController {
         return returnSuccess(src);
     }
 
-    /**
-     * layui格式文件上传
-     *
-     * @param file 文件流
-     * @return
-     */
-    @IgnoreLoginCheck(isLoadUser = true)
-    @RequestMapping("/layfile")
-    public Map layfile(MultipartFile file) {
-        String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), "e", file);
-        log.info("文件上传结果 src:"+src);
-        return layuiUpload(src);
-    }
-
 
 }
