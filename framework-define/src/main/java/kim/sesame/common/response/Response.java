@@ -13,21 +13,20 @@ public class Response<T> implements java.io.Serializable {
     /* 是否成功 */
     private boolean success;
     /* 异常类型 */
-    private String exceptionType;
+    private String errorType;
     /* 状态码 */
     private int code;
     /* 信息 */
-    private String message;
+    private String msg;
     /* 返回结果 */
-    private T result;
+    private T data;
 
-//    private Object other; //其他信息
 
     public Response() {
         this.success = false;
-        this.exceptionType = "";
+        this.errorType = "";
         this.code = 0;
-        this.message = "";
+        this.msg = "";
     }
 
     /*------------------------------------------------*/
@@ -41,11 +40,14 @@ public class Response<T> implements java.io.Serializable {
     public Response setSuccess(boolean success) {
         this.success = success;
         this.code = ErrorCodeEnum.SUCCESS.getCode();
+        if (success) {
+            this.msg = "操作成功";
+        }
         return this;
     }
 
-    public Response setExceptionType(String exceptionType) {
-        this.exceptionType = exceptionType;
+    public Response setErrorType(String errorType) {
+        this.errorType = errorType;
         return this;
     }
 
@@ -54,33 +56,15 @@ public class Response<T> implements java.io.Serializable {
         return this;
     }
 
-    public Response setMessage(String message) {
-        this.message = message;
+    public Response setMsg(String message) {
+        this.msg = message;
         return this;
     }
 
     public Response setResult(T result) {
-        this.result = result;
+        this.data = result;
         return this;
     }
 
-//    public Response setPage(GPage page) {
-//        this.page = page;
-//        return this;
-//    }
-//    public Response setOther(Object other) {
-//        this.other = other;
-//        return this;
-//    }
 
-    @Override
-    public String toString() {
-        return "Response{" +
-                "success=" + success +
-                ", exceptionType='" + exceptionType + '\'' +
-                ", code='" + code + '\'' +
-                ", message='" + message + '\'' +
-                ", result=" + result +
-                '}';
-    }
 }

@@ -22,7 +22,7 @@ public class ResponseBuild {
     }
 
     public static Response returnSuccess(Object result, String msg) {
-        return Response.create().setSuccess(true).setResult(result).setMessage(msg);
+        return Response.create().setSuccess(true).setResult(result).setMsg(msg);
     }
 
     public static Response returnSuccess(List list) {
@@ -30,7 +30,7 @@ public class ResponseBuild {
     }
 
     public static Response returnSuccess(List list, String msg) {
-        return Response.create().setSuccess(true).setResult(list).setMessage(msg);
+        return Response.create().setSuccess(true).setResult(list).setMsg(msg);
     }
 
     /**
@@ -42,11 +42,11 @@ public class ResponseBuild {
      */
     public static Response loginFailure(String message) {
         ErrorCodeEnum ece = ErrorCodeEnum.BUSINESS;
-        return Response.create().setExceptionType(ece.name()).setCode(ece.getCode()).setMessage(message);
+        return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMsg(message);
     }
     public static Response notLogin(String message) {
         ErrorCodeEnum ece = ErrorCodeEnum.NOT_LOGIN;
-        return Response.create().setExceptionType(ece.name()).setCode(ece.getCode()).setMessage(message);
+        return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMsg(message);
     }
 
 
