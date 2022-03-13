@@ -6,6 +6,10 @@ package kim.sesame.common.utils;
  */
 public class GData {
 
+    public interface Log {
+        String LOG_PREFIX = "logPrefix";
+    }
+
     public interface JWT {
         String SESSION_ID = "jwt_session_id";
 

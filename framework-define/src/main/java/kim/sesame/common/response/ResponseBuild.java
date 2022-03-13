@@ -18,19 +18,19 @@ public class ResponseBuild {
     }
 
     public static Response returnSuccess(Object result) {
-        return Response.create().setSuccess(true).setResult(result);
+        return Response.create().setSuccess(true).setData(result);
     }
 
     public static Response returnSuccess(Object result, String msg) {
-        return Response.create().setSuccess(true).setResult(result).setMsg(msg);
+        return Response.create().setSuccess(true).setData(result).setMsg(msg);
     }
 
     public static Response returnSuccess(List list) {
-        return Response.create().setSuccess(true).setResult(list);
+        return Response.create().setSuccess(true).setData(list);
     }
 
     public static Response returnSuccess(List list, String msg) {
-        return Response.create().setSuccess(true).setResult(list).setMsg(msg);
+        return Response.create().setSuccess(true).setData(list).setMsg(msg);
     }
 
     /**

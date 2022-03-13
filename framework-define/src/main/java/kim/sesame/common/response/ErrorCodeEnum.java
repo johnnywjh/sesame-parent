@@ -8,11 +8,11 @@ import kim.sesame.common.entity.IErrorCode;
 public enum ErrorCodeEnum implements IErrorCode {
 
     SUCCESS(200, "成功"),
-    BUSINESS(9001, "业务异常错误"),
-    NOT_LOGIN(9002, "用户未登录"),
-    VALIDATOR(9003, "数据验证错误"),
+    NOT_LOGIN(401, "用户未登录"),
+    PARAMS_ERR(900, "参数验证错误"),
+    BUSINESS(901, "业务异常错误"),
 
-    SYSTEMERR(9999, "系统异常");
+    SYSTEMERR(999, "系统异常");
 
     private int code;
     private String message;

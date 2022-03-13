@@ -6,7 +6,7 @@ import kim.sesame.common.response.ErrorCodeEnum;
 /**
  * 业务异常基类
  */
-public class BizException extends RuntimeException implements IException {
+public class BizException extends AbstractBizException {
 
     private static final long serialVersionUID = 1L;
 

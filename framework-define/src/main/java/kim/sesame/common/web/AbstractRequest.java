@@ -61,7 +61,7 @@ public abstract class AbstractRequest extends PrintFriendliness {
      * requestId是否强制必填
      * @return
      */
-    protected boolean requiresRequestId( ) {
+    public boolean requiresRequestId( ) {
         return false;
     }
 
@@ -69,7 +69,7 @@ public abstract class AbstractRequest extends PrintFriendliness {
      * appId是否强制必填
      * @return
      */
-    protected boolean requiresAppId( ) {
+    public boolean requiresAppId( ) {
         return false;
     }
 
@@ -78,7 +78,7 @@ public abstract class AbstractRequest extends PrintFriendliness {
      * @param
      * @return
      */
-    protected String buildLogPrefix( ) {
+    public String buildLogPrefix( ) {
         if (StringUtils.isBlank(requestId)) {
             setRequestId(UUIDUtil.getShortUUID());
         }
@@ -89,7 +89,7 @@ public abstract class AbstractRequest extends PrintFriendliness {
      * 是否需要打印请求日志
      * @return
      */
-    protected boolean needsLog( ) {
+    public boolean needsLog( ) {
         return true;
     }
 }

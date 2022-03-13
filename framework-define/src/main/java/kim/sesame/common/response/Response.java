@@ -1,5 +1,7 @@
 package kim.sesame.common.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +10,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class Response<T> implements java.io.Serializable {
+public class Response<T> extends AbstractResponse {
 
     /* 是否成功 */
     private boolean success;
@@ -21,6 +23,14 @@ public class Response<T> implements java.io.Serializable {
     /* 返回结果 */
     private T data;
 
+    /**
+     * 是否需要记录响应日志
+     */
+    @JsonIgnore
+    private boolean needLog;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Object other; //其他信息
 
     public Response() {
         this.success = false;
@@ -61,10 +71,18 @@ public class Response<T> implements java.io.Serializable {
         return this;
     }
 
-    public Response setResult(T result) {
-        this.data = result;
+    public Response setData(T data) {
+        this.data = data;
         return this;
     }
 
+    public Response setNeedLog(boolean needLog) {
+        this.needLog = needLog;
+        return this;
+    }
+    public Response setOther(Object other) {
+        this.other = other;
+        return this;
+    }
 
 }

@@ -1,5 +1,7 @@
-package kim.sesame.common.web;
+package kim.sesame.common.response;
 
+
+import kim.sesame.common.web.PrintFriendliness;
 
 /**
  * 响应基类.
@@ -12,7 +14,7 @@ public abstract class AbstractResponse extends PrintFriendliness {
      * 请求处理结束，是否需要将响应输出到日志。默认为<code>true</code>
      * @return
      */
-    public boolean needsLog( ) {
+    protected boolean needsLog( ) {
         return true;
     }
 }

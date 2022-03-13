@@ -1,6 +1,7 @@
 package kim.sesame.framework.web.controller;
 
 import kim.sesame.common.entity.IErrorCode;
+import kim.sesame.common.exception.BizArgumentException;
 import kim.sesame.common.exception.IException;
 import kim.sesame.common.response.ErrorCodeEnum;
 import kim.sesame.common.response.Response;
@@ -24,24 +25,20 @@ public abstract class AbstractController {
     }
 
     public Response returnSuccess(Object result) {
-        return Response.create().setSuccess(true).setResult(result);
+        return Response.create().setSuccess(true).setData(result);
     }
 
     public Response returnSuccess(Object result, String msg) {
-        return Response.create().setSuccess(true).setResult(result).setMsg(msg);
+        return Response.create().setSuccess(true).setData(result).setMsg(msg);
     }
 
     public Response returnSuccess(List list) {
-        return Response.create().setSuccess(true).setResult(list);
+        return Response.create().setSuccess(true).setData(list);
     }
 
     public Response returnSuccess(List list, String msg) {
-        return Response.create().setSuccess(true).setResult(list).setMsg(msg);
+        return Response.create().setSuccess(true).setData(list).setMsg(msg);
     }
-
-//    public Response returnSuccess(List list, GPage gPage) {
-//        return Response.create().setSuccess(true).setResult(list).setPage(gPage);
-//    }
 
 
 //    @ExceptionHandler(UserNotLoginException.class)
@@ -49,6 +46,13 @@ public abstract class AbstractController {
 //        //用户未登录重定向到根目录
 //        return "redirect:/index/login";
 //    }
+
+    @ExceptionHandler(BizArgumentException.class)
+    @ResponseBody
+    public Response handleException(BizArgumentException exception) {
+        ErrorCodeEnum erroeEnum = ErrorCodeEnum.PARAMS_ERR;
+        return Response.create().setErrorType(erroeEnum.name()).setCode(erroeEnum.getCode()).setMsg(exception.getMessage());
+    }
 
     /**
      * 异常处理

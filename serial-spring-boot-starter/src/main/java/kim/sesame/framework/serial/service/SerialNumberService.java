@@ -1,12 +1,12 @@
 package kim.sesame.framework.serial.service;
 
 import com.zengtengpeng.annotation.Lock;
+import kim.sesame.common.utils.Argument;
+import kim.sesame.common.utils.DateUtil;
 import kim.sesame.framework.serial.dao.SerialNumberRuleDao;
 import kim.sesame.framework.serial.define.ISerialNumberService;
 import kim.sesame.framework.serial.define.SerialNumberRule;
 import kim.sesame.framework.serial.entity.SerialNumberRuleEntity;
-import kim.sesame.common.utils.Argument;
-import kim.sesame.common.utils.DateUtil;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
