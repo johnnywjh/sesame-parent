@@ -3,7 +3,7 @@ package kim.sesame.framework.web.interceptor.web;
 import com.alibaba.fastjson.JSON;
 import kim.sesame.common.entity.IUser;
 import kim.sesame.common.response.ResponseBuild;
-import kim.sesame.framework.utils.GData;
+import kim.sesame.common.utils.GData;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

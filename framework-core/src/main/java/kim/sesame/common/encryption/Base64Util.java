@@ -1,4 +1,4 @@
-package kim.sesame.framework.encryption;
+package kim.sesame.common.encryption;
 
 import java.util.Base64;
 

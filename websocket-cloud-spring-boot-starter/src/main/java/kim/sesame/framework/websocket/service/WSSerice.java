@@ -2,7 +2,7 @@ package kim.sesame.framework.websocket.service;
 
 import com.alibaba.fastjson.JSON;
 import com.github.kevinsawicki.http.HttpRequest;
-import kim.sesame.framework.utils.StringUtil;
+import kim.sesame.common.utils.StringUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.websocket.config.WebSocketConfig;
 import lombok.extern.apachecommons.CommonsLog;

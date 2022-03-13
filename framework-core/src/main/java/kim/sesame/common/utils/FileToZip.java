@@ -1,4 +1,4 @@
-package kim.sesame.framework.utils;
+package kim.sesame.common.utils;
 
 import java.io.*;
 import java.util.zip.ZipEntry;

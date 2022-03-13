@@ -1,4 +1,4 @@
-package kim.sesame.framework.utils;
+package kim.sesame.common.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

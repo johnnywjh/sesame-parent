@@ -1,4 +1,4 @@
-package kim.sesame.framework.utils;
+package kim.sesame.common.utils;
 
 import org.apache.commons.lang3.ObjectUtils;
 

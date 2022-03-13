@@ -13,7 +13,7 @@
  * accordance with the terms of the license agreement you entered into
  * with Alibaba.com.
  */
-package kim.sesame.framework.utils;
+package kim.sesame.common.utils;
 
 import java.util.Collection;
 import java.util.Map;

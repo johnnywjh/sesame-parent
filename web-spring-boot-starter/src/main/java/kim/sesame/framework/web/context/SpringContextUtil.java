@@ -1,6 +1,6 @@
 package kim.sesame.framework.web.context;
 
-import kim.sesame.framework.utils.Ipconfig;
+import kim.sesame.common.utils.Ipconfig;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.controller.ISwagger;
 import lombok.extern.apachecommons.CommonsLog;

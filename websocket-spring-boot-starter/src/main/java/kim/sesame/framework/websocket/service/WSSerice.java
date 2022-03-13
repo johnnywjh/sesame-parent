@@ -1,7 +1,7 @@
 package kim.sesame.framework.websocket.service;
 
 import com.alibaba.fastjson.JSON;
-import kim.sesame.framework.utils.StringUtil;
+import kim.sesame.common.utils.StringUtil;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang3.StringUtils;
 

@@ -1,4 +1,4 @@
-package kim.sesame.framework.utils;
+package kim.sesame.common.utils;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

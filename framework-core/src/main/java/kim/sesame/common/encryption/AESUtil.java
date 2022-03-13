@@ -1,4 +1,4 @@
-package kim.sesame.framework.encryption;
+package kim.sesame.common.encryption;
 
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
