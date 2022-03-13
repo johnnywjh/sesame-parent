@@ -14,7 +14,7 @@ public abstract class AbstractResponse extends PrintFriendliness {
      * 请求处理结束，是否需要将响应输出到日志。默认为<code>true</code>
      * @return
      */
-    protected boolean needsLog( ) {
+    public boolean needsLog( ) {
         return true;
     }
 }
