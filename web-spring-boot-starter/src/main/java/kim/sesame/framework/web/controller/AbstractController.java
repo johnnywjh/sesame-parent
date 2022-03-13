@@ -28,7 +28,7 @@ public abstract class AbstractController {
     }
 
     public Response returnSuccess(Object result, String msg) {
-        return Response.create().setSuccess(true).setResult(result).setMessage(msg);
+        return Response.create().setSuccess(true).setResult(result).setMsg(msg);
     }
 
     public Response returnSuccess(List list) {
@@ -36,7 +36,7 @@ public abstract class AbstractController {
     }
 
     public Response returnSuccess(List list, String msg) {
-        return Response.create().setSuccess(true).setResult(list).setMessage(msg);
+        return Response.create().setSuccess(true).setResult(list).setMsg(msg);
     }
 
 //    public Response returnSuccess(List list, GPage gPage) {
@@ -64,12 +64,12 @@ public abstract class AbstractController {
 
         if (exception instanceof IException) {
             IErrorCode ece = ((IException) exception).getErrorCodeEnum();
-            return Response.create().setExceptionType(ece.name()).setCode(ece.getCode()).setMessage(exception.getMessage());
+            return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMsg(exception.getMessage());
         }
         //系统异常
         else {
             IErrorCode ece = ErrorCodeEnum.SYSTEMERR;
-            return Response.create().setExceptionType(ece.name()).setCode(ece.getCode()).setMessage(getExceptionMessage(exception));
+            return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMsg(getExceptionMessage(exception));
         }
     }
 

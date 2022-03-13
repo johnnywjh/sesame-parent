@@ -15,14 +15,12 @@ public class BasePageRequest  extends BaseRequest {
      * 页面索引
      */
     @Min(1)
-//    @QueryParam("pageIndex")
-    private int pageIndex;
+    private int pageNum;
 
     /**
      * 每页展示数量
      */
     @Range(min = 1, max = 100)
-//    @QueryParam("pageSize")
     private int pageSize;
 
 
