@@ -50,6 +50,7 @@ public abstract class AbstractController {
     @ExceptionHandler(BizArgumentException.class)
     @ResponseBody
     public Response handleException(BizArgumentException exception) {
+        log.error(exception.getMessage(), exception);
         ErrorCodeEnum erroeEnum = ErrorCodeEnum.PARAMS_ERR;
         return Response.create().setErrorType(erroeEnum.name()).setCode(erroeEnum.getCode()).setMsg(exception.getMessage());
     }
