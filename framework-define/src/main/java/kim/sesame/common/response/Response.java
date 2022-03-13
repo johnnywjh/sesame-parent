@@ -80,9 +80,17 @@ public class Response<T> extends AbstractResponse {
         this.needLog = needLog;
         return this;
     }
+
     public Response setOther(Object other) {
         this.other = other;
         return this;
     }
 
+    @Override
+    public String getDataClassName() {
+        if (this.data != null) {
+            return this.data.getClass().getSimpleName();
+        }
+        return super.getDataClassName();
+    }
 }

@@ -17,4 +17,8 @@ public abstract class AbstractResponse extends PrintFriendliness {
     public boolean needsLog( ) {
         return true;
     }
+
+    public String getDataClassName(){
+        return null;
+    }
 }
