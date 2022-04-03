@@ -46,20 +46,6 @@ public class WebProperties implements InitializingBean {
      */
     private int userCookieSaveTime = 60 * 24 * 30;
 
-
-    /**
-     * 内置拦截器:打印请求日志
-     */
-    private boolean interceptorPrintReqLog = false;
-    /**
-     * 内置拦截器:用户信息信息加载
-     */
-    private boolean interceptorUser = false;
-    /**
-     * 内置拦截器:固定用户信息用
-     */
-    private boolean fixedUserEnable = false;
-    private String fixedUserAccount;
     /**
      * 内置拦截器:拦截用户登录,非session方式
      */
