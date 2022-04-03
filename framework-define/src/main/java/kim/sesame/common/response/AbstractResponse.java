@@ -1,6 +1,7 @@
 package kim.sesame.common.response;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import kim.sesame.common.web.PrintFriendliness;
 
 /**
@@ -18,6 +19,7 @@ public abstract class AbstractResponse extends PrintFriendliness {
         return true;
     }
 
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getDataClassName(){
         return null;
     }
