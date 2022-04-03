@@ -1,8 +1,6 @@
 package kim.sesame.framework.web.interceptor.user;
 
-import kim.sesame.common.entity.IUser;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
-import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.config.WebProperties;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.web.context.UserContext;
@@ -43,15 +41,15 @@ public class FixedUserInterceptor extends HandlerInterceptorAdapter {
         WebProperties web = SpringContextUtil.getBean(WebProperties.class);
 
         if(web.isFixedUserEnable()){
-            String userNo = web.getFixedUserAccount();
-            IUserCache userCache = SpringContextUtil.getBean(IUserCache.class);
-            UserContext.getUserContext().setCurrentLoginUserAccount(userNo);
-            IUser user = userCache.getUserCache(userNo);
-
-            log.debug(">>>>>> 固定登录的用户账号 : " + userNo);
-            log.debug(">>>>>> 固定登录的用户实体 : " + user);
-
-            UserContext.getUserContext().setUser(user);
+//            String userNo = web.getFixedUserAccount();
+//            IUserCache userCache = SpringContextUtil.getBean(IUserCache.class);
+//            UserContext.getUserContext().setCurrentLoginUserAccount(userNo);
+//            IUser user = userCache.getUserCache(userNo);
+//
+//            log.debug(">>>>>> 固定登录的用户账号 : " + userNo);
+//            log.debug(">>>>>> 固定登录的用户实体 : " + user);
+//
+//            UserContext.getUserContext().setUser(user);
         }
 
         return true;
