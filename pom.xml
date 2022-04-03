@@ -50,8 +50,8 @@
         <module>mybatis-plus-spring-boot-starter</module>
         <module>serial-spring-boot-starter</module>
         <module>web-spring-boot-starter</module>
-        <module>websocket-spring-boot-starter</module>
-        <module>websocket-cloud-spring-boot-starter</module>
+<!--        <module>websocket-spring-boot-starter</module>-->
+<!--        <module>websocket-cloud-spring-boot-starter</module>-->
     </modules>
 
     <dependencyManagement>
