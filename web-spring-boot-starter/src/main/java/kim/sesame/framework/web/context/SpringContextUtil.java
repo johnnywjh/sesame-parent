@@ -1,19 +1,12 @@
 package kim.sesame.framework.web.context;
 
-import kim.sesame.common.utils.Ipconfig;
-import kim.sesame.framework.web.config.WebProperties;
-import kim.sesame.framework.web.controller.ISwagger;
 import lombok.extern.apachecommons.CommonsLog;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-import java.net.InetAddress;
 import java.util.Map;
 
 @Component
@@ -22,19 +15,10 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
     private static String currentPath; // 当前项目资源路径,
-    private static String currentIpPort; // 当前项目实例
-    private static String currentIp; // 当前项目Ip
-    private static String env;// 当前环境
 
-    @Autowired
-    Environment environment;
-    @Autowired
-    WebProperties web;
 
     /**
      * 获取上下文
-     *
-     * @return ApplicationContext
      */
     public static ApplicationContext getApplicationContext() {
         return applicationContext;
@@ -42,38 +26,10 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     /**
      * 设置上下文
-     *
-     * @param applicationContext applicationContext
      */
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
         SpringContextUtil.applicationContext = applicationContext;
-
-        //初始化当前项目资源路径
-        SpringContextUtil.currentPath = web.getUserHome() + "/ars/" + web.getSysCode() + "/data";
-
-        String port = null;
-        port = environment.getProperty("server.port");
-        if (StringUtils.isEmpty(port)) {
-            port = "8080";
-        }
-
-        // 初始化当前ip信息
-        currentIpPort = web.getCurrentIpPort();
-        currentIp = web.getCurrentIp();
-        if (StringUtils.isEmpty(currentIp)) {
-            try {
-                currentIp = InetAddress.getLocalHost().getHostAddress();
-            } catch (Exception e) {
-                e.printStackTrace();
-                currentIp = Ipconfig.getInfo().getLocalip();
-            }
-            web.setCurrentIp(currentIp);
-        }
-        if (StringUtils.isEmpty(currentIpPort)) {
-            currentIpPort = currentIp + ":" + port;
-            web.setCurrentIpPort(currentIpPort);
-        }
     }
 
     /**
@@ -91,25 +47,6 @@ public class SpringContextUtil implements ApplicationContextAware {
 
         DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) getApplicationContext().getAutowireCapableBeanFactory();
         beanFactory.registerBeanDefinition(beanName, beanDefinitionBuilder.getBeanDefinition());
-    }
-
-    public static String getCurrentIpPort() {
-        return currentIpPort;
-    }
-
-    public static String getCurrentIp() {
-        return currentIp;
-    }
-
-    public static String getCurrentPath() {
-        return currentPath;
-    }
-
-    public static String getEnv() {
-        if (StringUtils.isEmpty(env)) {
-            env = applicationContext.getBean(Environment.class).getProperty("spring.profiles.active");
-        }
-        return env;
     }
 
     /**
@@ -157,50 +94,5 @@ public class SpringContextUtil implements ApplicationContextAware {
 
     }
 
-    public static void printInfo() {
-        println("***************");
-        Object dataSource = null;
-        try {
-            dataSource = SpringContextUtil.getBean("dataSource");
-        } catch (Exception e) {
-        }
-        if (dataSource != null) {
-            println(">>>>数据源>>>>>" + dataSource.getClass());
-        }
-        printBase();
-    }
-
-    private static void printBase() {
-        Environment environment = getApplicationContext().getEnvironment();
-        WebProperties webProperties = getBean(WebProperties.class);
-        String port = environment.getProperty("server.port");
-        if (StringUtils.isEmpty(port)) {
-            port = "8080";
-        }
-
-        String local_project_url = "http://127.0.0.1:" + port;
-        println(local_project_url);
-        String ip_project_url = "http://" + webProperties.getCurrentIpPort();
-//        println(ip_project_url);
-        String profile = SpringContextUtil.getEnv();
-        if (StringUtils.isNotEmpty(profile)) {
-            println("当前激活的环境文件:" + profile);
-        } else {
-            println("当前激活的环境文件: 无 ,如有需要请配置 spring.profiles.active=@profileActive@");
-        }
-        println("当前项目资源路径:SpringContextUtil.getCurrentPath() : " + getCurrentPath());
-        ISwagger iSwagger = SpringContextUtil.getBean(ISwagger.class);
-        if (iSwagger != null) {
-            println(local_project_url + "/docs.html");
-            println(local_project_url + "/swagger-ui.html");
-        }
-//        println("当前应用实例 : " + webProperties.getCurrentIpPort());
-        println("web.testkey=" + webProperties.getTestkey());
-        println("***************");
-    }
-
-    private static void println(Object obj) {
-        log.info(obj.toString());
-    }
 
 }

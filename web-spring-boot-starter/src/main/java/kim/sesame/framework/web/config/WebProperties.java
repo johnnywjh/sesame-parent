@@ -47,10 +47,6 @@ public class WebProperties implements InitializingBean {
      */
     private int userCookieSaveTime = 60 * 24 * 30;
 
-    private String basePath;
-    private String iconPath;
-    private int defaultPageSize = 10;
-    private String pageReplace = "~";
 
     /**
      * 内置拦截器:打印请求日志
@@ -79,26 +75,10 @@ public class WebProperties implements InitializingBean {
      */
     private boolean enableCrossDomain = false;
 
-    /**
-     * 当前系统编码,默认 web, 一般单机系统不需要配置
-     */
-    private String sysCode = "web";
-    /**
-     * 超级管理员角色编号
-     */
-    private String spuerAdmin = "super_admin";
+
 
     @Override
     public void afterPropertiesSet() throws Exception {
-
-        if (StringUtils.isEmpty(this.iconPath))
-            this.basePath = "";
-        if (StringUtils.isEmpty(this.iconPath))
-            this.iconPath = this.basePath + "/icon/icon.png";
-
-//        GPage.DEFAULT_PAGE_SIZE = this.defaultPageSize;
-        ProjectConfig.setSysCode(this.sysCode);
-        ProjectConfig.setSuperAdmin(this.spuerAdmin);
         ProjectConfig.setDebug(debug);
         ProjectConfig.setSystemExceptionMessage(systemExceptionMessage);
 
