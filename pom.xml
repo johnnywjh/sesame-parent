@@ -230,11 +230,11 @@
         <!--插件定义,被继承-->
         <pluginManagement>
             <plugins>
-                <!--自定义插件:重新加载资源文件-->
+                <!--
                 <plugin>
-                    <groupId>kim.sesame.framework</groupId>
+                    <groupId>kim.sesame</groupId>
                     <artifactId>reload-resources-file</artifactId>
-                    <version>${sesame.version}</version>
+                    <version>1.0</version>
                     <configuration>
                         <srcFiles>
                             <srcFile>${project.basedir}/src/main/resources/public</srcFile>
@@ -250,11 +250,10 @@
                         </execution>
                     </executions>
                 </plugin>
-                <!--自定义插件:打包时压缩指定目录-->
                 <plugin>
-                    <groupId>kim.sesame.framework</groupId>
+                    <groupId>kim.sesame</groupId>
                     <artifactId>zip</artifactId>
-                    <version>${sesame.version}</version>
+                    <version>1.0</version>
                     <configuration>
                         <paths>
                             <path>${project.basedir}/target/classes/com/sesame/theme</path>
@@ -269,7 +268,7 @@
                         </execution>
                     </executions>
                 </plugin>
-
+                    -->
             </plugins>
         </pluginManagement>
 
