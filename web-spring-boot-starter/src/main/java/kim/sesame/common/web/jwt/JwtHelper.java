@@ -1,11 +1,11 @@
-package kim.sesame.framework.web.jwt;
+package kim.sesame.common.web.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import kim.sesame.common.utils.GData;
-import kim.sesame.framework.web.context.SpringContextUtil;
+import kim.sesame.common.web.context.SpringContextUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.crypto.spec.SecretKeySpec;

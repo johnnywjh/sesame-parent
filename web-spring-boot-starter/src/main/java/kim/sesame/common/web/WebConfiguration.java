@@ -1,4 +1,4 @@
-package kim.sesame.framework.web;
+package kim.sesame.common.web;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

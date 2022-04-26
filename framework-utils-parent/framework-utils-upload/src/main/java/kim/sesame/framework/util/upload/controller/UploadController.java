@@ -2,9 +2,9 @@ package kim.sesame.framework.util.upload.controller;
 
 import kim.sesame.common.response.Response;
 import kim.sesame.framework.util.upload.service.UploadService;
-import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
-import kim.sesame.framework.web.config.ProjectConfig;
-import kim.sesame.framework.web.controller.AbstractWebController;
+import kim.sesame.common.web.annotation.IgnoreLoginCheck;
+import kim.sesame.common.web.config.ProjectConfig;
+import kim.sesame.common.web.controller.AbstractWebController;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

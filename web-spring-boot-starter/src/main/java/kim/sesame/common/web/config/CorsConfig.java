@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.config;
+package kim.sesame.common.web.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.controller;
+package kim.sesame.common.web.controller;
 
 /**
  * swagger的一个空实现,和示例写法

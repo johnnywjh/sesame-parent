@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.config;
+package kim.sesame.common.web.config;
 
 public class ProjectConfig {
     private static String sysCode;// 系统编号

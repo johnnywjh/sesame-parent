@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.jwt;
+package kim.sesame.common.web.jwt;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
@@ -6,7 +6,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import kim.sesame.common.utils.GData;
-import kim.sesame.framework.web.context.SpringContextUtil;
+import kim.sesame.common.web.context.SpringContextUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;

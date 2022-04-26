@@ -6,7 +6,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import kim.sesame.framework.cache.annotation.QueryCache;
 import kim.sesame.framework.cache.redis.config.QueryCacheProperties;
 import kim.sesame.framework.cache.redis.server.CacheServer;
-import kim.sesame.framework.web.context.SpringContextUtil;
+import kim.sesame.common.web.context.SpringContextUtil;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;

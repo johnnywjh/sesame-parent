@@ -5,7 +5,7 @@ import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import kim.sesame.common.utils.StringUtil;
-import kim.sesame.framework.web.controller.ISwagger;
+import kim.sesame.common.web.controller.ISwagger;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

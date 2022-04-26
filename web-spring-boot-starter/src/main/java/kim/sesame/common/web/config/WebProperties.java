@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.config;
+package kim.sesame.common.web.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.InitializingBean;

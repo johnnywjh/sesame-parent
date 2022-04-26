@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.util;
+package kim.sesame.common.web.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.kevinsawicki.http.HttpRequest;

@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.annotation;
+package kim.sesame.common.web.annotation;
 
 import java.lang.annotation.*;
 

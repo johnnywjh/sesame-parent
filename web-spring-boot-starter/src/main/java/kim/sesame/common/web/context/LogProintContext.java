@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.context;
+package kim.sesame.common.web.context;
 
 import kim.sesame.common.response.Response;
 

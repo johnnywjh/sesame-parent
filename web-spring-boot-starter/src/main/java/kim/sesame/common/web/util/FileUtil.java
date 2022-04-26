@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.util;
+package kim.sesame.common.web.util;
 
 import java.io.File;
 import java.io.IOException;

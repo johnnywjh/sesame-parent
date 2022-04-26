@@ -1,4 +1,4 @@
-package kim.sesame.framework.web.jwt;
+package kim.sesame.common.web.jwt;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
