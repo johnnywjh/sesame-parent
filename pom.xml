@@ -50,8 +50,8 @@
         <module>mybatis-plus-spring-boot-starter</module>
         <module>serial-spring-boot-starter</module>
         <module>web-spring-boot-starter</module>
-<!--        <module>websocket-spring-boot-starter</module>-->
-<!--        <module>websocket-cloud-spring-boot-starter</module>-->
+        <!--        <module>websocket-spring-boot-starter</module>-->
+        <!--        <module>websocket-cloud-spring-boot-starter</module>-->
     </modules>
 
     <dependencyManagement>
@@ -66,12 +66,27 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2021.0.1</version>
+                <version>2021.0.3</version>
                 <type>pom</type>
                 <scope>import</scope>
                 <!-- 官网版本查看 https://spring.io/projects/spring-cloud#overview -->
                 <!-- 版本列表 https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2021.0-Release-Notes -->
             </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2021.0.1.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba.cloud</groupId>-->
+<!--                <artifactId>aliyun-spring-boot-dependencies</artifactId>-->
+<!--                <version>${aliyun-project-version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
+
 
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
