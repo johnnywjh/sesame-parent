@@ -10,13 +10,13 @@
 
     <groupId>kim.sesame.framework</groupId>
     <artifactId>sesame-parent</artifactId>
-    <version>2.4.0</version><!-- sesame.version -->
+    <version>2.4.1</version><!-- sesame.version -->
     <packaging>pom</packaging>
-    <name>sesame-parent-2.4.0</name>
+    <name>sesame-parent-2.4.1</name>
     <description></description>
 
     <properties>
-        <sesame.version>2.4.0</sesame.version>
+        <sesame.version>2.4.1</sesame.version>
         <spring-boot.version>2.6.6</spring-boot.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
