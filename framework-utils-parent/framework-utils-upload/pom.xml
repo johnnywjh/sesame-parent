@@ -11,7 +11,7 @@
 
     <artifactId>framework-utils-upload</artifactId>
     <packaging>jar</packaging>
-    <name>${project.artifactId}-${project.version}</name>
+    <name>framework-utils-upload</name>
 
     <dependencies>
 

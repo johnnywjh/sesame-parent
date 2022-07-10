@@ -12,7 +12,7 @@
     <artifactId>sesame-parent</artifactId>
     <version>2.4.0</version><!-- sesame.version -->
     <packaging>pom</packaging>
-    <name>${project.artifactId}-${project.version}</name>
+    <name>sesame-parent-2.4.0</name>
     <description></description>
 
     <properties>
@@ -37,6 +37,7 @@
 
     <!-- 项目集合-->
     <modules>
+
         <module>cache-redis-spring-boot-starter</module>
         <module>cache-local-caffeine-spring-boot-starter</module>
         <module>email-spring-boot-starter</module>
@@ -50,8 +51,12 @@
         <module>mybatis-plus-spring-boot-starter</module>
         <module>serial-spring-boot-starter</module>
         <module>web-spring-boot-starter</module>
+
+        <module>spring-cloud-feign-common</module>
+
         <!--        <module>websocket-spring-boot-starter</module>-->
         <!--        <module>websocket-cloud-spring-boot-starter</module>-->
+
     </modules>
 
     <dependencyManagement>
@@ -78,6 +83,12 @@
                 <version>2021.0.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                <version>2021.0.1.0</version>
             </dependency>
 <!--            <dependency>-->
 <!--                <groupId>com.alibaba.cloud</groupId>-->

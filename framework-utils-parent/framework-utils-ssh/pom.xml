@@ -11,7 +11,7 @@
 
     <artifactId>framework-utils-ssh</artifactId>
     <packaging>jar</packaging>
-    <name>${project.artifactId}-${project.version}</name>
+    <name>framework-utils-ssh</name>
 
     <dependencies>
 

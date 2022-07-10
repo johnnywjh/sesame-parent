@@ -11,7 +11,7 @@
 
 	<artifactId>mybatis-plus-spring-boot-starter</artifactId>
 	<packaging>jar</packaging>
-	<name>${project.artifactId}-${project.version}</name>
+	<name>mybatis-plus-spring-boot-starter</name>
 
 	<dependencies>
 		<dependency>

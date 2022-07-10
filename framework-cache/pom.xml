@@ -11,7 +11,7 @@
 
     <artifactId>framework-cache</artifactId>
     <packaging>jar</packaging>
-    <name>${project.artifactId}-${project.version}</name>
+    <name>framework-cache</name>
 
     <dependencies>
 

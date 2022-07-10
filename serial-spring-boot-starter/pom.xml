@@ -10,7 +10,7 @@
 
 	<artifactId>serial-spring-boot-starter</artifactId>
 	<packaging>jar</packaging>
-	<name>${project.artifactId}-${project.version}</name>
+	<name>serial-spring-boot-starter</name>
 
 	<dependencies>
 		<dependency>
