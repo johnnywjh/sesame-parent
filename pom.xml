@@ -52,7 +52,8 @@
         <module>serial-spring-boot-starter</module>
         <module>web-spring-boot-starter</module>
 
-        <module>spring-cloud-feign-common</module>
+        <module>spring-cloud-common-feign</module>
+        <module>spring-cloud-common-sleuth-zipkin</module>
 
         <!--        <module>websocket-spring-boot-starter</module>-->
         <!--        <module>websocket-cloud-spring-boot-starter</module>-->
@@ -187,7 +188,12 @@
 
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
-                <artifactId>spring-cloud-feign-common</artifactId>
+                <artifactId>spring-cloud-common-feign</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>kim.sesame.framework</groupId>
+                <artifactId>spring-cloud-common-sleuth-zipkin</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
 

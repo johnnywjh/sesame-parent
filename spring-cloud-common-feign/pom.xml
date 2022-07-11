@@ -8,9 +8,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-cloud-feign-common</artifactId>
+    <artifactId>spring-cloud-common-feign</artifactId>
     <packaging>jar</packaging>
-    <name>spring-cloud-feign-common</name>
+    <name>spring-cloud-common-feign</name>
 
     <dependencies>
 
