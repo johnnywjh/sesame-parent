@@ -9,9 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.*;
 
 /**
  *
@@ -19,6 +17,8 @@ import java.util.TimeZone;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)// 构造器私有化
 @CommonsLog
 public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
+
+    private static ThreadLocal<Map<String, SimpleDateFormat>> sdfThreadLocalMap = new ThreadLocal<>();
 
     /**
      * 日期格式
@@ -48,7 +48,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * 获取两个日期相差的月数
      *
      * @param startDate 开始日期
-     * @param endDate 结束日期
+     * @param endDate   结束日期
      * @return 如果d2 到 d1返回 月数差 否则返回0
      */
     public static int getMonthDiff(Date startDate, Date endDate) {
@@ -86,47 +86,51 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 比较两个时间相差的天数
+     *
      * @param beginDate 1
-     * @param endDate 2
+     * @param endDate   2
      * @return long
      */
-    public static Long getDaysDiff(LocalDate beginDate,LocalDate endDate) {
-        return endDate.toEpochDay()-beginDate.toEpochDay();
+    public static Long getDaysDiff(LocalDate beginDate, LocalDate endDate) {
+        return endDate.toEpochDay() - beginDate.toEpochDay();
     }
 
     /**
      * 比较两个时间相差的天数
-     * @param startDate  1
-     * @param endDate 2
+     *
+     * @param startDate 1
+     * @param endDate   2
      * @return long
      */
     public static Long getDaysDiff(Date startDate, Date endDate) {
-        LocalDate beginTime =  DateUtil.getDateToLocalDate(startDate);
-        LocalDate endTime =  DateUtil.getDateToLocalDate(endDate);
-        return getDaysDiff(beginTime,endTime);
+        LocalDate beginTime = DateUtil.getDateToLocalDate(startDate);
+        LocalDate endTime = DateUtil.getDateToLocalDate(endDate);
+        return getDaysDiff(beginTime, endTime);
     }
 
     /**
      * 获取相差月份时的时间
-     * @param date 日期
-     * @param month 距date 相差月份 正数加 负数减
+     *
+     * @param date      日期
+     * @param month     距date 相差月份 正数加 负数减
      * @param formatter fmt
      * @return string
      */
-    public static String getMonthByDate(Date date,int month,String formatter) {
+    public static String getMonthByDate(Date date, int month, String formatter) {
         if (StringUtils.isEmpty(formatter)) {
             formatter = DATETIME_FORMATTER;
         }
-        return dateToString(getDifferInByDate(date,month),formatter);
+        return dateToString(getDifferInByDate(date, month), formatter);
     }
 
     /**
      * 获取相差月份时的时间
-     * @param date 日期
+     *
+     * @param date  日期
      * @param month 距date 相差月份 正数加 负数减
      * @return date
      */
-    public static Date getDifferInByDate(Date date,int month) {
+    public static Date getDifferInByDate(Date date, int month) {
         if (date == null) {
             return null;
         }
@@ -141,6 +145,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 获取localDate日期的开始时间 {@link LocalTime}
      * eg. 2018-06-11 13:31:31 return 2018-06-11 00:00:00
+     *
      * @param localDate localdate
      * @return date
      */
@@ -153,6 +158,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 获取localDate日期的结束时间 {@link LocalTime}
      * eg. 2018-06-11 13:31:31 return 2018-06-11 23:59:59.999999999
+     *
      * @param localDate localDate
      * @return date
      */
@@ -164,6 +170,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * date 转 LocalDate
+     *
      * @param date date
      * @return localste
      */
@@ -177,7 +184,8 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 获取localDate日期所在月的开始日期
      * eg. 2018-06-11 13:31:31 return 2018-06-01 00:00:00
-     * @param localDate  localDate
+     *
+     * @param localDate localDate
      * @return date
      */
     public static Date getMonthFirstDay(LocalDate localDate) {
@@ -188,6 +196,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 获取localDate日期所在月的结束日期
      * eg. 2018-06-11 13:31:31 return 2018-06-30 23:59:59.999999999
+     *
      * @param localDate localDate
      * @return date
      */
@@ -199,7 +208,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
     /**
      * 日期转字符串
      *
-     * @param date date
+     * @param date      date
      * @param formatter formatter
      * @return string
      */
@@ -210,7 +219,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
         if (StringUtils.isEmpty(formatter)) {
             formatter = DATETIME_FORMATTER;
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatter);
+        SimpleDateFormat simpleDateFormat = getSDF(formatter);
         return simpleDateFormat.format(date);
     }
 
@@ -218,7 +227,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * 字符串转日期
      *
      * @param dateString 1
-     * @param formatter 2
+     * @param formatter  2
      * @return date
      */
     public static Date stringToDate(String dateString, String formatter) {
@@ -228,7 +237,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
         if (StringUtils.isEmpty(formatter)) {
             formatter = DATETIME_FORMATTER;
         }
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatter);
+        SimpleDateFormat simpleDateFormat = getSDF(formatter);
         try {
             return simpleDateFormat.parse(dateString);
         } catch (ParseException e) {
@@ -238,9 +247,27 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
         }
     }
 
+    public static SimpleDateFormat getSDF(String formatter) {
+        Map<String, SimpleDateFormat> stringSimpleDateFormatMap = sdfThreadLocalMap.get();
+        if (stringSimpleDateFormatMap == null) {
+            stringSimpleDateFormatMap = new HashMap<>();
+        }
+        SimpleDateFormat simpleDateFormat = stringSimpleDateFormatMap.get(formatter);
+        if (simpleDateFormat == null) {
+
+            simpleDateFormat = new SimpleDateFormat(formatter);
+            stringSimpleDateFormatMap.put(formatter, simpleDateFormat);
+            sdfThreadLocalMap.set(stringSimpleDateFormatMap);
+            System.out.println("初始化 " + formatter + "" + Thread.currentThread().getName() + " " + simpleDateFormat);
+        }
+//        System.out.println(stringSimpleDateFormatMap.keySet().size() + " " + formatter + " " + Thread.currentThread().getName() + "" + simpleDateFormat);
+        return simpleDateFormat;
+    }
+
     /**
      * java.util.Date 到 java.time.LocalDate
-     * @param  date date
+     *
+     * @param date date
      * @return java.util.Date 到 java.time.LocalDate
      */
     public static LocalDate getDateToLocalDate(Date date) {
@@ -252,12 +279,13 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 得到两日期之间的毫秒数
+     *
      * @param date1 date1
      * @param date2 date2
      * @return long
      */
     public static long subDate(Date date1, Date date2) {
-        if(date1 == null || date2 == null) {
+        if (date1 == null || date2 == null) {
             return 0;
         }
         return date1.getTime() - date2.getTime();
@@ -287,12 +315,13 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 获取两个时间之间的分钟数
+     *
      * @param date1 one
      * @param date2 two
      * @return long
      */
     public static long getTwoDateTotalMin(Date date1, Date date2) {
-        if(date1 == null || date2 == null) {
+        if (date1 == null || date2 == null) {
             return 0L;
         }
         long timeMils = date1.getTime() - date2.getTime();
@@ -301,11 +330,12 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 根据分钟获取小时和分钟
+     *
      * @param min min
      * @return string
      */
     public static String getHourAndMin(Long min) {
-        if(min <= 0) {
+        if (min <= 0) {
             return "";
         }
         return min / TIME_RADIX + "小时" + min % TIME_RADIX + "分钟";
@@ -313,34 +343,47 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
 
     /**
      * 返回当天0点的时间
+     *
      * @return long
      */
-    public static Long getNowDateStart(){
-        long nowTime =System.currentTimeMillis();
-        return nowTime - (nowTime + TimeZone.getDefault().getRawOffset())% (1000*3600*24);
+    public static Long getNowDateStart() {
+        long nowTime = System.currentTimeMillis();
+        return nowTime - (nowTime + TimeZone.getDefault().getRawOffset()) % (1000 * 3600 * 24);
     }
 
     /**
      * 返回时间0点
+     *
      * @param nowTime date
      * @return date
      */
-    public static Date getNowDateStart(Date nowTime){
+    public static Date getNowDateStart(Date nowTime) {
         Long time = nowTime.getTime();
-        return new Date( time - (time + TimeZone.getDefault().getRawOffset())% (1000*3600*24));
+        return new Date(time - (time + TimeZone.getDefault().getRawOffset()) % (1000 * 3600 * 24));
     }
 
     /**
      * 返回当天0点
+     *
      * @return date
      */
-    public static Date getNowDateStartTime(){
+    public static Date getNowDateStartTime() {
         return new Date(getNowDateStart());
     }
 
     public static void main(String[] args) {
-        Date t = getNowDateStartTime();
-        System.out.printf(t.toString());
+        new Thread(() -> {
+            getSDF("yyyy-MM-dd");
+            getSDF("yyyy-MM-dd");
+            getSDF("yyyy-MM-dd HH:mm:ss");
+        }).start();
+        new Thread(() -> {
+            getSDF("yyyy-MM-dd");
+            getSDF("yyyy-MM-dd");
+            getSDF("yyyy-MM-dd HH:mm:ss");
+        }).start();
+
     }
+
 
 }
