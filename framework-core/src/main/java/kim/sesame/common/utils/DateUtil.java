@@ -247,14 +247,13 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
         }
     }
 
-    //    private static ThreadLocal<Map<String, SimpleDateFormat>> sdfThreadLocalMap = new ThreadLocal<>();
+        private static ThreadLocal<Map<String, SimpleDateFormat>> sdfThreadLocalMap = new ThreadLocal<>();
 //    private static Map<String, SimpleDateFormat> map = new HashMap<>();
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public static SimpleDateFormat getSDF(String formatter) {
-        return sdf;
 //        return new SimpleDateFormat(formatter);
-        /*
+
         Map<String, SimpleDateFormat> stringSimpleDateFormatMap = sdfThreadLocalMap.get();
         if (stringSimpleDateFormatMap == null) {
             stringSimpleDateFormatMap = new HashMap<>();
@@ -265,13 +264,11 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
             simpleDateFormat = new SimpleDateFormat(formatter);
             stringSimpleDateFormatMap.put(formatter, simpleDateFormat);
             sdfThreadLocalMap.set(stringSimpleDateFormatMap);
-            System.out.println("初始化 " + formatter + "" + Thread.currentThread().getName() + " " + simpleDateFormat);
+//            System.out.println("初始化 " + formatter + "" + Thread.currentThread().getName() + " " + simpleDateFormat);
 //            map.put(formatter, simpleDateFormat);
         }
 //        System.out.println(stringSimpleDateFormatMap.keySet().size() + " " + formatter + " " + Thread.currentThread().getName() + "" + simpleDateFormat);
         return simpleDateFormat;
-
-         */
     }
 
     /**
@@ -382,11 +379,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
     }
 
     public static void main(String[] args) throws InterruptedException {
-//        Runnable r = () -> {
-//            getSDF("yyyy-MM-dd");
-//            getSDF("yyyy-MM-dd");
-//            getSDF("yyyy-MM-dd HH:mm:ss");
-//        };
+
         ExecutorService executorService = Executors.newFixedThreadPool(10);
         for (int i = 0; i < 100; i++) {
             executorService.execute(() -> {
