@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  *
@@ -245,11 +247,13 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
         }
     }
 
-//    private static ThreadLocal<Map<String, SimpleDateFormat>> sdfThreadLocalMap = new ThreadLocal<>();
+    //    private static ThreadLocal<Map<String, SimpleDateFormat>> sdfThreadLocalMap = new ThreadLocal<>();
 //    private static Map<String, SimpleDateFormat> map = new HashMap<>();
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public static SimpleDateFormat getSDF(String formatter) {
-        return new SimpleDateFormat(formatter);
+        return sdf;
+//        return new SimpleDateFormat(formatter);
         /*
         Map<String, SimpleDateFormat> stringSimpleDateFormatMap = sdfThreadLocalMap.get();
         if (stringSimpleDateFormatMap == null) {
@@ -378,35 +382,24 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Runnable r = () -> {
-            getSDF("yyyy-MM-dd");
-            getSDF("yyyy-MM-dd");
-            getSDF("yyyy-MM-dd HH:mm:ss");
-        };
-        Thread t1 = new Thread(r);
-        Thread t2 = new Thread(r);
-        t1.start();
-        t2.start();
+//        Runnable r = () -> {
+//            getSDF("yyyy-MM-dd");
+//            getSDF("yyyy-MM-dd");
+//            getSDF("yyyy-MM-dd HH:mm:ss");
+//        };
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        for (int i = 0; i < 100; i++) {
+            executorService.execute(() -> {
+                try {
+//                    System.out.println(sdf.parse("2022-11-15 17:05:20"));
+                    System.out.println(stringToDate("2022-11-15 17:05:20",null));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        executorService.shutdown();
 
-        t1.join();
-        t2.join();
-
-//        System.out.println(map.keySet().size());
-
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd"));
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd"));
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-
-        /*
-初始化 yyyy-MM-ddThread-1 java.text.SimpleDateFormat@f67a0200
-初始化 yyyy-MM-ddThread-0 java.text.SimpleDateFormat@f67a0200
-初始化 yyyy-MM-dd HH:mm:ssThread-1 java.text.SimpleDateFormat@4f76f1a0
-初始化 yyyy-MM-dd HH:mm:ssThread-0 java.text.SimpleDateFormat@4f76f1a0
-2
-java.text.SimpleDateFormat@f67a0200
-java.text.SimpleDateFormat@f67a0200
-java.text.SimpleDateFormat@4f76f1a0
-         */
     }
 
 
