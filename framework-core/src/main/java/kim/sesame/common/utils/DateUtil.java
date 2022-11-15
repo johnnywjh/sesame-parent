@@ -247,13 +247,11 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
         }
     }
 
-        private static ThreadLocal<Map<String, SimpleDateFormat>> sdfThreadLocalMap = new ThreadLocal<>();
-//    private static Map<String, SimpleDateFormat> map = new HashMap<>();
-//    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        private static ThreadLocal<Map<String, SimpleDateFormat>> sdfThreadLocalMap = new ThreadLocal<>();
 
     public static SimpleDateFormat getSDF(String formatter) {
-//        return new SimpleDateFormat(formatter);
-
+        return new SimpleDateFormat(formatter);
+/*
         Map<String, SimpleDateFormat> stringSimpleDateFormatMap = sdfThreadLocalMap.get();
         if (stringSimpleDateFormatMap == null) {
             stringSimpleDateFormatMap = new HashMap<>();
@@ -265,10 +263,11 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
             stringSimpleDateFormatMap.put(formatter, simpleDateFormat);
             sdfThreadLocalMap.set(stringSimpleDateFormatMap);
 //            System.out.println("初始化 " + formatter + "" + Thread.currentThread().getName() + " " + simpleDateFormat);
-//            map.put(formatter, simpleDateFormat);
         }
 //        System.out.println(stringSimpleDateFormatMap.keySet().size() + " " + formatter + " " + Thread.currentThread().getName() + "" + simpleDateFormat);
         return simpleDateFormat;
+
+ */
     }
 
     /**
