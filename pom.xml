@@ -5,18 +5,18 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.6</version>
+        <version>2.6.11</version>
     </parent>
 
     <groupId>kim.sesame.framework</groupId>
     <artifactId>sesame-parent</artifactId>
-    <version>2.4.1</version><!-- sesame.version -->
+    <version>2.6.11</version><!-- sesame.version -->
     <packaging>pom</packaging>
-    <name>sesame-parent-2.4.1</name>
+    <name>sesame-parent-${project.version}</name>
     <description></description>
 
     <properties>
-        <sesame.version>2.4.1</sesame.version>
+        <sesame.version>2.6.11</sesame.version>
         <spring-boot.version>2.6.6</spring-boot.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -72,7 +72,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2021.0.3</version>
+                <version>2021.0.5</version>
                 <type>pom</type>
                 <scope>import</scope>
                 <!-- 官网版本查看 https://spring.io/projects/spring-cloud#overview -->
@@ -81,15 +81,17 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2021.0.1.0</version>
+                <version>2021.0.4.0</version>
                 <type>pom</type>
                 <scope>import</scope>
+                <!-- https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E -->
             </dependency>
 
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-                <version>2021.0.1.0</version>
+                <version>2021.1</version>
+                <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-discovery -->
             </dependency>
 <!--            <dependency>-->
 <!--                <groupId>com.alibaba.cloud</groupId>-->
