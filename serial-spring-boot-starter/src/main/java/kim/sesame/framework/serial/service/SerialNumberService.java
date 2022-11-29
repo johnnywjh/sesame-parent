@@ -1,6 +1,5 @@
 package kim.sesame.framework.serial.service;
 
-import com.zengtengpeng.annotation.Lock;
 import kim.sesame.common.utils.Argument;
 import kim.sesame.common.utils.DateUtil;
 import kim.sesame.framework.serial.dao.SerialNumberRuleDao;
@@ -8,6 +7,8 @@ import kim.sesame.framework.serial.define.ISerialNumberService;
 import kim.sesame.framework.serial.define.SerialNumberRule;
 import kim.sesame.framework.serial.entity.SerialNumberRuleEntity;
 import lombok.extern.apachecommons.CommonsLog;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,8 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
     @SuppressWarnings("all")
     @Autowired
     private SerialNumberRuleDao serialNumberRuleDao;
+    @Autowired
+    private RedissonClient redissonClient;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -40,10 +43,14 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    @Lock(keys = "#serialNumberRule.code",keyConstant = LOCK_KEY_PREFIX)
+//    @Lock(keys = "#serialNumberRule.code",keyConstant = LOCK_KEY_PREFIX)
     public String generateSerialNumber(SerialNumberRule serialNumberRule, String... params) {
         Argument.notNull(serialNumberRule, "序号规则不能为空!");
+
+        RLock lock = redissonClient.getLock(LOCK_KEY_PREFIX + serialNumberRule.getCode());
         try {
+            lock.lock();
+
             SerialNumberRuleEntity serialNumberRuleEntity = getSerialNumberRule(serialNumberRule);
             SerialNumberEntry result = spliceSerialNumber(serialNumberRule,
                     serialNumberRuleEntity, true, params);
@@ -54,6 +61,8 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        } finally {
+            lock.unlock();
         }
     }
 
