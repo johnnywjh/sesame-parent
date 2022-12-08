@@ -46,26 +46,10 @@ public class WebProperties implements InitializingBean {
      */
     private int userCookieSaveTime = 60 * 24 * 30;
 
-    /**
-     * 内置拦截器:拦截用户登录,非session方式
-     */
-    private boolean interceptorLogin = false;
-    /**
-     * 内置拦截器:拦截用户登录 session方式
-     */
-    private boolean interceptorSession = false;
-
-    /**
-     * 开启跨域
-     */
-    private boolean enableCrossDomain = false;
-
 
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        ProjectConfig.setDebug(debug);
-        ProjectConfig.setSystemExceptionMessage(systemExceptionMessage);
 
     }
 }
