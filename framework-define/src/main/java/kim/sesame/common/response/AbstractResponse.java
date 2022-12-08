@@ -11,20 +11,6 @@ import kim.sesame.common.web.PrintFriendliness;
  */
 public abstract class AbstractResponse extends PrintFriendliness {
 
-    /**
-     * 请求处理结束，是否需要将响应输出到日志。默认为<code>true</code>
-     * @return
-     */
-    public boolean needsLog( ) {
-        return true;
-    }
-
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String getDataClassName(){
-        return null;
-    }
-
-
     public void setTraceId(String traceId) {
     }
 }

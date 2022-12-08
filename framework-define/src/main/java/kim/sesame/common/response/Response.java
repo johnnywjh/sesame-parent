@@ -93,11 +93,11 @@ public class Response<T> extends AbstractResponse {
         this.traceId = traceId;
     }
 
-    @Override
-    public String getDataClassName() {
-        if (this.data != null) {
-            return this.data.getClass().getSimpleName();
-        }
-        return super.getDataClassName();
-    }
+//    @Override
+//    public String getDataClassName() {
+//        if (this.data != null) {
+//            return this.data.getClass().getSimpleName();
+//        }
+//        return super.getDataClassName();
+//    }
 }
