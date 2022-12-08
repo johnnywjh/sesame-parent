@@ -23,4 +23,8 @@ public abstract class AbstractResponse extends PrintFriendliness {
     public String getDataClassName(){
         return null;
     }
+
+
+    public void setTraceId(String traceId) {
+    }
 }

@@ -23,6 +23,8 @@ public class Response<T> extends AbstractResponse {
     /* 返回结果 */
     private T data;
 
+    private String traceId;
+
     /**
      * 是否需要记录响应日志
      */
@@ -84,6 +86,11 @@ public class Response<T> extends AbstractResponse {
     public Response setOther(Object other) {
         this.other = other;
         return this;
+    }
+
+    @Override
+    public void setTraceId(String traceId) {
+        this.traceId = traceId;
     }
 
     @Override
