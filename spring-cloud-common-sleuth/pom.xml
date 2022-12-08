@@ -8,19 +8,15 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>spring-cloud-common-sleuth-zipkin</artifactId>
+    <artifactId>spring-cloud-common-sleuth</artifactId>
     <packaging>jar</packaging>
     <name>spring-cloud-common-sleuth-zipkin</name>
 
     <dependencies>
 
         <dependency>
-            <groupId>kim.sesame.framework</groupId>
-            <artifactId>spring-cloud-common-sleuth</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
 
     </dependencies>
