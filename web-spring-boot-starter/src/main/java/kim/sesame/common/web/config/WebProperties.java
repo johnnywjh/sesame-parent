@@ -46,7 +46,10 @@ public class WebProperties implements InitializingBean {
      */
     private int userCookieSaveTime = 60 * 24 * 30;
 
-
+    /**
+     * 开启跨域
+     */
+    private boolean enableCrossDomain = false;
 
     @Override
     public void afterPropertiesSet() throws Exception {
