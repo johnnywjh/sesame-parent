@@ -14,6 +14,8 @@ public class GData {
         String SESSION_ID = "jwt_session_id";
 
         String ACC_LOAD = "acc_load";
+
+        String USER_ID = "userId";
         String ACCOUNT = "account";
         String NAME = "name";
         String PWD_VERSION = "pwd_version";
