@@ -47,4 +47,27 @@ public class GData {
         String WEB_CACHE_USER_MENU = "webCacheUserMenu";
     }
 
+    /**
+     * 时间
+     */
+    public interface DATE {
+        /**
+         * 日期格式
+         */
+        String DATE_FORMATTER = "yyyy-MM-dd";
+        /**
+         * 时间格式
+         */
+        String DATETIME_FORMATTER = "yyyy-MM-dd HH:mm:ss";
+        /**
+         * 日期小时
+         */
+        String DATE_HOUR_FORMATTER = "yyyy-MM-dd HH:mm";
+
+        /**
+         * 日期月份
+         */
+        String DATE_MONTH_FORMATER = "yyyy-MM";
+    }
+
 }
