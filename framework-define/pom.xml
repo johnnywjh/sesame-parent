@@ -39,11 +39,15 @@
 			<artifactId>hibernate-validator-annotation-processor</artifactId>
 			<version>7.0.3.Final</version>
 		</dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
         </dependency>
-
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
 
     </dependencies>
 	<build>
