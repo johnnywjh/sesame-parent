@@ -26,4 +26,20 @@ public class KimLocalCacheCaffeineConfiguration {
                 .build();
     }
 
+    /*
+
+    @Autowired
+    Cache<String, Object> caffeineCache;
+
+     // 加入缓存
+        caffeineCache.put(String.valueOf(userInfo.getId()),userInfo);
+     // 先从缓存读取
+        caffeineCache.getIfPresent(id);
+
+         UserInfo userInfo = (UserInfo) caffeineCache.asMap().get(String.valueOf(id));
+
+         // 从缓存中删除
+        caffeineCache.asMap().remove(String.valueOf(id));
+
+     */
 }
