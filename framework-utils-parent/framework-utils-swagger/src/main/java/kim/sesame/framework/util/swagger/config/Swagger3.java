@@ -1,11 +1,9 @@
 package kim.sesame.framework.util.swagger.config;
 
-
 import com.google.common.base.Function;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import kim.sesame.common.utils.StringUtil;
-import kim.sesame.common.web.controller.ISwagger;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,29 +28,10 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/*
-kim:
-  swagger:
-    enable: true
-    basePackages:
-      - com.malldemo.user.facade.controller.demo
-    title: xxxx系统
-#    description: descriptionXXX
-#    version: v1.0
-#    termsOfServiceUrl: http://termsOfServiceUrlXXXX
-#    contact:
-#      name: 联系人
-#      url: http://xxxxxxx.com
-#      email: xxxxxxx@qq.com
- */
-
-/**
- * 参考文档 https://blog.csdn.net/m0_46357847/article/details/126614004
- */
 @Configuration
 @EnableOpenApi
 @ConditionalOnProperty(prefix = "kim.swagger", name = "enable", havingValue = "true")
-public class Swagger3 implements ISwagger {
+public class Swagger3{
 
     @Autowired
     private SwaggerProperties swagger;

@@ -1,7 +1,6 @@
 package kim.sesame.common.response;
 
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import kim.sesame.common.web.PrintFriendliness;
 
 /**
