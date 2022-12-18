@@ -88,6 +88,11 @@ public class Response<T> extends AbstractResponse {
         return this;
     }
 
+    public Response setTraceInfo(String traceId) {
+        this.traceId = traceId;
+        return this;
+    }
+
     @Override
     public void setTraceId(String traceId) {
         this.traceId = traceId;

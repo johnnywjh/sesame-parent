@@ -25,11 +25,17 @@ public class SwaggerProperties implements InitializingBean {
      * swagger的扫描路径
      */
     private List<String> basePackages;
-
+    /**
+     * 标题
+     */
     private String title;
     private String description;
     private String version;
     private String termsOfServiceUrl;
+
+    /**
+     * 联系人信息
+     */
     private Contact contact;
 
     @Data
