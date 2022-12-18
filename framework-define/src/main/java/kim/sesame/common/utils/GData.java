@@ -25,17 +25,25 @@ public class GData {
     }
 
     /**
-     * 保存在session里面的key
+     *
      */
-    public static interface SESSION {
+    public interface LOGIN {
         /**
-         * 登录
+         * 登录后,用户账号在缓存中的key
          */
-        String LOGIN = "sysuserkey";
+        String USER_ACCOUNT_KEY = "kim.cache.user.account";
         /**
-         * 菜单
+         * 用户对象在缓存里的key
          */
-        String MENU = "menulistkey";
+        String USER_INFO_KEY = "kim.cache.user.info";
+        /**
+         * 用户角色信息在缓存里的key
+         */
+        String USER_ROLE_KEY = "kim.cache.user.role";
+        /**
+         * 用户菜单在缓存里的key
+         */
+        String USER_MENU_KEY = "kim.cache.user.menu";
     }
 
     /**
@@ -69,5 +77,10 @@ public class GData {
          */
         String DATE_MONTH_FORMATER = "yyyy-MM";
     }
+
+    public static String userCacheId(String sessionId) {
+        return LOGIN.USER_ACCOUNT_KEY + "_" + sessionId;
+    }
+
 
 }
