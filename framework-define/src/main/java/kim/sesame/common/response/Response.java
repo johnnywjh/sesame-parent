@@ -19,7 +19,7 @@ public class Response<T> extends AbstractResponse {
     /* 状态码 */
     private int code;
     /* 信息 */
-    private String msg;
+    private String message;
     /* 返回结果 */
     private T data;
 
@@ -38,7 +38,7 @@ public class Response<T> extends AbstractResponse {
         this.success = false;
         this.errorType = "";
         this.code = 0;
-        this.msg = "";
+        this.message = "";
     }
 
     /*------------------------------------------------*/
@@ -53,7 +53,7 @@ public class Response<T> extends AbstractResponse {
         this.success = success;
         this.code = ErrorCodeEnum.SUCCESS.getCode();
         if (success) {
-            this.msg = "操作成功";
+            this.message = "操作成功";
         }
         return this;
     }
@@ -68,8 +68,8 @@ public class Response<T> extends AbstractResponse {
         return this;
     }
 
-    public Response setMsg(String message) {
-        this.msg = message;
+    public Response setMessage(String message) {
+        this.message = message;
         return this;
     }
 
