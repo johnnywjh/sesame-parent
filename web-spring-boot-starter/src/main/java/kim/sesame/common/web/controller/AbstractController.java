@@ -29,7 +29,7 @@ public abstract class AbstractController {
     }
 
     public Response returnSuccess(Object result, String msg) {
-        return Response.create().setSuccess(true).setData(result).setMsg(msg);
+        return Response.create().setSuccess(true).setData(result).setMessage(msg);
     }
 
     public Response returnSuccess(List list) {
@@ -37,7 +37,7 @@ public abstract class AbstractController {
     }
 
     public Response returnSuccess(List list, String msg) {
-        return Response.create().setSuccess(true).setData(list).setMsg(msg);
+        return Response.create().setSuccess(true).setData(list).setMessage(msg);
     }
 
 
@@ -52,7 +52,7 @@ public abstract class AbstractController {
     public Response handleException(BizArgumentException exception) {
         log.error(exception.getMessage(), exception);
         ErrorCodeEnum erroeEnum = ErrorCodeEnum.PARAMS_ERR;
-        return Response.create().setErrorType(erroeEnum.name()).setCode(erroeEnum.getCode()).setMsg(exception.getMessage());
+        return Response.create().setErrorType(erroeEnum.name()).setCode(erroeEnum.getCode()).setMessage(exception.getMessage());
     }
 
     /**
@@ -69,12 +69,12 @@ public abstract class AbstractController {
 
         if (exception instanceof IException) {
             IErrorCode ece = ((IException) exception).getErrorCodeEnum();
-            return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMsg(exception.getMessage());
+            return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMessage(exception.getMessage());
         }
         //系统异常
         else {
             IErrorCode ece = ErrorCodeEnum.SYSTEMERR;
-            return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMsg(getExceptionMessage(exception));
+            return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMessage(getExceptionMessage(exception));
         }
     }
 
