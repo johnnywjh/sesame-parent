@@ -139,7 +139,7 @@ public class QueryCacheAop {
                 result = JSON.parseObject(cacheResult, returnTypeClazz);
             }
         }
-        log.debug(result);
+        log.debug(result.toString());
         log.debug("");
         return result;
     }

@@ -35,7 +35,7 @@ public class UploadController extends AbstractWebController {
     public Response uploadFile(String moduleName, MultipartFile file) {
         String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
         log.info("文件上传结果 src:"+src);
-        return returnSuccess(src);
+        return success(src);
     }
 
 
