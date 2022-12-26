@@ -2,7 +2,7 @@ package kim.sesame.common.utils;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
@@ -19,7 +19,7 @@ import java.util.concurrent.Executors;
  *
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)// 构造器私有化
-@CommonsLog
+@Slf4j
 public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
 
     /**

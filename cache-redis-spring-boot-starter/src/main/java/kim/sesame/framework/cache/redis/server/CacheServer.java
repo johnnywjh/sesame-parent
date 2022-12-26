@@ -1,12 +1,12 @@
 package kim.sesame.framework.cache.redis.server;
 
 import kim.sesame.common.utils.Argument;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-@CommonsLog
+@Slf4j
 @Component
 public class CacheServer {
 

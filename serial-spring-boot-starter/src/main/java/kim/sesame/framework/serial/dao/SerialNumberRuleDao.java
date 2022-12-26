@@ -2,7 +2,7 @@ package kim.sesame.framework.serial.dao;
 
 import kim.sesame.framework.serial.config.SerrialProperties;
 import kim.sesame.framework.serial.entity.SerialNumberRuleEntity;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * 序列号Dao
  **/
-@CommonsLog
+@Slf4j
 @Component
 public class SerialNumberRuleDao {
 

@@ -7,7 +7,7 @@ import kim.sesame.common.response.ErrorCodeEnum;
 import kim.sesame.common.response.Response;
 import kim.sesame.common.response.ResponseBuild;
 import kim.sesame.common.web.config.ProjectConfig;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,27 +16,27 @@ import java.util.List;
 /**
  * Controlle 基础抽象类
  **/
-@CommonsLog
+@Slf4j
 public abstract class AbstractController {
 
 
-    public Response returnSuccess() {
+    public Response success() {
         return ResponseBuild.ContextSuccess.SUCCESS;
     }
 
-    public Response returnSuccess(Object result) {
+    public Response success(Object result) {
         return Response.create().setSuccess(true).setData(result);
     }
 
-    public Response returnSuccess(Object result, String msg) {
+    public Response success(Object result, String msg) {
         return Response.create().setSuccess(true).setData(result).setMessage(msg);
     }
 
-    public Response returnSuccess(List list) {
+    public Response success(List list) {
         return Response.create().setSuccess(true).setData(list);
     }
 
-    public Response returnSuccess(List list, String msg) {
+    public Response success(List list, String msg) {
         return Response.create().setSuccess(true).setData(list).setMessage(msg);
     }
 

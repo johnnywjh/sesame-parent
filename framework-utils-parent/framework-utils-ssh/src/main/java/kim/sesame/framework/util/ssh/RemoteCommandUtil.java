@@ -6,7 +6,7 @@ import ch.ethz.ssh2.StreamGobbler;
 
 import java.io.*;
 
-//@CommonsLog
+//@Slf4j
 public class RemoteCommandUtil {
 
     private static String DEFAULTCHART = "UTF-8";

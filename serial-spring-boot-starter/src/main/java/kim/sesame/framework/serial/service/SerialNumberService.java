@@ -6,7 +6,7 @@ import kim.sesame.framework.serial.dao.SerialNumberRuleDao;
 import kim.sesame.framework.serial.define.ISerialNumberService;
 import kim.sesame.framework.serial.define.SerialNumberRule;
 import kim.sesame.framework.serial.entity.SerialNumberRuleEntity;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.InitializingBean;
@@ -22,7 +22,7 @@ import java.util.Date;
  * 序列号Service
  **/
 @Service
-@CommonsLog
+@Slf4j
 public class SerialNumberService implements ISerialNumberService, InitializingBean {
 
     /**

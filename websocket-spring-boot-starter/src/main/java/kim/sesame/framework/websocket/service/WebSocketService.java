@@ -1,6 +1,6 @@
 package kim.sesame.framework.websocket.service;
 
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
@@ -8,7 +8,7 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.text.MessageFormat;
 
-@CommonsLog
+@Slf4j
 @Component
 @ServerEndpoint("/websocket")
 public class WebSocketService {

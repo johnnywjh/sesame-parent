@@ -1,7 +1,7 @@
 package kim.sesame.framework.websocket.service;
 
 
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.websocket.Session;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * webSocket连接池
  */
-@CommonsLog
+@Slf4j
 public class WSConnPool {
 
     // 保存用户的连接

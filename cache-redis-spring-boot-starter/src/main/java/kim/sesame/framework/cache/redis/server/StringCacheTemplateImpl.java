@@ -1,14 +1,14 @@
 package kim.sesame.framework.cache.redis.server;
 
 import kim.sesame.framework.cache.define.IStringCacheTemplate;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
-@CommonsLog
+@Slf4j
 @Service //(value = IStringCacheTemplate.STRING_CACHE_BEAN)
 public class StringCacheTemplateImpl implements IStringCacheTemplate {
 

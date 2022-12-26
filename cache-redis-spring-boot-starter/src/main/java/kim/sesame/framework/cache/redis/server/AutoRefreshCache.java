@@ -3,7 +3,7 @@ package kim.sesame.framework.cache.redis.server;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @param <T>
  */
-@CommonsLog
+@Slf4j
 public class AutoRefreshCache<T> implements InitializingBean {
 
     /**

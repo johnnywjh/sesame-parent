@@ -67,7 +67,7 @@ public class LocalTTLCacheEntity {
 ```java
 package kim.sesame.framework.cache.local.caffeine.config;
 
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
@@ -88,7 +88,7 @@ import java.util.List;
       }
   }
 * */
-@CommonsLog
+@Slf4j
 @Component
 public class LocalTTlCacheAbstract implements InitializingBean {
 
@@ -123,7 +123,7 @@ package kim.sesame.framework.cache.local.caffeine.config;
 
 import com.github.benmanes.caffeine.cache.Caffeine;
 import kim.sesame.framework.exception.BusinessException;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCache;
@@ -139,7 +139,7 @@ import java.util.List;
  * <p>java方式：caffeine缓存配置</p>
  * Created by zhezhiyong@163.com on 2017/9/22.
  */
-@CommonsLog
+@Slf4j
 @Configuration
 @EnableCaching
 public class LocalCacheConfig {
@@ -230,7 +230,7 @@ import kim.sesame.framework.cache.redis.aop.QueryCacheAop;
 import kim.sesame.framework.utils.GData;
 import kim.sesame.framework.web.cache.IUserCache;
 import kim.sesame.framework.web.context.SpringContextUtil;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -241,7 +241,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@CommonsLog
+@Slf4j
 public class SysCacheServer {
 
     @Autowired

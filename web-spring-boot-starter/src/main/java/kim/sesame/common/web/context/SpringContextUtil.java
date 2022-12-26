@@ -1,6 +1,6 @@
 package kim.sesame.common.web.context;
 
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-@CommonsLog
+@Slf4j
 public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;

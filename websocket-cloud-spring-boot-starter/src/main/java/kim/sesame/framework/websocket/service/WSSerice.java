@@ -5,7 +5,7 @@ import com.github.kevinsawicki.http.HttpRequest;
 import kim.sesame.common.utils.StringUtil;
 import kim.sesame.framework.web.context.SpringContextUtil;
 import kim.sesame.framework.websocket.config.WebSocketConfig;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-@CommonsLog
+@Slf4j
 public class WSSerice {
 
     public final static String WEBSOCKET_CONTROLLER_KEY = "kjxoienpxoi23pxlji,2l3i";// websocket 秘钥

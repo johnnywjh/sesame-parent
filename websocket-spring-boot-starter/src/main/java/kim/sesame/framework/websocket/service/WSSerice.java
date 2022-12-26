@@ -2,7 +2,7 @@ package kim.sesame.framework.websocket.service;
 
 import com.alibaba.fastjson.JSON;
 import kim.sesame.common.utils.StringUtil;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.websocket.Session;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-@CommonsLog
+@Slf4j
 public class WSSerice {
 
     /**

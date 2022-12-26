@@ -7,7 +7,7 @@ import kim.sesame.common.web.context.SpringContextUtil;
 import kim.sesame.framework.cache.annotation.QueryCache;
 import kim.sesame.framework.cache.redis.config.QueryCacheProperties;
 import kim.sesame.framework.cache.redis.server.CacheServer;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Aspect
 @Component
-@CommonsLog
+@Slf4j
 public class QueryCacheAop {
 
     @Autowired

@@ -6,7 +6,7 @@ import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.controller.AbstractWebController;
 import kim.sesame.framework.websocket.service.WSConnPool;
 import kim.sesame.framework.websocket.service.WSSerice;
-import lombok.extern.apachecommons.CommonsLog;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +14,7 @@ import javax.websocket.Session;
 import java.io.IOException;
 
 
-@CommonsLog
+@Slf4j
 @RestController
 @RequestMapping("/wsUser")
 public class WsUserController extends AbstractWebController {
