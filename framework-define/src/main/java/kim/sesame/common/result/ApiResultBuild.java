@@ -13,23 +13,23 @@ public class ApiResultBuild {
         public final static ApiResult SUCCESS = ApiResult.create().setSuccess(true);
     }
 
-    public static ApiResult returnSuccess() {
+    public static ApiResult success() {
         return ContextSuccess.SUCCESS;
     }
 
-    public static ApiResult returnSuccess(Object result) {
+    public static ApiResult success(Object result) {
         return ApiResult.create().setSuccess(true).setData(result);
     }
 
-    public static ApiResult returnSuccess(Object result, String msg) {
+    public static ApiResult success(Object result, String msg) {
         return ApiResult.create().setSuccess(true).setData(result).setMessage(msg);
     }
 
-    public static ApiResult returnSuccess(List list) {
+    public static ApiResult success(List list) {
         return ApiResult.create().setSuccess(true).setData(list);
     }
 
-    public static ApiResult returnSuccess(List list, String msg) {
+    public static ApiResult success(List list, String msg) {
         return ApiResult.create().setSuccess(true).setData(list).setMessage(msg);
     }
 

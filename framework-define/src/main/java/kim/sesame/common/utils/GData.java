@@ -21,7 +21,7 @@ public class GData {
         String PWD_VERSION = "pwd_version";
         String COMPARE_PWD_VERSION = "compare_pwd_version";
 
-        String TOKEN = "token";
+        String TOKEN = "access_token";
     }
 
     /**
