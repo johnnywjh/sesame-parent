@@ -1,7 +1,7 @@
 package kim.sesame.framework.websocket.controller;
 
 import kim.sesame.common.exception.BizException;
-import kim.sesame.common.response.Response;
+import kim.sesame.common.result.Response;
 import kim.sesame.framework.web.annotation.IgnoreLoginCheck;
 import kim.sesame.framework.web.controller.AbstractWebController;
 import kim.sesame.framework.websocket.service.WSConnPool;

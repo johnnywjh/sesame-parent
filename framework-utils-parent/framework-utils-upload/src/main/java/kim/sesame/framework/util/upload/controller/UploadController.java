@@ -1,6 +1,6 @@
 package kim.sesame.framework.util.upload.controller;
 
-import kim.sesame.common.response.Response;
+import kim.sesame.common.result.ApiResult;
 import kim.sesame.common.web.annotation.IgnoreLoginCheck;
 import kim.sesame.common.web.config.ProjectConfig;
 import kim.sesame.common.web.controller.AbstractWebController;
@@ -32,7 +32,7 @@ public class UploadController extends AbstractWebController {
      */
     @IgnoreLoginCheck(isLoadUser = true)
     @RequestMapping("/file")
-    public Response uploadFile(String moduleName, MultipartFile file) {
+    public ApiResult uploadFile(String moduleName, MultipartFile file) {
         String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
         log.info("文件上传结果 src:"+src);
         return success(src);

@@ -3,9 +3,9 @@ package kim.sesame.common.web.controller;
 import kim.sesame.common.entity.IErrorCode;
 import kim.sesame.common.exception.BizArgumentException;
 import kim.sesame.common.exception.IException;
-import kim.sesame.common.response.ErrorCodeEnum;
-import kim.sesame.common.response.Response;
-import kim.sesame.common.response.ResponseBuild;
+import kim.sesame.common.result.ErrorCodeEnum;
+import kim.sesame.common.result.ApiResult;
+import kim.sesame.common.result.ApiResultBuild;
 import kim.sesame.common.web.config.ProjectConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,24 +20,24 @@ import java.util.List;
 public abstract class AbstractController {
 
 
-    public Response success() {
-        return ResponseBuild.ContextSuccess.SUCCESS;
+    public ApiResult success() {
+        return ApiResultBuild.ContextSuccess.SUCCESS;
     }
 
-    public Response success(Object result) {
-        return Response.create().setSuccess(true).setData(result);
+    public ApiResult success(Object result) {
+        return ApiResult.create().setSuccess(true).setData(result);
     }
 
-    public Response success(Object result, String msg) {
-        return Response.create().setSuccess(true).setData(result).setMessage(msg);
+    public ApiResult success(Object result, String msg) {
+        return ApiResult.create().setSuccess(true).setData(result).setMessage(msg);
     }
 
-    public Response success(List list) {
-        return Response.create().setSuccess(true).setData(list);
+    public ApiResult success(List list) {
+        return ApiResult.create().setSuccess(true).setData(list);
     }
 
-    public Response success(List list, String msg) {
-        return Response.create().setSuccess(true).setData(list).setMessage(msg);
+    public ApiResult success(List list, String msg) {
+        return ApiResult.create().setSuccess(true).setData(list).setMessage(msg);
     }
 
 
@@ -49,10 +49,10 @@ public abstract class AbstractController {
 
     @ExceptionHandler(BizArgumentException.class)
     @ResponseBody
-    public Response handleException(BizArgumentException exception) {
+    public ApiResult handleException(BizArgumentException exception) {
         log.error(exception.getMessage(), exception);
         ErrorCodeEnum erroeEnum = ErrorCodeEnum.PARAMS_ERR;
-        return Response.create().setErrorType(erroeEnum.name()).setCode(erroeEnum.getCode()).setMessage(exception.getMessage());
+        return ApiResult.create().setErrorType(erroeEnum.name()).setCode(erroeEnum.getCode()).setMessage(exception.getMessage());
     }
 
     /**
@@ -63,18 +63,18 @@ public abstract class AbstractController {
      */
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public Response handleException(Exception exception) {
+    public ApiResult handleException(Exception exception) {
 
         log.error(exception.getMessage(), exception);
 
         if (exception instanceof IException) {
             IErrorCode ece = ((IException) exception).getErrorCodeEnum();
-            return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMessage(exception.getMessage());
+            return ApiResult.create().setErrorType(ece.name()).setCode(ece.getCode()).setMessage(exception.getMessage());
         }
         //系统异常
         else {
             IErrorCode ece = ErrorCodeEnum.SYSTEMERR;
-            return Response.create().setErrorType(ece.name()).setCode(ece.getCode()).setMessage(getExceptionMessage(exception));
+            return ApiResult.create().setErrorType(ece.name()).setCode(ece.getCode()).setMessage(getExceptionMessage(exception));
         }
     }
 

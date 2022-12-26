@@ -1,4 +1,4 @@
-package kim.sesame.common.response;
+package kim.sesame.common.result;
 
 
 import kim.sesame.common.web.PrintFriendliness;

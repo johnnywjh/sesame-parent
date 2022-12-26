@@ -1,4 +1,4 @@
-package kim.sesame.common.response;
+package kim.sesame.common.result;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,7 +10,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class Response<T> extends AbstractResponse {
+public class ApiResult<T> extends AbstractResponse {
 
     /* 是否成功 */
     private boolean success;
@@ -34,7 +34,7 @@ public class Response<T> extends AbstractResponse {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object other; //其他信息
 
-    public Response() {
+    public ApiResult() {
         this.success = false;
         this.errorType = "";
         this.code = 0;
@@ -45,11 +45,11 @@ public class Response<T> extends AbstractResponse {
     /*----------------       构建方法    --------------*/
     /*------------------------------------------------*/
 
-    public static Response create() {
-        return new Response();
+    public static ApiResult create() {
+        return new ApiResult();
     }
 
-    public Response setSuccess(boolean success) {
+    public ApiResult setSuccess(boolean success) {
         this.success = success;
         this.code = ErrorCodeEnum.SUCCESS.getCode();
         if (success) {
@@ -58,37 +58,37 @@ public class Response<T> extends AbstractResponse {
         return this;
     }
 
-    public Response setErrorType(String errorType) {
+    public ApiResult setErrorType(String errorType) {
         this.errorType = errorType;
         return this;
     }
 
-    public Response setCode(int code) {
+    public ApiResult setCode(int code) {
         this.code = code;
         return this;
     }
 
-    public Response setMessage(String message) {
+    public ApiResult setMessage(String message) {
         this.message = message;
         return this;
     }
 
-    public Response setData(T data) {
+    public ApiResult setData(T data) {
         this.data = data;
         return this;
     }
 
-    public Response setNeedLog(boolean needLog) {
+    public ApiResult setNeedLog(boolean needLog) {
         this.needLog = needLog;
         return this;
     }
 
-    public Response setOther(Object other) {
+    public ApiResult setOther(Object other) {
         this.other = other;
         return this;
     }
 
-    public Response setTraceInfo(String traceId) {
+    public ApiResult setTraceInfo(String traceId) {
         this.traceId = traceId;
         return this;
     }
