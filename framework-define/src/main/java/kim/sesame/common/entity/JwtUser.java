@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class JwtUser  implements java.io.Serializable {
-    private String userId;
+    private String loginUserId;
     private long ttlTimeSeconds;
 
 }
