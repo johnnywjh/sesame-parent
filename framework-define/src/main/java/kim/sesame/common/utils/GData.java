@@ -15,6 +15,7 @@ public class GData {
 
         String ACC_LOAD = "acc_load";
 
+        /** @see kim.sesame.common.entity.JwtUser ## loginUserId */
         String USER_ID = "loginUserId";
         String ACCOUNT = "account";
         String NAME = "name";
