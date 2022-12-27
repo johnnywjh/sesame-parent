@@ -15,7 +15,7 @@ public class GData {
 
         String ACC_LOAD = "acc_load";
 
-        String USER_ID = "userId";
+        String USER_ID = "loginUserId";
         String ACCOUNT = "account";
         String NAME = "name";
         String PWD_VERSION = "pwd_version";
@@ -31,7 +31,7 @@ public class GData {
         /**
          * 登录后,用户账号在缓存中的key
          */
-        String USER_ACCOUNT_KEY = "kim.cache.user.account";
+        String USER_ACCOUNT_KEY = "kim.cache.user.login_id";
         /**
          * 用户对象在缓存里的key
          */
