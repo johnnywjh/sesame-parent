@@ -1,6 +1,7 @@
 package kim.sesame.common.web.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -17,10 +18,7 @@ public class CorsConfig {
         return corsConfiguration;
     }
 
-    /**
-     * 如果在网关里加入了跨域,这里就不需要了
-     */
-//    @Bean
+    @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", buildConfig()); // 4
