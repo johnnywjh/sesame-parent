@@ -19,28 +19,11 @@ import java.util.concurrent.Executors;
 
 /**
  * https://hutool.cn/docs/#/core/%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4/%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%B7%A5%E5%85%B7-DateUtil?id=%e6%96%b9%e6%b3%95
+ * DatePattern.NORM_DATETIME_PATTERN;//"yyyy-MM-dd HH:mm:ss";
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)// 构造器私有化
 @Slf4j
 public class DateUtils extends cn.hutool.core.date.DateUtil {
-
-//    /**
-//     * 日期格式
-//     */
-//    public static final String DATE_FORMATTER = DatePattern.NORM_DATE_PATTERN;// "yyyy-MM-dd";
-//    /**
-//     * 时间格式
-//     */
-//    public static final String DATETIME_FORMATTER = DatePattern.NORM_DATETIME_PATTERN;//"yyyy-MM-dd HH:mm:ss";
-//    /**
-//     * 日期小时
-//     */
-//    public static final String DATE_HOUR_FORMATTER = "yyyy-MM-dd HH:mm";
-//
-//    /**
-//     * 日期月份
-//     */
-//    public static final String DATE_MONTH_FORMATER = "yyyy-MM";
 
     /**
      * 时间进制
