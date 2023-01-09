@@ -1,5 +1,7 @@
 package kim.sesame.common.utils;
 
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,29 +18,29 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- *
+ * https://hutool.cn/docs/#/core/%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4/%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%B7%A5%E5%85%B7-DateUtil?id=%e6%96%b9%e6%b3%95
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)// 构造器私有化
 @Slf4j
-public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
+public class DateUtils extends cn.hutool.core.date.DateUtil {
 
-    /**
-     * 日期格式
-     */
-    public static final String DATE_FORMATTER = "yyyy-MM-dd";
-    /**
-     * 时间格式
-     */
-    public static final String DATETIME_FORMATTER = "yyyy-MM-dd HH:mm:ss";
-    /**
-     * 日期小时
-     */
-    public static final String DATE_HOUR_FORMATTER = "yyyy-MM-dd HH:mm";
-
-    /**
-     * 日期月份
-     */
-    public static final String DATE_MONTH_FORMATER = "yyyy-MM";
+//    /**
+//     * 日期格式
+//     */
+//    public static final String DATE_FORMATTER = DatePattern.NORM_DATE_PATTERN;// "yyyy-MM-dd";
+//    /**
+//     * 时间格式
+//     */
+//    public static final String DATETIME_FORMATTER = DatePattern.NORM_DATETIME_PATTERN;//"yyyy-MM-dd HH:mm:ss";
+//    /**
+//     * 日期小时
+//     */
+//    public static final String DATE_HOUR_FORMATTER = "yyyy-MM-dd HH:mm";
+//
+//    /**
+//     * 日期月份
+//     */
+//    public static final String DATE_MONTH_FORMATER = "yyyy-MM";
 
     /**
      * 时间进制
@@ -105,8 +107,8 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      * @return long
      */
     public static Long getDaysDiff(Date startDate, Date endDate) {
-        LocalDate beginTime = DateUtil.getDateToLocalDate(startDate);
-        LocalDate endTime = DateUtil.getDateToLocalDate(endDate);
+        LocalDate beginTime = DateUtils.getDateToLocalDate(startDate);
+        LocalDate endTime = DateUtils.getDateToLocalDate(endDate);
         return getDaysDiff(beginTime, endTime);
     }
 
@@ -120,9 +122,9 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
      */
     public static String getMonthByDate(Date date, int month, String formatter) {
         if (StringUtils.isEmpty(formatter)) {
-            formatter = DATETIME_FORMATTER;
+            formatter = DatePattern.NORM_DATETIME_PATTERN;
         }
-        return dateToString(getDifferInByDate(date, month), formatter);
+        return DateUtil.format(getDifferInByDate(date, month), formatter);
     }
 
     /**
@@ -207,47 +209,47 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
         return getDateEndTime(firstDate);
     }
 
-    /**
-     * 日期转字符串
-     *
-     * @param date      date
-     * @param formatter formatter
-     * @return string
-     */
-    public static String dateToString(Date date, String formatter) {
-        if (date == null) {
-            return null;
-        }
-        if (StringUtils.isEmpty(formatter)) {
-            formatter = DATETIME_FORMATTER;
-        }
-        SimpleDateFormat simpleDateFormat = getSDF(formatter);
-        return simpleDateFormat.format(date);
-    }
-
-    /**
-     * 字符串转日期
-     *
-     * @param dateString 1
-     * @param formatter  2
-     * @return date
-     */
-    public static Date stringToDate(String dateString, String formatter) {
-        if (StringUtils.isEmpty(dateString)) {
-            return null;
-        }
-        if (StringUtils.isEmpty(formatter)) {
-            formatter = DATETIME_FORMATTER;
-        }
-        SimpleDateFormat simpleDateFormat = getSDF(formatter);
-        try {
-            return simpleDateFormat.parse(dateString);
-        } catch (ParseException e) {
-            log.error("字符串转日期错误!", e);
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    /**
+//     * 日期转字符串
+//     *
+//     * @param date      date
+//     * @param formatter formatter
+//     * @return string
+//     */
+//    public static String dateToString(Date date, String formatter) {
+//        if (date == null) {
+//            return null;
+//        }
+//        if (StringUtils.isEmpty(formatter)) {
+//            formatter = DatePattern.NORM_DATETIME_PATTERN;
+//        }
+//        SimpleDateFormat simpleDateFormat = getSDF(formatter);
+//        return simpleDateFormat.format(date);
+//    }
+//
+//    /**
+//     * 字符串转日期
+//     *
+//     * @param dateString 1
+//     * @param formatter  2
+//     * @return date
+//     */
+//    public static Date stringToDate(String dateString, String formatter) {
+//        if (StringUtils.isEmpty(dateString)) {
+//            return null;
+//        }
+//        if (StringUtils.isEmpty(formatter)) {
+//            formatter = DatePattern.NORM_DATETIME_PATTERN;
+//        }
+//        SimpleDateFormat simpleDateFormat = getSDF(formatter);
+//        try {
+//            return simpleDateFormat.parse(dateString);
+//        } catch (ParseException e) {
+//            log.error("字符串转日期错误!", e);
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
 //        private static ThreadLocal<Map<String, SimpleDateFormat>> sdfThreadLocalMap = new ThreadLocal<>();
 
@@ -386,7 +388,7 @@ public class DateUtil extends org.apache.commons.lang3.time.DateUtils {
             executorService.execute(() -> {
                 try {
 //                    System.out.println(sdf.parse("2022-11-15 17:05:20"));
-                    System.out.println(stringToDate("2022-11-15 17:05:20",null));
+//                    System.out.println(DateUtil.parse("2022-11-15 17:05:20",null));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

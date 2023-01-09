@@ -1,7 +1,7 @@
 package kim.sesame.framework.serial.service;
 
 import kim.sesame.common.utils.Argument;
-import kim.sesame.common.utils.DateUtil;
+import kim.sesame.common.utils.DateUtils;
 import kim.sesame.framework.serial.dao.SerialNumberRuleDao;
 import kim.sesame.framework.serial.define.ISerialNumberService;
 import kim.sesame.framework.serial.define.SerialNumberRule;
@@ -119,7 +119,7 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
 //
 //            String nowDate = DateUtil.dateToString(
 //                    Calendar.getInstance().getTime(), DateUtil.DATE_FORMATTER);
-            Long differDayNum = DateUtil.getDaysDiff(serialNumberRuleEntity.getCurTime(), new Date());
+            Long differDayNum = DateUtils.getDaysDiff(serialNumberRuleEntity.getCurTime(), new Date());
             if (differDayNum > 0) {
                 resetNo = true;
             }
@@ -130,7 +130,7 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
         }
         // 时间前缀
         if (serialNumberRule.isNeedTime()) {
-            newCode.append(DateUtil.dateToString(Calendar.getInstance().getTime(), serialNumberRule.getTimeFormat()));
+            newCode.append(DateUtils.dateToString(Calendar.getInstance().getTime(), serialNumberRule.getTimeFormat()));
         }
         // 分隔符
         if (serialNumberRule.isNeedDelimiter()) {
