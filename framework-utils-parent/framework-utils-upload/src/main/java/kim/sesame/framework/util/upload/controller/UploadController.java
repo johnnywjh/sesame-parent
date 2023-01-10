@@ -7,6 +7,7 @@ import kim.sesame.common.web.controller.AbstractWebController;
 import kim.sesame.framework.util.upload.service.UploadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,9 +32,9 @@ public class UploadController extends AbstractWebController {
      * @param file       文件流
      * @return
      */
-    @IgnoreLoginCheck(isLoadUser = true)
-    @PostMapping("/file")
-    public ApiResult uploadFile(String moduleName, MultipartFile file) {
+    @IgnoreLoginCheck//(isLoadUser = true)
+    @PostMapping("/file/{moduleName}")
+    public ApiResult uploadFile(@PathVariable("moduleName") String moduleName, MultipartFile file) {
         String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
         log.info("文件上传结果 src:"+src);
         return success(src);

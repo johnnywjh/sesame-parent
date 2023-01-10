@@ -26,6 +26,7 @@
         <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
         -->
+        <okhttp3.version>4.10.0</okhttp3.version>
         <easyexcel.version>3.0.5</easyexcel.version>
         <fastjson.version>1.2.79</fastjson.version>
         <jwt.version>3.18.3</jwt.version>
@@ -102,6 +103,11 @@
 <!--                <scope>import</scope>-->
 <!--            </dependency>-->
 
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp3.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
