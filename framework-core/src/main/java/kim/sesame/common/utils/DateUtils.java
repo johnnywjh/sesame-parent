@@ -18,7 +18,8 @@ import java.util.concurrent.Executors;
 
 /**
  * https://hutool.cn/docs/#/core/%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4/%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%B7%A5%E5%85%B7-DateUtil?id=%e6%96%b9%e6%b3%95
- * DatePattern.NORM_DATETIME_PATTERN;//"yyyy-MM-dd HH:mm:ss";
+ * @see DatePattern#NORM_DATETIME_PATTERN //DATETIME_FORMATTER = "yyyy-MM-dd HH:mm:ss";
+ * {@link DatePattern#NORM_DATE_PATTERN} //DATE_FORMATTER = "yyyy-MM-dd";
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)// 构造器私有化
 @Slf4j
