@@ -15,7 +15,7 @@ ex:
       enable: false
       upload-url: http://node1.cn:8072/upload
 ```
-- 代码
+- 代码 UploadConfig.java
 ```java
 import com.sesame.web.upload.service.UploadDefaultService;
 import com.sesame.web.upload.service.UploadTenxunService;
@@ -66,6 +66,7 @@ public class UploadConfig {
 }
 ```
 
+- 代码 UploadProperties.java
 ```java
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

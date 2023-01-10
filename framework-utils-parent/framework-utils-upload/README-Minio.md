@@ -28,6 +28,7 @@ http://node1.cn:9090/login
         </dependency>
 ```
 
+- 代码 MinioUtils.java
 ```java
 import io.minio.*;
 import io.minio.http.Method;
@@ -370,6 +371,7 @@ public class MinioUtils {
 }
 ```
 
+- 代码 UploadMinioService.java
 ```java
 import com.sesame.web.upload.config.UploadProperties;
 import io.minio.BucketExistsArgs;
