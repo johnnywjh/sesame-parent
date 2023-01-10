@@ -1,5 +1,5 @@
 > 部署
-````shell
+```shell
 docker run -d --restart=always \
   -p 9000:9000 -p 9090:9090 \
   --name minio \
@@ -11,7 +11,30 @@ docker run -d --restart=always \
   
 ## 访问
 http://node1.cn:9090/login
-````
+```
+
+- docker-compose
+```yaml
+version: "3"
+
+services:
+
+  minio:
+    container_name: minio
+    command: server /data --console-address ":9090" -address ":9000"
+    image: minio/minio
+    restart: always
+    ports:
+      - 9000:9000
+      - 9090:9090
+    volumes:
+      - /opt/minio/data:/data
+      - /opt/minio/config:/root/.minio
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+
+```
 
 - 代码
 ```xml
