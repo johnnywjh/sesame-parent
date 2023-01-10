@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.temporal.TemporalAdjusters;
@@ -23,7 +22,7 @@ import java.util.concurrent.Executors;
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)// 构造器私有化
 @Slf4j
-public class DateUtils extends cn.hutool.core.date.DateUtil {
+public class DateUtils extends DateUtil {
 
     /**
      * 时间进制

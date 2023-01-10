@@ -1,5 +1,6 @@
 package kim.sesame.framework.serial.service;
 
+import cn.hutool.core.date.DateUtil;
 import kim.sesame.common.utils.Argument;
 import kim.sesame.common.utils.DateUtils;
 import kim.sesame.framework.serial.dao.SerialNumberRuleDao;
@@ -130,7 +131,7 @@ public class SerialNumberService implements ISerialNumberService, InitializingBe
         }
         // 时间前缀
         if (serialNumberRule.isNeedTime()) {
-            newCode.append(DateUtils.dateToString(Calendar.getInstance().getTime(), serialNumberRule.getTimeFormat()));
+            newCode.append(DateUtil.format(Calendar.getInstance().getTime(), serialNumberRule.getTimeFormat()));
         }
         // 分隔符
         if (serialNumberRule.isNeedDelimiter()) {
