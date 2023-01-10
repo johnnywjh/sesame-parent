@@ -36,7 +36,7 @@ public class UploadController extends AbstractWebController {
     @PostMapping("/file/{moduleName}")
     public ApiResult uploadFile(@PathVariable("moduleName") String moduleName, MultipartFile file) {
         String src = uploadService.uploadFileMethod(ProjectConfig.getSysCode(), moduleName, file);
-        log.info("文件上传结果 src:"+src);
+        log.info("文件上传结果 src : {}", src);
         return success(src);
     }
 
