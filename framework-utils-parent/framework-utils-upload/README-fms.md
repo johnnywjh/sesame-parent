@@ -39,16 +39,14 @@ public class UploadDefaultService implements UploadService {
         request.part("module", sysCode + "/" + moduleName);
         String result = request.body();
         log.info("返回信息为：" + result);
-
-        String str = null;
+        
         try {
-            Map map = JSON.parseObject(result, Map.class);
-            str = map.get("result").toString();
+            JSONObject json = JSONObject.parseObject(result);
+            return json.getString("data");
         } catch (Exception e) {
             e.printStackTrace();
             throw new BizException("上传服务暂不可使用,请稍后重试！");
         }
-        return str;
     }
 }
 
