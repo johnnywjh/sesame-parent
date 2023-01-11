@@ -6,6 +6,7 @@ public class AbstractBizException extends RuntimeException implements IException
 
     private IErrorCode errorCodeEnum;
 
+    @Override
     public IErrorCode getErrorCodeEnum() {
         return errorCodeEnum;
     }
