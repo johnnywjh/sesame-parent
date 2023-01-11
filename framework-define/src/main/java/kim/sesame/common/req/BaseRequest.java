@@ -1,4 +1,4 @@
-package kim.sesame.common.web;
+package kim.sesame.common.req;
 
 
 /**
