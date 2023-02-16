@@ -31,6 +31,9 @@
         <fastjson.version>1.2.79</fastjson.version>
         <jwt.version>3.18.3</jwt.version>
 
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mysql.version>8.0.32</mysql.version>
+
         <!--docker config -->
         <docker.image.name>testimagename</docker.image.name>
         <docker.image.tag>latest</docker.image.tag>
