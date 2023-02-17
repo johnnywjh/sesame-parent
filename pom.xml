@@ -29,7 +29,8 @@
         <okhttp3.version>4.10.0</okhttp3.version>
         <easyexcel.version>3.0.5</easyexcel.version>
         <fastjson.version>1.2.79</fastjson.version>
-        <jwt.version>3.18.3</jwt.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <jjwt-impl.version>0.11.5</jjwt-impl.version>
 
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <mysql.version>8.0.32</mysql.version>
