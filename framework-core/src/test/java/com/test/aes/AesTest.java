@@ -22,8 +22,8 @@ public class AesTest {
 //        AES aes = SecureUtil.aes(key);
         AES aes = new AES(
                 Mode.CTS, Padding.PKCS5Padding,
-                "0CoJUm6Qyw8W8jud".getBytes(),
-                "0102030405060708".getBytes()
+                "0CoJUm6Qyw8W8ju1".getBytes(),
+                "0CoJUm6Qyw8W8jud".getBytes()
         );
 
         // 加密
