@@ -1,5 +1,5 @@
 # Auto Configure
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=kim.sesame.framework.mybatis.MyBatisPlusConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=kim.sesame.common.mybatisplus.MyBatisPlusConfiguration
 
 
 

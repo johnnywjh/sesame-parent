@@ -1,4 +1,4 @@
-package kim.sesame.framework.mybatis;
+package kim.sesame.common.mybatisplus;
 
 import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
