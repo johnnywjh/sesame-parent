@@ -64,7 +64,7 @@ sesame.framework.db.druid-enabled=false
 #### 2.0.0 `2019-1-9`
 - 整体目录发生大的变化,不兼容之前的版本
 - 新增mybatis-plus 模块
-- 本地缓存模块新增**framework-cache-local-caffeine**  [#详见文档](doc/ch4/local-redis.md)
+- 本地缓存模块新增**framework-cache-local-caffeine**  [#详见文档](workspace/wjh/sesame-parent/adoc/ch4/local-redis.md)
 - **优化** QueryCacha 注解 
 ```
 修改参数名称
@@ -75,7 +75,7 @@ isWriteNullValue 改为 isWriteNullValueToJson
 3. String saveNullValueTheStr : 当isSaveNullValueToCache=true 时, 在缓存(redis)中的值,默认"framework-cache-null"
 ```
 - 依赖的spring boot 版本为2.0.7.RELEASE , spring cloud 版本为Finchley.SR2
-- [升级修改事项](doc/spring-boot-2.x.md)
+- [升级修改事项](workspace/wjh/sesame-parent/adoc/spring-boot-2.x.md)
 
 #### 1.3.1 `2018-5-8 `
 1. 废弃 AbstractUserCache 这个空实现类,采用java8 的接口 default方法
@@ -85,7 +85,7 @@ isWriteNullValue 改为 isWriteNullValueToJson
 5. 更改时间类型参数传到后台如果值为空,返回 new Date()问题,现在返回 null
 6. framework-core 增加运行环境判断工具类,VifRunEnv.isJar(Class clazz);
 7. framework-web 增加签名校验,动态tokean校验,时间控制,使用文档还没有写.懒一会
-8. framework-cache-redis 增加多redis实例支持, [#详见文档](doc/ch4/redis-shili.md)
+8. framework-cache-redis 增加多redis实例支持, [#详见文档](workspace/wjh/sesame-parent/adoc/ch4/redis-shili.md)
 9. 新增 framework-rocketmq 模块, 参考[rocketmq/rocketmq-spring-boot-starter](https://github.com/rocketmq/rocketmq-spring-boot-starter) , [apache/rocketmq-externals](https://github.com/apache/rocketmq-externals/tree/master/rocketmq-spring-boot-starter)
 10. 新增 framework-web-swagger, 用于开启swagger, 文档还没写
 11. 新增 framework-tablelog 用于记录某些表,某些字段, 的修改记录, 文档还没写
