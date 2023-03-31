@@ -6,6 +6,8 @@ package kim.sesame.common.utils;
  */
 public class GData {
 
+    public static String spring = "spring";
+
     public interface Log {
         String LOG_PREFIX = "logPrefix";
     }
