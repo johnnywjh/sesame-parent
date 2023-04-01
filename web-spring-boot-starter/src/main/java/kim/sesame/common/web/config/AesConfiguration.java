@@ -1,4 +1,4 @@
-package kim.sesame.common.config;
+package kim.sesame.common.web.config;
 
 import cn.hutool.crypto.Mode;
 import cn.hutool.crypto.Padding;

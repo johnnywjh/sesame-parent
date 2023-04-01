@@ -1,4 +1,4 @@
-package kim.sesame.common.config;
+package kim.sesame.common.web.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
