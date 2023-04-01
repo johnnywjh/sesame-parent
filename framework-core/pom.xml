@@ -34,14 +34,6 @@
             <version>6.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
-<!--
-        <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.9.4</version>
-        </dependency>
--->
         <!--mapstruct核心-->
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -61,12 +53,6 @@
             <artifactId>easyexcel</artifactId>
             <version>${easyexcel.version}</version>
         </dependency>
-        <!--算法依赖包-->
-        <dependency>
-            <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk16</artifactId>
-            <version>1.46</version>
-        </dependency>
 
         <!-- 图形验证码 -->
         <dependency>
@@ -79,6 +65,11 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15to18</artifactId>
+            <version>1.68</version>
         </dependency>
 
         <!--JWT令牌-->

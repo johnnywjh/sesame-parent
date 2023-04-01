@@ -10,34 +10,24 @@ import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import org.junit.jupiter.api.Test;
 
 public class AesTest {
-
-    @Test
-    public void aes() {
+    public static void main(String[] args) {
         String content = "test中文";
 
 // 随机生成密钥
-        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.AES.getValue()).getEncoded();
+//        byte[] key = SecureUtil.generateKey(SymmetricAlgorithm.AES.getValue()).getEncoded();
+//        System.out.println(new String(key));
 
-        // 构建
-//        AES aes = SecureUtil.aes(key);
-        AES aes = new AES(
-                Mode.CTS, Padding.PKCS5Padding,
-                "0CoJUm6Qyw8W8ju1".getBytes(),
-                "0CoJUm6Qyw8W8jud".getBytes()
+        AES aes = new AES(Mode.CTS, Padding.PKCS5Padding,
+                // 密钥，可以自定义
+                "T9HOF7pgqKkkFDHc".getBytes(),
+                // iv加盐，按照实际需求添加
+                "FbrRHExNNbhmvVgh".getBytes()
         );
 
-        // 加密
-        byte[] encrypt = aes.encrypt(content);
-
-        // 解密
-        byte[] decrypt = aes.decrypt(encrypt);
-
-        System.out.println("------------------");
-        // 加密为16进制表示
+// 加密为16进制表示
         String encryptHex = aes.encryptHex(content);
         System.out.println(encryptHex);
-        System.out.println(encryptHex.length());
-        // 解密为字符串
+// 解密为字符串
         String decryptStr = aes.decryptStr(encryptHex, CharsetUtil.CHARSET_UTF_8);
         System.out.println(decryptStr);
     }
