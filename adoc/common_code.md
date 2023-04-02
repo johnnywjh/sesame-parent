@@ -15,3 +15,37 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @JsonFormat(shape = JsonFormat.Shape.STRING)
 private Long id;
 ```
+
+#### 编程式事务
+```java
+    @Autowired
+    private TransactionTemplate transactionTemplate;
+
+    public void demoTestService(TestTransactionReq req) {
+
+        transactionTemplate.execute(status -> {
+            try {
+                boolean res = demoTestRepository.update(new LambdaUpdateWrapper<DemoTestPo>()
+                        .eq(DemoTestPo::getId, req.getId())
+                        .set(DemoTestPo::getName, req.getName())
+                );
+                if (!res) {
+                    log.info(">>> id is not null");
+                }
+                if ("1".equals(req.getName())) {
+//                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly(); // 这个会抛异常
+                    status.setRollbackOnly();
+                    log.info(">>> 回滚事物-1");
+                    return false;  // 这个不会导致事务回滚
+                } else if ("2".equals(req.getName())) {
+                    throw new BizException("模拟异常");
+                }
+            } catch (Exception e) {
+                log.info(">>> 回滚事物-2");
+                status.setRollbackOnly();
+                return false;
+            }
+            return true;
+        });
+    }
+```
