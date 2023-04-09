@@ -1,6 +1,7 @@
 package kim.sesame.common.web.util;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.github.kevinsawicki.http.HttpRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -74,7 +75,7 @@ public class IPUitl {
 
         String res = HttpRequest.get(path).body();
 
-        JSONObject jb = JSONObject.parseObject(res);
+        JSONObject jb = JSON.parseObject(res);
         //{"code":0,"data":{"country":"中国","country_id":"CN","area":"华南","area_id":"800000","region":"广东省","region_id":"440000","city":"深圳市","city_id":"440300","county":"","county_id":"-1","isp":"联通","isp_id":"100026","ip":"112.90.78.25"}}
         //{"code":0,"data":{"country":"中国","country_id":"CN","area":"华东","area_id":"300000","region":"浙江省","region_id":"330000","city":"杭州市","city_id":"330100","county":"","county_id":"-1","isp":"阿里云","isp_id":"1000323","ip":"121.40.219.5"}}
         System.out.println(jb.toString());

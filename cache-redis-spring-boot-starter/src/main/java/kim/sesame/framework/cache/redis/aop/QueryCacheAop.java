@@ -1,8 +1,6 @@
 package kim.sesame.framework.cache.redis.aop;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson2.JSON;
 import kim.sesame.common.web.context.SpringContextUtil;
 import kim.sesame.framework.cache.annotation.QueryCache;
 import kim.sesame.framework.cache.redis.config.QueryCacheProperties;
@@ -88,11 +86,12 @@ public class QueryCacheAop {
                 if (result instanceof String) {
                     json = result.toString();
                 } else {
-                    if (ann.isWriteNullValueToJson()) {
-                        json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue, SerializerFeature.UseSingleQuotes);
-                    } else {
-                        json = JSON.toJSONString(result, SerializerFeature.UseSingleQuotes);
-                    }
+                    json = JSON.toJSONString(result);
+//                    if (ann.isWriteNullValueToJson()) {
+//                        json = JSON.toJSONString(result, SerializerFeature.WriteMapNullValue, SerializerFeature.UseSingleQuotes);
+//                    } else {
+//                        json = JSON.toJSONString(result, SerializerFeature.UseSingleQuotes);
+//                    }
                 }
                 try {
                     stringRedisTemplate.opsForValue().set(cacheKey, json, time, timeUnit);
@@ -124,9 +123,9 @@ public class QueryCacheAop {
                 clazz = clazz == null ? Object.class : clazz;
 
                 if (List.class.isAssignableFrom(returnTypeClazz)) {
-                    result = JSONArray.parseArray(cacheResult, clazz);
+                    result = JSON.parseArray(cacheResult, clazz);
                 } else if (Set.class.isAssignableFrom(returnTypeClazz)) {
-                    result = new HashSet<>(JSONArray.parseArray(cacheResult, clazz));
+                    result = new HashSet<>(JSON.parseArray(cacheResult, clazz));
                 } else {
                     throw new ClassCastException(MessageFormat.format
                             ("不支持的类型:{0},缓存只支持 List和Set 的集合类型", returnTypeClazz));

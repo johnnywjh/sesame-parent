@@ -1,8 +1,6 @@
 package kim.sesame.framework.cache.redis.server;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
@@ -84,7 +82,8 @@ public class AutoRefreshCache<T> implements InitializingBean {
         List<T> list = dataLoading();
         String json = "";
         if (isWriteNullValue) {
-            json = JSON.toJSONString(list, SerializerFeature.WriteMapNullValue);
+//            json = JSON.toJSONString(list, SerializerFeature.WriteMapNullValue);
+            json = JSON.toJSONString(list);
         } else {
             json = JSON.toJSONString(list);
         }
@@ -118,7 +117,7 @@ public class AutoRefreshCache<T> implements InitializingBean {
             } else {
                 String cacheResult = stringRedisTemplate.opsForValue().get(getKey());
                 if (StringUtils.isNotEmpty(cacheResult)) {
-                    return JSONArray.parseArray(cacheResult, clazz);
+                    return JSON.parseArray(cacheResult, clazz);
                 } else {
                     return null;
                 }
