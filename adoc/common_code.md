@@ -49,3 +49,17 @@ private Long id;
         });
     }
 ```
+
+####  list 分组
+- [https://blog.csdn.net/CodersCoder/article/details/115396315](https://blog.csdn.net/CodersCoder/article/details/115396315)
+```java
+import com.google.common.collect.Lists;
+
+//假设查询出很多用户信息
+List<User> users = userService.findAll();
+//按每100个一组分割
+List<List<User>> parts = Lists.partition(users, 100);
+parts.stream().forEach(list -> {
+    process(list);
+});
+```
