@@ -1,3 +1,27 @@
+#### 多配置
+```yaml
+spring:
+  profiles:
+    active: local
+---
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: xxxx
+  config:
+    activate:
+      on-profile: DEV
+---
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: yyyy
+  config:
+    activate:
+      on-profile: test
+```
 #### 返回给前端Long=>String
 ```java
 // 方式一
