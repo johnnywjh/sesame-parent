@@ -74,7 +74,7 @@ private Long id;
     }
 ```
 
-####  list 分组
+####  list 分段执行
 - [https://blog.csdn.net/CodersCoder/article/details/115396315](https://blog.csdn.net/CodersCoder/article/details/115396315)
 ```java
 import com.google.common.collect.Lists;
@@ -88,6 +88,28 @@ parts.stream().forEach(list -> {
 });
 
 ## 分组
-        Map<String, List<ClassName>> successMap = successList.stream()
+
+```
+
+#### list 累加
+```java
+Integer quantity = list.stream().map(ClassName::getQuantity)
+                        .filter(l -> l != null)
+                        .reduce(0, Integer::sum);
+```
+
+#### list 分组 => Map
+```java
+Map<String, List<ClassName>> successMap = successList.stream()
             .collect(Collectors.groupingBy(ClassName::getKey));
+
+Map<Long, Map<Integer, List<OrderItem>>> vendorOrderItemMapMap = orderItems.stream()
+        .collect(Collectors.groupingBy(OrderItem::getVendorId, Collectors.groupingBy(OrderItem::getOrderType)));
+
+    for (Long vendorId : vendorOrderItemMapMap.keySet()){
+        Map<Integer, List<OrderItem>>vendorOrderItemMap=vendorOrderItemMapMap.get(vendorId);
+        for(Integer orderType:vendorOrderItemMap.keySet()){
+            List<OrderItem> tiems=vendorOrderItemMap.get(orderType);
+        }
+    }
 ```
