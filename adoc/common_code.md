@@ -86,4 +86,8 @@ List<List<User>> parts = Lists.partition(users, 100);
 parts.stream().forEach(list -> {
     process(list);
 });
+
+## 分组
+        Map<String, List<ClassName>> successMap = successList.stream()
+            .collect(Collectors.groupingBy(ClassName::getKey));
 ```
