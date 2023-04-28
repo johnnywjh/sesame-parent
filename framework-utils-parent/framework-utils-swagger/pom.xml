@@ -15,31 +15,14 @@
 
 
     <properties>
-        <swagger.version>3.0.0</swagger.version>
-        <knife4j.version>3.0.3</knife4j.version>
+        <knife4j.version>4.1.0</knife4j.version>
     </properties>
 
     <dependencies>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
-        </dependency>
-
-        <dependency>
-            <groupId>kim.sesame.framework</groupId>
-            <artifactId>web-spring-boot-starter</artifactId>
-        </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>io.springfox</groupId>-->
-<!--            <artifactId>springfox-boot-starter</artifactId>-->
-<!--            <version>${swagger.version}</version>-->
-<!--        </dependency>-->
-        <dependency>
             <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
             <version>${knife4j.version}</version>
         </dependency>
 
