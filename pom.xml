@@ -34,6 +34,7 @@
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <mysql.version>8.0.32</mysql.version>
+        <knife4j.version>4.1.0</knife4j.version>
 
         <!--docker config -->
         <docker.image.name>testimagename</docker.image.name>

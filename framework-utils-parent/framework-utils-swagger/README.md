@@ -25,4 +25,18 @@ knife4j:
         api-rule-resources:
           - com.knife4j.demo.new3
 ```
+
+```
+knife4j:
+  enable: true
+  openapi:
+    title: 支付系统
+    version: v1.0
+    group:
+      pay:
+        group-name: 分组名称
+        api-rule: package
+        api-rule-resources:
+          - com.rz.pay.api.controller
+```
  

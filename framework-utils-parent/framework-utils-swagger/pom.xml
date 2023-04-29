@@ -13,11 +13,6 @@
     <packaging>jar</packaging>
     <name>framework-utils-swagger</name>
 
-
-    <properties>
-        <knife4j.version>4.1.0</knife4j.version>
-    </properties>
-
     <dependencies>
 
         <dependency>
