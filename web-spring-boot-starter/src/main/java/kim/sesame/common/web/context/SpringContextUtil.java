@@ -1,12 +1,14 @@
 package kim.sesame.common.web.context;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.net.InetAddress;
 import java.util.Map;
 
 @Component
@@ -92,6 +94,27 @@ public class SpringContextUtil implements ApplicationContextAware {
             return null;
         }
 
+    }
+
+    public static void printStartInfo(){
+        printStartInfo(null);
+    }
+    public static void printStartInfo(String ip){
+        try {
+            if(StringUtils.isBlank(ip)){
+                ip = InetAddress.getLocalHost().getHostAddress();
+            }
+        } catch (Exception e) {
+        }
+        String port = getAttributeValue("server.port");
+        String path = getAttributeValue("server.servlet.context-path");
+        path = StringUtils.isNotBlank(path) ? path : "";
+        log.info("\n----------------------------------------------------------\n\t" +
+                "Application is running! Access URLs:\n\t" +
+                "Local: \t\thttp://localhost:" + port + path + "/\n\t" +
+                "External: \thttp://" + ip + ":" + port + path + "/\n\t" +
+                "Swagger文档: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
+                "----------------------------------------------------------");
     }
 
 
