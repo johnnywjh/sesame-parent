@@ -84,6 +84,7 @@
                 <type>pom</type>
                 <scope>import</scope>
                 <!-- 官网版本查看 https://spring.io/projects/spring-cloud#overview -->
+                <!-- 版本说明 https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E  -->
                 <!-- 版本列表 https://github.com/spring-cloud/spring-cloud-release/wiki/Spring-Cloud-2021.0-Release-Notes -->
             </dependency>
             <dependency>
