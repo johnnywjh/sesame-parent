@@ -1,4 +1,6 @@
 ### SpringBoot 的一些封装
+github: https://github.com/johnnywjh/sesame-parent.git
+gitee:  https://gitee.com/sesamekim/sesame-parent.git
 
 - [更新日志](adoc/updateLog.md)
 - [常用代码](adoc/common_code.md)
