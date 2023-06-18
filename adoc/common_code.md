@@ -113,3 +113,15 @@ Map<Long, Map<Integer, List<OrderItem>>> vendorOrderItemMapMap = orderItems.stre
         }
     }
 ```
+
+#### list 求和
+```java
+Integer quantityTotal = request.stream().map(DistributionSkuImportDataRequest::getQuantity)
+    .filter(l -> l != null)
+    .map(Integer::parseInt)
+    .reduce(0, Integer::sum);
+
+BigDecimal totalSplitAmount = splitInfoList.stream()
+    .map(PaymentSplitInfoVO::getSplitAmount)
+    .reduce(BigDecimal.ZERO, BigDecimal::add);
+```
