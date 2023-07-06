@@ -1,5 +1,6 @@
 package kim.sesame.common.web.controller;
 
+import kim.sesame.common.context.TraceIdContext;
 import kim.sesame.common.entity.IErrorCode;
 import kim.sesame.common.exception.BizArgumentException;
 import kim.sesame.common.exception.IException;
@@ -52,7 +53,11 @@ public abstract class AbstractController {
     public ApiResult handleException(BizArgumentException exception) {
         log.error(exception.getMessage(), exception);
         ErrorCodeEnum erroeEnum = ErrorCodeEnum.PARAMS_ERR;
-        return ApiResult.create().setErrorType(erroeEnum.name()).setCode(erroeEnum.getCode()).setMessage(exception.getMessage());
+        return ApiResult.create()
+                .setErrorType(erroeEnum.name())
+                .setCode(erroeEnum.getCode())
+                .setMessage(exception.getMessage())
+                .setTraceInfo(TraceIdContext.getContext().getTraceId());
     }
 
     /**
@@ -69,12 +74,20 @@ public abstract class AbstractController {
 
         if (exception instanceof IException) {
             IErrorCode ece = ((IException) exception).getErrorCodeEnum();
-            return ApiResult.create().setErrorType(ece.name()).setCode(ece.getCode()).setMessage(exception.getMessage());
+            return ApiResult.create()
+                    .setErrorType(ece.name())
+                    .setCode(ece.getCode())
+                    .setMessage(exception.getMessage())
+                    .setTraceInfo(TraceIdContext.getContext().getTraceId());
         }
         //系统异常
         else {
             IErrorCode ece = ErrorCodeEnum.SYSTEMERR;
-            return ApiResult.create().setErrorType(ece.name()).setCode(ece.getCode()).setMessage(getExceptionMessage(exception));
+            return ApiResult.create()
+                    .setErrorType(ece.name())
+                    .setCode(ece.getCode())
+                    .setMessage(getExceptionMessage(exception))
+                    .setTraceInfo(TraceIdContext.getContext().getTraceId());
         }
     }
 

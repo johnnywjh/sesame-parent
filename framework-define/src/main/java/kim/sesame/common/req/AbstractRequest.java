@@ -2,8 +2,6 @@ package kim.sesame.common.req;
 
 
 import kim.sesame.common.exception.BizArgumentException;
-import kim.sesame.common.utils.UUIDUtil;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
