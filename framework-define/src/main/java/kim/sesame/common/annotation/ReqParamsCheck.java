@@ -8,5 +8,14 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
+@Documented
 public @interface ReqParamsCheck {
+
+    /**
+     * 是否打印日志
+     *
+     * @return boolean
+     */
+    boolean printLog() default true;
+
 }

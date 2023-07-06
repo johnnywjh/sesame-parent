@@ -19,32 +19,6 @@ public abstract class AbstractRequest extends PrintFriendliness {
 
     private static Validator VALIDATOR = Validation.buildDefaultValidatorFactory().getValidator();
 
-    /**
-     * 客户端应用ID
-     */
-    private String appId;
-
-    /**
-     * 请求ID
-     */
-    private String requestId;
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public String getRequestId() {
-        return requestId;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
-
     /*
      * https://blog.csdn.net/m0_46360888/article/details/116004078
      * @NotEmpty :不能为null，且Size>0，一般用于集合、数组、字符序列
@@ -65,44 +39,5 @@ public abstract class AbstractRequest extends PrintFriendliness {
     }
 
 
-    /**
-     * requestId是否强制必填
-     *
-     * @return
-     */
-    public boolean requiresRequestId() {
-        return false;
-    }
-
-    /**
-     * appId是否强制必填
-     *
-     * @return
-     */
-    public boolean requiresAppId() {
-        return false;
-    }
-
-    /**
-     * 构造该请求的日志上下文标识, 默认是 类名+requestId
-     *
-     * @param
-     * @return
-     */
-    public String buildLogPrefix() {
-        if (StringUtils.isBlank(requestId)) {
-            setRequestId(UUIDUtil.getShortUUID());
-        }
-        return getClass().getSimpleName() + "|" + getRequestId();
-    }
-
-    /**
-     * 是否需要打印请求日志
-     *
-     * @return
-     */
-    public boolean needsLog() {
-        return true;
-    }
 }
 
