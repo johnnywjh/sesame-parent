@@ -106,11 +106,13 @@ public class SpringContextUtil implements ApplicationContextAware {
             }
         } catch (Exception e) {
         }
+        String active = getAttributeValue("spring.profiles.active");
         String port = getAttributeValue("server.port");
         String path = getAttributeValue("server.servlet.context-path");
         path = StringUtils.isNotBlank(path) ? path : "";
         log.info("\n----------------------------------------------------------\n\t" +
                 "Application is running! Access URLs:\n\t" +
+                "spring.profiles.active: \t" + active +"\n\t" +
                 "Local: \t\thttp://localhost:" + port + path + "/\n\t" +
                 "External: \thttp://" + ip + ":" + port + path + "/\n\t" +
                 "Swagger文档: \thttp://" + ip + ":" + port + path + "/doc.html\n" +
