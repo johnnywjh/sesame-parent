@@ -10,7 +10,7 @@
 
     <artifactId>spring-cloud-common-sleuth</artifactId>
     <packaging>jar</packaging>
-    <name>spring-cloud-common-sleuth</name>
+    <name>${project.artifactId}--${project.version}</name>
 
     <dependencies>
 

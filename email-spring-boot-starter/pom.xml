@@ -11,7 +11,7 @@
 
     <artifactId>email-spring-boot-starter</artifactId>
     <packaging>jar</packaging>
-    <name>email-spring-boot-starter</name>
+    <name>${project.artifactId}--${project.version}</name>
 
     <dependencies>
 

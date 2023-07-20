@@ -11,7 +11,7 @@
 
     <artifactId>framework-core</artifactId>
     <packaging>jar</packaging>
-    <name>framework-core</name>
+    <name>${project.artifactId}--${project.version}</name>
 
     <dependencies>
 

@@ -11,7 +11,7 @@
 
 	<artifactId>framework-utils-parent</artifactId>
 	<packaging>pom</packaging>
-	<name>framework-utils-parent</name>
+	<name>${project.artifactId}--${project.version}</name>
 
 	<modules>
 		<module>framework-utils-swagger</module>

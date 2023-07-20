@@ -11,7 +11,7 @@
 
     <artifactId>cache-redis-spring-boot-starter</artifactId>
     <packaging>jar</packaging>
-    <name>cache-redis-spring-boot-starter</name>
+    <name>${project.artifactId}--${project.version}</name>
 
     <dependencies>
 

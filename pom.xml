@@ -12,8 +12,7 @@
     <artifactId>sesame-parent</artifactId>
     <version>2.6.11</version><!-- sesame.version -->
     <packaging>pom</packaging>
-    <name>sesame-parent-${project.version}</name>
-    <description></description>
+    <name>${project.artifactId}--${project.version}</name>
 
     <properties>
         <sesame.version>2.6.11</sesame.version>

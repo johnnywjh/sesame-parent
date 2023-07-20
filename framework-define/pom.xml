@@ -11,7 +11,7 @@
 
 	<artifactId>framework-define</artifactId>
 	<packaging>jar</packaging>
-	<name>framework-define</name>
+	<name>${project.artifactId}--${project.version}</name>
 
 	<dependencies>
 
