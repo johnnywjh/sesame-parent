@@ -33,6 +33,7 @@
         <jjwt-impl.version>0.11.5</jjwt-impl.version>
         <mapstruct.version>1.5.3.Final</mapstruct.version>
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mybatis-plus-ds.version>4.1.1</mybatis-plus-ds.version>
         <mysql.version>8.0.33</mysql.version>
         <druid.version>1.2.17</druid.version>
         <knife4j.version>4.1.0</knife4j.version>
@@ -56,6 +57,7 @@
 
         <module>lock-spring-boot-starter</module>
         <module>mybatis-plus-spring-boot-starter</module>
+        <module>mybatis-plus-spring-boot-starter-ds</module>
         <module>serial-spring-boot-starter</module>
         <module>web-spring-boot-starter</module>
 
@@ -139,6 +141,11 @@
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
                 <artifactId>mybatis-plus-spring-boot-starter</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>kim.sesame.framework</groupId>
+                <artifactId>mybatis-plus-spring-boot-starter-ds</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
 
