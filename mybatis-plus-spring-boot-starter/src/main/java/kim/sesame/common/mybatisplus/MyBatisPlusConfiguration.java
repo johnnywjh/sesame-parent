@@ -1,10 +1,12 @@
 package kim.sesame.common.mybatisplus;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.extension.MybatisMapWrapperFactory;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +34,7 @@ public class MyBatisPlusConfiguration {
     }
 
     @Bean
-    public ConfigurationCustomizer mybatisConfigurationCustomizer(){
+    public ConfigurationCustomizer mybatisConfigurationCustomizer() {
         return (configuration) -> configuration.setObjectWrapperFactory(new MybatisMapWrapperFactory());
 //        return new ConfigurationCustomizer() {
 //            @Override
@@ -40,6 +42,12 @@ public class MyBatisPlusConfiguration {
 //                configuration.setObjectWrapperFactory(new MybatisMapWrapperFactory());
 //            }
 //        };
+    }
+
+    @ConfigurationProperties(prefix = "spring.datasource")
+    @Bean
+    public DruidDataSource druidDataSource() {
+        return new DruidDataSource();
     }
 
 }
