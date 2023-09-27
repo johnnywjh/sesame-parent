@@ -72,6 +72,17 @@ private Long id;
             return true;
         });
     }
+
+        Boolean execute = transactionTemplate.execute(status -> {
+            try {
+
+            } catch (Exception e) {
+                log.error("逻辑操作失败 ",  e);
+                status.setRollbackOnly();
+                return false;
+            }
+            return true;
+        });
 ```
 
 ####  list 分段执行
