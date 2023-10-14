@@ -8,15 +8,14 @@ public class MoneyUtil {
 
     public static Money parseToMoney(BigDecimal amount) {
         if (amount == null) {
-            return null;
-        } else {
-            return new Money(amount);
+            return new Money();
         }
+        return new Money(amount);
     }
 
     public static Money parseToMoney(String amount) {
         if (amount == null) {
-            return null;
+            return new Money();
         } else {
             return new Money(amount);
         }
@@ -45,7 +44,7 @@ public class MoneyUtil {
 
     public static Long parseToLong(BigDecimal amount) {
         if (amount == null) {
-            return null;
+            return 0L;
         } else {
             return new Money(amount).getCent();
         }
