@@ -10,6 +10,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 
 /**
  * 自动扫描
@@ -50,4 +54,12 @@ public class MyBatisPlusConfiguration {
         return new DruidDataSource();
     }
 
+    @Bean
+    public TransactionTemplate transactionTemplate(PlatformTransactionManager transactionManager) {
+        return new TransactionTemplate(transactionManager);
+    }
+    @Bean
+    public PlatformTransactionManager transactionManager(DruidDataSource dataSource) {
+        return new DataSourceTransactionManager(dataSource);
+    }
 }
