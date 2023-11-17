@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,6 +31,15 @@ public class DateUtils extends DateUtil {
      */
     public static final Integer TIME_RADIX = 60;
     public static final Integer MILLISECONDS_RADIX = 1000;
+
+    /**
+     * 获取今天剩余的秒速
+     */
+    public static Long getTodayRemainSeconds() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime tomorrow = now.plusDays(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
+        return now.until(tomorrow, ChronoUnit.SECONDS);
+    }
 
     /**
      * 获取两个日期相差的月数
