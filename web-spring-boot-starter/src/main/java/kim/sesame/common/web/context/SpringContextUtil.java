@@ -16,8 +16,11 @@ import java.util.Map;
 public class SpringContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
-    private static String currentPath; // 当前项目资源路径,
+    private static String active;
 
+    public static String getActive() {
+        return active;
+    }
 
     /**
      * 获取上下文
@@ -32,6 +35,7 @@ public class SpringContextUtil implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
         SpringContextUtil.applicationContext = applicationContext;
+        active = getAttributeValue("spring.profiles.active");
     }
 
     /**
@@ -106,7 +110,7 @@ public class SpringContextUtil implements ApplicationContextAware {
             }
         } catch (Exception e) {
         }
-        String active = getAttributeValue("spring.profiles.active");
+//        String active = getAttributeValue("spring.profiles.active");
         String port = getAttributeValue("server.port");
         String path = getAttributeValue("server.servlet.context-path");
         path = StringUtils.isNotBlank(path) ? path : "";
