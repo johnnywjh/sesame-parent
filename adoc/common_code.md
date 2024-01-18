@@ -89,7 +89,8 @@ private Long id;
 - [https://blog.csdn.net/CodersCoder/article/details/115396315](https://blog.csdn.net/CodersCoder/article/details/115396315)
 ```java
 import com.google.common.collect.Lists;
-
+```
+```java
 //假设查询出很多用户信息
 List<User> users = userService.findAll();
 //按每100个一组分割
