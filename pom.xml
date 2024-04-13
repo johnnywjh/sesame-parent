@@ -37,6 +37,7 @@
         <druid.version>1.2.20</druid.version>
         <knife4j.version>4.1.0</knife4j.version>
         <hutu.version>5.8.26</hutu.version>
+        <rocketmq-spring-boot.version>2.3.0</rocketmq-spring-boot.version>
 
         <!--docker config -->
         <docker.image.name>testimagename</docker.image.name>

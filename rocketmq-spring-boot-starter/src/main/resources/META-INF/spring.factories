@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-kim.sesame.common.mq.rocket.RocketMQConfiguration
+kim.sesame.common.mq.rocket.RocketMQEnhanceConfig
