@@ -1,2 +1,19 @@
-*.iml
+Blame
+21 lines (17 loc) · 190 Bytes
+*.class
+*.swp
 .idea
+.vscode
+.DS_Store
+*.iml
+
+# exclude jar for gradle wrapper
+!gradle/wrapper/*.jar
+
+
+# Gradle files
+.gradle/*
+build/*
+out/*
+*/build/*
+*/out/*
