@@ -155,6 +155,11 @@
                 <artifactId>mybatis-plus-spring-boot-starter-ds</artifactId>
                 <version>${sesame.version}</version>
             </dependency>
+            <dependency>
+                <groupId>kim.sesame.framework</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${sesame.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>kim.sesame.framework</groupId>
