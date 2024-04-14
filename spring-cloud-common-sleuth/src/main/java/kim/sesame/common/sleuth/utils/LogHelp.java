@@ -26,9 +26,15 @@ public class LogHelp {
     public static void execute(Runnable runnable,String traceId,String spanId) {
         if (StringUtils.isBlank(traceId)) {
             traceId = IdUtil.simpleUUID();
+            if (traceId.length() > 20) {
+                traceId = traceId.substring(0, 16);
+            }
         }
         if (StringUtils.isBlank(spanId)) {
             spanId = IdUtil.simpleUUID();
+            if (spanId.length() > 20) {
+                spanId = spanId.substring(0, 16);
+            }
         }
         try {
             MDC.put(TRACE_ID, traceId);
