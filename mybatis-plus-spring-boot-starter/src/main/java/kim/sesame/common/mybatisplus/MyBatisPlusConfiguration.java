@@ -37,6 +37,9 @@ public class MyBatisPlusConfiguration {
         return interceptor;
     }
 
+    /**
+     * 查询到的数据转换为Map
+     */
     @Bean
     public ConfigurationCustomizer mybatisConfigurationCustomizer() {
         return (configuration) -> configuration.setObjectWrapperFactory(new MybatisMapWrapperFactory());
