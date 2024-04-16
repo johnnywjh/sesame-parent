@@ -73,7 +73,7 @@ private Long id;
         });
     }
 
-        Boolean execute = transactionTemplate.execute(status -> {
+        Boolean trFlag = transactionTemplate.execute(status -> {
             try {
 
             } catch (Exception e) {
@@ -83,6 +83,9 @@ private Long id;
             }
             return true;
         });
+        if (!trFlag) {
+            throw new BizException("保存数据异常");
+        }
 ```
 
 ####  list 分段执行
