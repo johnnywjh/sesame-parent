@@ -94,15 +94,16 @@ private Long id;
 import com.google.common.collect.Lists;
 ```
 ```java
+private final static Integer BATCH_SIZE = 100;
+```
+```java
 //假设查询出很多用户信息
-List<User> users = userService.findAll();
+List<String> targetList = new ArrayList<>();
 //按每100个一组分割
-List<List<User>> parts = Lists.partition(users, 100);
-parts.stream().forEach(list -> {
-    process(list);
+List<List<String>> parts = Lists.partition(targetList, 100);
+parts.stream().forEach(groupList -> {
+    process(groupList);
 });
-
-## 分组
 
 ```
 
