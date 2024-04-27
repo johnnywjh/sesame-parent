@@ -22,14 +22,14 @@ public class AbstractWebController extends AbstractController {
 
     private static final String FILE_NAME_KEY = "attachment;filename=";
 
-    public void download(String fileName, String path, HttpServletRequest request, HttpServletResponse response) {
+    public void download(String fileName, InputStream inputStream, HttpServletRequest request, HttpServletResponse response) {
         try {
             setDownloadResponse(fileName, request, response);
 
             OutputStream outputStream = response.getOutputStream();
 //            InputStream inputStream = new FileInputStream(path);
-            InputStream inputStream = ResourceUtil.getStream(path);
-            log.info("inputStream.available()={}", inputStream.available());
+//            InputStream inputStream = ResourceUtil.getStream(path);
+//            log.info("inputStream.available()={}", inputStream.available());
 
             byte[] b = new byte[inputStream.available()];
             inputStream.read(b);
