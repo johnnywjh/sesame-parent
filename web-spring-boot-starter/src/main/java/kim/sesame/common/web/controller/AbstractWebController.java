@@ -5,6 +5,7 @@ import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
+import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -96,10 +98,24 @@ public class AbstractWebController extends AbstractController {
         try {
             // 这里注意 有同学反应下载的文件名不对。这个时候 请别使用swagger 他会有影响
             response.setContentType("application/vnd.ms-excel");
-            response.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding(StandardCharsets.UTF_8.displayName());
 
-            fileName = URLEncoder.encode(fileName + ".xlsx", "UTF-8");
+            // 吧设置的文件名称暴露给前端
+            response.setHeader(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.CONTENT_DISPOSITION);
+
+            // 对文件名称进行URI编码
+            fileName = URLEncoder.encode(fileName, StandardCharsets.UTF_8.displayName());
+            // 修改字符编码
+//            fileName = new String(fileName.getBytes("GBK"), "ISO-8859-1");
             response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileName);
+
+            // 文件的处理方式。 attachment 表示附件，filename 表示文件的名称
+            // ttachment; filename*=UTF-8''aaaa.xlsx
+//            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, ContentDisposition
+//                    .attachment() 			// 附件形式
+//                    .filename(fileName, StandardCharsets.UTF_8)  // 文件名称 & 编码
+//                    .build()
+//                    .toString());
 
             EasyExcel.write(response.getOutputStream(), clazz)
                     .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
