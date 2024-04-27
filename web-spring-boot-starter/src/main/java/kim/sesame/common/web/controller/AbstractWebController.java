@@ -2,6 +2,7 @@ package kim.sesame.common.web.controller;
 
 import cn.hutool.core.io.resource.ResourceUtil;
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.write.builder.ExcelWriterBuilder;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -75,18 +76,13 @@ public class AbstractWebController extends AbstractController {
 
 
     public void tableDataExport(String fileName, List list, Class clazz, HttpServletResponse response) {
-        tableDataExport(fileName, list, clazz, response, "1");
+        tableDataExport(fileName, list, clazz, response, "1", true);
     }
 
     /**
      * 表格数据导出
-     *
-     * @param fileName 下载的文件名
-     * @param list     数据
-     * @param clazz    数据类型
-     * @param response res
      */
-    public void tableDataExport(String fileName, List list, Class clazz, HttpServletResponse response, String sheetName) {
+    public void tableDataExport(String fileName, List list, Class clazz, HttpServletResponse response, String sheetName, boolean autoWrite) {
 
         try {
             // 这里注意 有同学反应下载的文件名不对。这个时候 请别使用swagger 他会有影响
@@ -110,9 +106,11 @@ public class AbstractWebController extends AbstractController {
 //                    .build()
 //                    .toString());
 
-            EasyExcel.write(response.getOutputStream(), clazz)
-                    .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
-                    .sheet(sheetName).doWrite(list);
+            ExcelWriterBuilder write = EasyExcel.write(response.getOutputStream(), clazz);
+            if (autoWrite) {
+                write.registerWriteHandler(new LongestMatchColumnWidthStyleStrategy());
+            }
+            write.sheet(sheetName).doWrite(list);
 
         } catch (Exception e) {
             log.error("表格导出异常异常 {}:", fileName, e);
