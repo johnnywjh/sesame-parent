@@ -3,7 +3,9 @@ package kim.sesame.common.web.controller;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
+import org.springframework.http.HttpHeaders;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +18,7 @@ import java.util.List;
 /**
  * Web controller基类
  **/
+@Slf4j
 public class AbstractWebController extends AbstractController {
 
 
@@ -35,7 +38,7 @@ public class AbstractWebController extends AbstractController {
             outputStream.close();
             inputStream.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("文件下载异常:", e);
         }
     }
 
@@ -45,10 +48,10 @@ public class AbstractWebController extends AbstractController {
             // 实现文件下载
             response.setContentType("text/plain");
             response.setHeader("Location", fileName);
-            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("设置文件名称异常:", e);
         }
     }
 
@@ -60,7 +63,7 @@ public class AbstractWebController extends AbstractController {
                 fileName = new String(fileName.getBytes("UTF-8"), "ISO8859-1");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("获取文件名称异常:", e);
         }
         return fileName;
     }
@@ -75,6 +78,10 @@ public class AbstractWebController extends AbstractController {
         sb.append("<p>").append(str).append("</p>");
     }
 
+    public void tableDataExport(String fileName, List list, Class clazz, HttpServletResponse response) {
+        tableDataExport(fileName, list, clazz, response, "1");
+    }
+
     /**
      * 表格数据导出
      *
@@ -84,21 +91,22 @@ public class AbstractWebController extends AbstractController {
      * @param request  req
      * @param response res
      */
-    public void tableDataExport(String fileName, List list, Class clazz, HttpServletRequest request, HttpServletResponse response) {
+    public void tableDataExport(String fileName, List list, Class clazz, HttpServletResponse response, String sheetName) {
 
         try {
             // 这里注意 有同学反应下载的文件名不对。这个时候 请别使用swagger 他会有影响
             response.setContentType("application/vnd.ms-excel");
-            response.setCharacterEncoding("utf-8");
-            // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
-            fileName = URLEncoder.encode(fileName, "UTF-8");
-            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+            response.setCharacterEncoding("UTF-8");
+
+            fileName = URLEncoder.encode(fileName + ".xlsx", "UTF-8");
+            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + fileName);
+
             EasyExcel.write(response.getOutputStream(), clazz)
                     .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
-                    .sheet("1").doWrite(list);
+                    .sheet(sheetName).doWrite(list);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("表格导出异常异常 {}:", fileName, e);
         }
     }
 }
