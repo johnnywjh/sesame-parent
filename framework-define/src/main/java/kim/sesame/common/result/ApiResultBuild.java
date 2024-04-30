@@ -9,27 +9,27 @@ import java.util.List;
 public class ApiResultBuild {
 
     //单例 普通的成功用公用的对象
-    public static class ContextSuccess {
-        public final static ApiResult SUCCESS = ApiResult.create().setSuccess(true);
+//    public static class ContextSuccess {
+//        public final static ApiResult SUCCESS = ApiResult.create().setSuccess(true);
+//    }
+
+    public static ApiResult ok() {
+        return ApiResult.create().setSuccess(true);
     }
 
-    public static ApiResult success() {
-        return ContextSuccess.SUCCESS;
-    }
-
-    public static ApiResult success(Object result) {
+    public static ApiResult ok(Object result) {
         return ApiResult.create().setSuccess(true).setData(result);
     }
 
-    public static ApiResult success(Object result, String msg) {
+    public static ApiResult ok(Object result, String msg) {
         return ApiResult.create().setSuccess(true).setData(result).setMessage(msg);
     }
 
-    public static ApiResult success(List list) {
+    public static ApiResult ok(List list) {
         return ApiResult.create().setSuccess(true).setData(list);
     }
 
-    public static ApiResult success(List list, String msg) {
+    public static ApiResult ok(List list, String msg) {
         return ApiResult.create().setSuccess(true).setData(list).setMessage(msg);
     }
 

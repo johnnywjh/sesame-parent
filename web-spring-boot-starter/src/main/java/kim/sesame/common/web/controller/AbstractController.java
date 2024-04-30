@@ -21,23 +21,23 @@ import java.util.List;
 public abstract class AbstractController {
 
 
-    public ApiResult success() {
-        return ApiResultBuild.ContextSuccess.SUCCESS;
+    public ApiResult ok() {
+        return ApiResult.create().setSuccess(true);
     }
 
-    public ApiResult success(Object result) {
+    public ApiResult ok(Object result) {
         return ApiResult.create().setSuccess(true).setData(result);
     }
 
-    public ApiResult success(Object result, String msg) {
+    public ApiResult ok(Object result, String msg) {
         return ApiResult.create().setSuccess(true).setData(result).setMessage(msg);
     }
 
-    public ApiResult success(List list) {
+    public ApiResult ok(List list) {
         return ApiResult.create().setSuccess(true).setData(list);
     }
 
-    public ApiResult success(List list, String msg) {
+    public ApiResult ok(List list, String msg) {
         return ApiResult.create().setSuccess(true).setData(list).setMessage(msg);
     }
 
