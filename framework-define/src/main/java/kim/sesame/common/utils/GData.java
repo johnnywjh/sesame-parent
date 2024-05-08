@@ -23,8 +23,8 @@ public class GData {
         String COMPARE_PWD_VERSION = "compare_pwd_version";
 
         String TOKEN = "Authorization";
-        String jwt_expire_time = "jwt_expire_time";
-        String jwt_create_time = "jwt_create_time";
+        String JWT_EXPIRE_TIME = "jwt_expire_time";
+        String JWT_CREATE_TIME = "jwt_create_time";
     }
 
     /**
