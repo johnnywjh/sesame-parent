@@ -71,16 +71,7 @@
             <version>1.68</version>
         </dependency>
 
-        <!--JWT令牌-->
-        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <version>${jjwt-impl.version}</version>
-        </dependency>
-
-
-        <!--google的布隆过滤器-->
+        <!--google-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>

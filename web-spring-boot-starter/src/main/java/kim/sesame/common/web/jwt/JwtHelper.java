@@ -1,93 +1,73 @@
 package kim.sesame.common.web.jwt;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import cn.hutool.json.JSONObject;
+import cn.hutool.jwt.JWT;
+import cn.hutool.jwt.JWTUtil;
 import kim.sesame.common.utils.GData;
 import kim.sesame.common.web.context.SpringContextUtil;
-import org.apache.commons.lang3.StringUtils;
+import lombok.extern.slf4j.Slf4j;
 
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
-import java.security.Key;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Consumer;
 
+@Slf4j
 public class JwtHelper {
 
-    public static Claims parseJWT(String jsonWebToken) {
-        JWTProperties jwt = SpringContextUtil.getBean(JWTProperties.class);
-        try {
-            Claims claims = Jwts.parser()
-                    .setSigningKey(DatatypeConverter.parseBase64Binary(jwt.getSecret()))
-                    .parseClaimsJws(jsonWebToken).getBody();
-            return claims;
-        } catch (Exception ex) {
+    private static JWTProperties jwtProperties;
+
+    private static JWTProperties getJwtProperties() {
+        if (jwtProperties == null) {
+            jwtProperties = SpringContextUtil.getBean(JWTProperties.class);
+        }
+        return jwtProperties;
+    }
+
+
+    public static JSONObject parseJwtStr(String jwtStry) {
+        return parseJwtStr(jwtStry, true);
+    }
+
+    public static JSONObject parseJwtStr(String jwtStr, boolean verify) {
+        if (verify) {
+            boolean resVerify = JWTUtil.verify(jwtStr, getJwtProperties().getSecret().getBytes());
+            if (!resVerify) {
+                log.info("token不合法 验证失败");
+//                throw new RuntimeException("token不合法 验证失败");
+                return null;
+            }
+        }
+
+        JWT jwt = JWTUtil.parseToken(jwtStr);
+        JSONObject claimsJson = jwt.getPayload().getClaimsJson();
+        Long aLong = claimsJson.getLong(GData.JWT.JWT_EXPIRE_TIME);
+        if (aLong == null) {
+            return claimsJson;
+        }
+        long nowMillis = System.currentTimeMillis();
+        if (aLong < nowMillis) {
+            log.info("token 过期了");
             return null;
         }
+        return claimsJson;
     }
 
-    public static String createJWT(Map<String, Object> claims) {
-        JWTProperties jwt = SpringContextUtil.getBean(JWTProperties.class);
-        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+    public static String createJWT(Consumer<Map<String, Object>> consumer) {
+        JWTProperties jwtProperties = SpringContextUtil.getBean(JWTProperties.class);
 
-        //生成签名密钥
-        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(jwt.getSecret());
-        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
         long nowMillis = System.currentTimeMillis();
-        claims.put("jwt_create_time", nowMillis);
 
-        //添加构成JWT的参数
-        JwtBuilder builder = Jwts.builder()
-                .setHeaderParam("typ", "JWT")
-//                .claim("userCode", userCode)
-//                .claim("roleCode", roleCode)
-                .setClaims(claims)
-                .setIssuer(jwt.getIss())
-//                .setAudience(audience)
-                .signWith(signatureAlgorithm, signingKey);
+        Map<String, Object> jwtMap = new HashMap<>();
+        jwtMap.put(GData.JWT.JWT_CREATE_TIME, nowMillis);
+        consumer.accept(jwtMap);
+
         //添加Token过期时间
-        if (jwt.getInvalidSecond() > 0) {
-            Date now = new Date(nowMillis);
-
-            long expMillis = nowMillis + jwt.getInvalidSecond() * 1000;
-            Date exp = new Date(expMillis);
-            builder.setExpiration(exp).setNotBefore(now);
+        if (jwtProperties.getInvalidSecond() > 0) {
+            long expMillis = nowMillis + jwtProperties.getInvalidSecond() * 1000;
+            jwtMap.put(GData.JWT.JWT_EXPIRE_TIME, expMillis);
         }
 
-        //生成JWT
-        return builder.compact();
+        return JWTUtil.createToken(jwtMap, getJwtProperties().getSecret().getBytes());
     }
 
-    public static String getJwtUser(String sessionId) {
-        return getJwtUserAll(sessionId, null, null, null, null, false);
-    }
-
-    public static String getJwtUser(String userId, String account, String name, String pwdVersion) {
-        return getJwtUserAll(null, userId, account, name, pwdVersion, true);
-    }
-
-    private static String getJwtUserAll(String sessionId, String userId, String account, String name, String pwdVersion, boolean accLoad) {
-        Map<String, Object> claims = new HashMap<>();
-        if (StringUtils.isNotEmpty(sessionId)) {
-            claims.put(GData.JWT.SESSION_ID, sessionId);
-        }
-        if (StringUtils.isNotEmpty(userId)) {
-            claims.put(GData.JWT.USER_ID, userId);
-        }
-        if (StringUtils.isNotEmpty(account)) {
-            claims.put(GData.JWT.ACCOUNT, account);
-        }
-        if (StringUtils.isNotEmpty(name)) {
-            claims.put(GData.JWT.NAME, name);
-        }
-        if (StringUtils.isNotEmpty(pwdVersion)) {
-            claims.put(GData.JWT.PWD_VERSION, pwdVersion);
-        }
-        claims.put(GData.JWT.ACC_LOAD, accLoad);
-
-        return createJWT(claims);
-    }
 }
